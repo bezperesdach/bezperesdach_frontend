@@ -3,17 +3,20 @@ import { FieldProps } from "formik";
 import Select from "react-select";
 import { Options, OnChangeValue, StylesConfig } from "react-select";
 
-const customControlStyles: React.CSSProperties = {
-  borderRadius: 0,
-};
-
 const selectStyle: StylesConfig<Option | Option[] | string, boolean> = {
+  control: (provided, state) => {
+    // none of react-select's styles are passed to <Control />
+    return {
+      ...provided,
+      borderColor: "#000",
+    };
+  },
   menu: (provided, state) => {
     // const { selectProps } = state;
 
     return {
       ...provided,
-      ...customControlStyles,
+      borderRadius: 0,
     };
   },
 };

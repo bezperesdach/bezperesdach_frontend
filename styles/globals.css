@@ -95,6 +95,11 @@ a {
   box-sizing: border-box;
 }
 
+:focus {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
 @media (prefers-color-scheme: light) {
   html {
     color-scheme: dark;

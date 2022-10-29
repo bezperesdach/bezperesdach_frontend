@@ -83,7 +83,7 @@
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   justify-content: space-between;
-  min-height: 38px;
+  min-height: 45px;
   outline: 0 !important;
   position: relative;
   -webkit-transition: all 100ms;
@@ -104,7 +104,6 @@
   align-self: flex-start;
   text-align: start;
   padding: 10px;
-  min-height: 45px;
   border: none;
   color: hsl(0, 0%, 20%);
   font-family: "Roboto";

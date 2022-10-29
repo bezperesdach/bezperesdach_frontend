@@ -12,6 +12,10 @@
   display: flex;
 }
 
+#form-item-description-textarea {
+  resize: none;
+}
+
 .email-type {
   display: flex;
   gap: 8px;

@@ -211,6 +211,7 @@ export const Hero = () => {
                       rows="7"
                       name="description"
                       placeholder="Небольшое описание работы"
+                      id={styles["form-item-description-textarea"]}
                       disabled={isSubmitting}
                     />
                   </div>

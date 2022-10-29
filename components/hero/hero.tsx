@@ -78,8 +78,8 @@ const typeOptionsInit = [
 ];
 
 const antiPlagiarismOptions = [
-  { value: "Бесплатный", label: "Бесплатный" },
-  { value: "Платный", label: "Платный" },
+  { value: "Бесплатная", label: "Бесплатная" },
+  { value: "Платная", label: "Платная" },
 ];
 
 // TODO maybe use multiple different method of contacting user
@@ -234,7 +234,7 @@ export const Hero = () => {
                     </div>
 
                     <div className={styles["form-item"]} id={styles["form-item-originality"]}>
-                      <label className={styles.label}>Оригинальность *</label>
+                      <label className={styles.label}>Антиплагиат *</label>
                       <div className={styles["input-container"]}>
                         <Field
                           className={styles.input}
@@ -266,13 +266,13 @@ export const Hero = () => {
                   </div>
 
                   <div className={styles["form-item"]} id={styles["form-item-anti-plagiarism"]}>
-                    <label className={styles.label}>Антиплагиат *</label>
+                    <label className={styles.label}>Проверка *</label>
                     <Field
                       name="antiPlagiarism"
                       options={antiPlagiarismOptions}
                       component={ProjectTypeSelect}
                       borderRadius={15}
-                      placeholder="Выберите тип антиплагиата"
+                      placeholder="Тип проверки"
                       isMulti={false}
                       isSearchable={false}
                       disabled={isSubmitting}

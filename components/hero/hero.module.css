@@ -90,6 +90,7 @@
 .label {
   color: hsl(0, 0%, 50%);
   padding-left: 6px;
+  font-size: 14px;
 }
 
 .input {

@@ -4,30 +4,32 @@ import Select from "react-select";
 import { Options, OnChangeValue, StylesConfig } from "react-select";
 
 const selectStyle: StylesConfig<Option | Option[] | string, boolean> = {
-  control: (provided, _) => {
+  control: (styles, _) => {
     return {
-      ...provided,
+      ...styles,
+      "&:hover": { borderColor: "#000" },
       borderColor: "#000",
-      minHeight: "41px",
+      minHeight: "45px",
+      height: "auto",
       boxShadow: "none",
     };
   },
-  placeholder: (provided, _) => {
+  placeholder: (styles, _) => {
     return {
-      ...provided,
+      ...styles,
       color: "hsl(0, 0%, 70%)",
     };
   },
-  menu: (provided, _) => {
+  menu: (styles, _) => {
     return {
-      ...provided,
+      ...styles,
       borderRadius: 0,
       maxHeight: "200px",
     };
   },
-  menuList: (provided, _) => {
+  menuList: (styles, _) => {
     return {
-      ...provided,
+      ...styles,
       borderRadius: 0,
       maxHeight: "200px",
     };

@@ -8,6 +8,8 @@ const selectStyle: StylesConfig<Option | Option[] | string, boolean> = {
     return {
       ...provided,
       borderColor: "#000",
+      minHeight: "41px",
+      boxShadow: "none",
     };
   },
   placeholder: (provided, _) => {

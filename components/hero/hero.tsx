@@ -107,7 +107,7 @@ export const Hero = () => {
   };
 
   return (
-    <div className={styles.hero}>
+    <section className={styles.hero}>
       <div className={styles["form-container"]}>
         <div className={styles.hero}>
           <h1 className={styles["hero-title"]}>Онлайн-платформа для помощи в учебе</h1>
@@ -307,6 +307,6 @@ export const Hero = () => {
           </Portal>
         )}
       </div>
-    </div>
+    </section>
   );
 };

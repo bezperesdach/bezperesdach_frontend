@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Guarantees } from "../components/guarantees/guarantees";
 import { Hero } from "../components/hero/hero";
 import { Navbar } from "../components/navbar/navbar";
 
@@ -17,6 +18,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <Hero />
+        <Guarantees />
       </main>
     </div>
   );

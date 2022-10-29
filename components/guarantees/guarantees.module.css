@@ -1,0 +1,19 @@
+.guarantees {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 48px;
+  gap: 60px;
+}
+
+.bold-blue {
+  font-weight: 600;
+  color: #0c73fe;
+}
+
+@media screen and (min-width: 768px) {
+  .guarantees {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}

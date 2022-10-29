@@ -28,6 +28,7 @@ const initialValue: IOrder = {
   originality: "70%",
   antiPlagiarism: "Бесплатный",
   email: "",
+  expectedPrice: "",
 };
 
 const RequestProjectSchema = Yup.object().shape({
@@ -38,6 +39,7 @@ const RequestProjectSchema = Yup.object().shape({
   originality: Yup.string().required("Обязательное поле"),
   antiPlagiarism: Yup.string().required("Обязательное поле"),
   email: Yup.string().email("Неверный email").required("Обязательное поле"),
+  expectedPrice: Yup.string().required("Обязательное поле"),
 });
 
 const typeOptionsInit = [
@@ -76,8 +78,8 @@ const typeOptionsInit = [
 ];
 
 const antiPlagiarismOptions = [
-  { value: "Бесплатный", label: "Бесплатный" },
-  { value: "Платный", label: "Платный" },
+  { value: "Бесплатная", label: "Бесплатная" },
+  { value: "Платная", label: "Платная" },
 ];
 
 // TODO maybe use multiple different method of contacting user
@@ -143,25 +145,42 @@ export const Hero = () => {
           >
             {({ isSubmitting, setFieldValue, values }) => (
               <Form className={styles.form} noValidate>
-                <div className={styles["form-item"]}>
-                  <label className={styles.label}>Тип работы</label>
-                  <Field
-                    name="projectType"
-                    options={typeOptions}
-                    component={ProjectTypeSelect}
-                    borderRadius={15}
-                    placeholder="Выберите тип"
-                    isMulti={false}
-                    filterOption={() => true}
-                    onInputChange={(e: string) => filterAllOptions(e)}
-                    disabled={isSubmitting}
-                  />
+                <div className={styles["email-type"]}>
+                  <div className={styles["form-item"]} id={styles["form-item-email"]}>
+                    <label className={styles.label}>Email *</label>
+                    <div className={styles["input-container"]}>
+                      <Field
+                        className={styles.input}
+                        type="email"
+                        name="email"
+                        placeholder="example@example.com"
+                        disabled={isSubmitting}
+                      />
+                    </div>
 
-                  <ErrorMessage className={styles["error-label"]} name="projectType" component="div" />
+                    <ErrorMessage className={styles["error-label"]} name="email" component="div" />
+                  </div>
+
+                  <div className={styles["form-item"]} id={styles["form-item-type"]}>
+                    <label className={styles.label}>Тип работы *</label>
+                    <Field
+                      name="projectType"
+                      options={typeOptions}
+                      component={ProjectTypeSelect}
+                      borderRadius={15}
+                      placeholder="Выберите тип"
+                      isMulti={false}
+                      filterOption={() => true}
+                      onInputChange={(e: string) => filterAllOptions(e)}
+                      disabled={isSubmitting}
+                    />
+
+                    <ErrorMessage className={styles["error-label"]} name="projectType" component="div" />
+                  </div>
                 </div>
 
                 <div className={styles["form-item"]}>
-                  <label className={styles.label}>Предмет</label>
+                  <label className={styles.label}>Предмет *</label>
                   <div className={styles["input-container"]}>
                     <Field className={styles.input} type="text" name="subject" placeholder="Предмет" disabled={isSubmitting} />
                   </div>
@@ -169,7 +188,7 @@ export const Hero = () => {
                 </div>
 
                 <div className={styles["form-item"]}>
-                  <label className={styles.label}>Тема работы</label>
+                  <label className={styles.label}>Тема работы *</label>
                   <div className={styles["input-container"]}>
                     <Field
                       className={styles.input}
@@ -192,6 +211,7 @@ export const Hero = () => {
                       rows="7"
                       name="description"
                       placeholder="Небольшое описание работы"
+                      id={styles["form-item-description-textarea"]}
                       disabled={isSubmitting}
                     />
                   </div>
@@ -199,81 +219,94 @@ export const Hero = () => {
                 </div>
 
                 <div className={styles["date-orig"]}>
-                  <div className={styles["form-item"]}>
-                    <label className={styles.label}>Дата сдачи</label>
-                    <div className={styles["input-container"]}>
-                      <Field
-                        className={styles.input}
-                        type="date"
-                        name="dueDate"
-                        placeholder="Когда нужно сдать работу"
-                        disabled={isSubmitting}
-                      />
+                  <div className={styles["date-orig-container"]}>
+                    <div className={styles["form-item"]} id={styles["form-item-due-date"]}>
+                      <label className={styles.label}>Дата сдачи *</label>
+                      <div className={styles["input-container"]}>
+                        <Field
+                          className={styles.input}
+                          type="date"
+                          name="dueDate"
+                          placeholder="Когда нужно сдать работу"
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                      <ErrorMessage className={styles["error-label"]} name="dueDate" component="div" />
                     </div>
-                    <ErrorMessage className={styles["error-label"]} name="dueDate" component="div" />
+
+                    <div className={styles["form-item"]} id={styles["form-item-originality"]}>
+                      <label className={styles.label}>Антиплагиат *</label>
+                      <div className={styles["input-container"]}>
+                        <Field
+                          className={styles.input}
+                          type="text"
+                          pattern="\d*"
+                          name="originality"
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                            if (value === "" || value === "0") {
+                              return setFieldValue("originality", "");
+                            }
+                            if (value.length >= 3) {
+                              return;
+                            }
+                            return setFieldValue("originality", `${value}%`);
+                          }}
+                          onKeyDown={(e: React.KeyboardEvent) => {
+                            if (e.key === "Backspace") {
+                              setFieldValue("originality", values.originality.slice(0, -1));
+                            }
+                          }}
+                          placeholder="Оригинальность"
+                          disabled={isSubmitting}
+                          data-value="originality"
+                        />
+                      </div>
+                      <ErrorMessage className={styles["error-label"]} name="originality" component="div" />
+                    </div>
                   </div>
 
-                  <div className={styles["form-item"]}>
-                    <label className={styles.label}>Оригинальность</label>
-                    <div className={styles["input-container"]}>
-                      <Field
-                        className={styles.input}
-                        type="text"
-                        pattern="\d*"
-                        name="originality"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                          const value = e.target.value.trim().replace(/[^0-9]/gi, "");
-                          if (value === "" || value === "0") {
-                            return setFieldValue("originality", "");
-                          }
-                          if (value.length >= 3) {
-                            return;
-                          }
-                          return setFieldValue("originality", `${value}%`);
-                        }}
-                        onKeyDown={(e: React.KeyboardEvent) => {
-                          if (e.key === "Backspace") {
-                            setFieldValue("originality", values.originality.slice(0, -1));
-                          }
-                        }}
-                        placeholder="Оригинальность"
-                        disabled={isSubmitting}
-                        data-value="originality"
-                      />
-                    </div>
-                    <ErrorMessage className={styles["error-label"]} name="originality" component="div" />
+                  <div className={styles["form-item"]} id={styles["form-item-anti-plagiarism"]}>
+                    <label className={styles.label}>Проверка *</label>
+                    <Field
+                      name="antiPlagiarism"
+                      options={antiPlagiarismOptions}
+                      component={ProjectTypeSelect}
+                      borderRadius={15}
+                      placeholder="Тип проверки"
+                      isMulti={false}
+                      isSearchable={false}
+                      disabled={isSubmitting}
+                    />
+
+                    <ErrorMessage className={styles["error-label"]} name="antiPlagiarism" component="div" />
                   </div>
                 </div>
 
-                <div className={styles["form-item"]}>
-                  <label className={styles.label}>Антиплагиат</label>
-                  <Field
-                    name="antiPlagiarism"
-                    options={antiPlagiarismOptions}
-                    component={ProjectTypeSelect}
-                    borderRadius={15}
-                    placeholder="Выберите тип антиплагиата"
-                    isMulti={false}
-                    isSearchable={false}
-                    disabled={isSubmitting}
-                  />
-
-                  <ErrorMessage className={styles["error-label"]} name="antiPlagiarism" component="div" />
-                </div>
-
-                <div className={styles["form-item"]}>
-                  <label className={styles.label}>Email для связи</label>
+                <div className={styles["form-item"]} id={styles["form-item-due-date"]}>
+                  <label className={styles.label}>Желаемая цена *</label>
                   <div className={styles["input-container"]}>
                     <Field
                       className={styles.input}
-                      type="email"
-                      name="email"
-                      placeholder="example@example.com"
+                      type="text"
+                      name="expectedPrice"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                        if (value === "" || value === "0") {
+                          return setFieldValue("expectedPrice", "");
+                        }
+                        return setFieldValue("expectedPrice", `${value}₽`);
+                      }}
+                      onKeyDown={(e: React.KeyboardEvent) => {
+                        if (e.key === "Backspace") {
+                          setFieldValue("expectedPrice", values.expectedPrice.slice(0, -1));
+                        }
+                      }}
+                      placeholder="Желаема цена"
                       disabled={isSubmitting}
                     />
                   </div>
-
-                  <ErrorMessage className={styles["error-label"]} name="email" component="div" />
+                  <ErrorMessage className={styles["error-label"]} name="expectedPrice" component="div" />
                 </div>
 
                 <Button type="submit" disabled={isSubmitting} loading={sendOrder.loading} style={{ alignSelf: "center" }}>

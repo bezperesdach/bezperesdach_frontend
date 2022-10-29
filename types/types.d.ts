@@ -7,4 +7,5 @@ interface IOrder {
   originality: string;
   antiPlagiarism: "Бесплатный" | "Платный";
   email: string;
+  expectedPrice: string;
 }

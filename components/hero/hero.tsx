@@ -280,32 +280,32 @@ export const Hero = () => {
 
                     <ErrorMessage className={styles["error-label"]} name="antiPlagiarism" component="div" />
                   </div>
+                </div>
 
-                  <div className={styles["form-item"]} id={styles["form-item-due-date"]}>
-                    <label className={styles.label}>Желаемая цена *</label>
-                    <div className={styles["input-container"]}>
-                      <Field
-                        className={styles.input}
-                        type="text"
-                        name="expectedPrice"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                          const value = e.target.value.trim().replace(/[^0-9]/gi, "");
-                          if (value === "" || value === "0") {
-                            return setFieldValue("expectedPrice", "");
-                          }
-                          return setFieldValue("expectedPrice", `${value}₽`);
-                        }}
-                        onKeyDown={(e: React.KeyboardEvent) => {
-                          if (e.key === "Backspace") {
-                            setFieldValue("expectedPrice", values.expectedPrice.slice(0, -1));
-                          }
-                        }}
-                        placeholder="Желаема цена"
-                        disabled={isSubmitting}
-                      />
-                    </div>
-                    <ErrorMessage className={styles["error-label"]} name="expectedPrice" component="div" />
+                <div className={styles["form-item"]} id={styles["form-item-due-date"]}>
+                  <label className={styles.label}>Желаемая цена *</label>
+                  <div className={styles["input-container"]}>
+                    <Field
+                      className={styles.input}
+                      type="text"
+                      name="expectedPrice"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                        if (value === "" || value === "0") {
+                          return setFieldValue("expectedPrice", "");
+                        }
+                        return setFieldValue("expectedPrice", `${value}₽`);
+                      }}
+                      onKeyDown={(e: React.KeyboardEvent) => {
+                        if (e.key === "Backspace") {
+                          setFieldValue("expectedPrice", values.expectedPrice.slice(0, -1));
+                        }
+                      }}
+                      placeholder="Желаема цена"
+                      disabled={isSubmitting}
+                    />
                   </div>
+                  <ErrorMessage className={styles["error-label"]} name="expectedPrice" component="div" />
                 </div>
 
                 <Button type="submit" disabled={isSubmitting} loading={sendOrder.loading} style={{ alignSelf: "center" }}>

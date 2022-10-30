@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from "./components/card/card";
 
 import Image from "next/image";
 import servicesImage from "public/images/services.svg";
@@ -12,12 +11,13 @@ export const Services = () => {
         <Image className={styles.image} src={servicesImage} priority={true} alt="hero" />
       </div>
 
-      <Card title="Как сделать заказ?">
+      <div className={styles.card}>
+        <h2>Как сделать заказ?</h2>
         <p>Вы размещаете заказ на сайте</p>
         <p>Мы связываемся с вами</p>
         <p>Вы совершаете оплату</p>
         <p>Исполнитель высылает работу на проверку</p>
-      </Card>
+      </div>
     </section>
   );
 };

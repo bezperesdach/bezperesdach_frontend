@@ -62,8 +62,7 @@ export const createOrder = async (
       throw rejected;
     }
   } catch (err) {
-    console.log(err);
     onError(err);
-    setTimeout(() => onClearError(), 1500);
+    setTimeout(() => onClearError(), 5000);
   }
 };

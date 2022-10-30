@@ -1,0 +1,29 @@
+.services {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 48px;
+  gap: 60px;
+}
+
+.bold-blue {
+  font-weight: 600;
+  color: #0c73fe;
+}
+.image-container {
+  width: 100%;
+  padding-top: 80px;
+  /* flex: 1 1 0; */
+}
+
+.image {
+  object-fit: contain;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .services {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}

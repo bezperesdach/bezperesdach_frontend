@@ -7,6 +7,13 @@
   padding-top: 48px;
   gap: 60px;
 }
+.text {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: left;
+}
 
 .bold-blue {
   font-weight: 600;
@@ -27,7 +34,7 @@
   border-radius: 30px;
   flex: 1;
   gap: 32px;
-  width: 50%;
+  width: 100%;
 }
 
 .image {
@@ -40,5 +47,14 @@
   .services {
     flex-direction: row;
     align-items: stretch;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .image {
+    display: none;
+  }
+  .image-container {
+    display: none;
   }
 }

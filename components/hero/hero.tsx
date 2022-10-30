@@ -26,7 +26,7 @@ const initialValue: IOrder = {
   description: "",
   dueDate: nextWeek().toLocaleDateString("en-CA"),
   originality: "70%",
-  antiPlagiarism: "Бесплатный",
+  antiPlagiarism: "Бесплатная",
   email: "",
   expectedPrice: "",
 };
@@ -287,7 +287,7 @@ export const Hero = () => {
                 </div>
 
                 <div className={styles["form-item"]} id={styles["form-item-due-date"]}>
-                  <label className={styles.label}>Желаемая цена *</label>
+                  <label className={styles.label}>Желаемая цена</label>
                   <div className={styles["input-container"]}>
                     <Field
                       className={styles.input}

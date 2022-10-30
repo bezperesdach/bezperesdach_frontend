@@ -1,8 +1,7 @@
 import axios from "axios";
 import tokens from "../tokens.json";
 
-export const API_URL =
-  process.env.NODE_ENV === "development" ? "https://localhost:1337/api" : "https://backend.xn--80abjdaam8dkl2e.xn--p1ai/api";
+export const API_URL = process.env.NODE_ENV === "development" ? "https://localhost:1337/api" : "https://bezperesdach.ru/api";
 
 const isRejected = (input: PromiseSettledResult<unknown>): input is PromiseRejectedResult => input.status === "rejected";
 

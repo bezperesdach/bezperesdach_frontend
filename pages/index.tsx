@@ -6,6 +6,7 @@ import { Services } from "../components/services/services";
 import { About } from "../components/about/about";
 import { Represents } from "../components/represents/represents";
 import { Preparation } from "../components/preparation/preparation";
+import { Footer } from "../components/footer/footer";
 
 import styles from "../styles/Home.module.css";
 
@@ -28,6 +29,8 @@ export default function Home() {
         <Represents />
         <Preparation />
       </main>
+
+      <Footer />
     </div>
   );
 }

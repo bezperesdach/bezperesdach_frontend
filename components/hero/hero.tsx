@@ -305,7 +305,7 @@ export const Hero = () => {
                           setFieldValue("expectedPrice", values.expectedPrice.slice(0, -1));
                         }
                       }}
-                      placeholder="Желаема цена"
+                      placeholder="Желаемая цена"
                       disabled={isSubmitting}
                     />
                   </div>

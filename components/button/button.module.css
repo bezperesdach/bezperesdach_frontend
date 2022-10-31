@@ -29,6 +29,12 @@
   outline: none;
 }
 
+.button-error {
+  cursor: not-allowed;
+  background-image: linear-gradient(to right, #fe046c, #eb446e, #fe046c, #eb446e);
+  box-shadow: 0 4px 15px 0 rgba(234, 65, 130, 0.75);
+}
+
 .button-gradient {
   background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
   box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);

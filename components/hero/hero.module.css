@@ -13,6 +13,10 @@
   display: flex;
 }
 
+#form-item-description-textarea {
+  resize: none;
+}
+
 .email-type {
   display: flex;
   gap: 8px;
@@ -80,7 +84,7 @@
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   justify-content: space-between;
-  min-height: 38px;
+  min-height: 45px;
   outline: 0 !important;
   position: relative;
   -webkit-transition: all 100ms;
@@ -95,19 +99,18 @@
 }
 
 .input {
+  height: 100%;
   width: 100%;
   min-width: 100%;
   background: none;
   align-self: flex-start;
   text-align: start;
   padding: 10px;
-  min-height: 41px;
   border: none;
   color: hsl(0, 0%, 20%);
   font-family: "Roboto";
   font-size: 16px;
   border-radius: inherit;
-  min-height: inherit;
 }
 
 .input::placeholder {
@@ -125,6 +128,18 @@
 .error-label {
   color: rgb(187, 62, 62);
   padding-left: 10px;
+}
+
+.submit-error {
+  color: rgb(187, 62, 62);
+  padding-top: 8px;
+}
+
+.submit-button-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
 }
 
 .modal-overlay {

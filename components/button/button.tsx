@@ -11,7 +11,7 @@ type Props = {
   style?: React.CSSProperties;
 };
 
-export const Button: React.FC<Props> = ({ children, type, onClick, loading, disabled, style }) => {
+export const Button = ({ children, type, onClick, loading, disabled, style }: Props) => {
   const buttonLoading = () => {
     return loading ? <span className={styles["button-loading"]}></span> : <span>{children}</span>;
   };

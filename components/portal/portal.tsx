@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Portal: React.FC<Props> = ({ children }) => {
+const Portal = ({ children }: Props) => {
   const el = document.createElement("div");
   const wrapper: React.RefObject<HTMLElement> = useRef(el);
 

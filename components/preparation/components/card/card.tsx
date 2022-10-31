@@ -6,6 +6,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const Card: React.FC<Props> = ({ children }) => {
+export const Card = ({ children }: Props) => {
   return <div className={styles.card}>{children}</div>;
 };

@@ -16,11 +16,24 @@ export const Button: React.FC<Props> = ({ children, type, onClick, loading, erro
   const buttonLoading = () => {
     if (error) {
       return <span>ОШИБКА</span>;
-    } else if (loading) {
-      return <span className={styles["button-loading"]}></span>;
-    } else {
-      return <span>{children}</span>;
     }
+
+    if (loading) {
+      return <span className={styles["button-loading"]}></span>;
+    }
+
+    return <span>{children}</span>;
+  };
+
+  const onClickHandler = () => {
+    if (error) {
+      return undefined;
+    }
+    if (loading) {
+      return undefined;
+    }
+
+    return onClick && onClick();
   };
 
   const buttonError = () => {
@@ -28,13 +41,7 @@ export const Button: React.FC<Props> = ({ children, type, onClick, loading, erro
   };
 
   return (
-    <button
-      className={`${styles.button} ${buttonError()}`}
-      type={type}
-      onClick={() => !error && onClick}
-      disabled={disabled}
-      style={style}
-    >
+    <button className={`${styles.button} ${buttonError()}`} type={type} onClick={onClickHandler} disabled={disabled} style={style}>
       {buttonLoading()}
     </button>
   );

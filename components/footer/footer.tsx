@@ -17,7 +17,7 @@ export const Footer = () => {
       <div className={styles["footer_agreements"]}>
         <p>
           Используя наш сервис вы соглашаетесь с{" "}
-          <a href="" className={styles.link}>
+          <a href="/documents/terms-of-use.pdf" className={styles.link}>
             пользовательским соглашением
           </a>{" "}
           и{" "}

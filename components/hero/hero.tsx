@@ -25,8 +25,8 @@ const initialValue: IOrder = {
   projectName: "",
   description: "",
   dueDate: nextWeek().toLocaleDateString("en-CA"),
-  originality: "70%",
-  antiPlagiarism: "Бесплатный",
+  originality: "45%",
+  antiPlagiarism: "Бесплатная",
   email: "",
   expectedPrice: "",
 };
@@ -39,7 +39,6 @@ const RequestProjectSchema = Yup.object().shape({
   originality: Yup.string().required("Обязательное поле"),
   antiPlagiarism: Yup.string().required("Обязательное поле"),
   email: Yup.string().email("Неверный email").required("Обязательное поле"),
-  expectedPrice: Yup.string().required("Обязательное поле"),
 });
 
 const typeOptionsInit = [
@@ -95,6 +94,8 @@ export const Hero = () => {
   const [sendOrder, setSendOrder] = useState({
     loading: false,
     isModal: false,
+    error: false,
+    errorText: "",
   });
   const [typeOptions, setTypeOptions] = useState(typeOptionsInit);
 
@@ -131,14 +132,16 @@ export const Hero = () => {
                   resetForm();
                   setSubmitting(false);
                 },
-                () => {
+                (err) => {
                   setSendOrder((prevState) => {
-                    return { ...prevState, loading: false };
+                    return { ...prevState, loading: false, error: true, errorText: `${err}` };
                   });
                   setSubmitting(false);
                 },
                 () => {
-                  console.log("error clear");
+                  setSendOrder((prevState) => {
+                    return { ...prevState, loading: false, error: false, errorText: "" };
+                  });
                 }
               );
             }}
@@ -284,7 +287,7 @@ export const Hero = () => {
                 </div>
 
                 <div className={styles["form-item"]} id={styles["form-item-due-date"]}>
-                  <label className={styles.label}>Желаемая цена *</label>
+                  <label className={styles.label}>Желаемая цена</label>
                   <div className={styles["input-container"]}>
                     <Field
                       className={styles.input}
@@ -309,9 +312,18 @@ export const Hero = () => {
                   <ErrorMessage className={styles["error-label"]} name="expectedPrice" component="div" />
                 </div>
 
-                <Button type="submit" disabled={isSubmitting} loading={sendOrder.loading} style={{ alignSelf: "center" }}>
-                  Отправить запрос
-                </Button>
+                <div className={styles["submit-button-container"]}>
+                  {sendOrder.error && <p className={styles["submit-error"]}>{sendOrder.errorText}</p>}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    loading={sendOrder.loading}
+                    style={{ alignSelf: "center" }}
+                    error={sendOrder.error}
+                  >
+                    Отправить запрос
+                  </Button>
+                </div>
               </Form>
             )}
           </Formik>

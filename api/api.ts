@@ -1,8 +1,10 @@
 import axios from "axios";
-import tokens from "../tokens.json";
+import prodTokens from "../tokens.json";
+import localTokens from "../.tokens.json";
 
-export const API_URL =
-  process.env.NODE_ENV === "development" ? "http://localhost:1337/api" : "https://maslomeister-shop.herokuapp.com/api";
+const TOKENS = process.env.NODE_ENV === "development" ? localTokens : prodTokens;
+
+export const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:1337/api" : "https://bezperesdach.ru/api";
 
 const isRejected = (input: PromiseSettledResult<unknown>): input is PromiseRejectedResult => input.status === "rejected";
 
@@ -46,9 +48,10 @@ export const createOrder = async (
   onRequest();
   try {
     console.log(order);
+    console.log(TOKENS);
 
     const data = axios
-      .post(`${API_URL}/orders`, { data: order }, { headers: { Authorization: `Bearer ${tokens.uploadToken}` } })
+      .post(`${API_URL}/orders`, { data: order }, { headers: { Authorization: `Bearer ${TOKENS.uploadToken}` } })
       .then((res) => res.data);
     const res = await Promise.allSettled([data, new Promise((resolve) => setTimeout(resolve, 2000))]);
 
@@ -63,8 +66,7 @@ export const createOrder = async (
       throw rejected;
     }
   } catch (err) {
-    console.log(err);
     onError(err);
-    setTimeout(() => onClearError(), 1500);
+    setTimeout(() => onClearError(), 5000);
   }
 };

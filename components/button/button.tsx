@@ -12,7 +12,6 @@ type Props = {
   style?: React.CSSProperties;
 };
 
-
 export const Button = ({ children, type, onClick, loading, error, disabled, style }: Props) => {
   const buttonLoading = () => {
     if (error) {

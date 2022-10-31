@@ -69,12 +69,16 @@ export const ProjectTypeSelect = ({
   };
 
   const getValue = () => {
-    if (options) {
-      return isMulti
-        ? options.filter((option) => field.value.indexOf(option.value) >= 0)
-        : options.find((option) => option.value === field.value);
+    if (field.value) {
+      if (options) {
+        return isMulti
+          ? options.filter((option) => field.value.indexOf(option.value) >= 0)
+          : options.find((option) => option.value === field.value);
+      } else {
+        return isMulti ? [] : null;
+      }
     } else {
-      return isMulti ? [] : "";
+      return null;
     }
   };
 

@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  justify-content: space-between;
+}
+
+.footer_text {
+  width: 50%;
+}
+
+.footer_button a:hover {
+  color: #0b73fe;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 760px) {
+  .footer {
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column-reverse;
+  }
+  .footer_text {
+    width: 100%;
+  }
+
+  .footer_button {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 20px;
+  }
+}

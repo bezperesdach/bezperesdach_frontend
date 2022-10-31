@@ -1,12 +1,9 @@
 .container {
-  padding: 0 4rem;
+  max-width: 1240px;
+  margin: 0 auto;
 }
 
 .main {
-  /* min-height: 100vh; */
-  max-width: 1240px;
-  margin: 0 auto;
-  /* padding: 0 0 4rem 0; */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -109,21 +106,14 @@
   margin-left: 0.5rem;
 }
 
-@media (max-width: 760px) {
+@media screen and (max-width: 1366px) {
   .container {
     padding: 0 2rem;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
+@media screen and (max-width: 760px) {
+  .container {
+    padding: 0 2rem;
   }
 }

@@ -2,6 +2,11 @@ import Head from "next/head";
 import { Guarantees } from "../components/guarantees/guarantees";
 import { Hero } from "../components/hero/hero";
 import { Navbar } from "../components/navbar/navbar";
+import { Services } from "../components/services/services";
+import { About } from "../components/about/about";
+import { Represents } from "../components/represents/represents";
+import { Preparation } from "../components/preparation/preparation";
+import { Footer } from "../components/footer/footer";
 
 import styles from "../styles/Home.module.css";
 
@@ -18,8 +23,14 @@ export default function Home() {
 
       <main className={styles.main}>
         <Hero />
+        <About />
+        <Services />
         <Guarantees />
+        <Represents />
+        <Preparation />
       </main>
+
+      <Footer />
     </div>
   );
 }

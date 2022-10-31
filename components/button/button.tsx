@@ -12,7 +12,7 @@ type Props = {
   style?: React.CSSProperties;
 };
 
-export const Button: React.FC<Props> = ({ children, type, onClick, loading, error, disabled, style }) => {
+export const Button = ({ children, type, onClick, loading, error, disabled, style }: Props) => {
   const buttonLoading = () => {
     if (error) {
       return <span>ОШИБКА</span>;

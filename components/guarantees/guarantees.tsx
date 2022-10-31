@@ -14,7 +14,7 @@ export const Guarantees = () => {
       </Card>
       <Card title="Онлайн-поддержка до самой защиты">
         <p>
-          Мы ответим на любой вопрос <span className={styles["bold-blue"]}>24/7</span> с помощью удобного чата в личном кабинете
+          Мы ответим на любой вопрос <span className={styles["bold-blue"]}>24/7</span> по почте
         </p>
       </Card>
     </section>

@@ -287,7 +287,7 @@ export const Hero = () => {
                 </div>
 
                 <div className={styles["form-item"]} id={styles["form-item-due-date"]}>
-                  <label className={styles.label}>Желаемая цена</label>
+                  <label className={styles.label}>Пожелания по цене</label>
                   <div className={styles["input-container"]}>
                     <Field
                       className={styles.input}
@@ -305,7 +305,7 @@ export const Hero = () => {
                           setFieldValue("expectedPrice", values.expectedPrice.slice(0, -1));
                         }
                       }}
-                      placeholder="Желаемая цена"
+                      placeholder="Пожелания по цене"
                       disabled={isSubmitting}
                     />
                   </div>

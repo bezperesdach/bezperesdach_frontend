@@ -25,7 +25,7 @@ const initialValue: IOrder = {
   projectName: "",
   description: "",
   dueDate: nextWeek().toLocaleDateString("en-CA"),
-  originality: "70%",
+  originality: "45%",
   antiPlagiarism: "Бесплатная",
   email: "",
   expectedPrice: "",

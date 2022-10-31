@@ -106,6 +106,12 @@
   margin-left: 0.5rem;
 }
 
+@media screen and (max-width: 1366px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
 @media screen and (max-width: 760px) {
   .container {
     padding: 0 2rem;

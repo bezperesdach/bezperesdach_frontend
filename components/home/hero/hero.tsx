@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ym from "react-yandex-metrika";
 
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -6,12 +7,12 @@ import * as Yup from "yup";
 
 import heroImage from "public/images/hero.svg";
 
-import { Button } from "../button/button";
+import { Button } from "../../button/button";
 import { ProjectTypeSelect } from "./components/project-type-field/project-type-field";
-import { createOrder } from "../../api/api";
+import { createOrder } from "../../../api/api";
 
 import styles from "./hero.module.css";
-import Portal from "../portal/portal";
+import Portal from "../../portal/portal";
 
 const nextWeek = () => {
   const now = new Date();
@@ -131,12 +132,14 @@ export const Hero = () => {
                   });
                   resetForm();
                   setSubmitting(false);
+                  ym("reachGoal", "orderCreateSuccess");
                 },
                 (err) => {
                   setSendOrder((prevState) => {
                     return { ...prevState, loading: false, error: true, errorText: `${err}` };
                   });
                   setSubmitting(false);
+                  ym("reachGoal", "orderCreateError");
                 },
                 () => {
                   setSendOrder((prevState) => {

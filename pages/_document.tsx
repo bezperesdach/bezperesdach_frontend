@@ -1,6 +1,8 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 
+const yandexMetricaEnabled = process.env.NODE_ENV === "production";
+
 export default function Document() {
   return (
     <Html>
@@ -8,11 +10,12 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <Script
-          id="yandex-metrica"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+        {yandexMetricaEnabled && (
+          <Script
+            id="yandex-metrica"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
    m[i].l=1*new Date();
    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -24,13 +27,16 @@ export default function Document() {
         accurateTrackBounce:true,
         webvisor:true
    });`,
-          }}
-        />
-        <noscript>
-          <div>
-            <img src="https://mc.yandex.ru/watch/90995178" style={{ position: "absolute", left: "-9999px" }} alt="" />
-          </div>
-        </noscript>
+            }}
+          />
+        )}
+        {yandexMetricaEnabled && (
+          <noscript>
+            <div>
+              <img src="https://mc.yandex.ru/watch/90995178" style={{ position: "absolute", left: "-9999px" }} alt="" />
+            </div>
+          </noscript>
+        )}
       </body>
     </Html>
   );

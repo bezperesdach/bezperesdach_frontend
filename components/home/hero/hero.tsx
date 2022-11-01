@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ym from "react-yandex-metrika";
 
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -131,13 +132,14 @@ export const Hero = () => {
                   });
                   resetForm();
                   setSubmitting(false);
+                  ym("reachGoal", "orderCreateSuccess");
                 },
                 (err) => {
-                  ym(90995178, "reachGoal", "orderCreateError");
                   setSendOrder((prevState) => {
                     return { ...prevState, loading: false, error: true, errorText: `${err}` };
                   });
                   setSubmitting(false);
+                  ym("reachGoal", "orderCreateError");
                 },
                 () => {
                   setSendOrder((prevState) => {

@@ -1,3 +1,7 @@
+interface Window {
+  ym: (id: number, goal: string, goalName: string) => void;
+}
+
 interface IOrder {
   projectType: string;
   subject: string;

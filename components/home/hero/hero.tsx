@@ -6,12 +6,12 @@ import * as Yup from "yup";
 
 import heroImage from "public/images/hero.svg";
 
-import { Button } from "../button/button";
+import { Button } from "../../button/button";
 import { ProjectTypeSelect } from "./components/project-type-field/project-type-field";
-import { createOrder } from "../../api/api";
+import { createOrder } from "../../../api/api";
 
 import styles from "./hero.module.css";
-import Portal from "../portal/portal";
+import Portal from "../../portal/portal";
 
 const nextWeek = () => {
   const now = new Date();
@@ -133,6 +133,7 @@ export const Hero = () => {
                   setSubmitting(false);
                 },
                 (err) => {
+                  ym(90995178, "reachGoal", "orderCreateError");
                   setSendOrder((prevState) => {
                     return { ...prevState, loading: false, error: true, errorText: `${err}` };
                   });

@@ -1,11 +1,11 @@
 import Head from "next/head";
-import { Guarantees } from "../components/guarantees/guarantees";
-import { Hero } from "../components/hero/hero";
+import { Guarantees } from "../components/home/guarantees/guarantees";
+import { Hero } from "../components/home/hero/hero";
 import { Navbar } from "../components/navbar/navbar";
-import { Services } from "../components/services/services";
-import { About } from "../components/about/about";
-import { Represents } from "../components/represents/represents";
-import { Preparation } from "../components/preparation/preparation";
+import { Services } from "../components/home/services/services";
+import { About } from "../components/home/about/about";
+import { Represents } from "../components/home/represents/represents";
+import { Preparation } from "../components/home/preparation/preparation";
 import { Footer } from "../components/footer/footer";
 
 import styles from "../styles/Home.module.css";

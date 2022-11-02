@@ -4,7 +4,7 @@ import localTokens from "../.tokens.json";
 
 const TOKENS = process.env.NODE_ENV === "development" ? localTokens : prodTokens;
 
-export const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:1337/api" : "https://bezperesdach.ru/api";
+export const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:1337/api" : "https://backend.bezperesdach.ru/api";
 
 const isRejected = (input: PromiseSettledResult<unknown>): input is PromiseRejectedResult => input.status === "rejected";
 

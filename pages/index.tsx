@@ -15,7 +15,10 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Безпересдач</title>
-        <meta name="description" content="Безпересдач, помощь в один клик" />
+        <meta name="description" content="Онлайн-платформа для помощи в обучении" />
+        <meta property="og:site_name" content="Безпересдач" />
+        <meta property="og:description" content="Онлайн-платформа для помощи в обучении" />
+        <meta property="og:image" content="/og_logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

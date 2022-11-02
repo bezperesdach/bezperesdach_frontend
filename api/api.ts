@@ -47,8 +47,6 @@ export const createOrder = async (
 ) => {
   onRequest();
   try {
-    console.log(order);
-    console.log(TOKENS);
 
     const data = axios
       .post(`${API_URL}/orders`, { data: order }, { headers: { Authorization: `Bearer ${TOKENS.uploadToken}` } })

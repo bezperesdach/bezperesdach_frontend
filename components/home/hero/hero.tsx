@@ -9,6 +9,7 @@ import heroImage from "public/images/hero.svg";
 import { Button } from "../../button/button";
 import { ProjectTypeSelect } from "./components/project-type-field/project-type-field";
 import { createOrder } from "../../../api/api";
+import { ym } from "../../../utils/yandex-metrika";
 
 import styles from "./hero.module.css";
 import Portal from "../../portal/portal";
@@ -131,14 +132,14 @@ export const Hero = () => {
                   });
                   resetForm();
                   setSubmitting(false);
-                  window.ym(90995178, "reachGoal", "orderCreateSuccess");
+                  ym("reachGoal", "orderCreateSuccess");
                 },
                 (err) => {
                   setSendOrder((prevState) => {
                     return { ...prevState, loading: false, error: true, errorText: `${err}` };
                   });
                   setSubmitting(false);
-                  window.ym(90995178, "reachGoal", "orderCreateError");
+                  ym("reachGoal", "orderCreateError");
                 },
                 () => {
                   setSendOrder((prevState) => {

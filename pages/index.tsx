@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
-import { Guarantees } from "../components/home/guarantees/guarantees";
-import { Hero } from "../components/home/hero/hero";
-import { Services } from "../components/home/services/services";
-import { About } from "../components/home/about/about";
-import { Represents } from "../components/home/represents/represents";
-import { Preparation } from "../components/home/preparation/preparation";
+import { Guarantees } from "../components/home-page/guarantees/guarantees";
+import { Hero } from "../components/home-page/hero/hero";
+import { Services } from "../components/home-page/services/services";
+import { About } from "../components/home-page/about/about";
+import { Represents } from "../components/home-page/represents/represents";
+import { Preparation } from "../components/home-page/preparation/preparation";
 import { typeOptionsOrder } from "../utils/form/values";
 
 import styles from "../styles/Home.module.css";

@@ -28,7 +28,7 @@ const initialValue: IOrder = {
   description: "",
   dueDate: nextWeek().toLocaleDateString("en-CA"),
   originality: "45%",
-  antiPlagiarism: "Бесплатная",
+  antiPlagiarism: "free",
   email: "",
   expectedPrice: "",
 };

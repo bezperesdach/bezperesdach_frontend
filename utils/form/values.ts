@@ -30,6 +30,7 @@ export const typeOptionsInit = [
   { value: "tests", label: "Тесты" },
   { value: "scheme", label: "Чертеж" },
   { value: "essay", label: "Эссе" },
+  { value: "tasks", label: "Решение задач" },
   { value: "other", label: "Другое" },
 ];
 
@@ -49,7 +50,7 @@ export const antiPlagiarismOptions = [
 
 export const typeOptionsOrder = new Map([
   ["graduation-work", "Заказать дипломную работу, недорого, диплом на заказ, помощь в один клик"],
-  ["business-plan", "ЗБизнес-план"],
+  ["business-plan", "Бизнес-план"],
   ["report", "Доклад"],
   ["doctoral", "Докторскую диссертацию"],
   ["phd", "Кандидатскую диссертацию"],
@@ -79,5 +80,6 @@ export const typeOptionsOrder = new Map([
   ["tests", "Тесты"],
   ["scheme", "Чертеж"],
   ["essay", "Эссе"],
+  ["tasks", "Решение задач"],
   ["other", "Другое"],
 ]);

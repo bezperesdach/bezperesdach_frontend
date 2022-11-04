@@ -47,6 +47,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { pt } = context.query;
 
   return {
-    props: { pt },
+    props: { pt: pt ?? null },
   };
 };

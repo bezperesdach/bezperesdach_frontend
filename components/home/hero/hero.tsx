@@ -48,12 +48,17 @@ interface Props {
 }
 
 export const Hero = ({ projectType }: Props) => {
+  if (projectType) {
+    initialValue.projectType = getInitValue(projectType);
+  }
+
   const [sendOrder, setSendOrder] = useState({
     loading: false,
     isModal: false,
     error: false,
     errorText: "",
   });
+
   const [typeOptions, setTypeOptions] = useState(typeOptionsInit);
 
   const filterAllOptions = (rawInput: string) => {
@@ -72,7 +77,7 @@ export const Hero = ({ projectType }: Props) => {
         <div className={styles.hero}>
           <h1 className={styles["hero-title"]}>Онлайн-платформа для помощи в учебе</h1>
           <Formik
-            initialValues={{ ...initialValue, projectType: getInitValue(projectType) ?? initialValue.projectType }}
+            initialValues={initialValue}
             validationSchema={RequestProjectSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               createOrder(

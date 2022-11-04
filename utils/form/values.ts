@@ -39,7 +39,7 @@ export const getInitValue = (option?: string) => {
     return result ? option : "other";
   }
 
-  return undefined;
+  return "";
 };
 
 export const antiPlagiarismOptions = [

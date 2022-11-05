@@ -10,9 +10,10 @@ import { Button } from "../../button/button";
 import { ProjectTypeSelect } from "./components/project-type-field/project-type-field";
 import { createOrder } from "../../../api/api";
 import { ym } from "../../../utils/yandex-metrika";
+import Portal from "../../portal/portal";
+import { antiPlagiarismOptions, getInitValue, typeOptionsInit } from "../../../utils/form/values";
 
 import styles from "./hero.module.css";
-import Portal from "../../portal/portal";
 
 const nextWeek = () => {
   const now = new Date();
@@ -27,7 +28,7 @@ const initialValue: IOrder = {
   description: "",
   dueDate: nextWeek().toLocaleDateString("en-CA"),
   originality: "45%",
-  antiPlagiarism: "Бесплатная",
+  antiPlagiarism: "free",
   email: "",
   expectedPrice: "",
 };
@@ -42,62 +43,22 @@ const RequestProjectSchema = Yup.object().shape({
   email: Yup.string().email("Неверный email").required("Обязательное поле"),
 });
 
-const typeOptionsInit = [
-  { value: "Дипломная работа", label: "Дипломная работа" },
-  { value: "Бизнес-план", label: "Бизнес-план" },
-  { value: "Доклад", label: "Доклад" },
-  { value: "Докторская диссертация", label: "Докторская диссертация" },
-  { value: "Кандидатская диссертация", label: "Кандидатская диссертация" },
-  { value: "Кейсы", label: "Кейсы" },
-  { value: "Консультация", label: "Консультация" },
-  { value: "Контрольная работа", label: "Контрольная работа" },
-  { value: "Курсовая работа", label: "Курсовая работа" },
-  { value: "Лабораторная работа", label: "Лабораторная работа" },
-  { value: "Магистерская работа", label: "Магистерская работа" },
-  { value: "Методические инструкции", label: "Магистерская инструкции" },
-  { value: "Монография", label: "Монография" },
-  { value: "НИР", label: "НИР" },
-  { value: "Онлайн помощь", label: "Онлайн помощь" },
-  { value: "Ответы на билеты", label: "Ответы на билеты" },
-  { value: "Отчет по практике", label: "Отчет по практике" },
-  { value: "Перевод с иностранного языка", label: "Перевод с иностранного языка" },
-  { value: "Повышение оригинальности", label: "Повышение оригинальности" },
-  { value: "Подбор литературы", label: "Подбор литературы" },
-  { value: "Подготовка к экзамену", label: "Подготовка к экзамену" },
-  { value: "Поиск информации", label: "Поиск информации" },
-  { value: "Презентация", label: "Презентация" },
-  { value: "Программирование", label: "Программирование" },
-  { value: "Реферат", label: "Реферат" },
-  { value: "Рецензия", label: "Рецензия" },
-  { value: "Сочинение", label: "Сочинение" },
-  { value: "Статья", label: "Статья" },
-  { value: "Тесты", label: "Тесты" },
-  { value: "Чертеж", label: "Чертеж" },
-  { value: "Эссе", label: "Эссе" },
-  { value: "Другое", label: "Другое" },
-];
+interface Props {
+  projectType?: string;
+}
 
-const antiPlagiarismOptions = [
-  { value: "Бесплатная", label: "Бесплатная" },
-  { value: "Платная", label: "Платная" },
-];
+export const Hero = ({ projectType }: Props) => {
+  if (projectType) {
+    initialValue.projectType = getInitValue(projectType);
+  }
 
-// TODO maybe use multiple different method of contacting user
-// const contactOptions = [
-//   { value: "Telegram", label: "Telegram" },
-//   { value: "Whatsapp", label: "Whatsapp" },
-//   { value: "Vk", label: "Vk" },
-//   { value: "Email", label: "Email" },
-//   { value: "Facebook", label: "Facebook" },
-// ];
-
-export const Hero = () => {
   const [sendOrder, setSendOrder] = useState({
     loading: false,
     isModal: false,
     error: false,
     errorText: "",
   });
+
   const [typeOptions, setTypeOptions] = useState(typeOptionsInit);
 
   const filterAllOptions = (rawInput: string) => {

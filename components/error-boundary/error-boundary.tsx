@@ -6,16 +6,18 @@ interface Props {
 
 interface State {
   hasError: boolean;
+  err: string;
 }
 
 class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
+    err: "",
   };
 
-  public static getDerivedStateFromError(_: Error): State {
+  public static getDerivedStateFromError(err: Error): State {
     // Update state so the next render will show the fallback UI.
-    return { hasError: true };
+    return { hasError: true, err: `${err}` };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -24,7 +26,7 @@ class ErrorBoundary extends Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
-      return <h1>Произошла непредвиденная ошибка</h1>;
+      return <h1>Произошла непредвиденная ошибка: {this.state.err}</h1>;
     }
 
     return this.props.children;

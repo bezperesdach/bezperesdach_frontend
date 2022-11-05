@@ -4,6 +4,8 @@
   padding-top: 50px;
   padding-bottom: 16px;
   justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1240px;
 }
 
 .link {
@@ -14,10 +16,17 @@
   text-decoration: underline;
 }
 
-@media screen and (min-width: 761px) {
+@media screen and (max-width: 1366px) {
+  .navbar {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
   .footer {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .footer_agreements {
@@ -37,12 +46,14 @@
   }
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 768px) {
   .footer {
     display: flex;
     flex-direction: column-reverse;
     width: 100%;
     gap: 16px;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .footer_text {

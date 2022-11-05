@@ -47,13 +47,10 @@ export const createOrder = async (
 ) => {
   onRequest();
   try {
-    console.log(order);
-    console.log(TOKENS);
-
     const data = axios
-      .post(`${API_URL}/orders`, { data: order }, { headers: { Authorization: `Bearer ${TOKENS.uploadToken}` } })
+      .post(`${API_URL}/new-orders`, { data: order }, { headers: { Authorization: `Bearer ${TOKENS.uploadToken}` } })
       .then((res) => res.data);
-    const res = await Promise.allSettled([data, new Promise((resolve) => setTimeout(resolve, 2000))]);
+    const res = await Promise.allSettled([data, new Promise((resolve) => setTimeout(resolve, 1000))]);
 
     const response = res.find(isFulfilled)?.value;
     const rejected = res.find(isRejected)?.reason;

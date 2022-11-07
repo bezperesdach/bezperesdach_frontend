@@ -293,7 +293,7 @@ export const Hero = ({ projectType }: Props) => {
           </Formik>
         </div>
         <div className={styles["image-container"]}>
-          <Image className={styles.image} src={heroImage} priority={true} alt="hero" />
+          <Image className={styles.image} src={heroImage} alt="hero" />
         </div>
         {sendOrder.isModal && (
           <Portal>

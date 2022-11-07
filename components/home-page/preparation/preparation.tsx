@@ -24,21 +24,21 @@ export const Preparation = () => {
             <div className={styles.elementsOne}>
               <Card>
                 <div className={styles["image-container"]}>
-                  <Image className={styles.image} src={preparationImageOne} priority={true} alt="preparation" />
+                  <Image className={styles.image} src={preparationImageOne} alt="preparation" />
                   <p>Оформление работы по ГОСТу</p>
                 </div>
               </Card>
 
               <Card>
                 <div className={styles["image-container"]}>
-                  <Image className={styles.image} src={preparationImageTwo} priority={true} alt="preparation" />
+                  <Image className={styles.image} src={preparationImageTwo} alt="preparation" />
                   <p>Подготовка презентации к защите</p>
                 </div>
               </Card>
 
               <Card>
                 <div className={styles["image-container"]}>
-                  <Image className={styles.image} src={preparationImageThree} priority={true} alt="preparation" />
+                  <Image className={styles.image} src={preparationImageThree} alt="preparation" />
                   <p>Подготовка речи к защите</p>
                 </div>
               </Card>
@@ -47,14 +47,14 @@ export const Preparation = () => {
             <div className={styles.elementsTwo}>
               <Card>
                 <div className={styles["image-container"]}>
-                  <Image className={styles.image} src={preparationImageFour} priority={true} alt="preparation" />
+                  <Image className={styles.image} src={preparationImageFour} alt="preparation" />
                   <p>Подбор литературы</p>
                 </div>
               </Card>
 
               <Card>
                 <div className={styles["image-container"]}>
-                  <Image className={styles.image} src={preparationImageFive} priority={true} alt="preparation" />
+                  <Image className={styles.image} src={preparationImageFive} alt="preparation" />
                   <p>Репетиция защиты в Teams</p>
                 </div>
               </Card>

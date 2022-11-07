@@ -8,7 +8,7 @@ export const Services = () => {
   return (
     <section className={styles.services}>
       <div className={styles["image-container"]}>
-        <Image className={styles.image} src={servicesImage} priority={true} alt="hero" />
+        <Image className={styles.image} src={servicesImage} alt="hero" />
       </div>
 
       <div className={styles.card}>

@@ -10,7 +10,7 @@ export const Navbar = () => {
   return (
     <header className={styles.navbar}>
       <Link href="/">
-        <Image src={logo} height={100} priority={true} width={320} alt="logo" />
+        <Image src={logo} height={100} width={320} alt="logo" />
       </Link>
     </header>
   );

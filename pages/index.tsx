@@ -9,12 +9,6 @@ import { Guarantees } from "../components/home-page/guarantees/guarantees";
 import { Represents } from "../components/home-page/represents/represents";
 import { Preparation } from "../components/home-page/preparation/preparation";
 
-// const DynamicAbout = dynamic(() => import("../components/home-page/about/about").then((mod) => mod.About));
-// const DynamicServices = dynamic(() => import("../components/home-page/services/services").then((mod) => mod.Services));
-// const DynamicGuarantees = dynamic(() => import("../components/home-page/guarantees/guarantees").then((mod) => mod.Guarantees));
-// const DynamicRepresents = dynamic(() => import("../components/home-page/represents/represents").then((mod) => mod.Represents));
-// const DynamicPreparations = dynamic(() => import("../components/home-page/preparation/preparation").then((mod) => mod.Preparation));
-
 import { typeOptionsOrder } from "../utils/form/values";
 
 import styles from "../styles/Home.module.css";

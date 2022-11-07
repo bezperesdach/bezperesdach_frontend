@@ -36,7 +36,6 @@ const initialValue: IOrder = {
 const RequestProjectSchema = Yup.object().shape({
   projectType: Yup.string().required("Обязательное поле"),
   subject: Yup.string().required("Обязательное поле"),
-  projectName: Yup.string().required("Обязательное поле"),
   dueDate: Yup.string().required("Обязательное поле"),
   originality: Yup.string().required("Обязательное поле"),
   antiPlagiarism: Yup.string().required("Обязательное поле"),
@@ -155,7 +154,7 @@ export const Hero = ({ projectType }: Props) => {
                 </div>
 
                 <div className={styles["form-item"]}>
-                  <label className={styles.label}>Тема работы *</label>
+                  <label className={styles.label}>Тема работы</label>
                   <div className={styles["input-container"]}>
                     <Field
                       className={styles.input}

@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Navbar } from "../components/navbar/navbar";
 import { Footer } from "../components/footer/footer";
+import NextNProgress from "nextjs-progressbar";
 
 import "../styles/globals.css";
 
@@ -11,6 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ErrorBoundary>
+      <NextNProgress showOnShallow={true} />
       {router.pathname !== "/_error" && <Navbar />}
       <Component {...pageProps} />
       {router.pathname !== "/_error" && <Footer />}

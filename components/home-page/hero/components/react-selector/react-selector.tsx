@@ -52,7 +52,7 @@ interface CustomSelectProps extends FieldProps {
   borderRadius?: number;
 }
 
-export const ProjectTypeSelect = ({
+export const ReactSelector = ({
   className,
   placeholder,
   borderRadius = 25,

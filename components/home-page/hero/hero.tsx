@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -7,7 +8,7 @@ import * as Yup from "yup";
 import heroImage from "public/images/hero.svg";
 
 import { Button } from "../../button/button";
-import { ProjectTypeSelect } from "./components/project-type-field/project-type-field";
+import { ReactSelector } from "./components/react-selector/react-selector";
 import { createOrder } from "../../../api/api";
 import { ym } from "../../../utils/yandex-metrika";
 import Portal from "../../portal/portal";
@@ -51,6 +52,8 @@ interface Props {
 }
 
 export const Hero = ({ projectType }: Props) => {
+  const router = useRouter();
+
   if (projectType) {
     initialValue.projectType = getInitValue(projectType);
   }
@@ -97,6 +100,9 @@ export const Hero = ({ projectType }: Props) => {
                   resetForm();
                   setSubmitting(false);
                   ym("reachGoal", "orderCreateSuccess");
+                  if (projectType) {
+                    router.push("/");
+                  }
                 },
                 (err) => {
                   setSendOrder((prevState) => {
@@ -136,7 +142,7 @@ export const Hero = ({ projectType }: Props) => {
                     <Field
                       name="projectType"
                       options={typeOptions}
-                      component={ProjectTypeSelect}
+                      component={ReactSelector}
                       borderRadius={15}
                       placeholder="Выберите тип"
                       isMulti={false}
@@ -241,7 +247,7 @@ export const Hero = ({ projectType }: Props) => {
                     <Field
                       name="antiPlagiarism"
                       options={antiPlagiarismOptions}
-                      component={ProjectTypeSelect}
+                      component={ReactSelector}
                       borderRadius={15}
                       placeholder="Тип проверки"
                       isMulti={false}

@@ -27,23 +27,6 @@
   display: none;
 }
 
-.sidebar-overlay {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  justify-content: flex-start;
-  align-items: flex-start;
-  font-size: 20px;
-  padding: 80px 2rem 0px 2rem;
-  background-color: #fff;
-  z-index: 5;
-}
-
 @media screen and (max-width: 1366px) {
   .navbar {
     padding: 0 2rem;

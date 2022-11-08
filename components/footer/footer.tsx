@@ -21,7 +21,7 @@ export const Footer = () => {
             пользовательским соглашением
           </a>{" "}
           и{" "}
-          <a href="" className={styles.link}>
+          <a href="/documents/processing-policy.pdf" className={styles.link}>
             политикой конфиденциальности
           </a>
         </p>

@@ -186,7 +186,7 @@ export const Hero = ({ projectType }: Props) => {
                       component="textarea"
                       rows="7"
                       name="description"
-                      placeholder="Небольшое описание работы"
+                      placeholder="В данном поле можно указать нужный объем работы, нужно ли оформление по ГОСТу, нужно ли оформление по требованиям ВУЗа или какие-либо другие важные замечания по работе"
                       id={styles["form-item-description-textarea"]}
                       disabled={isSubmitting}
                     />
@@ -278,7 +278,7 @@ export const Hero = ({ projectType }: Props) => {
                           setFieldValue("expectedPrice", values.expectedPrice.slice(0, -1));
                         }
                       }}
-                      placeholder="Пожелания по цене"
+                      placeholder="Укажите цифрами желаемую цену"
                       disabled={isSubmitting}
                     />
                   </div>

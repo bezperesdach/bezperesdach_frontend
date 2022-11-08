@@ -30,7 +30,7 @@ export const Navbar = () => {
         <Image src={mini_logo} height={64} width={64} alt="logo" />
       </Link>
       <div className={styles["mobile-menu"]}>
-        <Hamburger toggled={isOpen} toggle={setOpen} size={36} />
+        <Hamburger toggled={isOpen} toggle={setOpen} size={32} />
       </div>
       <div className={styles["desktop-menu"]}>
         <Link href="/price" className={styles.link} style={router.pathname == "/price" ? { fontWeight: "bold" } : {}}>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -7,13 +8,14 @@ import * as Yup from "yup";
 import heroImage from "public/images/hero.svg";
 
 import { Button } from "../../button/button";
-import { ProjectTypeSelect } from "./components/project-type-field/project-type-field";
+import { ReactSelector } from "./components/react-selector/react-selector";
 import { createOrder } from "../../../api/api";
 import { ym } from "../../../utils/yandex-metrika";
 import Portal from "../../portal/portal";
 import { antiPlagiarismOptions, getInitValue, typeOptionsInit } from "../../../utils/form/values";
 
 import styles from "./hero.module.css";
+import Link from "next/link";
 
 const nextWeek = () => {
   const now = new Date();
@@ -33,10 +35,13 @@ const initialValue: IOrder = {
   expectedPrice: "",
 };
 
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
 const RequestProjectSchema = Yup.object().shape({
   projectType: Yup.string().required("Обязательное поле"),
   subject: Yup.string().required("Обязательное поле"),
-  dueDate: Yup.string().required("Обязательное поле"),
+  dueDate: Yup.date().required("Обязательное поле").min(today, "Дата сдачи не может быть в прошлом"),
   originality: Yup.string().required("Обязательное поле"),
   antiPlagiarism: Yup.string().required("Обязательное поле"),
   email: Yup.string().email("Неверный email").required("Обязательное поле"),
@@ -47,6 +52,8 @@ interface Props {
 }
 
 export const Hero = ({ projectType }: Props) => {
+  const router = useRouter();
+
   if (projectType) {
     initialValue.projectType = getInitValue(projectType);
   }
@@ -93,6 +100,9 @@ export const Hero = ({ projectType }: Props) => {
                   resetForm();
                   setSubmitting(false);
                   ym("reachGoal", "orderCreateSuccess");
+                  if (projectType) {
+                    router.push("/");
+                  }
                 },
                 (err) => {
                   setSendOrder((prevState) => {
@@ -132,7 +142,7 @@ export const Hero = ({ projectType }: Props) => {
                     <Field
                       name="projectType"
                       options={typeOptions}
-                      component={ProjectTypeSelect}
+                      component={ReactSelector}
                       borderRadius={15}
                       placeholder="Выберите тип"
                       isMulti={false}
@@ -237,7 +247,7 @@ export const Hero = ({ projectType }: Props) => {
                     <Field
                       name="antiPlagiarism"
                       options={antiPlagiarismOptions}
-                      component={ProjectTypeSelect}
+                      component={ReactSelector}
                       borderRadius={15}
                       placeholder="Тип проверки"
                       isMulti={false}
@@ -298,8 +308,17 @@ export const Hero = ({ projectType }: Props) => {
           <Portal>
             <div className={styles["modal-overlay"]}>
               <div className={styles.modal}>
-                <h1>Заявка успешно оставлена!</h1>
-                <p>Мы скоро свяжемся с вами!</p>
+                <h1>Заявка отправлена!</h1>
+                <p>Совсем скоро мы напишем вам на почту (не забудьте проверить папку &quot;спам&quot;) чтобы уточнить все детали</p>
+                <p>
+                  Если у вас возникли какие-то вопросы, пишите нам на{" "}
+                  <Link
+                    href="mailto:help@bezperesdach.ru?subject=%D0%9F%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5"
+                    style={{ color: "#3D8EE8" }}
+                  >
+                    help@bezperesdach.ru
+                  </Link>
+                </p>
                 <Button
                   type="button"
                   onClick={() =>

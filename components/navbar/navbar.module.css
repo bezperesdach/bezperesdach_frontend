@@ -1,8 +1,30 @@
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 100px;
-  justify-content: flex-start;
   margin: 0 auto;
   max-width: 1240px;
+}
+
+.desktop-logo {
+  display: none;
+}
+
+.mobile-log {
+  display: none;
+}
+
+.desktop-menu {
+  display: flex;
+  gap: 24px;
+  font-size: 18px;
+  display: none;
+}
+
+.mobile-meu {
+  font-size: 18px;
+  display: none;
 }
 
 @media screen and (max-width: 1366px) {
@@ -11,10 +33,44 @@
   }
 }
 
+@media screen and (min-width: 1024px) {
+  .desktop-logo {
+    display: block;
+  }
+
+  .desktop-menu {
+    display: block;
+  }
+
+  .mobile-logo {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar {
+    margin-top: 6px;
+    height: 90px;
+  }
+
+  .mobile-logo {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: block;
+    z-index: 20;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0 2rem;
   }
 }

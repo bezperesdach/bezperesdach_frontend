@@ -47,7 +47,7 @@ export default function Home({ pt }: InferGetServerSidePropsType<typeof getServe
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  context.res.setHeader("Cache-Control", "public, s-maxage=10800, stale-while-revalidate=59");
+  context.res.setHeader("Cache-Control", "public, s-maxage=31536000, stale-while-revalidate=59");
 
   const { pt } = context.query;
 

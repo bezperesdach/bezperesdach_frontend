@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import styles from "./footer.module.css";
 
@@ -17,13 +18,13 @@ export const Footer = () => {
       <div className={styles["footer_agreements"]}>
         <p>
           Используя наш сервис вы соглашаетесь с{" "}
-          <a href="/documents/terms-of-use.pdf" className={styles.link}>
+          <Link href="/documents/terms-of-use.pdf" className={styles.link}>
             пользовательским соглашением
-          </a>{" "}
+          </Link>{" "}
           и{" "}
-          <a href="" className={styles.link}>
+          <Link href="/documents/processing-policy.pdf" className={styles.link}>
             политикой конфиденциальности
-          </a>
+          </Link>
         </p>
       </div>
     </footer>

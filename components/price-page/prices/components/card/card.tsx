@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 import styles from "./card.module.css";
@@ -17,9 +18,9 @@ export const Card = ({ title, description, url, backgroundColor, boxShadow, butt
     <div className={styles.card_style} style={{ backgroundColor, boxShadow, color: colorText }}>
       <h3> {title}</h3>
       <p className={styles.description}>{description}</p>
-      <a href={url} className={styles.url} style={{ backgroundColor: buttonBackgroundColor }}>
+      <Link href={url} className={styles.url} style={{ backgroundColor: buttonBackgroundColor }}>
         {"Заказать работу"}
-      </a>
+      </Link>
     </div>
   );
 };

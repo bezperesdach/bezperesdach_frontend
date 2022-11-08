@@ -34,10 +34,13 @@ const initialValue: IOrder = {
   expectedPrice: "",
 };
 
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
 const RequestProjectSchema = Yup.object().shape({
   projectType: Yup.string().required("Обязательное поле"),
   subject: Yup.string().required("Обязательное поле"),
-  dueDate: Yup.string().required("Обязательное поле"),
+  dueDate: Yup.date().required("Обязательное поле").min(today, "Дата сдачи не может быть в прошлом"),
   originality: Yup.string().required("Обязательное поле"),
   antiPlagiarism: Yup.string().required("Обязательное поле"),
   email: Yup.string().email("Неверный email").required("Обязательное поле"),

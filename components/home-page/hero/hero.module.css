@@ -113,6 +113,10 @@
   border-radius: inherit;
 }
 
+.input::-webkit-date-and-time-value {
+  text-align: left;
+}
+
 .input::placeholder {
   color: hsl(0, 0%, 70%);
 }

@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ErrorBoundary>
-      <NextNProgress showOnShallow={true} />
+      <NextNProgress height={6} showOnShallow={true} options={{ showSpinner: false }} />
       {router.pathname !== "/_error" && <Navbar />}
       <Component {...pageProps} />
       {router.pathname !== "/_error" && <Footer />}

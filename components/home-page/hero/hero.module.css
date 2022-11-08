@@ -152,6 +152,7 @@
   justify-content: center;
   align-items: center;
   background-color: hsla(0, 0%, 20%, 80%);
+  z-index: 30;
 }
 
 .modal {
@@ -160,8 +161,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 32px 32px 16px 32px;
-  gap: 32px;
+  padding: 32px 64px 32px 64px;
+  gap: 24px;
   background: #ffffff;
   box-shadow: 0px 8px 24px rgba(129, 135, 189, 0.15);
   border-radius: 30px;
@@ -196,6 +197,10 @@
   .form-item#form-item-email,
   .form-item#form-item-type {
     flex: 1;
+  }
+
+  .modal {
+    height: 40%;
   }
 }
 
@@ -247,5 +252,13 @@
 
   .email-type {
     flex-direction: column;
+  }
+
+  .modal {
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    padding: 16px;
+    gap: 32px;
   }
 }

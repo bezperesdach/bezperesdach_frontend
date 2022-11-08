@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Turn as Hamburger } from "hamburger-react";
 import Portal from "../portal/portal";
+import { motion, AnimatePresence } from "framer-motion";
 
 import logo from "public/logo.svg";
 import mini_logo from "public/mini_logo.png";
@@ -16,7 +17,7 @@ export const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
 
   const closeMenu = () => {
-    setTimeout(() => setOpen(false), 300);
+    setOpen(false);
   };
 
   return (
@@ -35,23 +36,31 @@ export const Navbar = () => {
           Цены и Услуги
         </Link>
       </div>
-      {isOpen && (
-        <Portal>
-          <div className={styles["sidebar-overlay"]}>
-            <Link href="/" className={styles.link} onClick={closeMenu} style={router.pathname == "/" ? { fontWeight: "bold" } : {}}>
-              Главная
-            </Link>
-            <Link
-              href="/price"
-              className={styles.link}
-              onClick={closeMenu}
-              style={router.pathname == "/price" ? { fontWeight: "bold" } : {}}
+      <AnimatePresence>
+        {isOpen && (
+          <Portal>
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%", transition: { duration: 0.15 } }}
+              transition={{ type: "ease-in-out", duration: 0.25 }}
+              className={styles["sidebar-overlay"]}
             >
-              Цены и Услуги
-            </Link>
-          </div>
-        </Portal>
-      )}
+              <Link href="/" className={styles.link} onClick={closeMenu} style={router.pathname == "/" ? { fontWeight: "bold" } : {}}>
+                Главная
+              </Link>
+              <Link
+                href="/price"
+                className={styles.link}
+                onClick={closeMenu}
+                style={router.pathname == "/price" ? { fontWeight: "bold" } : {}}
+              >
+                Цены и Услуги
+              </Link>
+            </motion.div>
+          </Portal>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

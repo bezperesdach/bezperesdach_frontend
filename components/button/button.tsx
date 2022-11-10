@@ -8,11 +8,14 @@ type Props = {
   disabled?: boolean;
   loading?: boolean;
   error?: boolean;
+  backgroundColor?: string;
+  color?: string;
+  outlined?: boolean;
   type?: "button" | "submit" | "reset";
   style?: React.CSSProperties;
 };
 
-export const Button = ({ children, type, onClick, loading, error, disabled, style }: Props) => {
+export const Button = ({ children, type, backgroundColor, color, outlined, onClick, loading, error, disabled, style }: Props) => {
   const buttonLoading = () => {
     if (error) {
       return <span>ОШИБКА</span>;
@@ -37,11 +40,22 @@ export const Button = ({ children, type, onClick, loading, error, disabled, styl
   };
 
   const buttonError = () => {
-    return error ? styles.button_error : styles.button_gradient;
+    return error ? styles.button_error : "";
   };
 
   return (
-    <button className={`${styles.button} ${buttonError()}`} type={type} onClick={onClickHandler} disabled={disabled} style={style}>
+    <button
+      className={`${styles.button} ${buttonError()}`}
+      type={type}
+      onClick={onClickHandler}
+      disabled={disabled}
+      style={{
+        ...style,
+        backgroundColor: outlined ? "transparent" : backgroundColor,
+        color,
+        outline: outlined ? `4px solid ${backgroundColor}` : "none",
+      }}
+    >
       {buttonLoading()}
     </button>
   );

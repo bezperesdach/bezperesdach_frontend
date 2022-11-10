@@ -124,7 +124,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                 <div className={styles.email_type}>
                   <div className={styles.form_item} id={styles.form_item_email}>
                     <label className={styles.label}>Email *</label>
-                    <div className={styles["input-container"]}>
+                    <div className={styles.input_container}>
                       <Field
                         className={styles.input}
                         type="email"
@@ -155,17 +155,17 @@ export const NewOrderForm = ({ projectType }: Props) => {
                   </div>
                 </div>
 
-                <div className={styles["form-item"]}>
+                <div className={styles.form_item}>
                   <label className={styles.label}>Предмет *</label>
-                  <div className={styles["input-container"]}>
+                  <div className={styles.input_container}>
                     <Field className={styles.input} type="text" name="subject" placeholder="Предмет" disabled={isSubmitting} />
                   </div>
                   <ErrorMessage className={styles.error_label} name="subject" component="div" />
                 </div>
 
-                <div className={styles["form-item"]}>
+                <div className={styles.form_item}>
                   <label className={styles.label}>Тема работы</label>
-                  <div className={styles["input-container"]}>
+                  <div className={styles.input_container}>
                     <Field
                       className={styles.input}
                       type="text"
@@ -177,9 +177,9 @@ export const NewOrderForm = ({ projectType }: Props) => {
                   <ErrorMessage className={styles.error_label} name="projectName" component="div" />
                 </div>
 
-                <div className={styles["form-item"]}>
+                <div className={styles.form_item}>
                   <label className={styles.label}>Дополнительное описание</label>
-                  <div className={styles["input-container"]}>
+                  <div className={styles.input_container}>
                     <Field
                       className={styles.input}
                       type="text"
@@ -187,18 +187,18 @@ export const NewOrderForm = ({ projectType }: Props) => {
                       rows="7"
                       name="description"
                       placeholder="В данном поле можно указать нужный объем работы, нужно ли оформление по ГОСТу, нужно ли оформление по требованиям ВУЗа или какие-либо другие важные замечания по работе"
-                      id={styles["form-item-description-textarea"]}
+                      id={styles.form_item_description_textarea}
                       disabled={isSubmitting}
                     />
                   </div>
                   <ErrorMessage className={styles.error_label} name="description" component="div" />
                 </div>
 
-                <div className={styles["date-orig"]}>
-                  <div className={styles["date-orig-container"]}>
-                    <div className={styles["form-item"]} id={styles["form-item-due-date"]}>
+                <div className={styles.date_orig}>
+                  <div className={styles.date_orig_container}>
+                    <div className={styles.form_item} id={styles.form_item_due_date}>
                       <label className={styles.label}>Дата сдачи *</label>
-                      <div className={styles["input-container"]}>
+                      <div className={styles.input_container}>
                         <Field
                           className={styles.input}
                           type="date"
@@ -210,9 +210,9 @@ export const NewOrderForm = ({ projectType }: Props) => {
                       <ErrorMessage className={styles.error_label} name="dueDate" component="div" />
                     </div>
 
-                    <div className={styles["form-item"]} id={styles["form-item-originality"]}>
+                    <div className={styles.form_item} id={styles.form_item_originality}>
                       <label className={styles.label}>Антиплагиат *</label>
-                      <div className={styles["input-container"]}>
+                      <div className={styles.input_container}>
                         <Field
                           className={styles.input}
                           type="text"
@@ -242,7 +242,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                     </div>
                   </div>
 
-                  <div className={styles["form-item"]} id={styles["form-item-anti-plagiarism"]}>
+                  <div className={styles.form_item} id={styles.form_item_anti_plagiarism}>
                     <label className={styles.label}>Проверка *</label>
                     <Field
                       name="antiPlagiarism"
@@ -259,9 +259,9 @@ export const NewOrderForm = ({ projectType }: Props) => {
                   </div>
                 </div>
 
-                <div className={styles["form-item"]} id={styles["form-item-due-date"]}>
+                <div className={styles.form_item} id={styles.form_item_due_date}>
                   <label className={styles.label}>Пожелания по цене</label>
-                  <div className={styles["input-container"]}>
+                  <div className={styles.input_container}>
                     <Field
                       className={styles.input}
                       type="text"
@@ -285,10 +285,11 @@ export const NewOrderForm = ({ projectType }: Props) => {
                   <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
                 </div>
 
-                <div className={styles["submit-button-container"]}>
-                  {sendOrder.error && <p className={styles["submit-error"]}>{sendOrder.errorText}</p>}
+                <div className={styles.submit_button_container}>
+                  {sendOrder.error && <p className={styles.submit_error}>{sendOrder.errorText}</p>}
                   <Button
                     type="submit"
+                    backgroundColor="#4481eb"
                     disabled={isSubmitting}
                     loading={sendOrder.loading}
                     style={{ alignSelf: "center" }}
@@ -301,12 +302,12 @@ export const NewOrderForm = ({ projectType }: Props) => {
             )}
           </Formik>
         </div>
-        <div className={styles["image-container"]}>
+        <div className={styles.image_container}>
           <Image className={styles.image} src={heroImage} alt="hero" />
         </div>
         {sendOrder.isModal && (
           <Portal>
-            <div className={styles["modal-overlay"]}>
+            <div className={styles.modal_overlay}>
               <div className={styles.modal}>
                 <h1>Заявка отправлена!</h1>
                 <p>Совсем скоро мы напишем вам на почту (не забудьте проверить папку &quot;спам&quot;) чтобы уточнить все детали</p>

@@ -22,7 +22,7 @@ export const Sidebar = ({ isOpen, closeMenu, router }: Props) => {
             animate={{ x: 0 }}
             exit={{ x: "100%", transition: { duration: 0.15 } }}
             transition={{ type: "ease-in-out", duration: 0.25 }}
-            className={styles["sidebar-overlay"]}
+            className={styles.sidebar_overlay}
           >
             <Link href="/" className={styles.link} onClick={closeMenu} style={router.pathname == "/" ? { fontWeight: "bold" } : {}}>
               Главная

@@ -1,8 +1,7 @@
 .card {
-  row-gap: 50px;
   display: flex;
   flex-wrap: wrap;
-
-  padding-bottom: 50px;
   padding-top: 50px;
+  padding-bottom: 50px;
+  row-gap: 50px;
 }

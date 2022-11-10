@@ -7,7 +7,7 @@ import styles from "./services.module.css";
 export const Services = () => {
   return (
     <section className={styles.services}>
-      <div className={styles["image-container"]}>
+      <div className={styles.image_container}>
         <Image className={styles.image} src={servicesImage} alt="hero" />
       </div>
 

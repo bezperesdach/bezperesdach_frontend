@@ -6,9 +6,9 @@
   gap: 60px;
 }
 
-.bold-blue {
-  font-weight: 600;
+.bold_blue {
   color: #0c73fe;
+  font-weight: 600;
 }
 
 @media screen and (min-width: 768px) {

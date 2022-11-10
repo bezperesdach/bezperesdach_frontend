@@ -1,11 +1,9 @@
 .footer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   padding-top: 50px;
   padding-bottom: 16px;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1240px;
 }
 
 .link {
@@ -16,44 +14,30 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 1366px) {
-  .navbar {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
+/* @media screen and (max-width: 1366px) {
+} */
 
 @media screen and (min-width: 769px) {
-  .footer {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
   .footer_agreements {
-    text-align: right;
+    width: 50%;
     max-width: 380px;
+    text-align: right;
   }
 
   .footer_text {
     display: flex;
+    width: 50%;
     flex-direction: column;
     gap: 16px;
-    width: 50%;
-  }
-
-  .footer_agreements {
-    width: 50%;
   }
 }
 
 @media screen and (max-width: 768px) {
   .footer {
     display: flex;
-    flex-direction: column-reverse;
     width: 100%;
+    flex-direction: column-reverse;
     gap: 16px;
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
 
   .footer_text {

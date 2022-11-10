@@ -4,7 +4,13 @@
     "selector-class-pattern": [
       "^.[a-z]([a-z0-9_]+)?(__([a-z0-9]+_?)+)?(_([a-z0-9]+_?)+){0,2}$",
       {
-        "message": "Class names should match the BEM CSS naming convention"
+        "message": "Class names should only contain _"
+      }
+    ],
+    "selector-id-pattern": [
+      "^.[a-z]([a-z0-9_]+)?(__([a-z0-9]+_?)+)?(_([a-z0-9]+_?)+){0,2}$",
+      {
+        "message": "id names should only contain _"
       }
     ],
     "indentation": null,

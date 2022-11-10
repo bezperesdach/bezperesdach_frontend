@@ -20,36 +20,28 @@ export const Preparation = () => {
             услуг - достаточно указать необходимые компоненты в “Дополнительном описании”
           </p>
 
-          <div className={styles.elementsAll}>
-            <div className={styles.elementsOne}>
+          <div className={styles.elements}>
+            <div>
               <Card>
-                <div className={styles["image-container"]}>
-                  <Image className={styles.image} src={preparationImageOne} alt="preparation" />
-                  <p>Оформление работы по ГОСТу</p>
-                </div>
+                <Image className={styles.image} src={preparationImageOne} alt="preparation" />
+                <p>Оформление работы по ГОСТу</p>
               </Card>
 
               <Card>
-                <div className={styles["image-container"]}>
-                  <Image className={styles.image} src={preparationImageTwo} alt="preparation" />
-                  <p>Подготовка презентации к защите</p>
-                </div>
+                <Image className={styles.image} src={preparationImageTwo} alt="preparation" />
+                <p>Подготовка презентации к защите</p>
               </Card>
 
               <Card>
-                <div className={styles["image-container"]}>
-                  <Image className={styles.image} src={preparationImageThree} alt="preparation" />
-                  <p>Подготовка речи к защите</p>
-                </div>
+                <Image className={styles.image} src={preparationImageThree} alt="preparation" />
+                <p>Подготовка речи к защите</p>
               </Card>
             </div>
 
             <div className={styles.elementsTwo}>
               <Card>
-                <div className={styles["image-container"]}>
-                  <Image className={styles.image} src={preparationImageFour} alt="preparation" />
-                  <p>Подбор литературы</p>
-                </div>
+                <Image className={styles.image} src={preparationImageFour} alt="preparation" />
+                <p>Подбор литературы</p>
               </Card>
 
               <Card>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -8,14 +9,13 @@ import * as Yup from "yup";
 import heroImage from "public/images/hero.svg";
 
 import { Button } from "../../button/button";
-import { ReactSelector } from "./components/react-selector/react-selector";
+import { ReactSelector } from "../components/react-selector/react-selector";
 import { createOrder } from "../../../api/api";
 import { ym } from "../../../utils/yandex-metrika";
 import Portal from "../../portal/portal";
-import { antiPlagiarismOptions, getInitValue, typeOptionsInit } from "../../../utils/form/values";
+import { antiPlagiarismOptions, getInitValue, typeOptionsInit } from "../../../utils/form/new-order-form";
 
-import styles from "./hero.module.css";
-import Link from "next/link";
+import styles from "./new-order-form.module.css";
 
 const nextWeek = () => {
   const now = new Date();
@@ -51,7 +51,7 @@ interface Props {
   projectType?: string;
 }
 
-export const Hero = ({ projectType }: Props) => {
+export const NewOrderForm = ({ projectType }: Props) => {
   const router = useRouter();
 
   if (projectType) {
@@ -79,9 +79,9 @@ export const Hero = ({ projectType }: Props) => {
 
   return (
     <section className={styles.hero}>
-      <div className={styles["form-container"]}>
+      <div className={styles.form_container}>
         <div className={styles.hero}>
-          <h1 className={styles["hero-title"]}>Онлайн-платформа для помощи в учебе</h1>
+          <h1 className={styles.hero_title}>Онлайн-платформа для помощи в учебе</h1>
           <Formik
             initialValues={initialValue}
             validationSchema={RequestProjectSchema}
@@ -121,8 +121,8 @@ export const Hero = ({ projectType }: Props) => {
           >
             {({ isSubmitting, setFieldValue, values }) => (
               <Form className={styles.form} noValidate>
-                <div className={styles["email-type"]}>
-                  <div className={styles["form-item"]} id={styles["form-item-email"]}>
+                <div className={styles.email_type}>
+                  <div className={styles.form_item} id={styles.form_item_email}>
                     <label className={styles.label}>Email *</label>
                     <div className={styles["input-container"]}>
                       <Field
@@ -134,10 +134,10 @@ export const Hero = ({ projectType }: Props) => {
                       />
                     </div>
 
-                    <ErrorMessage className={styles["error-label"]} name="email" component="div" />
+                    <ErrorMessage className={styles.error_label} name="email" component="div" />
                   </div>
 
-                  <div className={styles["form-item"]} id={styles["form-item-type"]}>
+                  <div className={styles.form_item} id={styles.form_item_type}>
                     <label className={styles.label}>Тип работы *</label>
                     <Field
                       name="projectType"
@@ -151,7 +151,7 @@ export const Hero = ({ projectType }: Props) => {
                       disabled={isSubmitting}
                     />
 
-                    <ErrorMessage className={styles["error-label"]} name="projectType" component="div" />
+                    <ErrorMessage className={styles.error_label} name="projectType" component="div" />
                   </div>
                 </div>
 
@@ -160,7 +160,7 @@ export const Hero = ({ projectType }: Props) => {
                   <div className={styles["input-container"]}>
                     <Field className={styles.input} type="text" name="subject" placeholder="Предмет" disabled={isSubmitting} />
                   </div>
-                  <ErrorMessage className={styles["error-label"]} name="subject" component="div" />
+                  <ErrorMessage className={styles.error_label} name="subject" component="div" />
                 </div>
 
                 <div className={styles["form-item"]}>
@@ -174,7 +174,7 @@ export const Hero = ({ projectType }: Props) => {
                       disabled={isSubmitting}
                     />
                   </div>
-                  <ErrorMessage className={styles["error-label"]} name="projectName" component="div" />
+                  <ErrorMessage className={styles.error_label} name="projectName" component="div" />
                 </div>
 
                 <div className={styles["form-item"]}>
@@ -191,7 +191,7 @@ export const Hero = ({ projectType }: Props) => {
                       disabled={isSubmitting}
                     />
                   </div>
-                  <ErrorMessage className={styles["error-label"]} name="description" component="div" />
+                  <ErrorMessage className={styles.error_label} name="description" component="div" />
                 </div>
 
                 <div className={styles["date-orig"]}>
@@ -207,7 +207,7 @@ export const Hero = ({ projectType }: Props) => {
                           disabled={isSubmitting}
                         />
                       </div>
-                      <ErrorMessage className={styles["error-label"]} name="dueDate" component="div" />
+                      <ErrorMessage className={styles.error_label} name="dueDate" component="div" />
                     </div>
 
                     <div className={styles["form-item"]} id={styles["form-item-originality"]}>
@@ -238,7 +238,7 @@ export const Hero = ({ projectType }: Props) => {
                           data-value="originality"
                         />
                       </div>
-                      <ErrorMessage className={styles["error-label"]} name="originality" component="div" />
+                      <ErrorMessage className={styles.error_label} name="originality" component="div" />
                     </div>
                   </div>
 
@@ -255,7 +255,7 @@ export const Hero = ({ projectType }: Props) => {
                       disabled={isSubmitting}
                     />
 
-                    <ErrorMessage className={styles["error-label"]} name="antiPlagiarism" component="div" />
+                    <ErrorMessage className={styles.error_label} name="antiPlagiarism" component="div" />
                   </div>
                 </div>
 
@@ -282,7 +282,7 @@ export const Hero = ({ projectType }: Props) => {
                       disabled={isSubmitting}
                     />
                   </div>
-                  <ErrorMessage className={styles["error-label"]} name="expectedPrice" component="div" />
+                  <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
                 </div>
 
                 <div className={styles["submit-button-container"]}>

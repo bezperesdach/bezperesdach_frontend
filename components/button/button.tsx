@@ -19,7 +19,7 @@ export const Button = ({ children, type, onClick, loading, error, disabled, styl
     }
 
     if (loading) {
-      return <span className={styles["button-loading"]}></span>;
+      return <span className={styles.button_loading}></span>;
     }
 
     return <span>{children}</span>;
@@ -37,7 +37,7 @@ export const Button = ({ children, type, onClick, loading, error, disabled, styl
   };
 
   const buttonError = () => {
-    return error ? styles["button-error"] : styles["button-gradient"];
+    return error ? styles.button_error : styles.button_gradient;
   };
 
   return (

@@ -2,20 +2,20 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
-const DynamicHero = dynamic(() => import("../components/home-page/hero/hero").then((mod) => mod.Hero));
+import Layout from "../components/layout/layout";
 import { About } from "../components/home-page/about/about";
 import { Services } from "../components/home-page/services/services";
 import { Guarantees } from "../components/home-page/guarantees/guarantees";
 import { Represents } from "../components/home-page/represents/represents";
 import { Preparation } from "../components/home-page/preparation/preparation";
 
-import { typeOptionsOrder } from "../utils/form/values";
+import { typeOptionsOrder } from "../utils/form/new-order-form";
 
 import styles from "../styles/Home.module.css";
 
 export default function Home({ pt }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <div className={styles.container}>
+    <Layout>
       <Head>
         <title>Безпересдач</title>
         <meta property="og:site_name" content="Безпересдач" />
@@ -34,15 +34,12 @@ export default function Home({ pt }: InferGetServerSidePropsType<typeof getServe
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <DynamicHero projectType={pt} />
-        <About />
-        <Services />
-        <Guarantees />
-        <Represents />
-        <Preparation />
-      </main>
-    </div>
+      <About />
+      <Services />
+      <Guarantees />
+      <Represents />
+      <Preparation />
+    </Layout>
   );
 }
 

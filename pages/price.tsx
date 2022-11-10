@@ -1,13 +1,11 @@
 import Head from "next/head";
 
+import Layout from "../components/layout/layout";
 import { Prices } from "../components/price-page/prices/prices";
-import { Bonus } from "../components/price-page/bonus/bonus";
-
-import styles from "../styles/Price.module.css";
 
 export default function Price() {
   return (
-    <div className={styles.container}>
+    <Layout>
       <Head>
         <title>Безпересдач</title>
         <meta name="description" content="Цены и услуги" />
@@ -17,9 +15,7 @@ export default function Price() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Prices />
-      </main>
-    </div>
+      <Prices />
+    </Layout>
   );
 }

@@ -7,15 +7,12 @@
 }
 
 .link {
-  color: #0b73fe;
+  color: hsl(214deg 99% 52%);
 }
 
 .link:hover {
   text-decoration: underline;
 }
-
-/* @media screen and (max-width: 1366px) {
-} */
 
 @media screen and (min-width: 769px) {
   .footer_agreements {

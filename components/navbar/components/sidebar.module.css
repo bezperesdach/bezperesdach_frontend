@@ -10,7 +10,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   padding: 80px 2rem 0;
-  background-color: #fff;
+  background-color: hsl(0deg 0% 100%);
   font-size: 20px;
   gap: 24px;
 }

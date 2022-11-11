@@ -53,7 +53,7 @@ export const Button = ({ children, type, backgroundColor, color, outlined, onCli
         ...style,
         backgroundColor: outlined ? "transparent" : backgroundColor,
         color,
-        outline: outlined ? `4px solid ${backgroundColor}` : "none",
+        boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor}` : "none",
       }}
     >
       {buttonLoading()}

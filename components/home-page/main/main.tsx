@@ -4,6 +4,7 @@ import Image from "next/image";
 import Logo from "public/images/hero.svg";
 
 import styles from "./main.module.css";
+import { Button } from "../../button/button";
 
 export const Main = () => {
   return (
@@ -16,12 +17,12 @@ export const Main = () => {
           контрольных, помощи в составлении и решение тестовых задач, подготовке различных методических материалов.
         </p>
         <div className={styles.button}>
-          <p className={styles.button_active}>
-            <a href=""> Заказать работу</a>
-          </p>
-          <p className={styles.button_inactive}>
-            <a href=""> Стать автором</a>
-          </p>
+          <Button backgroundColor="#0b73fe" color="#fff">
+            Заказать работу
+          </Button>
+          <Button backgroundColor="#0b73fe" outlined={true} color="#000">
+            Стать экспертом
+          </Button>
         </div>
       </div>
     </section>

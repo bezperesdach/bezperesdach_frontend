@@ -8,7 +8,7 @@ import { Button } from "../../button/button";
 
 export const Main = () => {
   return (
-    <section className={styles.main_hero}>
+    <section className={`${styles.main_hero} ${styles.colored_background}`}>
       <Image src={Logo} className={styles.image} alt="Logo"></Image>
       <div className={styles.text}>
         <p>
@@ -17,10 +17,8 @@ export const Main = () => {
           контрольных, помощи в составлении и решение тестовых задач, подготовке различных методических материалов.
         </p>
         <div className={styles.button}>
-          <Button backgroundColor="#0b73fe" color="#fff">
-            Заказать работу
-          </Button>
-          <Button backgroundColor="#0b73fe" outlined={true} color="#000">
+          <Button backgroundColor="#0b73fe">Заказать работу</Button>
+          <Button backgroundColor="#0b73fe" outlined={true}>
             Стать экспертом
           </Button>
         </div>

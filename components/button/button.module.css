@@ -6,7 +6,7 @@
   border-radius: 50px;
   margin: 20px;
   background-size: 300% 100%;
-  color: #fff;
+  color: rgb(255 255 255);
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
@@ -24,7 +24,7 @@
 }
 
 .button_error {
-  background-image: linear-gradient(to right, #fe046c, #eb446e, #fe046c, #eb446e);
+  background-image: linear-gradient(to right, rgb(254 4 108), rgb(235 68 110), rgb(254 4 108), rgb(235 68 110));
   box-shadow: 0 4px 15px 0 rgb(234 65 130 / 75%);
   cursor: not-allowed;
 }
@@ -35,7 +35,7 @@
 } */
 
 .button_text {
-  color: #fff;
+  color: rgb(255 255 255);
 }
 
 .button_loading .button_text {
@@ -53,7 +53,7 @@
   height: 16px;
   border: 4px solid transparent;
   border-radius: 50%;
-  border-top-color: #fff;
+  border-top-color: rgb(255 255 255);
   margin: auto;
   animation: button-loading-spinner 1s ease infinite;
   content: "";

@@ -52,7 +52,7 @@ export const Button = ({ children, type, backgroundColor, color, outlined, onCli
       style={{
         ...style,
         backgroundColor: outlined ? "transparent" : backgroundColor,
-        color,
+        color: color ?? "inherit",
         boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor}` : "none",
       }}
     >

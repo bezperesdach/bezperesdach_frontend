@@ -6,7 +6,7 @@ import styles from "./service.module.css";
 export const Service = () => {
   return (
     <section className={styles.service}>
-      <h2>ЧТО ПРЕДСТАВЯЛЕТ СОБОЙ НАШ СЕРВИС?</h2>
+      <h2>ЧТО ПРЕДСТАВЛЯЕТ НАШ СЕРВИС?</h2>
 
       <Card title="Быстрый поиск исполнителя">
         <p>

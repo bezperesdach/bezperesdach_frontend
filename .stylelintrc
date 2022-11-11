@@ -1,5 +1,6 @@
 {
   "extends": ["stylelint-config-standard","stylelint-config-recommended","stylelint-config-idiomatic-order", "stylelint-config-prettier"],
+  "plugins":["stylelint-color-format"],
   "rules": {
     "selector-class-pattern": [
       "^.[a-z]([a-z0-9_]+)?(__([a-z0-9]+_?)+)?(_([a-z0-9]+_?)+){0,2}$",
@@ -13,8 +14,8 @@
         "message": "id names should only contain _"
       }
     ],
-    "indentation": null,
-    "number-leading-zero": null,
-    "declaration-empty-line-before": "never"
+    "color-format/format": {
+      "format": "rgb"
+    }
   }
 }

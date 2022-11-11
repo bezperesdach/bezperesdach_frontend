@@ -3,6 +3,8 @@ import dynamic from "next/dynamic";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
 import Layout from "../components/layout/layout";
+import { Main } from "../components/home-page/main/main";
+import { Service } from "../components/home-page/service/service";
 import { About } from "../components/home-page/about/about";
 import { Services } from "../components/home-page/services/services";
 import { Guarantees } from "../components/home-page/guarantees/guarantees";
@@ -33,6 +35,8 @@ export default function Home({ pt }: InferGetServerSidePropsType<typeof getServe
         <meta property="og:image" content="/og_logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Main />
+      <Service />
 
       <About />
       <Services />

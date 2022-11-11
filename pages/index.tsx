@@ -5,11 +5,8 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 import Layout from "../components/layout/layout";
 import { Main } from "../components/home-page/main/main";
 import { Service } from "../components/home-page/service/service";
-import { About } from "../components/home-page/about/about";
-import { Services } from "../components/home-page/services/services";
 import { Guarantees } from "../components/home-page/guarantees/guarantees";
-import { Represents } from "../components/home-page/represents/represents";
-import { Preparation } from "../components/home-page/preparation/preparation";
+import { Work } from "../components/home-page/work/work";
 
 import { typeOptionsOrder } from "../utils/form/new-order-form";
 
@@ -37,12 +34,8 @@ export default function Home({ pt }: InferGetServerSidePropsType<typeof getServe
       </Head>
       <Main />
       <Service />
-
-      <About />
-      <Services />
       <Guarantees />
-      <Represents />
-      <Preparation />
+      <Work />
     </Layout>
   );
 }

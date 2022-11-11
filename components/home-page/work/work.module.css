@@ -1,0 +1,21 @@
+.work {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  padding-top: 10%;
+  gap: 50px;
+
+  /* display: flex;
+  height: 841px;
+  flex-direction: row;
+  align-items: center; */
+}
+
+.colored_background {
+  --bg-color: rgb(255 242 137 / 100%);
+
+  background-color: var(--bg-color);
+  box-shadow: 0 0 0 100vmax var(--bg-color);
+  clip-path: inset(0 -100vmax);
+  color: rgb(255 255 255);
+}

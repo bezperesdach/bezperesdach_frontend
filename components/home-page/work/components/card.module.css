@@ -1,0 +1,47 @@
+.card_style {
+  padding-bottom: 50px;
+}
+
+.card_button {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  padding-top: 24px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  border-radius: 30px;
+  background: rgb(255 255 255 / 70%);
+  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  color: black;
+  row-gap: 20px;
+}
+
+.card_button h3 {
+  color: rgb(102 36 131);
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 22px;
+}
+
+.url {
+  position: relative;
+  width: 210px;
+  height: 55px;
+  border: none;
+  border: rgb(11 115 254);
+  border-radius: 50px;
+  margin: 20px;
+  background-size: 300% 100%;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .card_button {
+    width: 100%;
+  }
+}

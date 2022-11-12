@@ -33,6 +33,7 @@ export default function Home({ pt }: InferGetServerSidePropsType<typeof getServe
         <meta property="og:image" content="/og_logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Main />
       <Service />
       <Guarantees />

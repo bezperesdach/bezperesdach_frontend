@@ -9,7 +9,7 @@ export const Prices = () => {
       <Card
         title="Курсовая работа"
         description={"Рекомендуемая цена: от 2990 \nСрок выполнения: от 7 дней\nСрочно: от 14990 рублей\nСрок выполнения: 24 часа"}
-        url="/?pt=term-paper"
+        url="/order/?pt=term-paper"
         backgroundColor="rgba(12, 115, 254, 0.9)"
         buttonBackgroundColor="#0C73FE"
         colorText="#ffffff"
@@ -18,7 +18,7 @@ export const Prices = () => {
       <Card
         title="Дипломная работа"
         description={"Рекомендуемая цена: от 4990 \nСрок выполнения: от 14 дней\nСрочно: от 24990 рублей\nСрок выполнения: 24 часа"}
-        url="/?pt=graduation-work"
+        url="/order/?pt=graduation-work"
         backgroundColor="rgba(12, 115, 254, 0.85)"
         buttonBackgroundColor="#0C73FE"
         colorText="#ffffff"
@@ -27,7 +27,7 @@ export const Prices = () => {
       <Card
         title="Магистерская"
         description={"Рекомендуемая цена: от 9990 \nСрок выполнения: от 30 дней\nСрочно: от 49990 рублей\nСрок выполнения: 3 дня"}
-        url="/?pt=masters"
+        url="/order/?pt=masters"
         backgroundColor="rgba(12, 115, 254, 0.8)"
         buttonBackgroundColor="#0C73FE"
         colorText="#ffffff"
@@ -36,7 +36,7 @@ export const Prices = () => {
       <Card
         title="Отчет по практике"
         description={"Рекомендуемая цена: от 1990 \nСрок выполнения: от 5 дней\nСрочно: от 4990\nСрок выполнения: 20 часов"}
-        url="/?pt=practice-report"
+        url="/order/?pt=practice-report"
         backgroundColor="rgba(12, 115, 254, 0.75)"
         buttonBackgroundColor="#0C73FE"
         colorText="#ffffff"
@@ -45,7 +45,7 @@ export const Prices = () => {
       <Card
         title="Статья"
         description={"Рекомендуемая цена: от 990 \nСрок выполнения: от 3 дней\nСрочно: от 2990\nСрок выполнения: 12 часов"}
-        url="/?pt=article"
+        url="/order/?pt=article"
         backgroundColor="rgba(105, 68, 184, 0.9)"
         buttonBackgroundColor="#6944B8"
         colorText="#ffffff"
@@ -54,7 +54,7 @@ export const Prices = () => {
       <Card
         title="Рецензия"
         description={"Рекомендуемая цена: от 590 \nСрок выполнения: от 12 часов\nСрочно: от 4990\nСрок выполнения: 2 часа"}
-        url="/?pt=review"
+        url="/order/?pt=review"
         backgroundColor="rgba(105, 68, 184, 0.85)"
         buttonBackgroundColor="#6944B8"
         colorText="#ffffff"
@@ -63,7 +63,7 @@ export const Prices = () => {
       <Card
         title="Сочинение"
         description={"Рекомендуемая цена: от 490 \nСрок выполнения: от 4 часов\nСрочно: от 1990\nСрок выполнения: 1 час"}
-        url="/?pt=opus"
+        url="/order/?pt=opus"
         backgroundColor="rgba(105, 68, 184, 0.8)"
         buttonBackgroundColor="#6944B8"
         colorText="#ffffff"
@@ -72,7 +72,7 @@ export const Prices = () => {
       <Card
         title="Эссе"
         description={"Рекомендуемая цена: от 390 \nСрок выполнения: от 1-2 дней\nСрочно: от 990\nСрок выполнения: 2 часа"}
-        url="/?pt=essay"
+        url="/order/?pt=essay"
         backgroundColor="rgba(105, 68, 184, 0.75)"
         buttonBackgroundColor="#6944B8"
         colorText="#ffffff"
@@ -81,7 +81,7 @@ export const Prices = () => {
       <Card
         title="Реферат"
         description={"Рекомендуемая цена: от 590 \nСрок выполнения: от 1-2 дней\nСрочно: от 990\nСрок выполнения: 2 часа"}
-        url="/?pt=composition"
+        url="/order/?pt=composition"
         backgroundColor="rgba(41, 153, 0, 0.9)"
         buttonBackgroundColor="#299900"
         colorText="#ffffff"
@@ -90,7 +90,7 @@ export const Prices = () => {
       <Card
         title="Доклад"
         description={"Рекомендуемая цена: от 990 \nСрок выполнения: от 1-2 дней\nСрочно: от 1990\nСрок выполнения: 2 часа"}
-        url="/?pt=report"
+        url="/order/?pt=report"
         backgroundColor="rgba(41, 153, 0, 0.85)"
         buttonBackgroundColor="#299900"
         colorText="#ffffff"
@@ -99,7 +99,7 @@ export const Prices = () => {
       <Card
         title="Ответы на билеты"
         description={"Рекомендуемая цена: от 590 \nСрок выполнения: от 1-2 дней\nСрочно: от 1490\nСрок выполнения: 1 час"}
-        url="/?pt=ticket-answers"
+        url="/order/?pt=ticket-answers"
         backgroundColor="rgba(41, 153, 0, 0.8)"
         buttonBackgroundColor="#299900"
         colorText="#ffffff"
@@ -108,7 +108,7 @@ export const Prices = () => {
       <Card
         title="Решение задач"
         description={"Рекомендуемая цена: от 50 \nСрок выполнения: от 1-2 дней\nСрочно: от 100\nСрок выполнения: 1 час"}
-        url="/?pt=tasks"
+        url="/order/?pt=tasks"
         backgroundColor="rgba(41, 153, 0, 0.75)"
         buttonBackgroundColor="#299900"
         colorText="#ffffff"
@@ -117,7 +117,7 @@ export const Prices = () => {
       <Card
         title="Лабораторная"
         description={"Рекомендуемая цена: от 690 \nСрок выполнения: от 1-2 дней\nСрочно: от 1990\nСрок выполнения: 1 час"}
-        url="/?pt=laboratory-work"
+        url="/order/?pt=laboratory-work"
         backgroundColor="rgba(255, 60, 38, 0.9)"
         buttonBackgroundColor="#FF3C26"
         colorText="#ffffff"
@@ -126,7 +126,7 @@ export const Prices = () => {
       <Card
         title="Контрольная"
         description={"Рекомендуемая цена: от 190 \nСрок выполнения: от 1-2 дней\nСрочно: от 990\nСрок выполнения: 1 час"}
-        url="/?pt=test-work"
+        url="/order/?pt=test-work"
         backgroundColor="rgba(255, 60, 38, 0.85)"
         buttonBackgroundColor="#FF3C26"
         colorText="#ffffff"
@@ -135,7 +135,7 @@ export const Prices = () => {
       <Card
         title="Кейсы"
         description={"Рекомендуемая цена: от 1990 \nСрок выполнения: от 2-3 дней\nСрочно: от 3990\nСрок выполнения: 4 часа"}
-        url="/?pt=cases"
+        url="/order/?pt=cases"
         backgroundColor="rgba(255, 60, 38, 0.8)"
         buttonBackgroundColor="#FF3C26"
         colorText="#ffffff"
@@ -144,7 +144,7 @@ export const Prices = () => {
       <Card
         title="Тесты"
         description={"Рекомендуемая цена: от 390 \nСрок выполнения: от 1-2 дней\nСрочно: от 990\nСрок выполнения: 3 часа"}
-        url="/?pt=tests"
+        url="/order/?pt=tests"
         backgroundColor="rgba(255, 60, 38, 0.75)"
         buttonBackgroundColor="#FF3C26"
         colorText="#ffffff"
@@ -153,7 +153,7 @@ export const Prices = () => {
       <Card
         title="Чертеж"
         description={"Рекомендуемая цена: от 590 \nСрок выполнения: от 4-5 дней\nСрочно: от 990\nСрок выполнения: 9 часов"}
-        url="/?pt=scheme"
+        url="/order/?pt=scheme"
         backgroundColor="rgba(255, 171, 13, 0.9)"
         buttonBackgroundColor="#FFAB0D"
         colorText="#111111"
@@ -162,7 +162,7 @@ export const Prices = () => {
       <Card
         title="Монография"
         description={"Рекомендуемая цена: от 19990 \nСрок выполнения: от 40 дней\nСрочно: от 89990\nСрок выполнения: 48 часов"}
-        url="/?pt=monograph"
+        url="/order/?pt=monograph"
         backgroundColor="rgba(255, 171, 13, 0.85)"
         buttonBackgroundColor="#FFAB0D"
         colorText="#111111"
@@ -171,7 +171,7 @@ export const Prices = () => {
       <Card
         title="Презентация"
         description={"Рекомендуемая цена: от 590 \nСрок выполнения: от 2-3 дней\nСрочно: от 990\nСрок выполнения: 3 часа"}
-        url="/?pt=presentation"
+        url="/order/?pt=presentation"
         backgroundColor="rgba(255, 171, 13, 0.8)"
         buttonBackgroundColor="#FFAB0D"
         colorText="#111111"
@@ -180,7 +180,7 @@ export const Prices = () => {
       <Card
         title="Бизнес-план"
         description={"Рекомендуемая цена: от 6990 \nСрок выполнения: от 7 дней\nСрочно: от 9990\nСрок выполнения: 12 часа"}
-        url="/?pt=business-plan"
+        url="/order/?pt=business-plan"
         backgroundColor="rgba(255, 171, 13, 0.75)"
         buttonBackgroundColor="#FFAB0D"
         colorText="#111111"
@@ -189,7 +189,7 @@ export const Prices = () => {
       <Card
         title="Кандидатская"
         description={"Рекомендуемая цена: от 29990 \nСрок выполнения: от 2-3 месяцев\nСрочно: от 89990\nСрок выполнения: 72 часа"}
-        url="/?pt=phd"
+        url="/order/?pt=phd"
         backgroundColor="rgba(199, 218, 181, 0.8)"
         buttonBackgroundColor="#C7DAB5"
         colorText="#111111"
@@ -198,7 +198,7 @@ export const Prices = () => {
       <Card
         title="Докторская"
         description={"Рекомендуемая цена: от 49990 \nСрок выполнения: от 4-5 месяцев\nСрочно: от 119990\nСрок выполнения: 1-2 недели"}
-        url="/?pt=doctoral"
+        url="/order/?pt=doctoral"
         backgroundColor="rgba(199, 218, 181, 0.7)"
         buttonBackgroundColor="#C7DAB5"
         colorText="#111111"
@@ -207,7 +207,7 @@ export const Prices = () => {
       <Card
         title="Программирование"
         description={"Рекомендуемая цена: от 490 \nСрок выполнения: от 1-2 дня\nСрочно: от 990\nСрок выполнения: 1-2 часа"}
-        url="/?pt=programming"
+        url="/order/?pt=programming"
         backgroundColor="rgba(199, 218, 181, 0.6)"
         buttonBackgroundColor="#C7DAB5"
         colorText="#111111"

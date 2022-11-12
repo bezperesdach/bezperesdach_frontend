@@ -8,6 +8,7 @@ import { Service } from "../components/home-page/service/service";
 import { Guarantees } from "../components/home-page/guarantees/guarantees";
 import { Work } from "../components/home-page/work/work";
 import { Bonus } from "../components/home-page/bonus/bonus";
+import { Contact } from "../components/home-page/contact/contact";
 
 import { typeOptionsOrder } from "../utils/form/new-order-form";
 
@@ -39,6 +40,7 @@ export default function Home({ pt }: InferGetServerSidePropsType<typeof getServe
       <Guarantees />
       <Work />
       <Bonus />
+      <Contact />
     </Layout>
   );
 }

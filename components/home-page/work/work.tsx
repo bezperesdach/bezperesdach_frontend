@@ -18,6 +18,7 @@ export const Work = () => {
           textButton="Заказать работу"
           backgroundColor="#0b73fe"
           color="white"
+          href="/order"
         ></Card>
         <Card
           title="ДЛЯ ИСПОЛНИТЕЛЕЙ"
@@ -25,6 +26,7 @@ export const Work = () => {
           textButton="Стать автором"
           backgroundColor="#0b73fe"
           color="white"
+          href=""
         ></Card>
       </div>
       <Image src={WorkImage} className={styles.image} alt="WorkImage"></Image>

@@ -69,6 +69,11 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .guarantees_text {
+    height: auto;
+    padding-bottom: 100px;
+  }
+
   .images {
     /* left: calc(50% - 360px); */
     width: 350px;

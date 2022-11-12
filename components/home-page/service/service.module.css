@@ -46,7 +46,7 @@
 
   .images {
     display: block;
-    width: 350px;
+    width: 250px;
     margin: auto;
   }
 
@@ -68,7 +68,7 @@
 
   .images {
     /* left: calc(50% - 360px); */
-    width: 350px;
+    width: 250px;
   }
 
   .service h2 {

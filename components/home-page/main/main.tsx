@@ -15,7 +15,10 @@ export const Main = () => {
       </div>
 
       <div className={styles.text}>
-        <p>“Безпересдач” - проект онлайн-помощи студентам</p>
+        <p>
+          <strong>“Безпересдач”</strong>- проект онлайн-помощи студентам. <br></br>Мы помогаем тем, кто учится в ВУЗах, колледжах и
+          техникумах.
+        </p>
         <div className={styles.button}>
           <Link href="/order">
             <Button backgroundColor="#0b73fe" color="white">

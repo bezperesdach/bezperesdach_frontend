@@ -8,7 +8,10 @@ import styles from "./main.module.css";
 export const Main = () => {
   return (
     <section className={styles.main_hero}>
-      <Image src={Logo} className={styles.image} alt="Logo"></Image>
+      <div className={styles.image_container}>
+        <Image src={Logo} className={styles.image} alt="Logo" />
+      </div>
+
       <div className={styles.text}>
         <p>“Безпересдач” - проект онлайн-помощи студентам</p>
         <div className={styles.button}>

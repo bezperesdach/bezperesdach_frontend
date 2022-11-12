@@ -1,21 +1,26 @@
 .main_hero {
   position: relative;
   display: flex;
+  height: calc(100vh - 100px);
   align-items: center;
   gap: 60px;
 }
 
+.image_container {
+  flex: 1;
+  flex-basis: 50%;
+}
+
 .image {
-  display: flex;
-  width: 50%;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0;
-  gap: 10px;
+  position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+  object-fit: contain;
 }
 
 .text {
   display: flex;
+  flex-basis: 50%;
   flex-direction: column;
   align-items: center;
   gap: 30px;
@@ -61,6 +66,23 @@
   text-align: center;
 }
 
+@media screen and (max-width: 1239px) {
+  .main_hero {
+    flex-direction: column;
+    padding-top: 100px;
+    gap: unset;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .main_hero {
+    height: calc(100vh - 84px);
+    flex-direction: column;
+    padding-top: 100px;
+    gap: unset;
+  }
+}
+
 @media (max-width: 768px) {
   .image {
     display: flex;
@@ -70,6 +92,8 @@
 
   .main_hero {
     flex-direction: column;
+    padding-top: 64px;
+    gap: unset;
   }
 
   .text {
@@ -79,5 +103,17 @@
   .main_hero p {
     font-size: 24px;
     font-weight: 300;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .main_hero {
+    padding-top: 32px;
+  }
+
+  .image_container {
+    width: 70%;
+    flex: unset;
+    flex-basis: unset;
   }
 }

@@ -14,10 +14,6 @@ export const Footer = () => {
           <Link href="/documents/terms-of-use.pdf" className={styles.link}>
             пользовательское соглашение
           </Link>{" "}
-          ,{" "}
-          <Link href="/documents/processing-policy.pdf" className={styles.link}>
-            политику конфиденциальности
-          </Link>
           , а также
           <Link href="/documents/processing-policy.pdf" className={styles.link}>
             {" "}

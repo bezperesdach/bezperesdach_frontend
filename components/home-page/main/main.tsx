@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
-
 import Logo from "public/images/hero.svg";
+import { Button } from "../../button/button";
 
 import styles from "./main.module.css";
-import { Button } from "../../button/button";
 
 export const Main = () => {
   return (

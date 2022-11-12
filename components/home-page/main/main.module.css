@@ -63,8 +63,9 @@
 
 @media (max-width: 768px) {
   .image {
-    width: auto;
+    display: flex;
     height: auto;
+    margin: auto;
   }
 
   .main_hero {

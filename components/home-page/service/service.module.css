@@ -1,6 +1,6 @@
 .service {
   display: flex;
-  height: 841px;
+  height: calc(100vh);
   flex-direction: row-reverse;
   align-items: center;
 }

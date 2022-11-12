@@ -1,24 +1,24 @@
 import React from "react";
-import Link from "next/link";
-
 import styles from "./card.module.css";
+import { Button } from "../../../button/button";
 
 type Props = {
   title: string;
   description: string;
-  url: string;
   textButton: string;
+  backgroundColor: string;
+  color: string;
 };
 
-export const Card = ({ title, description, url, textButton }: Props) => {
+export const Card = ({ title, description, textButton, backgroundColor, color }: Props) => {
   return (
     <div className={styles.card_style}>
       <div className={styles.card_button}>
         <h3>{title}</h3>
         <p>{description}</p>
-        <Link href={url} className={styles.url}>
+        <Button backgroundColor={backgroundColor} color={color}>
           {textButton}
-        </Link>
+        </Button>
       </div>
     </div>
   );

@@ -4,7 +4,10 @@
 
 .card_button {
   display: flex;
-  width: 50%;
+  width: auto;
+  height: auto;
+
+  /* width: 50%; */
   flex-direction: column;
   padding-top: 24px;
   padding-bottom: 20px;
@@ -20,6 +23,13 @@
   color: rgb(102 36 131);
   font-size: 20px;
   font-weight: 900;
+  line-height: 22px;
+}
+
+.card_button p {
+  color: black;
+  font-size: 18px;
+  font-weight: 300;
   line-height: 22px;
 }
 
@@ -43,5 +53,9 @@
 @media (max-width: 768px) {
   .card_button {
     width: 100%;
+  }
+
+  .card_button h3 {
+    font-size: 16px;
   }
 }

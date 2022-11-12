@@ -8,7 +8,7 @@ import { Turn as Hamburger } from "hamburger-react";
 const DynamicSidebar = dynamic(() => import("./components/sidebar").then((mod) => mod.Sidebar));
 
 import logo from "public/logo.svg";
-import mini_logo from "public/mini_logo.png";
+import mini_logo from "public/logo_mini.svg";
 
 import styles from "./navbar.module.css";
 
@@ -22,7 +22,7 @@ export const Navbar = () => {
   };
 
   return (
-    <header className={styles.navbar}>
+    <header className={`${styles.navbar} ${styles.colored_background}`}>
       <Link href="/" className={styles.desktop_logo}>
         <Image src={logo} height={100} width={320} alt="logo" />
       </Link>

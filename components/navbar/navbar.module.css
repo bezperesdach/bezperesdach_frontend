@@ -5,6 +5,14 @@
   justify-content: space-between;
 }
 
+.colored_background {
+  --bg-color: rgb(255 255 255 / 100%);
+
+  background-color: var(--bg-color);
+  box-shadow: 0 0 0 100vmax var(--bg-color);
+  clip-path: inset(0 -100vmax);
+}
+
 .desktop_logo {
   display: none;
 }

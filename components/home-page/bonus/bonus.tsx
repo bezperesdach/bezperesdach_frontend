@@ -16,7 +16,9 @@ export const Bonus = () => {
         <h2>
           Скидка 10% <br></br> на первый заказ
         </h2>
-        <p>Пока ты думаешь - другие заказывают</p>
+        <p>
+          Пока ты думаешь - <br></br> другие заказывают
+        </p>
         <Link href="/order">
           <Button backgroundColor="#0b73fe" color="white">
             Заказать работу

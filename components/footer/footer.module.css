@@ -9,6 +9,7 @@
 .colored_background {
   --bg-color: rgb(39 52 66 / 100%);
 
+  margin-bottom: -1px;
   background-color: var(--bg-color);
   box-shadow: 0 0 0 100vmax var(--bg-color);
   clip-path: inset(0 -100vmax);
@@ -63,7 +64,6 @@
   .footer {
     display: flex;
     width: 100%;
-    height: calc(50vh);
     flex-direction: column-reverse;
     gap: 16px;
   }

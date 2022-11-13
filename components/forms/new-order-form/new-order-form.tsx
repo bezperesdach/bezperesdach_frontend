@@ -276,6 +276,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                   <Field
                     className={styles.input}
                     type="text"
+                    pattern="\d*"
                     name="expectedPrice"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       const value = e.target.value.trim().replace(/[^0-9]/gi, "");

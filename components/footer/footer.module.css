@@ -1,6 +1,5 @@
 .footer {
   display: flex;
-  height: calc(30vh);
   flex-direction: row;
   justify-content: space-between;
   padding-top: 50px;
@@ -26,7 +25,7 @@
 .footer_text p {
   font-size: 12px;
   font-style: normal;
-  font-weight: 200;
+  font-weight: 400;
   line-height: 15px;
 }
 

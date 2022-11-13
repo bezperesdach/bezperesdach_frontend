@@ -12,7 +12,7 @@ export default function Order({ pt }: InferGetServerSidePropsType<typeof getServ
   return (
     <Layout>
       <Head>
-        <title>Заказать работу - Безпересдач</title>
+        <title>Заказать работу</title>
         <meta property="og:site_name" content="Безпересдач" />
         {pt ? (
           <>
@@ -21,8 +21,8 @@ export default function Order({ pt }: InferGetServerSidePropsType<typeof getServ
           </>
         ) : (
           <>
-            <meta name="description" content="Сделать заказ - Безпересдач" />
-            <meta property="og:description" content="Сделать заказ - Безпересдач" />
+            <meta name="description" content="Сделать заказ работы" />
+            <meta property="og:description" content="Сделать заказ работы" />
           </>
         )}
         <meta property="og:image" content="/og_logo.png" />

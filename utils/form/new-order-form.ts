@@ -95,11 +95,11 @@ export const typeOptionsOrder = new Map([
 
 export const getOrderDescription = (option?: string) => {
   if (option) {
-    const result = typeOptionsOrder.get(option);
-    return result ? `${result}` : "Сделать заказ - Безпересдач";
+    const result = descriptionValueLabel.get(option);
+    return result ? `${result}` : "Сделать заказ работы";
   }
 
-  return "Сделать заказ - Безпересдач";
+  return "Сделать заказ работы";
 };
 
 export const descriptionValueLabel = new Map([

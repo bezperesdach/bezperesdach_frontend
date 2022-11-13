@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import Image from "next/image";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 
 import heroImage from "public/images/hero.svg";
@@ -58,6 +58,44 @@ export const NewOrderForm = ({ projectType }: Props) => {
     initialValue.projectType = getInitValue(projectType);
   }
 
+  const formik = useFormik({
+    initialValues: initialValue,
+    validationSchema: RequestProjectSchema,
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
+      createOrder(
+        values,
+        () => {
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: true };
+          });
+        },
+        () => {
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: false, isModal: true };
+          });
+          resetForm();
+          setSubmitting(false);
+          ym("reachGoal", "orderCreateSuccess");
+          if (projectType) {
+            router.push("/");
+          }
+        },
+        (err) => {
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: false, error: true, errorText: `${err}` };
+          });
+          setSubmitting(false);
+          ym("reachGoal", "orderCreateError");
+        },
+        () => {
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: false, error: false, errorText: "" };
+          });
+        }
+      );
+    },
+  });
+
   const [sendOrder, setSendOrder] = useState({
     loading: false,
     isModal: false,
@@ -78,265 +116,237 @@ export const NewOrderForm = ({ projectType }: Props) => {
   };
 
   return (
-    <section className={styles.hero}>
-      <div className={styles.form_container}>
-        <div className={styles.hero}>
-          <h1 className={styles.hero_title}>{getOrderTypeLabel(projectType)}</h1>
+    <FormikProvider value={formik}>
+      <section className={styles.hero}>
+        <div className={styles.form_container}>
+          <div className={styles.hero}>
+            <h1 className={styles.hero_title}>{getOrderTypeLabel(formik.values.projectType)}</h1>
 
-          <Formik
-            initialValues={initialValue}
-            validationSchema={RequestProjectSchema}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              createOrder(
-                values,
-                () => {
-                  setSendOrder((prevState) => {
-                    return { ...prevState, loading: true };
-                  });
-                },
-                () => {
-                  setSendOrder((prevState) => {
-                    return { ...prevState, loading: false, isModal: true };
-                  });
-                  resetForm();
-                  setSubmitting(false);
-                  ym("reachGoal", "orderCreateSuccess");
-                  if (projectType) {
-                    router.push("/");
-                  }
-                },
-                (err) => {
-                  setSendOrder((prevState) => {
-                    return { ...prevState, loading: false, error: true, errorText: `${err}` };
-                  });
-                  setSubmitting(false);
-                  ym("reachGoal", "orderCreateError");
-                },
-                () => {
-                  setSendOrder((prevState) => {
-                    return { ...prevState, loading: false, error: false, errorText: "" };
-                  });
-                }
-              );
-            }}
-          >
-            {({ isSubmitting, setFieldValue, values }) => (
-              <Form className={styles.form} noValidate>
-                <div className={styles.email_type}>
-                  <div className={styles.form_item} id={styles.form_item_email}>
-                    <label className={styles.label}>Email *</label>
+            {/* {({ formik.isSubmitting, formik.setFieldValue, values }) => ( */}
+            <Form className={styles.form} noValidate>
+              <div className={styles.email_type}>
+                <div className={styles.form_item} id={styles.form_item_email}>
+                  <label className={styles.label}>Email *</label>
+                  <div className={styles.input_container}>
+                    <Field
+                      className={styles.input}
+                      type="email"
+                      name="email"
+                      placeholder="example@example.com"
+                      disabled={formik.isSubmitting}
+                    />
+                  </div>
+
+                  <ErrorMessage className={styles.error_label} name="email" component="div" />
+                </div>
+
+                <div className={styles.form_item} id={styles.form_item_type}>
+                  <label className={styles.label}>Тип работы *</label>
+                  <Field
+                    name="projectType"
+                    options={typeOptions}
+                    component={ReactSelector}
+                    borderRadius={15}
+                    placeholder="Выберите тип"
+                    isMulti={false}
+                    filterOption={() => true}
+                    onInputChange={(e: string) => filterAllOptions(e)}
+                    onItemSelected={(item: string) => {
+                      router.replace(
+                        {
+                          query: { ...router.query, pt: item },
+                        },
+                        undefined,
+                        { shallow: true }
+                      );
+                    }}
+                    disabled={formik.isSubmitting}
+                  />
+
+                  <ErrorMessage className={styles.error_label} name="projectType" component="div" />
+                </div>
+              </div>
+
+              <div className={styles.form_item}>
+                <label className={styles.label}>Предмет *</label>
+                <div className={styles.input_container}>
+                  <Field className={styles.input} type="text" name="subject" placeholder="Предмет" disabled={formik.isSubmitting} />
+                </div>
+                <ErrorMessage className={styles.error_label} name="subject" component="div" />
+              </div>
+
+              <div className={styles.form_item}>
+                <label className={styles.label}>Тема работы</label>
+                <div className={styles.input_container}>
+                  <Field
+                    className={styles.input}
+                    type="text"
+                    name="projectName"
+                    placeholder="Как должна называться ваша работа"
+                    disabled={formik.isSubmitting}
+                  />
+                </div>
+                <ErrorMessage className={styles.error_label} name="projectName" component="div" />
+              </div>
+
+              <div className={styles.form_item}>
+                <label className={styles.label}>Дополнительное описание</label>
+                <div className={styles.input_container}>
+                  <Field
+                    className={styles.input}
+                    type="text"
+                    component="textarea"
+                    rows="7"
+                    name="description"
+                    placeholder="В данном поле можно указать нужный объем работы, нужно ли оформление по ГОСТу, нужно ли оформление по требованиям ВУЗа или какие-либо другие важные замечания по работе"
+                    id={styles.form_item_description_textarea}
+                    disabled={formik.isSubmitting}
+                  />
+                </div>
+                <ErrorMessage className={styles.error_label} name="description" component="div" />
+              </div>
+
+              <div className={styles.date_orig}>
+                <div className={styles.date_orig_container}>
+                  <div className={styles.form_item} id={styles.form_item_due_date}>
+                    <label className={styles.label}>Дата сдачи *</label>
                     <div className={styles.input_container}>
                       <Field
                         className={styles.input}
-                        type="email"
-                        name="email"
-                        placeholder="example@example.com"
-                        disabled={isSubmitting}
+                        type="date"
+                        name="dueDate"
+                        placeholder="Когда нужно сдать работу"
+                        disabled={formik.isSubmitting}
                       />
                     </div>
-
-                    <ErrorMessage className={styles.error_label} name="email" component="div" />
+                    <ErrorMessage className={styles.error_label} name="dueDate" component="div" />
                   </div>
 
-                  <div className={styles.form_item} id={styles.form_item_type}>
-                    <label className={styles.label}>Тип работы *</label>
-                    <Field
-                      name="projectType"
-                      options={typeOptions}
-                      component={ReactSelector}
-                      borderRadius={15}
-                      placeholder="Выберите тип"
-                      isMulti={false}
-                      filterOption={() => true}
-                      onInputChange={(e: string) => filterAllOptions(e)}
-                      disabled={isSubmitting}
-                    />
-
-                    <ErrorMessage className={styles.error_label} name="projectType" component="div" />
-                  </div>
-                </div>
-
-                <div className={styles.form_item}>
-                  <label className={styles.label}>Предмет *</label>
-                  <div className={styles.input_container}>
-                    <Field className={styles.input} type="text" name="subject" placeholder="Предмет" disabled={isSubmitting} />
-                  </div>
-                  <ErrorMessage className={styles.error_label} name="subject" component="div" />
-                </div>
-
-                <div className={styles.form_item}>
-                  <label className={styles.label}>Тема работы</label>
-                  <div className={styles.input_container}>
-                    <Field
-                      className={styles.input}
-                      type="text"
-                      name="projectName"
-                      placeholder="Как должна называться ваша работа"
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                  <ErrorMessage className={styles.error_label} name="projectName" component="div" />
-                </div>
-
-                <div className={styles.form_item}>
-                  <label className={styles.label}>Дополнительное описание</label>
-                  <div className={styles.input_container}>
-                    <Field
-                      className={styles.input}
-                      type="text"
-                      component="textarea"
-                      rows="7"
-                      name="description"
-                      placeholder="В данном поле можно указать нужный объем работы, нужно ли оформление по ГОСТу, нужно ли оформление по требованиям ВУЗа или какие-либо другие важные замечания по работе"
-                      id={styles.form_item_description_textarea}
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                  <ErrorMessage className={styles.error_label} name="description" component="div" />
-                </div>
-
-                <div className={styles.date_orig}>
-                  <div className={styles.date_orig_container}>
-                    <div className={styles.form_item} id={styles.form_item_due_date}>
-                      <label className={styles.label}>Дата сдачи *</label>
-                      <div className={styles.input_container}>
-                        <Field
-                          className={styles.input}
-                          type="date"
-                          name="dueDate"
-                          placeholder="Когда нужно сдать работу"
-                          disabled={isSubmitting}
-                        />
-                      </div>
-                      <ErrorMessage className={styles.error_label} name="dueDate" component="div" />
+                  <div className={styles.form_item} id={styles.form_item_originality}>
+                    <label className={styles.label}>Антиплагиат *</label>
+                    <div className={styles.input_container}>
+                      <Field
+                        className={styles.input}
+                        type="text"
+                        pattern="\d*"
+                        name="originality"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                          if (value === "" || value === "0") {
+                            return formik.setFieldValue("originality", "");
+                          }
+                          if (value.length >= 3) {
+                            return;
+                          }
+                          return formik.setFieldValue("originality", `${value}%`);
+                        }}
+                        onKeyDown={(e: React.KeyboardEvent) => {
+                          if (e.key === "Backspace") {
+                            formik.setFieldValue("originality", formik.values.originality.slice(0, -1));
+                          }
+                        }}
+                        placeholder="Оригинальность"
+                        disabled={formik.isSubmitting}
+                        data-value="originality"
+                      />
                     </div>
-
-                    <div className={styles.form_item} id={styles.form_item_originality}>
-                      <label className={styles.label}>Антиплагиат *</label>
-                      <div className={styles.input_container}>
-                        <Field
-                          className={styles.input}
-                          type="text"
-                          pattern="\d*"
-                          name="originality"
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            const value = e.target.value.trim().replace(/[^0-9]/gi, "");
-                            if (value === "" || value === "0") {
-                              return setFieldValue("originality", "");
-                            }
-                            if (value.length >= 3) {
-                              return;
-                            }
-                            return setFieldValue("originality", `${value}%`);
-                          }}
-                          onKeyDown={(e: React.KeyboardEvent) => {
-                            if (e.key === "Backspace") {
-                              setFieldValue("originality", values.originality.slice(0, -1));
-                            }
-                          }}
-                          placeholder="Оригинальность"
-                          disabled={isSubmitting}
-                          data-value="originality"
-                        />
-                      </div>
-                      <ErrorMessage className={styles.error_label} name="originality" component="div" />
-                    </div>
-                  </div>
-
-                  <div className={styles.form_item} id={styles.form_item_anti_plagiarism}>
-                    <label className={styles.label}>Проверка *</label>
-                    <Field
-                      name="antiPlagiarism"
-                      options={antiPlagiarismOptions}
-                      component={ReactSelector}
-                      borderRadius={15}
-                      placeholder="Тип проверки"
-                      isMulti={false}
-                      isSearchable={false}
-                      disabled={isSubmitting}
-                    />
-
-                    <ErrorMessage className={styles.error_label} name="antiPlagiarism" component="div" />
+                    <ErrorMessage className={styles.error_label} name="originality" component="div" />
                   </div>
                 </div>
 
-                <div className={styles.form_item} id={styles.form_item_due_date}>
-                  <label className={styles.label}>Пожелания по цене</label>
-                  <div className={styles.input_container}>
-                    <Field
-                      className={styles.input}
-                      type="text"
-                      name="expectedPrice"
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        const value = e.target.value.trim().replace(/[^0-9]/gi, "");
-                        if (value === "" || value === "0") {
-                          return setFieldValue("expectedPrice", "");
-                        }
-                        return setFieldValue("expectedPrice", `${value}₽`);
-                      }}
-                      onKeyDown={(e: React.KeyboardEvent) => {
-                        if (e.key === "Backspace") {
-                          setFieldValue("expectedPrice", values.expectedPrice.slice(0, -1));
-                        }
-                      }}
-                      placeholder="Укажите цифрами желаемую цену"
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                  <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
-                </div>
+                <div className={styles.form_item} id={styles.form_item_anti_plagiarism}>
+                  <label className={styles.label}>Проверка *</label>
+                  <Field
+                    name="antiPlagiarism"
+                    options={antiPlagiarismOptions}
+                    component={ReactSelector}
+                    borderRadius={15}
+                    placeholder="Тип проверки"
+                    isMulti={false}
+                    isSearchable={false}
+                    disabled={formik.isSubmitting}
+                  />
 
-                <div className={styles.submit_button_container}>
-                  {sendOrder.error && <p className={styles.submit_error}>{sendOrder.errorText}</p>}
-                  <Button
-                    type="submit"
-                    backgroundColor="#4481eb"
-                    color="#fff"
-                    disabled={isSubmitting}
-                    loading={sendOrder.loading}
-                    style={{ alignSelf: "center" }}
-                    error={sendOrder.error}
-                  >
-                    Отправить запрос
-                  </Button>
+                  <ErrorMessage className={styles.error_label} name="antiPlagiarism" component="div" />
                 </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
-        <div className={styles.image_container}>
-          <Image className={styles.image} src={heroImage} alt="hero" />
-        </div>
-        {sendOrder.isModal && (
-          <Portal>
-            <div className={styles.modal_overlay}>
-              <div className={styles.modal}>
-                <h1>Заявка отправлена!</h1>
-                <p>Совсем скоро мы напишем вам на почту (не забудьте проверить папку &quot;спам&quot;) чтобы уточнить все детали</p>
-                <p>
-                  Если у вас возникли какие-то вопросы, пишите нам на{" "}
-                  <Link
-                    href="mailto:help@bezperesdach.ru?subject=%D0%9F%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5"
-                    style={{ color: "#3D8EE8" }}
-                  >
-                    help@bezperesdach.ru
-                  </Link>
-                </p>
+              </div>
+
+              <div className={styles.form_item} id={styles.form_item_due_date}>
+                <label className={styles.label}>Пожелания по цене</label>
+                <div className={styles.input_container}>
+                  <Field
+                    className={styles.input}
+                    type="text"
+                    name="expectedPrice"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                      if (value === "" || value === "0") {
+                        return formik.setFieldValue("expectedPrice", "");
+                      }
+                      return formik.setFieldValue("expectedPrice", `${value}₽`);
+                    }}
+                    onKeyDown={(e: React.KeyboardEvent) => {
+                      if (e.key === "Backspace") {
+                        formik.setFieldValue("expectedPrice", formik.values.expectedPrice.slice(0, -1));
+                      }
+                    }}
+                    placeholder="Укажите цифрами желаемую цену"
+                    disabled={formik.isSubmitting}
+                  />
+                </div>
+                <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
+              </div>
+
+              <div className={styles.submit_button_container}>
+                {sendOrder.error && <p className={styles.submit_error}>{sendOrder.errorText}</p>}
                 <Button
-                  type="button"
-                  onClick={() =>
-                    setSendOrder((prevState) => {
-                      return { ...prevState, isModal: false };
-                    })
-                  }
+                  type="submit"
+                  backgroundColor="#4481eb"
+                  color="#fff"
+                  disabled={formik.isSubmitting}
+                  loading={sendOrder.loading}
+                  style={{ alignSelf: "center" }}
+                  error={sendOrder.error}
                 >
-                  Закрыть
+                  Отправить запрос
                 </Button>
               </div>
-            </div>
-          </Portal>
-        )}
-      </div>
-    </section>
+            </Form>
+          </div>
+          <div className={styles.image_container}>
+            <Image className={styles.image} src={heroImage} alt="hero" />
+          </div>
+          {sendOrder.isModal && (
+            <Portal>
+              <div className={styles.modal_overlay}>
+                <div className={styles.modal}>
+                  <h1>Заявка отправлена!</h1>
+                  <p>Совсем скоро мы напишем вам на почту (не забудьте проверить папку &quot;спам&quot;) чтобы уточнить все детали</p>
+                  <p>
+                    Если у вас возникли какие-то вопросы, пишите нам на{" "}
+                    <Link
+                      href="mailto:help@bezperesdach.ru?subject=%D0%9F%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5"
+                      style={{ color: "#3D8EE8" }}
+                    >
+                      help@bezperesdach.ru
+                    </Link>
+                  </p>
+                  <Button
+                    type="button"
+                    onClick={() =>
+                      setSendOrder((prevState) => {
+                        return { ...prevState, isModal: false };
+                      })
+                    }
+                  >
+                    Закрыть
+                  </Button>
+                </div>
+              </div>
+            </Portal>
+          )}
+        </div>
+      </section>
+    </FormikProvider>
   );
 };

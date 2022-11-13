@@ -18,6 +18,7 @@ const selectStyle: StylesConfig<Option | Option[] | string, boolean> = {
     return {
       ...styles,
       color: "hsl(0, 0%, 70%)",
+      fontSize: "14px",
     };
   },
   menu: (styles, _) => {

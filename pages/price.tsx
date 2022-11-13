@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import Layout from "../components/layout/layout";
+import Layout from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { Prices } from "../components/price-page/prices/prices";
 
 export default function Price() {

@@ -15,7 +15,7 @@ import { ym } from "../../../utils/yandex-metrika";
 import Portal from "../../portal/portal";
 import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/form/new-order-form";
 
-import styles from "./new-order-form.module.css";
+import styles from "../form.module.css";
 
 const nextWeek = () => {
   const now = new Date();

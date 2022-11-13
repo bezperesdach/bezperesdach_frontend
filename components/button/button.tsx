@@ -51,7 +51,7 @@ export const Button = ({ children, type, backgroundColor, color, outlined, onCli
       disabled={disabled}
       style={{
         ...style,
-        backgroundColor: outlined ? "transparent" : backgroundColor,
+        backgroundColor: outlined ? "transparent" : backgroundColor ?? "rgb(11, 116, 254)",
         color: color ?? "inherit",
         boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor}` : "none",
       }}

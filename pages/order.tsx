@@ -2,7 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
-import Layout from "../components/layout/layout";
+import Layout from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import Head from "next/head";
 import { getOrderDescription } from "../utils/form/new-order-form";
 

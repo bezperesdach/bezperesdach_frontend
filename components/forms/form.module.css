@@ -95,11 +95,20 @@
   font-size: 14px;
 }
 
+.label_checkbox {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  gap: 4px;
+}
+
 .input {
   width: 100%;
   min-width: 100%;
-  height: 100%;
-  align-self: flex-start;
+
+  /* height: 100%; */
+
+  /* align-self: flex-start; */
   padding: 10px;
   border: none;
   border-radius: inherit;
@@ -116,6 +125,7 @@
 
 .input::placeholder {
   color: hsl(0deg 0% 70%);
+  font-size: 14px;
 }
 
 .error_label {

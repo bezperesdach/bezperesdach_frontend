@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../components/layout/layout";
+import Layout from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { Main } from "../components/home-page/main/main";
 import { Service } from "../components/home-page/service/service";
 import { Guarantees } from "../components/home-page/guarantees/guarantees";

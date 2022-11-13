@@ -38,6 +38,10 @@ const isFulfilled = <T>(input: PromiseSettledResult<T>): input is PromiseFulfill
 //   await Promise.allSettled([axiosReq, new Promise((resolve) => setTimeout(resolve, minDelay))]);
 // };
 
+const waitFor = (amount: number) => {
+  return new Promise((resolve) => setTimeout(resolve, amount));
+};
+
 export const createOrder = async (
   order: IOrder,
   onRequest: () => void,
@@ -50,7 +54,74 @@ export const createOrder = async (
     const data = axios
       .post(`${API_URL}/new-orders`, { data: order }, { headers: { Authorization: `Bearer ${TOKENS.uploadToken}` } })
       .then((res) => res.data);
-    const res = await Promise.allSettled([data, new Promise((resolve) => setTimeout(resolve, 1000))]);
+    const res = await Promise.allSettled([data, waitFor(1000)]);
+
+    const response = res.find(isFulfilled)?.value;
+    const rejected = res.find(isRejected)?.reason;
+
+    if (response) {
+      return onSuccess();
+    }
+
+    if (rejected) {
+      throw rejected;
+    }
+  } catch (err) {
+    onError(err);
+    setTimeout(() => onClearError(), 5000);
+  }
+};
+
+export const authenticateUser = async (
+  user: IUser,
+  onRequest: () => void,
+  onSuccess: () => void,
+  onError: (err: unknown) => void,
+  onClearError: () => void
+) => {
+  onRequest();
+
+  try {
+    const data = axios
+      .post(`${API_URL}/auth/local`, { ...user }, { headers: { Authorization: `Bearer ${TOKENS.uploadToken}` } })
+      .then((res) => res.data);
+
+    const res = await Promise.allSettled([data, waitFor(300)]);
+
+    const response = res.find(isFulfilled)?.value;
+    const rejected = res.find(isRejected)?.reason;
+
+    if (response) {
+      return onSuccess();
+    }
+
+    if (rejected) {
+      throw rejected;
+    }
+  } catch (err) {
+    onError(err);
+    setTimeout(() => onClearError(), 5000);
+  }
+};
+
+interface IWorker {
+  name: string;
+  email: string;
+}
+
+export const becomeWorker = async (
+  worker: IWorker,
+  onRequest: () => void,
+  onSuccess: () => void,
+  onError: (err: unknown) => void,
+  onClearError: () => void
+) => {
+  onRequest();
+
+  try {
+    const data = axios.post(`${API_URL}/new-workers`, { ...worker }).then((res) => res.data);
+
+    const res = await Promise.allSettled([data, waitFor(300)]);
 
     const response = res.find(isFulfilled)?.value;
     const rejected = res.find(isRejected)?.reason;

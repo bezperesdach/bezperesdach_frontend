@@ -21,6 +21,10 @@
   font-weight: 200;
 }
 
+.cards {
+  flex-basis: 50%;
+}
+
 .image_container {
   flex: 1;
   flex-basis: 50%;
@@ -36,6 +40,8 @@
 .colored_background {
   --bg-color: rgb(12 115 254 / 100%);
 
+  top: -1px;
+  bottom: -1px;
   background-color: var(--bg-color);
   box-shadow: 0 0 0 100vmax var(--bg-color);
   clip-path: inset(0 -100vmax);

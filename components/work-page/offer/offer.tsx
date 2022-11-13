@@ -12,7 +12,9 @@ import styles from "./offer.module.css";
 export const Offer = () => {
   return (
     <section className={`${styles.offer} ${styles.colored_background}`}>
-      <Image className={styles.images} src={main} alt="advantages" />
+      <div className={styles.image_container}>
+        <Image className={styles.image} src={main} alt="advantages" />
+      </div>
       <div className={styles.cards}>
         <h2>
           УСЛОВИЯ <br></br> ДЛЯ АВТОРОВ

@@ -6,18 +6,14 @@
 }
 
 .colored_background {
-  --bg-color: rgb(255 255 255 / 100%);
-
-  background-color: var(--bg-color);
-  box-shadow: 0 0 0 100vmax var(--bg-color);
-  clip-path: inset(0 -100vmax);
+  background-color: rgb(255 255 255 / 100%);
 }
 
 .desktop_logo {
   display: none;
 }
 
-.mobile_log {
+.mobile_logo {
   display: none;
 }
 
@@ -27,13 +23,10 @@
   gap: 24px;
 }
 
-.mobile_meu {
+.mobile_menu {
   display: none;
   font-size: 18px;
 }
-
-/* @media screen and (max-width: 1366px) {
-} */
 
 @media screen and (min-width: 1024px) {
   .desktop_logo {

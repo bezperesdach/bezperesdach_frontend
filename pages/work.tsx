@@ -24,8 +24,8 @@ export default function Order() {
       </Head>
 
       <Advantages />
-      <DynamicBecomeWorkerForm />
       <Offer />
+      <DynamicBecomeWorkerForm />
       <Contact />
     </Layout>
   );

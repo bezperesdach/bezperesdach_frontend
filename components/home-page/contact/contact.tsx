@@ -17,7 +17,9 @@ export const Contact = () => {
         ПРИ ВОЗНИКНОВЕНИИ ВОПРОСОВ - <br></br> МЫ ГОТОВЫ ПОМОЧЬ ВАМ В ЛЮБОЕ ВРЕМЯ
       </h2>
       <div className={styles.contact}>
-        <Image className={styles.images} src={maps} alt="contact" />
+        <div className={styles.image_container}>
+          <Image className={styles.image} src={maps} alt="contact" />
+        </div>
 
         <div className={styles.cards}>
           <Card url="https://t.me/bezperesdach_official" description={"@bezperesdach_official"} img={telegram}></Card>

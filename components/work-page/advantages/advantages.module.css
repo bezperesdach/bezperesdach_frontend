@@ -1,8 +1,9 @@
 .advantages {
   display: flex;
-  height: calc(100vh);
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
+  padding-top: 100px;
+  gap: 24px;
 }
 
 .advantages h2 {
@@ -20,8 +21,16 @@
   font-weight: 200;
 }
 
-.images {
-  width: 600px;
+.image_container {
+  flex: 1;
+  flex-basis: 50%;
+}
+
+.image {
+  position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+  object-fit: contain;
 }
 
 .colored_background {
@@ -33,21 +42,14 @@
   color: rgb(255 255 255);
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 1023px) {
   .advantages {
-    flex-direction: column-reverse;
+    flex-direction: column;
+    padding-top: 64px;
   }
 
   .advantages h2 {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    font-size: 28px;
-  }
-
-  .images {
-    display: block;
-    width: 250px;
-    margin: auto;
+    font-size: 32px;
   }
 
   .advantages h3 {
@@ -57,22 +59,20 @@
   .advantages p {
     font-size: 14px;
   }
+
+  .image_container {
+    width: 70%;
+  }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media screen and (max-width: 768px) {
   .advantages {
-    height: auto;
-    padding-top: 100px;
-    padding-bottom: 100px;
-  }
-
-  .images {
-    /* left: calc(50% - 360px); */
-    width: 250px;
+    flex-direction: column;
   }
 
   .advantages h2 {
-    font-size: 32px;
+    padding-bottom: 50px;
+    font-size: 28px;
   }
 
   .advantages h3 {

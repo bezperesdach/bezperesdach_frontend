@@ -12,13 +12,15 @@ import styles from "./advantages.module.css";
 export const Advantages = () => {
   return (
     <section className={`${styles.advantages} ${styles.colored_background}`}>
-      <Image className={styles.images} src={main} alt="advantages" />
       <div className={styles.cards}>
         <h2>ЗАРАБАТЫВАЙ С БЕЗПЕРЕСДАЧ ОТ 40 ТЫСЯЧ РУБЛЕЙ</h2>
         <Card description={"Мы выплачиваем 100% от заказа вам на карту"} img={one}></Card>
         <Card description={"Работа полностью удаленная"} img={two}></Card>
         <Card description={"Мы постоянно на связи с вами для решения всех вопросов"} img={three}></Card>
         <Card description={"Задачи выдаются в зависимости от вашей квалификации"} img={four}></Card>
+      </div>
+      <div className={styles.image_container}>
+        <Image className={styles.image} src={main} alt="advantages" />
       </div>
     </section>
   );

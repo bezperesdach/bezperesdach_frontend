@@ -1,6 +1,6 @@
 .footer {
   display: flex;
-  height: 290px;
+  height: calc(30vh);
   flex-direction: row;
   justify-content: space-between;
   padding-top: 50px;
@@ -64,6 +64,7 @@
   .footer {
     display: flex;
     width: 100%;
+    height: calc(50vh);
     flex-direction: column-reverse;
     gap: 16px;
   }

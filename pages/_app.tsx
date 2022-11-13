@@ -7,7 +7,7 @@ import "../styles/globals.css";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ErrorBoundary>
-      <NextNProgress height={6} showOnShallow={true} options={{ showSpinner: false }} />
+      <NextNProgress height={6} showOnShallow={false} options={{ showSpinner: false }} />
       <Component {...pageProps} />
     </ErrorBoundary>
   );

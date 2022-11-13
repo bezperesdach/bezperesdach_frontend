@@ -36,6 +36,7 @@
   box-shadow: 0 0 0 100vmax var(--bg-color);
   clip-path: inset(0 -100vmax);
   color: rgb(255 255 255);
+  transform: skewY(0.001deg);
 }
 
 .cards {

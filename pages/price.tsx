@@ -9,7 +9,7 @@ export default function Price() {
       <Head>
         <title>Безпересдач</title>
         <meta name="description" content="Цены и услуги" />
-        <meta property="og:description" content="Цены и услуги" />
+        <meta property="og:description" content="Цены на услуги для заказчиков" />
         <meta property="og:site_name" content="Безпересдач" />
         <meta property="og:image" content="/og_logo.png" />
         <link rel="icon" href="/favicon.ico" />

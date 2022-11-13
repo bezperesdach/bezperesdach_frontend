@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { Button } from "../../button/button";
 import { becomeWorker } from "../../../api/api";
 
-import styles from "../form.module.css";
+import styles from "./become-worker-form.module.css";
 
 interface IValues {
   name: string;
@@ -61,35 +61,37 @@ export const BecomeWorkerForm = () => {
       }}
     >
       {({ isSubmitting }) => (
-        <Form className={styles.form} noValidate>
-          <div className={styles.form_item}>
-            <label className={styles.label}>Ваше имя *</label>
-            <div className={styles.input_container}>
-              <Field className={styles.input} type="text" name="name" placeholder="Как к вам обращаться?" disabled={isSubmitting} />
+        <Form className={`${styles.form} noValidate ${styles.form_background_work}`}>
+          <div className={styles.form_work}>
+            <div className={styles.form_item}>
+              <label className={styles.headline}>Ваше имя *</label>
+              <div className={styles.input_container}>
+                <Field className={styles.input} type="text" name="name" placeholder="Как к вам обращаться?" disabled={isSubmitting} />
+              </div>
+              <ErrorMessage className={styles.error_label} name="name" component="div" />
             </div>
-            <ErrorMessage className={styles.error_label} name="name" component="div" />
-          </div>
 
-          <div className={styles.form_item}>
-            <label className={styles.label}>email *</label>
-            <div className={styles.input_container}>
-              <Field className={styles.input} type="email" name="email" placeholder="example@email.ru" disabled={isSubmitting} />
+            <div className={styles.form_item}>
+              <label className={styles.headline}>email *</label>
+              <div className={styles.input_container}>
+                <Field className={styles.input} type="email" name="email" placeholder="example@email.ru" disabled={isSubmitting} />
+              </div>
+              <ErrorMessage className={styles.error_label} name="email" component="div" />
             </div>
-            <ErrorMessage className={styles.error_label} name="email" component="div" />
-          </div>
 
-          <div className={styles.submit_button_container}>
-            {authentication.error && <p className={styles.submit_error}>{authentication.errorText}</p>}
-            <Button
-              type="submit"
-              color="#fff"
-              disabled={isSubmitting}
-              loading={authentication.loading}
-              style={{ alignSelf: "center" }}
-              error={authentication.error}
-            >
-              Отправить
-            </Button>
+            <div className={styles.submit_button_container}>
+              {authentication.error && <p className={styles.submit_error}>{authentication.errorText}</p>}
+              <Button
+                type="submit"
+                color="#fff"
+                disabled={isSubmitting}
+                loading={authentication.loading}
+                style={{ alignSelf: "center" }}
+                error={authentication.error}
+              >
+                Отправить
+              </Button>
+            </div>
           </div>
         </Form>
       )}

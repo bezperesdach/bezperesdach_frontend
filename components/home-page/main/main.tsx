@@ -25,7 +25,7 @@ export const Main = () => {
               Заказать работу
             </Button>
           </Link>
-          <Link href="">
+          <Link href="/work">
             <Button backgroundColor="#0b73fe" outlined={true}>
               Стать экспертом
             </Button>

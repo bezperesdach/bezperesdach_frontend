@@ -31,6 +31,9 @@ export const Footer = () => {
         <Link href="/price" className={styles.link}>
           Цены и услуги
         </Link>{" "}
+        <Link href="/work" className={styles.link}>
+          Стать автором
+        </Link>{" "}
       </div>
     </footer>
   );

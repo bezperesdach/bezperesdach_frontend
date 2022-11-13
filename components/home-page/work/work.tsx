@@ -26,7 +26,7 @@ export const Work = () => {
           textButton="Стать автором"
           backgroundColor="#0b73fe"
           color="white"
-          href=""
+          href="/work"
         ></Card>
       </div>
       <Image src={WorkImage} className={styles.image} alt="WorkImage"></Image>

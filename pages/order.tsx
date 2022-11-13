@@ -3,11 +3,32 @@ import dynamic from "next/dynamic";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
 import Layout from "../components/layout/layout";
+import Head from "next/head";
+import { getOrderDescription } from "../utils/form/new-order-form";
+
 const DynamicNewOrderForm = dynamic(() => import("../components/forms/new-order-form/new-order-form").then((mod) => mod.NewOrderForm));
 
 export default function Order({ pt }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <Layout>
+      <Head>
+        <title>Заказать работу - Безпересдач</title>
+        <meta property="og:site_name" content="Безпересдач" />
+        {pt ? (
+          <>
+            <meta name="description" content={getOrderDescription(pt)} />
+            <meta property="og:description" content={getOrderDescription(pt)} />
+          </>
+        ) : (
+          <>
+            <meta name="description" content="Сделать заказ - Безпересдач" />
+            <meta property="og:description" content="Сделать заказ - Безпересдач" />
+          </>
+        )}
+        <meta property="og:image" content="/og_logo.png" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <DynamicNewOrderForm projectType={pt} />
     </Layout>
   );

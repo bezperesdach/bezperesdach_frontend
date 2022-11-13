@@ -48,7 +48,61 @@ export const antiPlagiarismOptions = [
   { value: "paid", label: "Платная" },
 ];
 
+export const getOrderTypeLabel = (option?: string) => {
+  if (option) {
+    const result = typeOptionsOrder.get(option);
+    return result ? `Заказать ${result}` : "Заказать работу";
+  }
+
+  return "Заказать работу";
+};
+
 export const typeOptionsOrder = new Map([
+  ["graduation-work", "Дипломную работу"],
+  ["business-plan", "Бизнес-план"],
+  ["report", "Доклад"],
+  ["doctoral", "Докторскую диссертацию"],
+  ["phd", "Кандидатскую диссертацию"],
+  ["cases", "Кейсы"],
+  ["consultation", "Консультацию"],
+  ["test-work", "Контрольную работу"],
+  ["term-paper", "Курсовую работу"],
+  ["laboratory-work", "Лабораторную работу"],
+  ["masters", "Магистерскую работа"],
+  ["methodical-instructions", "Магистерскую инструкцию"],
+  ["monograph", "Монографию"],
+  ["nir", "НИР"],
+  ["online-help", "Онлайн помощь"],
+  ["ticket-answers", "Ответы на билеты"],
+  ["practice-report", "Отчет по практике"],
+  ["translation", "Перевод с иностранного языка"],
+  ["originality-increase", "Повышение оригинальности"],
+  ["literature", "Подбор литературы"],
+  ["exam-preparation", "Подготовку к экзамену"],
+  ["research", "Поиск информации"],
+  ["presentation", "Презентацию"],
+  ["programming", "Программирование"],
+  ["composition", "Реферат"],
+  ["review", "Рецензию"],
+  ["opus", "Сочинение"],
+  ["article", "Статью"],
+  ["tests", "Тесты"],
+  ["scheme", "Чертеж"],
+  ["essay", "Эссе"],
+  ["tasks", "Решение задач"],
+  ["other", "Другое"],
+]);
+
+export const getOrderDescription = (option?: string) => {
+  if (option) {
+    const result = typeOptionsOrder.get(option);
+    return result ? `${result}` : "Сделать заказ - Безпересдач";
+  }
+
+  return "Сделать заказ - Безпересдач";
+};
+
+export const descriptionValueLabel = new Map([
   ["graduation-work", "Заказать дипломную работу, недорого, диплом на заказ, помощь в один клик"],
   ["business-plan", "Бизнес-план"],
   ["report", "Доклад"],

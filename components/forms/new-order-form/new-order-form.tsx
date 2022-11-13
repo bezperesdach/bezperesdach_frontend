@@ -13,7 +13,7 @@ import { ReactSelector } from "../components/react-selector/react-selector";
 import { createOrder } from "../../../api/api";
 import { ym } from "../../../utils/yandex-metrika";
 import Portal from "../../portal/portal";
-import { antiPlagiarismOptions, getInitValue, typeOptionsInit } from "../../../utils/form/new-order-form";
+import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/form/new-order-form";
 
 import styles from "./new-order-form.module.css";
 
@@ -81,7 +81,8 @@ export const NewOrderForm = ({ projectType }: Props) => {
     <section className={styles.hero}>
       <div className={styles.form_container}>
         <div className={styles.hero}>
-          <h1 className={styles.hero_title}>Онлайн-платформа для помощи в учебе</h1>
+          <h1 className={styles.hero_title}>{getOrderTypeLabel(projectType)}</h1>
+
           <Formik
             initialValues={initialValue}
             validationSchema={RequestProjectSchema}
@@ -290,6 +291,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                   <Button
                     type="submit"
                     backgroundColor="#4481eb"
+                    color="#fff"
                     disabled={isSubmitting}
                     loading={sendOrder.loading}
                     style={{ alignSelf: "center" }}

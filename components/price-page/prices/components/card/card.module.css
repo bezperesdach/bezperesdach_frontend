@@ -49,6 +49,7 @@
 @media (min-width: 1155px) {
   .card_style {
     flex-basis: calc((100% - 90px) / 4);
+    padding: 30px 12px;
   }
 
   .description {

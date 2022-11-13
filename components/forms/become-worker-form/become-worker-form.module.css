@@ -87,12 +87,12 @@
 
 .error_label {
   padding-left: 10px;
-  color: rgb(187 62 62);
+  color: rgb(255 255 255);
 }
 
 .submit_error {
   padding-top: 8px;
-  color: rgb(187 62 62);
+  color: rgb(255 255 255);
 }
 
 .submit_button_container {

@@ -122,7 +122,6 @@ export const NewOrderForm = ({ projectType }: Props) => {
           <div className={styles.hero}>
             <h1 className={styles.hero_title}>{getOrderTypeLabel(formik.values.projectType)}</h1>
 
-            {/* {({ formik.isSubmitting, formik.setFieldValue, values }) => ( */}
             <Form className={styles.form} noValidate>
               <div className={styles.email_type}>
                 <div className={styles.form_item} id={styles.form_item_email}>

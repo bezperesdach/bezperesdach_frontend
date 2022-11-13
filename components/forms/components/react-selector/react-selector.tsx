@@ -48,6 +48,7 @@ interface CustomSelectProps extends FieldProps {
   className?: string;
   filterOption?: () => boolean;
   onInputChange?: (e: string) => void;
+  onItemSelected?: (item: string) => void;
   placeholder?: string;
   borderRadius?: number;
 }
@@ -63,9 +64,17 @@ export const ReactSelector = ({
   isSearchable = true,
   filterOption,
   onInputChange,
+  onItemSelected,
 }: CustomSelectProps) => {
   const onChange = (option: OnChangeValue<Option | Option[] | string, boolean>) => {
     form.setFieldValue(field.name, isMulti ? (option as Option[]).map((item: Option) => item.value) : (option as Option).value);
+    if (onItemSelected) {
+      if (option === null) {
+        onItemSelected("other");
+      } else {
+        onItemSelected((option as Option).value);
+      }
+    }
   };
 
   const getValue = () => {

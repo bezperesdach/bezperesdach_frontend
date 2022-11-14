@@ -51,7 +51,7 @@ export const antiPlagiarismOptions = [
 export const getOrderTypeLabel = (option?: string) => {
   if (option) {
     const result = typeOptionsOrder.get(option);
-    return result ? `Заказать ${result}` : "Заказать работу";
+    return result ? `Заказать ${result.toLowerCase()}` : "Заказать работу";
   }
 
   return "Заказать работу";

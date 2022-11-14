@@ -29,7 +29,7 @@ export const Contact = () => {
             img={mail}
           ></Card>
           {/* <Card url="https://t.me/bezperesdach_official" description={"+7-901-281-90-47"} img={whats}></Card> */}
-          <Card url="https://vk.com/bezperesdach_help" description={"@bezperesdach_help"} img={vk}></Card>
+          <Card url="https://vk.com/bezperesdach_official" description={"@bezperesdach_official"} img={vk}></Card>
         </div>
       </div>
     </section>

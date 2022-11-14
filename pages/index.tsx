@@ -1,57 +1,34 @@
 import Head from "next/head";
-import dynamic from "next/dynamic";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
-
-const DynamicHero = dynamic(() => import("../components/home-page/hero/hero").then((mod) => mod.Hero));
-import { About } from "../components/home-page/about/about";
-import { Services } from "../components/home-page/services/services";
+import Layout from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
+import { Main } from "../components/home-page/main/main";
+import { Service } from "../components/home-page/service/service";
 import { Guarantees } from "../components/home-page/guarantees/guarantees";
-import { Represents } from "../components/home-page/represents/represents";
-import { Preparation } from "../components/home-page/preparation/preparation";
-
-import { typeOptionsOrder } from "../utils/form/values";
+import { Work } from "../components/home-page/work/work";
+import { Bonus } from "../components/home-page/bonus/bonus";
+import { Contact } from "../components/home-page/contact/contact";
+import { ScrollTopButton } from "../components/scroll-to-top-button/scroll-to-top-button";
 
 import styles from "../styles/Home.module.css";
 
-export default function Home({ pt }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home() {
   return (
-    <div className={styles.container}>
+    <Layout>
       <Head>
         <title>Безпересдач</title>
         <meta property="og:site_name" content="Безпересдач" />
-        {pt ? (
-          <>
-            <meta name="description" content={typeOptionsOrder.get(pt)} />
-            <meta property="og:description" content={typeOptionsOrder.get(pt)} />
-          </>
-        ) : (
-          <>
-            <meta name="description" content="Онлайн-платформа для помощи в обучении" />
-            <meta property="og:description" content="Онлайн-платформа для помощи в обучении" />
-          </>
-        )}
+        <meta name="description" content="Онлайн-платформа для помощи в обучении" />
+        <meta property="og:description" content="Онлайн-платформа для помощи в обучении" />
         <meta property="og:image" content="/og_logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <DynamicHero projectType={pt} />
-        <About />
-        <Services />
-        <Guarantees />
-        <Represents />
-        <Preparation />
-      </main>
-    </div>
+      <Main />
+      <Service />
+      <Guarantees />
+      <Work />
+      <Bonus />
+      <Contact />
+      <ScrollTopButton />
+    </Layout>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  context.res.setHeader("Cache-Control", "public, s-maxage=31536000, stale-while-revalidate=59");
-
-  const { pt } = context.query;
-
-  return {
-    props: { pt: pt ?? null },
-  };
-};

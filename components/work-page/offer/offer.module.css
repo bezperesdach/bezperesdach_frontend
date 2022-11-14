@@ -1,0 +1,89 @@
+.offer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 100px;
+  gap: 16px;
+}
+
+.offer h2 {
+  padding-bottom: 100px;
+  color: white;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 100%;
+}
+
+.offer p {
+  padding-top: 0;
+  font-style: light;
+  font-weight: 200;
+}
+
+.cards {
+  width: 100%;
+  flex-basis: 50%;
+}
+
+.image_container {
+  flex: 1;
+  flex-basis: 50%;
+}
+
+.image {
+  position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+  object-fit: contain;
+}
+
+.colored_background {
+  --bg-color: rgb(12 115 254 / 100%);
+
+  margin-bottom: -1px;
+  background-color: var(--bg-color);
+  box-shadow: 0 0 0 100vmax var(--bg-color);
+  clip-path: inset(0 -100vmax);
+  color: rgb(255 255 255);
+}
+
+@media screen and (max-width: 1023px) {
+  .offer h2 {
+    font-size: 32px;
+  }
+
+  .offer h3 {
+    font-size: 16px;
+  }
+
+  .offer p {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .image_container {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .offer {
+    flex-direction: column-reverse;
+    padding-top: 64px;
+  }
+
+  .offer h2 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 28px;
+  }
+
+  .offer h3 {
+    font-size: 16px;
+  }
+
+  .offer p {
+    font-size: 14px;
+  }
+}

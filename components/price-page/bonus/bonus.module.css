@@ -1,15 +1,15 @@
 .bonus {
   width: 100%;
   align-items: flex-start;
-  background: linear-gradient(90deg, rgba(45, 179, 255, 0.36) 0.36%, rgba(255, 207, 45, 0.81) 88.32%);
-  box-shadow: 0px 8px 24px rgba(129, 135, 189, 0.25);
   border-radius: 25px;
+  background: linear-gradient(90deg, rgb(45 179 255 / 36%) 0.36%, rgb(255 207 45 / 81%) 88.32%);
+  box-shadow: 0 8px 24px rgb(129 135 189 / 25%);
 }
 
 .bonus_text {
-  padding: 30px;
   display: flex;
   flex-direction: column;
+  padding: 30px;
   gap: 24px;
   text-align: left;
 }
@@ -17,24 +17,25 @@
 .bonus .bonus_text a {
   display: flex;
   flex-direction: column;
-  background: #0c73fe;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
-  color: white;
-  border-radius: 25px;
   padding: 15px;
+  border-radius: 25px;
+  background: rgb(12 115 254);
+  box-shadow: 0 4px 4px rgb(0 0 0 / 60%);
+  color: white;
   text-align: center;
 }
 
 .bonus .bonus_text p {
   text-align: center;
 }
+
 .bonus .bonus_text h2 {
   text-align: center;
 }
 
 .bonus .bonus_text img {
-  margin: 0 auto;
   width: 100%;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 768px) {

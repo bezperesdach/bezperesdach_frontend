@@ -1,69 +1,110 @@
+/* montserrat-100 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Roboto";
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 100;
-  src: local(""), url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-100.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-100.woff")
-      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local(""), url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-100.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-100.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-/* roboto-300 - latin-ext_latin_cyrillic-ext_cyrillic */
+
+/* montserrat-200 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Roboto";
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 200;
+  src: local(""), url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-200.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-200.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* montserrat-300 - latin-ext_latin_cyrillic-ext_cyrillic */
+@font-face {
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 300;
-  src: local(""), url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-300.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-300.woff")
-      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local(""), url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-300.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-300.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-/* roboto-regular - latin-ext_latin_cyrillic-ext_cyrillic */
+
+/* montserrat-regular - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Roboto";
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 400;
-  src: local(""), url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-regular.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-regular.woff")
-      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local(""), url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-/* roboto-500 - latin-ext_latin_cyrillic-ext_cyrillic */
+
+/* montserrat-500 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Roboto";
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
-  src: local(""), url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-500.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-500.woff")
-      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local(""), url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-500.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-/* roboto-700 - latin-ext_latin_cyrillic-ext_cyrillic */
+
+/* montserrat-600 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Roboto";
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-600.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-600.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* montserrat-700 - latin-ext_latin_cyrillic-ext_cyrillic */
+@font-face {
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 700;
-  src: local(""), url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-700.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-700.woff")
-      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local(""), url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-700.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-/* roboto-900 - latin-ext_latin_cyrillic-ext_cyrillic */
+
+/* montserrat-800 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Roboto";
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 800;
+  src: local(""), url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-800.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-800.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* montserrat-900 - latin-ext_latin_cyrillic-ext_cyrillic */
+@font-face {
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 900;
-  src: local(""), url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-900.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("../public/fonts/roboto-v30-latin-ext_latin_cyrillic-ext_cyrillic-900.woff")
-      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local(""), url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-900.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../public/fonts/montserrat/montserrat-v25-latin-ext_latin_cyrillic-ext_cyrillic-900.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
 }
 
 textarea {
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   font-size: 16px;
 }
 
@@ -86,13 +127,11 @@ p {
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
   box-sizing: border-box;
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  letter-spacing: 0.5px;
 }
 
 :focus {
@@ -104,9 +143,10 @@ a {
   html {
     color-scheme: dark;
   }
+
   body {
-    color: black;
     background: white;
+    color: black;
   }
 }
 

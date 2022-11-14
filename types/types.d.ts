@@ -13,3 +13,8 @@ interface IOrder {
   email: string;
   expectedPrice: string;
 }
+
+interface IUser {
+  identifier: string;
+  password: string;
+}

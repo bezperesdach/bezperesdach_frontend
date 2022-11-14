@@ -333,6 +333,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                   </p>
                   <Button
                     type="button"
+                    color="#fff"
                     onClick={() =>
                       setSendOrder((prevState) => {
                         return { ...prevState, isModal: false };

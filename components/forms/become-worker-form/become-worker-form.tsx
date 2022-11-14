@@ -117,6 +117,7 @@ export const BecomeWorkerForm = () => {
               </p>
               <Button
                 type="button"
+                color="#fff"
                 onClick={() =>
                   setNewWorker((prevState) => {
                     return { ...prevState, isModal: false };

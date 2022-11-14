@@ -119,7 +119,7 @@ export const becomeWorker = async (
   onRequest();
 
   try {
-    const data = axios.post(`${API_URL}/new-workers`, { ...worker }).then((res) => res.data);
+    const data = axios.post(`${API_URL}/new-workers`, { data: worker }).then((res) => res.data);
 
     const res = await Promise.allSettled([data, waitFor(300)]);
 

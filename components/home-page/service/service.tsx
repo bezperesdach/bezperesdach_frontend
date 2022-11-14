@@ -11,7 +11,9 @@ import styles from "./service.module.css";
 export const Service = () => {
   return (
     <section className={`${styles.service} ${styles.colored_background}`}>
-      <Image className={styles.images} src={main} alt="service" />
+      <div className={styles.image_container}>
+        <Image className={styles.image} src={main} alt="service" />
+      </div>
       <div className={styles.cards}>
         <h2>
           НАШИ <br></br>ПРЕИМУЩЕСТВА

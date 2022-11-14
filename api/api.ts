@@ -82,9 +82,7 @@ export const authenticateUser = async (
   onRequest();
 
   try {
-    const data = axios
-      .post(`${API_URL}/auth/local`, { ...user }, { headers: { Authorization: `Bearer ${TOKENS.uploadToken}` } })
-      .then((res) => res.data);
+    const data = axios.post(`${API_URL}/auth/local`, { ...user }).then((res) => res.data);
 
     const res = await Promise.allSettled([data, waitFor(300)]);
 
@@ -119,7 +117,9 @@ export const becomeWorker = async (
   onRequest();
 
   try {
-    const data = axios.post(`${API_URL}/new-workers`, { data: worker }).then((res) => res.data);
+    const data = axios
+      .post(`${API_URL}/new-workers`, { data: worker }, { headers: { Authorization: `Bearer ${TOKENS.uploadToken}` } })
+      .then((res) => res.data);
 
     const res = await Promise.allSettled([data, waitFor(300)]);
 

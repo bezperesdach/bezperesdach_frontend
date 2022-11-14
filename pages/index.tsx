@@ -6,6 +6,7 @@ import { Guarantees } from "../components/home-page/guarantees/guarantees";
 import { Work } from "../components/home-page/work/work";
 import { Bonus } from "../components/home-page/bonus/bonus";
 import { Contact } from "../components/home-page/contact/contact";
+import { ScrollTopButton } from "../components/scroll-to-top-button/scroll-to-top-button";
 
 import styles from "../styles/Home.module.css";
 
@@ -27,6 +28,7 @@ export default function Home() {
       <Work />
       <Bonus />
       <Contact />
+      <ScrollTopButton />
     </Layout>
   );
 }

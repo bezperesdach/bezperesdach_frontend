@@ -1,0 +1,89 @@
+.scrolltop_container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.scrolltop_wrap {
+  position: absolute;
+  z-index: 20;
+  top: 12rem;
+  right: 0.5rem;
+  bottom: 0;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.scrolltop_wrap #scrolltop_bg {
+  fill: rgba(0 123 255);
+  opacity: 0.3;
+}
+
+.scrolltop_wrap #scrolltop_arrow {
+  fill: white;
+}
+
+.scrolltop_wrap a #scrolltop_arrow {
+  transform: scale(0.96);
+  transform-origin: center;
+}
+
+.scrolltop_wrap a:hover #scrolltop_bg {
+  fill: rgb(41 144 255);
+}
+
+.scrolltop_wrap a:hover #scrolltop_arrow {
+  fill: white;
+}
+@supports (-moz-appearance: meterbar) {
+  .scrolltop_wrap {
+    clip: rect(0, 3rem, auto, 0);
+  }
+}
+
+.scrolltop_wrap a {
+  position: sticky;
+  top: -5rem;
+  display: inline-block;
+  overflow: hidden;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: -5rem;
+  backface-visibility: hidden;
+  outline: none;
+  pointer-events: all;
+  text-decoration: none;
+  transform: translateY(85vh);
+  user-select: none;
+}
+
+.scrolltop_wrap a svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgb(255 255 255);
+  border-radius: 50%;
+}
+
+.scrolltop_wrap a svg path {
+  transition: all 0.1s;
+}
+
+@media print {
+  .scrolltop_wrap {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .scrolltop_container {
+    width: 1240px;
+  }
+}

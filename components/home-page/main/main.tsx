@@ -17,6 +17,7 @@ export const Main = () => {
           placeholder="blur"
           className={styles.image}
           alt="hero"
+          priority={true}
           onError={(e) => (e.currentTarget.src = FallbackHero.src)}
         />
       </div>

@@ -1,11 +1,16 @@
 import React from "react";
 import Image from "next/image";
-import { Card } from "./components/card/card";
-import main from "/public/images/advantages/main.svg";
-import one from "/public/images/advantages/one.svg";
-import two from "/public/images/advantages/two.svg";
-import three from "/public/images/advantages/three.svg";
-import four from "/public/images/advantages/four.svg";
+import { ImageWithText } from "../../image-with-text/image-with-text";
+import Main from "public/images/advantages/main.webp";
+import FallbackMain from "public/images/advantages/fallback-main.png";
+import One from "public/images/advantages/one.webp";
+import FallbackOne from "public/images/advantages/fallback-one.png";
+import Two from "public/images/advantages/two.webp";
+import FallbackTwo from "public/images/advantages/fallback-two.png";
+import Three from "public/images/advantages/three.webp";
+import FallbackThree from "public/images/advantages/fallback-three.png";
+import Four from "public/images/advantages/four.webp";
+import FallbackFour from "public/images/advantages/fallback-four.png";
 
 import styles from "./advantages.module.css";
 
@@ -14,13 +19,29 @@ export const Advantages = () => {
     <section className={`${styles.advantages} ${styles.colored_background}`}>
       <div className={styles.cards}>
         <h2>ЗАРАБАТЫВАЙ С БЕЗПЕРЕСДАЧ ОТ 40 ТЫСЯЧ РУБЛЕЙ</h2>
-        <Card description={"Мы выплачиваем 100% от заказа вам на карту"} img={one}></Card>
-        <Card description={"Работа полностью удаленная"} img={two}></Card>
-        <Card description={"Мы постоянно на связи с вами для решения всех вопросов"} img={three}></Card>
-        <Card description={"Задачи выдаются в зависимости от вашей квалификации"} img={four}></Card>
+        <ImageWithText description={"Мы выплачиваем 100% от заказа вам на карту"} img={One} fallbackImg={FallbackOne} alt="one" />
+        <ImageWithText description={"Работа полностью удаленная"} img={Two} fallbackImg={FallbackTwo} alt="two" />
+        <ImageWithText
+          description={"Мы постоянно на связи с вами для решения всех вопросов"}
+          img={Three}
+          fallbackImg={FallbackThree}
+          alt="three"
+        />
+        <ImageWithText
+          description={"Задачи выдаются в зависимости от вашей квалификации"}
+          img={Four}
+          fallbackImg={FallbackFour}
+          alt="four"
+        />
       </div>
       <div className={styles.image_container}>
-        <Image className={styles.image} src={main} alt="advantages" />
+        <Image
+          src={Main}
+          placeholder="blur"
+          className={styles.image}
+          alt="map"
+          onError={(e) => (e.currentTarget.src = FallbackMain.src)}
+        />
       </div>
     </section>
   );

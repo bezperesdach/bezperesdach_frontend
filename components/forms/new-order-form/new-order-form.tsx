@@ -6,7 +6,8 @@ import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 
-import heroImage from "public/images/hero.svg";
+import Hero from "public/images/hero/hero.webp";
+import FallbackHero from "public/images/hero/fallback-hero.png";
 
 import { Button } from "../../button/button";
 import { ReactSelector } from "../components/react-selector/react-selector";
@@ -181,7 +182,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                     className={styles.input}
                     type="text"
                     name="projectName"
-                    placeholder="Как должна называться ваша работа"
+                    placeholder="Укажите тему работы"
                     disabled={formik.isSubmitting}
                   />
                 </div>
@@ -197,7 +198,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                     component="textarea"
                     rows="7"
                     name="description"
-                    placeholder="В данном поле можно указать нужный объем работы, нужно ли оформление по ГОСТу, нужно ли оформление по требованиям ВУЗа или какие-либо другие важные замечания по работе"
+                    placeholder="Укажите детали к работе: необходимый объем, оформление, требования от преподавателя"
                     id={styles.form_item_description_textarea}
                     disabled={formik.isSubmitting}
                   />
@@ -290,7 +291,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                         formik.setFieldValue("expectedPrice", formik.values.expectedPrice.slice(0, -1));
                       }
                     }}
-                    placeholder="Укажите цифрами желаемую цену"
+                    placeholder="Укажите пожелания по цене"
                     disabled={formik.isSubmitting}
                   />
                 </div>
@@ -314,7 +315,13 @@ export const NewOrderForm = ({ projectType }: Props) => {
             </Form>
           </div>
           <div className={styles.image_container}>
-            <Image className={styles.image} src={heroImage} alt="hero" />
+            <Image
+              src={Hero}
+              placeholder="blur"
+              className={styles.image}
+              alt="hero"
+              onError={(e) => (e.currentTarget.src = FallbackHero.src)}
+            />
           </div>
           {sendOrder.isModal && (
             <Portal>

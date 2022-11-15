@@ -1,18 +1,23 @@
 import Head from "next/head";
-import Layout from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
+import dynamic from "next/dynamic";
+
+const DynamicLayout = dynamic(() =>
+  import("../components/layouts/unauthorized-user-layout/unauthorized-user-layout").then((mod) => mod)
+);
 import { Main } from "../components/home-page/main/main";
-import { Service } from "../components/home-page/service/service";
-import { Guarantees } from "../components/home-page/guarantees/guarantees";
-import { Work } from "../components/home-page/work/work";
-import { Bonus } from "../components/home-page/bonus/bonus";
-import { Contact } from "../components/home-page/contact/contact";
+const DynamicService = dynamic(() => import("../components/home-page/service/service").then((mod) => mod.Service));
+const DynamicGuarantees = dynamic(() => import("../components/home-page/guarantees/guarantees").then((mod) => mod.Guarantees));
+const DynamicWork = dynamic(() => import("../components/home-page/work/work").then((mod) => mod.Work));
+const DynamicBonus = dynamic(() => import("../components/home-page/bonus/bonus").then((mod) => mod.Bonus));
+const DynamicContact = dynamic(() => import("../components/home-page/contact/contact").then((mod) => mod.Contact));
+
 import { ScrollTopButton } from "../components/scroll-to-top-button/scroll-to-top-button";
 
-import styles from "../styles/Home.module.css";
+// import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
-    <Layout>
+    <DynamicLayout>
       <Head>
         <title>Безпересдач</title>
         <meta property="og:site_name" content="Безпересдач" />
@@ -23,12 +28,12 @@ export default function Home() {
       </Head>
 
       <Main />
-      <Service />
-      <Guarantees />
-      <Work />
-      <Bonus />
-      <Contact />
+      <DynamicService />
+      <DynamicGuarantees />
+      <DynamicWork />
+      <DynamicBonus />
+      <DynamicContact />
       <ScrollTopButton />
-    </Layout>
+    </DynamicLayout>
   );
 }

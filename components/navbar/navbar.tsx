@@ -27,7 +27,7 @@ export const Navbar = () => {
         <Image src={logo} height={100} width={320} alt="logo" />
       </Link>
       <Link href="/" className={styles.mobile_logo}>
-        <Image src={mini_logo} height={64} width={64} alt="logo" />
+        <Image src={mini_logo} priority={true} height={64} width={64} alt="logo" />
       </Link>
       <div className={styles.mobile_menu}>
         <Hamburger toggled={isOpen} toggle={setOpen} size={32} />

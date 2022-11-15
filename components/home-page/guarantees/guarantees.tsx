@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import { Card } from "./components/card/card";
-import main from "/public/images/guarantees/1.svg";
-import one from "/public/images/guarantees/2.svg";
-import two from "/public/images/guarantees/2.svg";
-import three from "/public/images/guarantees/2.svg";
+import { ImageWithText } from "../../image-with-text/image-with-text";
+import Main from "public/images/guarantees/1.webp";
+import FallbackMain from "public/images/guarantees/fallback-1.png";
+
+import Cloud from "public/images/guarantees/2.webp";
+import FallbackCloud from "public/images/guarantees/fallback-2.png";
 
 import styles from "./guarantees.module.css";
 
@@ -15,14 +16,35 @@ export const Guarantees = () => {
         <h2>
           ПРОСТОЙ <br></br>ПРОЦЕСС ЗАКАЗА
         </h2>
-        <Card description={"Оставляете заявку на сайте через форму"} img={one}></Card>
-        <Card description={"Администратор свяжется с вами в течение 15 минут"} img={two}></Card>
-        <Card description={"После уточнения деталей заказ будет передан исполнителю"} img={three}></Card>
-        <Card description={"Вы получите работу в указанные сроки"} img={three}></Card>
+        <ImageWithText
+          description={"Оставляете заявку на сайте через форму"}
+          img={Cloud}
+          fallbackImg={FallbackCloud}
+          alt="cloud point"
+        />
+        <ImageWithText
+          description={"Администратор свяжется с вами в течение 15 минут"}
+          img={Cloud}
+          fallbackImg={FallbackCloud}
+          alt="cloud point"
+        />
+        <ImageWithText
+          description={"После уточнения деталей заказ будет передан исполнителю"}
+          img={Cloud}
+          fallbackImg={FallbackCloud}
+          alt="cloud point"
+        />
+        <ImageWithText description={"Вы получите работу в указанные сроки"} img={Cloud} fallbackImg={FallbackCloud} alt="cloud point" />
       </div>
 
       <div className={styles.image_container}>
-        <Image className={styles.image} src={main} alt="guarantees" />
+        <Image
+          src={Main}
+          placeholder="blur"
+          className={styles.image}
+          alt="order process"
+          onError={(e) => (e.currentTarget.src = FallbackMain.src)}
+        />
       </div>
     </section>
   );

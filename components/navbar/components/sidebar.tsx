@@ -36,6 +36,14 @@ export const Sidebar = ({ isOpen, closeMenu, router }: Props) => {
               Цены и Услуги
             </Link>
             <Link
+              href="/order"
+              className={styles.link}
+              onClick={closeMenu}
+              style={router.pathname == "/work" ? { fontWeight: "bold" } : {}}
+            >
+              Заказать работу
+            </Link>
+            <Link
               href="/work"
               className={styles.link}
               onClick={closeMenu}

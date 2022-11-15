@@ -2,8 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import left from "/public/images/bonus/left.svg";
-import right from "/public/images/bonus/right.svg";
+import Left from "public/images/bonus/left.webp";
+import FallbackLeft from "public/images/bonus/fallback-left.png";
+import Right from "public/images/bonus/right.webp";
+import FallbackRight from "public/images/bonus/fallback-right.png";
 import { Button } from "../../button/button";
 
 import styles from "./bonus.module.css";
@@ -11,7 +13,13 @@ import styles from "./bonus.module.css";
 export const Bonus = () => {
   return (
     <section className={`${styles.bonus} ${styles.colored_background}`}>
-      <Image className={styles.images_left} src={left} alt="left" />
+      <Image
+        src={Left}
+        placeholder="blur"
+        className={styles.images_left}
+        alt="left"
+        onError={(e) => (e.currentTarget.src = FallbackLeft.src)}
+      />
       <div className={styles.bonus_block}>
         <h2>
           Скидка 10% <br></br> на первый заказ
@@ -25,7 +33,13 @@ export const Bonus = () => {
           </Button>
         </Link>
       </div>
-      <Image className={styles.images_right} src={right} alt="right" />
+      <Image
+        src={Right}
+        placeholder="blur"
+        className={styles.images_right}
+        alt="right"
+        onError={(e) => (e.currentTarget.src = FallbackRight.src)}
+      />
     </section>
   );
 };

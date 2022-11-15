@@ -4,7 +4,8 @@ import dynamic from "next/dynamic";
 const DynamicLayout = dynamic(() =>
   import("../components/layouts/unauthorized-user-layout/unauthorized-user-layout").then((mod) => mod)
 );
-import { Main } from "../components/home-page/main/main";
+
+const DynamicMain = dynamic(() => import("../components/home-page/main/main").then((mod) => mod.Main));
 const DynamicService = dynamic(() => import("../components/home-page/service/service").then((mod) => mod.Service));
 const DynamicGuarantees = dynamic(() => import("../components/home-page/guarantees/guarantees").then((mod) => mod.Guarantees));
 const DynamicWork = dynamic(() => import("../components/home-page/work/work").then((mod) => mod.Work));
@@ -27,7 +28,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Main />
+      <DynamicMain />
       <DynamicService />
       <DynamicGuarantees />
       <DynamicWork />

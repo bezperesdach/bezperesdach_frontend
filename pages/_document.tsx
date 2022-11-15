@@ -9,6 +9,7 @@ export default function Document() {
   return (
     <Html>
       <Head />
+      <link rel="icon" href="https://bezperesdach.ru/favicon.ico" type="image/x-icon"></link>
       <body>
         <Main />
         <NextScript />

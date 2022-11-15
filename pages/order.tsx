@@ -1,12 +1,11 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
 import Layout from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import Head from "next/head";
 import { getOrderDescription } from "../utils/form/new-order-form";
 
-const DynamicNewOrderForm = dynamic(() => import("../components/forms/new-order-form/new-order-form").then((mod) => mod.NewOrderForm));
+import { NewOrderForm } from "../components/forms/new-order-form/new-order-form";
 
 export default function Order({ pt }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
@@ -30,7 +29,7 @@ export default function Order({ pt }: InferGetServerSidePropsType<typeof getServ
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <DynamicNewOrderForm projectType={pt} />
+      <NewOrderForm projectType={pt} />
     </Layout>
   );
 }

@@ -6,7 +6,8 @@ import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 
-import heroImage from "public/images/hero.svg";
+import Hero from "public/images/hero/hero.webp";
+import FallbackHero from "public/images/hero/fallback-hero.png";
 
 import { Button } from "../../button/button";
 import { ReactSelector } from "../components/react-selector/react-selector";
@@ -314,7 +315,13 @@ export const NewOrderForm = ({ projectType }: Props) => {
             </Form>
           </div>
           <div className={styles.image_container}>
-            <Image className={styles.image} src={heroImage} alt="hero" />
+            <Image
+              src={Hero}
+              placeholder="blur"
+              className={styles.image}
+              alt="hero"
+              onError={(e) => (e.currentTarget.src = FallbackHero.src)}
+            />
           </div>
           {sendOrder.isModal && (
             <Portal>

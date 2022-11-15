@@ -2,7 +2,8 @@ import React from "react";
 import { Card } from "./components/card";
 import Image from "next/image";
 
-import WorkImage from "public/images/work/work.svg";
+import WorkImage from "public/images/work/work.webp";
+import FallbackWorkImage from "public/images/work/fallback-work.png";
 
 import styles from "./work.module.css";
 
@@ -19,7 +20,7 @@ export const Work = () => {
           backgroundColor="#0b73fe"
           color="white"
           href="/order"
-        ></Card>
+        />
         <Card
           title="ДЛЯ ИСПОЛНИТЕЛЕЙ"
           description="Вы решаете задачи - мы выплачиваем деньги. Все прозрачно, быстро и удобно. Мы предлагаем лучшие условия среди конкурентов."
@@ -27,9 +28,15 @@ export const Work = () => {
           backgroundColor="#0b73fe"
           color="white"
           href="/work"
-        ></Card>
+        />
       </div>
-      <Image src={WorkImage} className={styles.image} alt="WorkImage"></Image>
+      <Image
+        src={WorkImage}
+        placeholder="blur"
+        className={styles.image}
+        alt="work"
+        onError={(e) => (e.currentTarget.src = FallbackWorkImage.src)}
+      />
     </section>
   );
 };

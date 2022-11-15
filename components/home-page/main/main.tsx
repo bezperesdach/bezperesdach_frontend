@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import Logo from "public/images/hero.svg";
 import Link from "next/link";
+import Hero from "public/images/hero/hero.webp";
+import FallbackHero from "public/images/hero/fallback-hero.png";
 
 import { Button } from "../../button/button";
 
@@ -11,7 +12,13 @@ export const Main = () => {
   return (
     <section className={styles.main_hero}>
       <div className={styles.image_container}>
-        <Image src={Logo} className={styles.image} alt="Logo" />
+        <Image
+          src={Hero}
+          placeholder="blur"
+          className={styles.image}
+          alt="hero"
+          onError={(e) => (e.currentTarget.src = FallbackHero.src)}
+        />
       </div>
 
       <div className={styles.text}>

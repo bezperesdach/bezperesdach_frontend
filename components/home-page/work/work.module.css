@@ -4,18 +4,18 @@
   align-items: center;
   padding-top: 10%;
   gap: 50px;
+}
 
-  /* display: flex;
-  height: 841px;
-  flex-direction: row;
-  align-items: center; */
+.image_container {
+  flex: 1;
+  flex-basis: 50%;
 }
 
 .image {
-  display: flex;
-  width: 50%;
-  flex-direction: column;
-  align-items: center;
+  position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+  object-fit: contain;
 }
 
 .blocks {
@@ -43,12 +43,12 @@
   color: rgb(255 255 255);
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .work {
     flex-direction: column;
   }
 
-  .image {
+  .image_container {
     display: none;
   }
 

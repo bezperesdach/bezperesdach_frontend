@@ -30,13 +30,15 @@ export const Work = () => {
           href="/work"
         />
       </div>
-      <Image
-        src={WorkImage}
-        placeholder="blur"
-        className={styles.image}
-        alt="work"
-        onError={(e) => (e.currentTarget.src = FallbackWorkImage.src)}
-      />
+      <div className={styles.image_container}>
+        <Image
+          src={WorkImage}
+          placeholder="blur"
+          className={styles.image}
+          alt="work"
+          onError={(e) => (e.currentTarget.src = FallbackWorkImage.src)}
+        />
+      </div>
     </section>
   );
 };

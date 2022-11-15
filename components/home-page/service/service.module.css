@@ -51,6 +51,7 @@
 @media screen and (max-width: 1023px) {
   .service {
     flex-direction: column-reverse;
+    gap: unset;
   }
 
   .cards {

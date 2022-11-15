@@ -1,9 +1,10 @@
 .service {
   display: flex;
-  height: calc(100vh);
+  height: 100vh;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
+  gap: 24px;
 }
 
 .service h2 {

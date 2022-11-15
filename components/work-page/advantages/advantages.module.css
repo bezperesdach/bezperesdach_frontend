@@ -17,8 +17,7 @@
 
 .advantages p {
   padding-top: 0;
-  font-style: light;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .cards {
@@ -64,7 +63,6 @@
 
   .advantages p {
     font-size: 14px;
-    font-weight: 400;
   }
 
   .image_container {

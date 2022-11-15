@@ -1,5 +1,6 @@
 /* montserrat-100 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 100;
@@ -10,6 +11,7 @@
 
 /* montserrat-200 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 200;
@@ -20,6 +22,7 @@
 
 /* montserrat-300 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 300;
@@ -30,6 +33,7 @@
 
 /* montserrat-regular - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 400;
@@ -40,6 +44,7 @@
 
 /* montserrat-500 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
@@ -50,6 +55,7 @@
 
 /* montserrat-600 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -70,6 +76,7 @@
 
 /* montserrat-800 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 800;
@@ -80,6 +87,7 @@
 
 /* montserrat-900 - latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 900;

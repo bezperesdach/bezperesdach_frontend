@@ -18,7 +18,7 @@ export const Card = ({ title, description, textButton, href, backgroundColor, co
       <div className={styles.card_button}>
         <h3>{title}</h3>
         <p>{description}</p>
-        <Link href={href}>
+        <Link href={href} className={styles.link}>
           <Button backgroundColor={backgroundColor} color={color}>
             {textButton}
           </Button>

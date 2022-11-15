@@ -6,12 +6,8 @@
   display: flex;
   width: auto;
   height: auto;
-
-  /* width: 50%; */
   flex-direction: column;
-  padding-top: 40px;
-  padding-bottom: 20px;
-  padding-left: 20px;
+  padding: 40px 20px 20px;
   border-radius: 30px;
   background: rgb(255 255 255 / 70%);
   box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
@@ -57,5 +53,10 @@
 
   .card_button h3 {
     font-size: 16px;
+  }
+
+  .link {
+    display: flex;
+    justify-content: center;
   }
 }

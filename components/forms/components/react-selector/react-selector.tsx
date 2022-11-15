@@ -4,7 +4,7 @@ import Select from "react-select";
 import { Options, OnChangeValue, StylesConfig } from "react-select";
 
 const selectStyle: StylesConfig<Option | Option[] | string, boolean> = {
-  control: (styles, _) => {
+  control: (styles) => {
     return {
       ...styles,
       "&:hover": { borderColor: "#000" },
@@ -14,21 +14,21 @@ const selectStyle: StylesConfig<Option | Option[] | string, boolean> = {
       boxShadow: "none",
     };
   },
-  placeholder: (styles, _) => {
+  placeholder: (styles) => {
     return {
       ...styles,
       color: "hsl(0, 0%, 70%)",
       fontSize: "14px",
     };
   },
-  menu: (styles, _) => {
+  menu: (styles) => {
     return {
       ...styles,
       borderRadius: 0,
       maxHeight: "200px",
     };
   },
-  menuList: (styles, _) => {
+  menuList: (styles) => {
     return {
       ...styles,
       borderRadius: 0,

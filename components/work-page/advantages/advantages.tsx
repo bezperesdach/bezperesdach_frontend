@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ImageWithText } from "../../image-with-text/image-with-text";
 import Main from "public/images/advantages/main.webp";
 import FallbackMain from "public/images/advantages/fallback-main.png";
-import One from "public/images/Advantages/one.webp";
+import One from "public/images/advantages/one.webp";
 import FallbackOne from "public/images/advantages/fallback-one.png";
 import Two from "public/images/advantages/two.webp";
 import FallbackTwo from "public/images/advantages/fallback-two.png";

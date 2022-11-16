@@ -132,7 +132,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                       className={styles.input}
                       type="email"
                       name="email"
-                      placeholder="example@example.com"
+                      placeholder="example@example.ru"
                       disabled={formik.isSubmitting}
                     />
                   </div>
@@ -302,7 +302,6 @@ export const NewOrderForm = ({ projectType }: Props) => {
                 {sendOrder.error && <p className={styles.submit_error}>{sendOrder.errorText}</p>}
                 <Button
                   type="submit"
-                  backgroundColor="#4481eb"
                   color="#fff"
                   disabled={formik.isSubmitting}
                   loading={sendOrder.loading}

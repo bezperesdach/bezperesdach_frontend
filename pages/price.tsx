@@ -1,19 +1,16 @@
-import Head from "next/head";
-
 import Layout from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { Prices } from "../components/price-page/prices/prices";
+import { SEO } from "../components/seo/seo";
 
 export default function Price() {
   return (
     <Layout>
-      <Head>
-        <title>Безпересдач</title>
-        <meta name="description" content="Цены и услуги" />
-        <meta property="og:description" content="Цены на услуги для заказчиков" />
-        <meta property="og:site_name" content="Безпересдач" />
-        <meta property="og:image" content="/og_logo.png" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <SEO
+        title="Цены и услуги"
+        description="Команда безпересдач изучила рынок и теперь знает какие цены нужны каждому студенту. Спешите - на первый заказ мы дарим 10% скидку"
+        url={"https://bezperesdach.ru/price"}
+        keywords={"Курсовая, Дипломная, Докторская, "}
+      />
 
       <Prices />
     </Layout>

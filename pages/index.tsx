@@ -1,4 +1,3 @@
-import Head from "next/head";
 import dynamic from "next/dynamic";
 
 const DynamicLayout = dynamic(() =>
@@ -13,17 +12,19 @@ const DynamicBonus = dynamic(() => import("../components/home-page/bonus/bonus")
 const DynamicContact = dynamic(() => import("../components/home-page/contact/contact").then((mod) => mod.Contact));
 
 import { ScrollTopButton } from "../components/scroll-to-top-button/scroll-to-top-button";
+import { SEO } from "../components/seo/seo";
 
 // import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
     <DynamicLayout>
-      <Head>
-        <title>Безпересдач</title>
-        <meta name="description" content="Онлайн-платформа для помощи в обучении" />
-        <meta property="og:description" content="Онлайн-платформа для помощи в обучении" />
-      </Head>
+      <SEO
+        title="Безпересдач - онлайн-проект для помощи в учёбе"
+        description="Наша команда поможет с написанием курсовых, дипломных, рефератов и многих других работ!"
+        url="https://bezperesdach.ru"
+        keywords={"Курсовая, Дипломная, Докторская, "}
+      />
 
       <Main />
       <DynamicService />

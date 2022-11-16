@@ -17,6 +17,7 @@
 
 .advantages p {
   padding-top: 0;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -61,10 +62,6 @@
     font-size: 16px;
   }
 
-  .advantages p {
-    font-size: 14px;
-  }
-
   .image_container {
     width: 70%;
   }
@@ -82,9 +79,5 @@
 
   .advantages h3 {
     font-size: 16px;
-  }
-
-  .advantages p {
-    font-size: 14px;
   }
 }

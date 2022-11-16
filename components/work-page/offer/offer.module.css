@@ -16,6 +16,7 @@
 }
 
 .offer p {
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -55,10 +56,6 @@
     font-size: 16px;
   }
 
-  .offer p {
-    font-size: 14px;
-  }
-
   .image_container {
     width: 70%;
   }
@@ -78,9 +75,5 @@
 
   .offer h3 {
     font-size: 16px;
-  }
-
-  .offer p {
-    font-size: 14px;
   }
 }

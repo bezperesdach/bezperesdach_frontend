@@ -8,6 +8,7 @@
 
 .text {
   padding-left: 10px;
+  font-size: 16px;
 }
 
 .container h3 {
@@ -17,10 +18,4 @@
 .image {
   width: 24px;
   height: auto;
-}
-
-@media screen and (max-width: 1023px) {
-  .text {
-    font-size: 14px;
-  }
 }

@@ -5,20 +5,18 @@ import styles from "./link-button.module.css";
 
 type Props = {
   children: string;
+  className?: string;
   href: string;
-  disabled?: boolean;
-  loading?: boolean;
-  error?: boolean;
   backgroundColor?: string;
   color?: string;
   outlined?: boolean;
   style?: React.CSSProperties;
 };
 
-export const LinkButton = ({ children, backgroundColor, color, outlined, href, style }: Props) => {
+export const LinkButton = ({ className, children, backgroundColor, color, outlined, href, style }: Props) => {
   return (
     <Link
-      className={styles.button}
+      className={`${styles.button} ${className}`}
       href={href}
       style={{
         ...style,
@@ -27,7 +25,7 @@ export const LinkButton = ({ children, backgroundColor, color, outlined, href, s
         boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor}` : "none",
       }}
     >
-      <span>{children}</span>
+      {children}
     </Link>
   );
 };

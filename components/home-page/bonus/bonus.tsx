@@ -1,12 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 import Left from "public/images/bonus/left.webp";
 import FallbackLeft from "public/images/bonus/fallback-left.png";
 import Right from "public/images/bonus/right.webp";
 import FallbackRight from "public/images/bonus/fallback-right.png";
-import { Button } from "../../button/button";
+import { LinkButton } from "../../link-button/link-button";
 
 import styles from "./bonus.module.css";
 
@@ -27,11 +26,9 @@ export const Bonus = () => {
         <p>
           Пока ты думаешь - <br></br> другие заказывают
         </p>
-        <Link href="/order">
-          <Button backgroundColor="#0b73fe" color="white">
-            Заказать работу
-          </Button>
-        </Link>
+        <LinkButton backgroundColor="#0b73fe" color="white" href="/order">
+          Заказать работу
+        </LinkButton>
       </div>
       <Image
         src={Right}

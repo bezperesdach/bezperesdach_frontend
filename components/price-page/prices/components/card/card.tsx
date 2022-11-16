@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { LinkButton } from "../../../../link-button/link-button";
 
 import styles from "./card.module.css";
 
@@ -18,9 +19,9 @@ export const Card = ({ title, description, url, backgroundColor, boxShadow, butt
     <div className={styles.card_style} style={{ backgroundColor, boxShadow, color: colorText }}>
       <h3> {title}</h3>
       <p className={styles.description}>{description}</p>
-      <Link href={url} className={styles.url} style={{ backgroundColor: buttonBackgroundColor }}>
-        {"Заказать работу"}
-      </Link>
+      <LinkButton href={url} className={styles.url} backgroundColor={buttonBackgroundColor} style={{ width: "100%", margin: 0 }}>
+        Заказать работу
+      </LinkButton>
     </div>
   );
 };

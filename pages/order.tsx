@@ -14,7 +14,6 @@ export default function Order({ pt }: InferGetServerSidePropsType<typeof getServ
       <Head>
         <title>Заказать работу</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-        <meta property="og:site_name" content="Безпересдач" />
         {pt ? (
           <>
             <meta name="description" content={getOrderDescription(pt)} />

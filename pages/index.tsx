@@ -21,11 +21,8 @@ export default function Home() {
     <DynamicLayout>
       <Head>
         <title>Безпересдач</title>
-        <meta property="og:site_name" content="Безпересдач" />
         <meta name="description" content="Онлайн-платформа для помощи в обучении" />
         <meta property="og:description" content="Онлайн-платформа для помощи в обучении" />
-        <meta property="og:image" content="/og_logo.png" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Main />

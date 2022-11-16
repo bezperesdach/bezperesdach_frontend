@@ -12,10 +12,16 @@ export default function Order({ pt }: InferGetServerSidePropsType<typeof getServ
   return (
     <Layout>
       <SEO
-        title="Безпересдач - онлайн-проект для помощи в учёбе"
-        description={pt ? getOrderDescription(pt) : "Заказать помощь в выполнении: дипломной, курсовой и множестве других работ"}
+        title="Сделать заказ - Безпересдач - онлайн-проект помощи в учёбе"
+        description={
+          pt
+            ? getOrderDescription(pt)
+            : "У нас вы можете заказать помощь в выполнении дипломной, курсовой, реферата и множества других работ"
+        }
         url={pt ? `https://bezperesdach.ru/order?pt=${pt}` : "https://bezperesdach.ru/order"}
-        keywords={"Курсовая, Дипломная, Докторская, "}
+        keywords={
+          "купить курсовую,купить диплом,где заказать курсовую работу,заказать готовую работу,дипломы курсовые на заказ,заказать научную статью,контрольные работы на заказ,заказать перевод с английского на русский,написать статью на заказ"
+        }
       >
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>

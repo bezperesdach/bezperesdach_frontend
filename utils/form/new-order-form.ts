@@ -103,8 +103,8 @@ export const getOrderDescription = (option?: string) => {
 };
 
 export const descriptionValueLabel = new Map([
-  ["graduation-work", "Заказать дипломную работу, недорого, диплом на заказ, помощь в один клик"],
-  ["business-plan", "Бизнес-план"],
+  ["graduation-work", "Заказать дипломную работу, где купить дипломную работу, диплом на заказ, помощь в один клик"],
+  ["business-plan", "Заказать Бизнес-план"],
   ["report", "Доклад"],
   ["doctoral", "Докторскую диссертацию"],
   ["phd", "Кандидатскую диссертацию"],

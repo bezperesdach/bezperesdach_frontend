@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-import Left from "public/images/bonus/left.webp";
-import FallbackLeft from "public/images/bonus/fallback-left.png";
-import Right from "public/images/bonus/right.webp";
-import FallbackRight from "public/images/bonus/fallback-right.png";
+import Left from "public/assets/images/bonus/left.webp";
+import FallbackLeft from "public/assets/images/bonus/fallback-left.png";
+import Right from "public/assets/images/bonus/right.webp";
+import FallbackRight from "public/assets/images/bonus/fallback-right.png";
 import { LinkButton } from "../../link-button/link-button";
 
 import styles from "./bonus.module.css";

@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { ImageWithText } from "../../image-with-text/image-with-text";
-import Main from "/public/images/offer/main.webp";
-import FallbackMain from "/public/images/offer/fallback-main.png";
-import One from "/public/images/offer/point.webp";
-import FallbackOne from "public/images/offer/fallback-point.png";
+import Main from "public/assets/images/offer/main.webp";
+import FallbackMain from "public/assets/images/offer/fallback-main.png";
+import One from "public/assets/images/offer/point.webp";
+import FallbackOne from "public/assets/images/offer/fallback-point.png";
 
 import styles from "./offer.module.css";
 

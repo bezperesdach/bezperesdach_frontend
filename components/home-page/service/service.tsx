@@ -1,14 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import { Card } from "./components/card/card";
-import Main from "public/images/service/main.webp";
-import FallbackMain from "public/images/service/fallback-main.png";
-import One from "public/images/service/1.webp";
-import FallbackOne from "public/images/service/fallback-1.png";
-import Two from "public/images/service/2.webp";
-import FallbackTwo from "public/images/service/fallback-2.png";
-import Three from "public/images/service/3.webp";
-import FallbackThree from "public/images/service/fallback-3.png";
+import Main from "public/assets/images/service/main.webp";
+import FallbackMain from "public/assets/images/service/fallback-main.png";
+import One from "public/assets/images/service/1.webp";
+import FallbackOne from "public/assets/images/service/fallback-1.png";
+import Two from "public/assets/images/service/2.webp";
+import FallbackTwo from "public/assets/images/service/fallback-2.png";
+import Three from "public/assets/images/service/3.webp";
+import FallbackThree from "public/assets/images/service/fallback-3.png";
 
 import styles from "./service.module.css";
 

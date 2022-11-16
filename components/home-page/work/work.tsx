@@ -2,8 +2,8 @@ import React from "react";
 import { Card } from "./components/card";
 import Image from "next/image";
 
-import WorkImage from "public/images/work/work.webp";
-import FallbackWorkImage from "public/images/work/fallback-work.png";
+import WorkImage from "public/assets/images/work/work.webp";
+import FallbackWorkImage from "public/assets/images/work/fallback-work.png";
 
 import styles from "./work.module.css";
 

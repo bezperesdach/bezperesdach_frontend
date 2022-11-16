@@ -1,16 +1,16 @@
 import React from "react";
 import Image from "next/image";
 import { Card } from "./components/card/card";
-import Map from "public/images/contact/map.webp";
-import FallbackMap from "public/images/contact/fallback-map.png";
-import Telegram from "public/images/contact/telegram.webp";
-import FallbackTelegram from "public/images/contact/fallback-telegram.png";
-import Mail from "public/images/contact/mail.webp";
-import FallbackMail from "public/images/contact/fallback-mail.png";
-// import whats from "/public/images/contact/whats.svg";
-// import instagram from "/public/images/contact/instagram.svg";
-import Vk from "public/images/contact/vk.webp";
-import FallbackVk from "public/images/contact/fallback-vk.png";
+import Map from "public/assets/images/contact/map.webp";
+import FallbackMap from "public/assets/images/contact/fallback-map.png";
+import Telegram from "public/assets/images/contact/telegram.webp";
+import FallbackTelegram from "public/assets/images/contact/fallback-telegram.png";
+import Mail from "public/assets/images/contact/mail.webp";
+import FallbackMail from "public/assets/images/contact/fallback-mail.png";
+// import whats from "public/assets/images/contact/whats.svg";
+// import instagram from "public/assets/images/contact/instagram.svg";
+import Vk from "public/assets/images/contact/vk.webp";
+import FallbackVk from "public/assets/images/contact/fallback-vk.png";
 
 import styles from "./contact.module.css";
 

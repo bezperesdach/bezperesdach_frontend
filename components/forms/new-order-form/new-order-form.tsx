@@ -6,8 +6,8 @@ import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 
-import Hero from "public/images/hero/hero.webp";
-import FallbackHero from "public/images/hero/fallback-hero.png";
+import Hero from "public/assets/images/hero/hero.webp";
+import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 
 import { Button } from "../../button/button";
 import { ReactSelector } from "../components/react-selector/react-selector";

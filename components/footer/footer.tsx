@@ -11,11 +11,11 @@ export const Footer = () => {
         </h2>
         <p>
           Используя сервис “Безпересдач”, вы принимаете{" "}
-          <Link href="/documents/terms-of-use.pdf" className={styles.link}>
+          <Link href="/assets/documents/terms-of-use.pdf" className={styles.link}>
             пользовательское соглашение
           </Link>{" "}
           , а также
-          <Link href="/documents/processing-policy.pdf" className={styles.link}>
+          <Link href="/assets/documents/processing-policy.pdf" className={styles.link}>
             {" "}
             политику обработки персональных данных
           </Link>

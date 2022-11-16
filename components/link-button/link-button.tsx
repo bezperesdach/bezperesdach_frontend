@@ -20,9 +20,9 @@ export const LinkButton = ({ className, children, backgroundColor, color, outlin
       href={href}
       style={{
         ...style,
-        backgroundColor: outlined ? "transparent" : backgroundColor ?? "rgb(11, 116, 254)",
+        backgroundColor: outlined ? "transparent" : backgroundColor ?? "#0b73fe",
         color: color ?? "inherit",
-        boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor}` : "none",
+        boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor ?? "#0b73fe"}` : "none",
       }}
     >
       {children}

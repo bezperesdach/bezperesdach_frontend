@@ -1,16 +1,16 @@
 import React from "react";
 import Image from "next/image";
 import { ImageWithText } from "../../image-with-text/image-with-text";
-import Main from "public/images/advantages/main.webp";
-import FallbackMain from "public/images/advantages/fallback-main.png";
-import One from "public/images/advantages/one.webp";
-import FallbackOne from "public/images/advantages/fallback-one.png";
-import Two from "public/images/advantages/two.webp";
-import FallbackTwo from "public/images/advantages/fallback-two.png";
-import Three from "public/images/advantages/three.webp";
-import FallbackThree from "public/images/advantages/fallback-three.png";
-import Four from "public/images/advantages/four.webp";
-import FallbackFour from "public/images/advantages/fallback-four.png";
+import Main from "public/assets/images/advantages/main.webp";
+import FallbackMain from "public/assets/images/advantages/fallback-main.png";
+import One from "public/assets/images/advantages/one.webp";
+import FallbackOne from "public/assets/images/advantages/fallback-one.png";
+import Two from "public/assets/images/advantages/two.webp";
+import FallbackTwo from "public/assets/images/advantages/fallback-two.png";
+import Three from "public/assets/images/advantages/three.webp";
+import FallbackThree from "public/assets/images/advantages/fallback-three.png";
+import Four from "public/assets/images/advantages/four.webp";
+import FallbackFour from "public/assets/images/advantages/fallback-four.png";
 
 import styles from "./advantages.module.css";
 

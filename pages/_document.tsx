@@ -10,8 +10,8 @@ export default function Document() {
     <Html lang="ru">
       <Head>
         <meta charSet="UTF-8" />
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.pn?v=2" />
-        <link rel="icon" type="image/png" href="assets/favicon/favicon.ico?v=2" />
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png?v=2" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico?v=2" />
         <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png?v=2" />
         <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png?v=2" />
         <link rel="manifest" href="assets/favicon/site.webmanifest" />

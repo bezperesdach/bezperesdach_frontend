@@ -29,7 +29,7 @@ export const Guarantees = () => {
           alt="cloud point"
         />
         <ImageWithText
-          description={"После уточнения деталей заказ будет передан исполнителю"}
+          description={"После уточнения деталей заказ будет передан автору"}
           img={Cloud}
           fallbackImg={FallbackCloud}
           alt="cloud point"

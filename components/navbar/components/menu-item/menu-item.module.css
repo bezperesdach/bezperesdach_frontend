@@ -1,0 +1,71 @@
+.list {
+  position: relative;
+  display: inline-block;
+}
+
+.inactive {
+  cursor: unset;
+  pointer-events: none;
+}
+
+.mobile {
+  color: rgb(12 115 254 / 85%);
+  font-weight: bold;
+}
+
+.mobile a:hover {
+  font-weight: bold;
+}
+
+.list a:hover {
+  color: rgb(12 115 254 / 85%);
+  transition: all 0.3s ease-in-out;
+}
+
+.line {
+  animation-duration: 0.5s;
+  animation-name: animate-fade;
+  animation-timing-function: ease;
+  pointer-events: none;
+}
+
+.line::before {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid rgb(12 115 254 / 85%);
+  content: "";
+  opacity: 1;
+}
+
+.list a::before {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background: rgb(0 0 0 / 85%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.list a:hover::before {
+  bottom: -16px;
+  background: rgb(12 115 254 / 85%);
+  opacity: 1;
+}
+
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

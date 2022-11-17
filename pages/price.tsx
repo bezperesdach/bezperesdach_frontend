@@ -6,7 +6,7 @@ export default function Price() {
   return (
     <Layout>
       <SEO
-        title="Цены и услуги"
+        title="Цены и услуги - Безпересдач"
         description="Команда безпересдач изучила рынок и теперь знает какие цены нужны каждому студенту. Спешите - на первый заказ мы дарим 10% скидку"
         url={"https://bezperesdach.ru/price"}
         keywords={

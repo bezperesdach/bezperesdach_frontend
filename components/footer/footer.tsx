@@ -1,8 +1,11 @@
+import { useRouter } from "next/router";
 import Link from "next/link";
 import React from "react";
 import styles from "./footer.module.css";
+import urls from "../../urls/urls.json";
 
 export const Footer = () => {
+  const router = useRouter();
   return (
     <footer className={`${styles.footer} ${styles.colored_background}`}>
       <div className={styles.footer_text}>
@@ -13,7 +16,7 @@ export const Footer = () => {
           Используя сервис “Безпересдач”, вы принимаете{" "}
           <Link href="/assets/documents/terms-of-use.pdf" className={styles.link}>
             пользовательское соглашение
-          </Link>{" "}
+          </Link>
           , а также
           <Link href="/assets/documents/processing-policy.pdf" className={styles.link}>
             {" "}
@@ -25,15 +28,20 @@ export const Footer = () => {
         </p>
       </div>
       <div className={styles.footer_agreements}>
-        <Link href="/order" className={styles.link}>
+        {router.pathname !== urls.base && (
+          <Link href={urls.base} className={styles.link}>
+            Главная
+          </Link>
+        )}
+        <Link href={urls.order} className={styles.link}>
           Заказать работу
-        </Link>{" "}
-        <Link href="/price" className={styles.link}>
+        </Link>
+        <Link href={urls.prices} className={styles.link}>
           Цены и услуги
-        </Link>{" "}
-        <Link href="/work" className={styles.link}>
+        </Link>
+        <Link href={urls.work} className={styles.link}>
           Стать автором
-        </Link>{" "}
+        </Link>
       </div>
     </footer>
   );

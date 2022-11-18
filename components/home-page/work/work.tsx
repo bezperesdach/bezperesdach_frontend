@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "./components/card";
 import Image from "next/image";
+import urls from "../../../urls/urls.json";
 
 import WorkImage from "public/assets/images/work/work.webp";
 import FallbackWorkImage from "public/assets/images/work/fallback-work.png";
@@ -19,7 +20,7 @@ export const Work = () => {
           textButton="Заказать работу"
           backgroundColor="#0b73fe"
           color="white"
-          href="/order"
+          href={urls.order}
         />
         <Card
           title="ДЛЯ АВТОРОВ"
@@ -27,7 +28,7 @@ export const Work = () => {
           textButton="Стать автором"
           backgroundColor="#0b73fe"
           color="white"
-          href="/work"
+          href={urls.work}
         />
       </div>
       <div className={styles.image_container}>

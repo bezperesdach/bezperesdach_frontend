@@ -3,6 +3,7 @@ import Image from "next/image";
 import Hero from "public/assets/images/hero/hero.webp";
 import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 import { LinkButton } from "../../link-button/link-button";
+import urls from "../../../urls/urls.json";
 
 import styles from "./main.module.css";
 
@@ -26,10 +27,10 @@ export const Main = () => {
           техникумах.
         </p>
         <div className={styles.buttons}>
-          <LinkButton color="white" href="/order">
+          <LinkButton color="white" href={urls.order}>
             Заказать работу
           </LinkButton>
-          <LinkButton outlined={true} href="/work">
+          <LinkButton outlined={true} href={urls.work}>
             Стать экспертом
           </LinkButton>
         </div>

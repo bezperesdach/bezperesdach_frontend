@@ -6,6 +6,7 @@ import FallbackLeft from "public/assets/images/bonus/fallback-left.png";
 import Right from "public/assets/images/bonus/right.webp";
 import FallbackRight from "public/assets/images/bonus/fallback-right.png";
 import { LinkButton } from "../../link-button/link-button";
+import urls from "../../../urls/urls.json";
 
 import styles from "./bonus.module.css";
 
@@ -26,7 +27,7 @@ export const Bonus = () => {
         <p>
           Пока ты думаешь - <br></br> другие заказывают
         </p>
-        <LinkButton backgroundColor="#0b73fe" color="white" href="/order">
+        <LinkButton backgroundColor="#0b73fe" color="white" href={urls.order}>
           Заказать работу
         </LinkButton>
       </div>

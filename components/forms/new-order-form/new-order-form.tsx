@@ -154,7 +154,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                     onItemSelected={(item: string) => {
                       router.replace(
                         {
-                          query: { ...router.query, pt: item },
+                          pathname: item,
                         },
                         undefined,
                         { shallow: true }

@@ -1,9 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { NextRouter } from "next/router";
 import React from "react";
 import Portal from "../../../portal/portal";
 import { MenuItem } from "../menu-item/menu-item";
+import urls from "../../../../urls/urls.json";
 
 import styles from "./sidebar.module.css";
 
@@ -24,16 +23,16 @@ export const Sidebar = ({ isOpen, closeMenu }: Props) => {
             transition={{ type: "ease-in-out", duration: 0.25 }}
             className={styles.sidebar_overlay}
           >
-            <MenuItem url="/" closeMenu={closeMenu} reverseUrl mobile>
+            <MenuItem url={urls.base} closeMenu={closeMenu} reverseUrl mobile>
               Главная
             </MenuItem>
-            <MenuItem url="/price" closeMenu={closeMenu} mobile>
+            <MenuItem url={urls.prices} closeMenu={closeMenu} mobile>
               Цены и Услуги
             </MenuItem>
-            <MenuItem url="/order" closeMenu={closeMenu} mobile>
+            <MenuItem url={urls.order} closeMenu={closeMenu} mobile>
               Заказать работу
             </MenuItem>
-            <MenuItem url="/work" closeMenu={closeMenu} mobile>
+            <MenuItem url={urls.work} closeMenu={closeMenu} mobile>
               Стать автором
             </MenuItem>
           </motion.aside>

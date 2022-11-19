@@ -335,3 +335,9 @@
     height: 100%;
   }
 }
+
+@media screen and (orientation: landscape) {
+  .container {
+    display: none;
+  }
+}

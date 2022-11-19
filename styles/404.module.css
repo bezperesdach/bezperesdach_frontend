@@ -44,10 +44,10 @@
 
 .canvas .square_canvas {
   position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 250%;
-  height: 400%;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 320%;
 }
 
 .top {

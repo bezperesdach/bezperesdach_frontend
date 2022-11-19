@@ -15,24 +15,14 @@ export default function NotFound() {
       <div className={styles.main}>
         <div className={styles.main_container}>
           <div className={styles.container}>
-            <div className={styles.canvas}>
-              <div className={styles.square_canvas}>
-                <div className={styles.top}></div>
-                <div className={styles.glass}>
-                  <div className={styles.lava}>
-                    <div className={styles.blob_drop}></div>
-                    <div className={styles.blob_drop}></div>
-                    <div className={styles.blob_bounce}></div>
-                    <div className={styles.blob_rise}></div>
-                    <div className={styles.blob_top}></div>
-                    <div className={styles.blob_bottom}></div>
-                  </div>
-                </div>
-                <div className={styles.glass_round}></div>
-                <div className={styles.base}>
-                  <div className={styles.trapezoid}></div>
-                  <div className={styles.trapezoid}></div>
-                  <div className={styles.base_shadow}></div>
+            <div className={styles.lamp}>
+              <div className={styles.glass}>
+                <div className={styles.lava}>
+                  <div className={styles.blob}></div>
+                  <div className={styles.blob}></div>
+                  <div className={styles.blob}></div>
+                  <div className={styles.blob_top}></div>
+                  <div className={styles.blob_bottom}></div>
                 </div>
               </div>
             </div>

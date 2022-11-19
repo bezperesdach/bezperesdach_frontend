@@ -298,11 +298,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .main {
-    justify-content: flex-start;
-    padding-top: 24px;
-  }
-
   .container {
     width: 100%;
   }
@@ -335,8 +330,8 @@
   .canvas .square_canvas {
     position: absolute;
     top: 0%;
-    left: 0%;
-    width: 100%;
-    height: 160%;
+    left: 20%;
+    width: 64%;
+    height: 100%;
   }
 }

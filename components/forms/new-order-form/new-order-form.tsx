@@ -147,7 +147,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                     options={typeOptions}
                     component={ReactSelector}
                     borderRadius={15}
-                    placeholder="Выберите тип"
+                    placeholder="Укажите тип"
                     isMulti={false}
                     filterOption={() => true}
                     onInputChange={(e: string) => filterAllOptions(e)}
@@ -170,7 +170,13 @@ export const NewOrderForm = ({ projectType }: Props) => {
               <div className={styles.form_item}>
                 <label className={styles.label}>Предмет *</label>
                 <div className={styles.input_container}>
-                  <Field className={styles.input} type="text" name="subject" placeholder="Предмет" disabled={formik.isSubmitting} />
+                  <Field
+                    className={styles.input}
+                    type="text"
+                    name="subject"
+                    placeholder="Укажите предмет"
+                    disabled={formik.isSubmitting}
+                  />
                 </div>
                 <ErrorMessage className={styles.error_label} name="subject" component="div" />
               </div>

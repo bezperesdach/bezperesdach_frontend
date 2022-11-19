@@ -4,7 +4,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next/types";
 import { ParsedUrlQuery } from "querystring";
 
 import Layout from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
-import { getOrderDescription, typeOptionsOrder } from "../../utils/form/new-order-form";
+import { descriptionValueLabel, getOrderDescription } from "../../utils/form/new-order-form";
 import { SEO } from "../../components/seo/seo";
 const DynamicNewOrderForm = dynamic(() =>
   import("../../components/forms/new-order-form/new-order-form").then((mod) => mod.NewOrderForm)
@@ -28,13 +28,13 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>
 
-      <DynamicNewOrderForm projectType={slug} />
+      <DynamicNewOrderForm projectType={slug === "new" ? undefined : slug} />
     </Layout>
   );
 }
 
 export const getStaticPaths = async () => {
-  const paths = Array.from(typeOptionsOrder).map(([slug]) => {
+  const paths = Array.from(descriptionValueLabel).map(([slug]) => {
     return { params: { slug } };
   });
 

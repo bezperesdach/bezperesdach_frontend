@@ -17,6 +17,8 @@ export const Main = () => {
           className={styles.image}
           alt="hero"
           priority={true}
+          sizes="(max-width: 1240px) 100vw,
+          55vw"
           onError={(e) => (e.currentTarget.src = FallbackHero.src)}
         />
       </div>

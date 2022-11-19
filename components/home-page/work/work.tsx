@@ -37,6 +37,8 @@ export const Work = () => {
           placeholder="blur"
           className={styles.image}
           alt="work"
+          sizes="(max-width: 1240px) 100vw,
+          55vw"
           onError={(e) => (e.currentTarget.src = FallbackWorkImage.src)}
         />
       </div>

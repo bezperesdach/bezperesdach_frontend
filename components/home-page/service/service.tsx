@@ -21,6 +21,8 @@ export const Service = () => {
           placeholder="blur"
           className={styles.image}
           alt="our advantages"
+          sizes="(max-width: 1240px) 100vw,
+          55vw"
           onError={(e) => (e.currentTarget.src = FallbackMain.src)}
         />
       </div>

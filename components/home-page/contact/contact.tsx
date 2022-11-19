@@ -27,6 +27,8 @@ export const Contact = () => {
             placeholder="blur"
             className={styles.image}
             alt="map"
+            sizes="(max-width: 1240px) 100vw,
+            55vw"
             onError={(e) => (e.currentTarget.src = FallbackMap.src)}
           />
         </div>

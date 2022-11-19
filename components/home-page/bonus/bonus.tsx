@@ -18,6 +18,8 @@ export const Bonus = () => {
         placeholder="blur"
         className={styles.images_left}
         alt="left"
+        sizes="(max-width: 1240px) 100vw,
+        55vw"
         onError={(e) => (e.currentTarget.src = FallbackLeft.src)}
       />
       <div className={styles.bonus_block}>
@@ -36,6 +38,8 @@ export const Bonus = () => {
         placeholder="blur"
         className={styles.images_right}
         alt="right"
+        sizes="(max-width: 1240px) 100vw,
+        55vw"
         onError={(e) => (e.currentTarget.src = FallbackRight.src)}
       />
     </section>

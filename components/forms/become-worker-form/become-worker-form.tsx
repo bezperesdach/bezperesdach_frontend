@@ -76,9 +76,9 @@ export const BecomeWorkerForm = () => {
               </div>
 
               <div className={styles.form_item}>
-                <label className={styles.headline}>email *</label>
+                <label className={styles.headline}>Email *</label>
                 <div className={styles.input_container}>
-                  <Field className={styles.input} type="email" name="email" placeholder="example@email.ru" disabled={isSubmitting} />
+                  <Field className={styles.input} type="email" name="email" placeholder="example@example.ru" disabled={isSubmitting} />
                 </div>
                 <ErrorMessage className={styles.error_label} name="email" component="div" />
               </div>

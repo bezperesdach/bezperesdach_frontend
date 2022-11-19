@@ -17,8 +17,12 @@
   bottom: 0;
   box-sizing: border-box;
   backface-visibility: hidden;
-  opacity: 0.8;
-  pointer-events: none;
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.scrolltop_wrap:hover {
+  opacity: 1;
 }
 
 .scrolltop_wrap #scrolltop_bg {

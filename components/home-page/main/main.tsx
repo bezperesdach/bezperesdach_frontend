@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import Hero from "public/images/hero/hero.webp";
-import FallbackHero from "public/images/hero/fallback-hero.png";
-
-import { Button } from "../../button/button";
+import Hero from "public/assets/images/hero/hero.webp";
+import FallbackHero from "public/assets/images/hero/fallback-hero.png";
+import { LinkButton } from "../../link-button/link-button";
+import urls from "../../../urls/urls.json";
 
 import styles from "./main.module.css";
 
@@ -18,6 +17,8 @@ export const Main = () => {
           className={styles.image}
           alt="hero"
           priority={true}
+          sizes="(max-width: 1240px) 100vw,
+          55vw"
           onError={(e) => (e.currentTarget.src = FallbackHero.src)}
         />
       </div>
@@ -27,17 +28,13 @@ export const Main = () => {
           <strong>“Безпересдач”</strong>- проект онлайн-помощи студентам. <br></br>Мы помогаем тем, кто учится в ВУЗах, колледжах и
           техникумах.
         </p>
-        <div className={styles.button}>
-          <Link href="/order">
-            <Button backgroundColor="#0b73fe" color="white">
-              Заказать работу
-            </Button>
-          </Link>
-          <Link href="/work">
-            <Button backgroundColor="#0b73fe" outlined={true}>
-              Стать экспертом
-            </Button>
-          </Link>
+        <div className={styles.buttons}>
+          <LinkButton color="white" href={urls.order}>
+            Заказать работу
+          </LinkButton>
+          <LinkButton outlined={true} href={urls.work}>
+            Стать автором
+          </LinkButton>
         </div>
       </div>
     </section>

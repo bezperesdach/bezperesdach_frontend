@@ -1,0 +1,176 @@
+.main {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255 242 137 / 100%);
+}
+
+.main_container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  gap: 32px;
+}
+
+.container {
+  position: relative;
+  width: 300px;
+}
+
+.text_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(102 35 129);
+  gap: 24px;
+  text-align: center;
+}
+
+.text_container h1 {
+  font-size: 80px;
+  font-weight: 900;
+}
+
+.text_container h2 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.lamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30vh;
+  min-width: calc(300px * 3 / 7);
+  height: 70vh;
+  min-height: 300px;
+  background: rgb(39 52 67);
+  clip-path: polygon(33% 0, 0 70%, 22% 88%, 0 100%, 100% 100%, 78% 88%, 100% 70%, 67% 0);
+  transform: translate(-50%, -50%);
+}
+
+.glass {
+  position: absolute;
+  bottom: 30%;
+  overflow: hidden;
+  width: 100%;
+  height: 60%;
+  background: rgb(182 225 224);
+}
+
+.lava {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: url("#goo");
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  background: rgb(102 34 128);
+}
+
+.blob_top {
+  top: -3.7%;
+  left: 0;
+  width: 100%;
+  height: 4%;
+}
+
+.blob_bottom {
+  bottom: -3%;
+  left: 0;
+  width: 100%;
+  height: 4%;
+}
+
+.blob:nth-child(1) {
+  bottom: -15%;
+  left: 45%;
+  width: calc(15% * 1.4);
+  height: 15%;
+  animation: blob-one ease-in-out 7s infinite;
+}
+
+.blob:nth-child(2) {
+  right: 14%;
+  bottom: -15%;
+  width: calc(22% * 1.4);
+  height: 22%;
+  animation: blob-two ease-in-out 11s infinite;
+}
+
+.blob:nth-child(3) {
+  bottom: -15%;
+  left: 14%;
+  width: calc(32% * 1.4);
+  height: 32%;
+  animation: blob-three ease-in-out 16s infinite;
+}
+
+@keyframes blob-one {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-700%);
+  }
+}
+
+@keyframes blob-two {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-420%);
+  }
+}
+
+@keyframes blob-three {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-305%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    height: 40vh;
+  }
+
+  .main_container {
+    flex-direction: column-reverse;
+    gap: 24px;
+  }
+
+  .lamp {
+    width: 15vh;
+    height: 40vh;
+  }
+
+  .text_container h1 {
+    font-size: 64px;
+    font-weight: 900;
+  }
+
+  .text_container h2 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+}

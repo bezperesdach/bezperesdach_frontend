@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 
-import Left from "public/images/bonus/left.webp";
-import FallbackLeft from "public/images/bonus/fallback-left.png";
-import Right from "public/images/bonus/right.webp";
-import FallbackRight from "public/images/bonus/fallback-right.png";
-import { Button } from "../../button/button";
+import Left from "public/assets/images/bonus/left.webp";
+import FallbackLeft from "public/assets/images/bonus/fallback-left.png";
+import Right from "public/assets/images/bonus/right.webp";
+import FallbackRight from "public/assets/images/bonus/fallback-right.png";
+import { LinkButton } from "../../link-button/link-button";
+import urls from "../../../urls/urls.json";
 
 import styles from "./bonus.module.css";
 
@@ -18,6 +18,8 @@ export const Bonus = () => {
         placeholder="blur"
         className={styles.images_left}
         alt="left"
+        sizes="(max-width: 1240px) 100vw,
+        55vw"
         onError={(e) => (e.currentTarget.src = FallbackLeft.src)}
       />
       <div className={styles.bonus_block}>
@@ -27,17 +29,17 @@ export const Bonus = () => {
         <p>
           Пока ты думаешь - <br></br> другие заказывают
         </p>
-        <Link href="/order">
-          <Button backgroundColor="#0b73fe" color="white">
-            Заказать работу
-          </Button>
-        </Link>
+        <LinkButton backgroundColor="#0b73fe" color="white" href={urls.order}>
+          Заказать работу
+        </LinkButton>
       </div>
       <Image
         src={Right}
         placeholder="blur"
         className={styles.images_right}
         alt="right"
+        sizes="(max-width: 1240px) 100vw,
+        55vw"
         onError={(e) => (e.currentTarget.src = FallbackRight.src)}
       />
     </section>

@@ -20,6 +20,7 @@
 
 .contact p {
   padding-top: 0;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -65,10 +66,6 @@
   .contact h3 {
     font-size: 16px;
   }
-
-  .contact p {
-    font-size: 14px;
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -86,10 +83,6 @@
 
   .contact h3 {
     font-size: 16px;
-  }
-
-  .contact p {
-    font-size: 14px;
   }
 
   .cards {

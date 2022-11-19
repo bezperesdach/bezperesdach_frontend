@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import bonus from "../../../public/images/bonus.svg";
+import bonus from "public/assets/images/bonus.svg";
 
 import styles from "./bonus.module.css";
 

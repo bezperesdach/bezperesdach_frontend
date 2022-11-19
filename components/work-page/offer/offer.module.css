@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   padding-top: 100px;
-  gap: 16px;
+  gap: 24px;
 }
 
 .offer h2 {
@@ -16,9 +16,8 @@
 }
 
 .offer p {
-  padding-top: 0;
-  font-style: light;
-  font-weight: 200;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .cards {
@@ -57,11 +56,6 @@
     font-size: 16px;
   }
 
-  .offer p {
-    font-size: 14px;
-    font-weight: 400;
-  }
-
   .image_container {
     width: 70%;
   }
@@ -81,9 +75,5 @@
 
   .offer h3 {
     font-size: 16px;
-  }
-
-  .offer p {
-    font-size: 14px;
   }
 }

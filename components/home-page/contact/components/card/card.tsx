@@ -16,9 +16,7 @@ export const Card = ({ description, img, fallbackImg, url, alt }: Props) => {
     <div className={styles.card_style}>
       <Image src={img} placeholder="blur" className={styles.image} alt={alt} onError={(e) => (e.currentTarget.src = fallbackImg.src)} />
       <div className={styles.card_text}>
-        <p>
-          <Link href={url}>{description}</Link>
-        </p>
+        <Link href={url}>{description}</Link>
       </div>
     </div>
   );

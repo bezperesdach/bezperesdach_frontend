@@ -6,8 +6,8 @@ import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 
-import Hero from "public/images/hero/hero.webp";
-import FallbackHero from "public/images/hero/fallback-hero.png";
+import Hero from "public/assets/images/hero/hero.webp";
+import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 
 import { Button } from "../../button/button";
 import { ReactSelector } from "../components/react-selector/react-selector";
@@ -132,7 +132,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
                       className={styles.input}
                       type="email"
                       name="email"
-                      placeholder="example@example.com"
+                      placeholder="example@example.ru"
                       disabled={formik.isSubmitting}
                     />
                   </div>
@@ -147,14 +147,14 @@ export const NewOrderForm = ({ projectType }: Props) => {
                     options={typeOptions}
                     component={ReactSelector}
                     borderRadius={15}
-                    placeholder="Выберите тип"
+                    placeholder="Укажите тип"
                     isMulti={false}
                     filterOption={() => true}
                     onInputChange={(e: string) => filterAllOptions(e)}
                     onItemSelected={(item: string) => {
                       router.replace(
                         {
-                          query: { ...router.query, pt: item },
+                          pathname: item,
                         },
                         undefined,
                         { shallow: true }
@@ -170,7 +170,13 @@ export const NewOrderForm = ({ projectType }: Props) => {
               <div className={styles.form_item}>
                 <label className={styles.label}>Предмет *</label>
                 <div className={styles.input_container}>
-                  <Field className={styles.input} type="text" name="subject" placeholder="Предмет" disabled={formik.isSubmitting} />
+                  <Field
+                    className={styles.input}
+                    type="text"
+                    name="subject"
+                    placeholder="Укажите предмет"
+                    disabled={formik.isSubmitting}
+                  />
                 </div>
                 <ErrorMessage className={styles.error_label} name="subject" component="div" />
               </div>
@@ -302,7 +308,6 @@ export const NewOrderForm = ({ projectType }: Props) => {
                 {sendOrder.error && <p className={styles.submit_error}>{sendOrder.errorText}</p>}
                 <Button
                   type="submit"
-                  backgroundColor="#4481eb"
                   color="#fff"
                   disabled={formik.isSubmitting}
                   loading={sendOrder.loading}

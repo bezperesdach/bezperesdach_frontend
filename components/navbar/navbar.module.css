@@ -21,6 +21,7 @@
   display: none;
   font-size: 18px;
   gap: 24px;
+  list-style: none;
 }
 
 .mobile_menu {
@@ -30,11 +31,11 @@
 
 @media screen and (min-width: 1024px) {
   .desktop_logo {
-    display: block;
+    display: flex;
   }
 
   .desktop_menu {
-    display: block;
+    display: flex;
   }
 
   .mobile_logo {
@@ -53,12 +54,12 @@
   }
 
   .mobile_logo {
-    display: block;
+    display: flex;
   }
 
   .mobile_menu {
     z-index: 20;
-    display: block;
+    display: flex;
   }
 }
 

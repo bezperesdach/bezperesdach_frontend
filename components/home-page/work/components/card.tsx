@@ -1,7 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import styles from "./card.module.css";
-import { Button } from "../../../button/button";
+import { LinkButton } from "../../../link-button/link-button";
 
 type Props = {
   title: string;
@@ -18,11 +17,9 @@ export const Card = ({ title, description, textButton, href, backgroundColor, co
       <div className={styles.card_button}>
         <h3>{title}</h3>
         <p>{description}</p>
-        <Link href={href} className={styles.link}>
-          <Button backgroundColor={backgroundColor} color={color}>
-            {textButton}
-          </Button>
-        </Link>
+        <LinkButton className={styles.link} backgroundColor={backgroundColor} color={color} href={href}>
+          {textButton}
+        </LinkButton>
       </div>
     </div>
   );

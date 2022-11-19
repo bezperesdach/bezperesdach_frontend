@@ -1,0 +1,6 @@
+{
+	"base": "/",
+	"prices":"/prices",
+	"order": "/order/new",
+	"work": "/work"
+}

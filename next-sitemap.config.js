@@ -9,9 +9,6 @@ module.exports = {
       {
         userAgent: "*",
         allow: "/",
-      },
-      {
-        userAgent: "*",
         disallow: ["/admin"],
       },
     ],

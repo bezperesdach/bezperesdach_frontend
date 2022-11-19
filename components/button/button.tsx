@@ -18,14 +18,14 @@ type Props = {
 export const Button = ({ children, type, backgroundColor, color, outlined, onClick, loading, error, disabled, style }: Props) => {
   const buttonLoading = () => {
     if (error) {
-      return <span>ОШИБКА</span>;
+      return <>ОШИБКА</>;
     }
 
     if (loading) {
       return <span className={styles.button_loading}></span>;
     }
 
-    return <span>{children}</span>;
+    return <>{children}</>;
   };
 
   const onClickHandler = () => {

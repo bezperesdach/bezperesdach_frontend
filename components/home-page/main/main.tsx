@@ -31,7 +31,7 @@ export const Main = () => {
             Заказать работу
           </LinkButton>
           <LinkButton outlined={true} href={urls.work}>
-            Стать экспертом
+            Стать автором
           </LinkButton>
         </div>
       </div>

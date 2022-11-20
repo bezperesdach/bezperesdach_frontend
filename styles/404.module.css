@@ -115,6 +115,11 @@
   animation: blob-three ease-in-out 16s infinite;
 }
 
+.no_select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  user-select: none; /* Safari */
+}
+
 @keyframes blob-one {
   0%,
   100% {

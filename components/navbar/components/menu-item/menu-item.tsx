@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { typeOptionsOrder } from "../../../../utils/form/new-order-form";
 
 import styles from "./menu-item.module.css";
 

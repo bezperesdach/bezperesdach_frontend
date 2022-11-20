@@ -30,12 +30,14 @@
   line-height: 15px;
 }
 
-.link {
-  color: hsl(214deg 99% 52%);
+#document_link {
+  text-decoration: underline;
 }
 
 .link:hover {
+  color: rgb(17 112 238);
   text-decoration: underline;
+  transition: all 0.3s ease-in-out;
 }
 
 .footer_agreements .link {

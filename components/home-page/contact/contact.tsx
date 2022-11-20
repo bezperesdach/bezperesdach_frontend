@@ -25,7 +25,7 @@ export const Contact = () => {
           <Image
             src={Map}
             placeholder="blur"
-            className={styles.image}
+            className={`${styles.image} no_select image_no_pointer_events`}
             alt="map"
             sizes="(max-width: 1240px) 100vw,
             55vw"

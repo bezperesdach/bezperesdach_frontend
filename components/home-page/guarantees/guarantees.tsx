@@ -41,7 +41,7 @@ export const Guarantees = () => {
         <Image
           src={Main}
           placeholder="blur"
-          className={styles.image}
+          className={`${styles.image} no_select image_no_pointer_events`}
           alt="order process"
           onError={(e) => (e.currentTarget.src = FallbackMain.src)}
         />

@@ -16,7 +16,7 @@ export const Bonus = () => {
       <Image
         src={Left}
         placeholder="blur"
-        className={styles.images_left}
+        className={`${styles.images_left} no_select image_no_pointer_events`}
         alt="left"
         sizes="(max-width: 1240px) 100vw,
         55vw"
@@ -29,14 +29,12 @@ export const Bonus = () => {
         <p>
           Пока ты думаешь - <br></br> другие заказывают
         </p>
-        <LinkButton backgroundColor="#0b73fe" color="white" href={urls.order}>
-          Заказать работу
-        </LinkButton>
+        <LinkButton href={urls.order}>Заказать работу</LinkButton>
       </div>
       <Image
         src={Right}
         placeholder="blur"
-        className={styles.images_right}
+        className={`${styles.images_right} no_select image_no_pointer_events`}
         alt="right"
         sizes="(max-width: 1240px) 100vw,
         55vw"

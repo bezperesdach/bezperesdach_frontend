@@ -45,15 +45,15 @@ export const Button = ({ children, type, backgroundColor, color, outlined, onCli
 
   return (
     <button
-      className={`${styles.button} ${buttonError()}`}
+      className={`${styles.button} ${buttonError()} no_select`}
       type={type}
       onClick={onClickHandler}
       disabled={disabled}
       style={{
         ...style,
-        backgroundColor: outlined ? "transparent" : backgroundColor ?? "rgb(11, 116, 254)",
+        backgroundColor: outlined ? "transparent" : backgroundColor ?? "rgb(17 112 238)",
         color: color ?? "inherit",
-        boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor}` : "none",
+        boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor ?? "rgb(17 112 238)"}` : "none",
       }}
     >
       {buttonLoading()}

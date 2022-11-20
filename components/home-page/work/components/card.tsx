@@ -6,8 +6,8 @@ type Props = {
   title: string;
   description: string;
   textButton: string;
-  backgroundColor: string;
-  color: string;
+  backgroundColor?: string;
+  color?: string;
   href: string;
 };
 

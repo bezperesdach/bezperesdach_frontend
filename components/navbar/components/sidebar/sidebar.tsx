@@ -3,6 +3,7 @@ import React from "react";
 import Portal from "../../../portal/portal";
 import { MenuItem } from "../menu-item/menu-item";
 import urls from "../../../../urls/urls.json";
+import { typeOptionsOrder } from "../../../../utils/form/new-order-form";
 
 import styles from "./sidebar.module.css";
 
@@ -29,7 +30,7 @@ export const Sidebar = ({ isOpen, closeMenu }: Props) => {
             <MenuItem url={urls.prices} closeMenu={closeMenu} mobile>
               Цены и Услуги
             </MenuItem>
-            <MenuItem url={urls.order} closeMenu={closeMenu} mobile>
+            <MenuItem url={urls.order} allowedUrl={(url) => typeOptionsOrder.get(url) !== undefined} closeMenu={closeMenu} mobile>
               Заказать работу
             </MenuItem>
             <MenuItem url={urls.work} closeMenu={closeMenu} mobile>

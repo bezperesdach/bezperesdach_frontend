@@ -26,6 +26,8 @@
 
 .mobile_menu {
   display: none;
+  padding: 2rem;
+  margin-right: -2rem;
   font-size: 18px;
 }
 
@@ -67,5 +69,9 @@
   .navbar {
     display: flex;
     justify-content: space-between;
+  }
+
+  .mobile_menu {
+    margin-right: -1rem;
   }
 }

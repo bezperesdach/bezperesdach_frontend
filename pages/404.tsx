@@ -25,7 +25,7 @@ export default function NotFound() {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>
 
-      <div className={`${styles.main} ${styles.no_select}`}>
+      <div className={`${styles.main} no_select`}>
         <div className={styles.main_container}>
           <div className={styles.container}>
             <div className={styles.lamp}>

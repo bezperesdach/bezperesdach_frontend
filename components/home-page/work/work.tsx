@@ -33,7 +33,7 @@ export const Work = () => {
         <Image
           src={WorkImage}
           placeholder="blur"
-          className={styles.image}
+          className={`${styles.image} no_select image_no_pointer_events`}
           alt="work"
           sizes="(max-width: 1240px) 100vw,
           55vw"

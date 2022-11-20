@@ -152,6 +152,15 @@ p {
   letter-spacing: 0.5px;
 }
 
+.no_select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  user-select: none; /* Safari */
+}
+
+.image_no_pointer_events {
+  pointer-events: none;
+}
+
 :focus {
   outline: none !important;
   -webkit-tap-highlight-color: transparent;

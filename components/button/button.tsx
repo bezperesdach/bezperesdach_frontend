@@ -45,7 +45,7 @@ export const Button = ({ children, type, backgroundColor, color, outlined, onCli
 
   return (
     <button
-      className={`${styles.button} ${buttonError()} ${styles.no_select}`}
+      className={`${styles.button} ${buttonError()} no_select`}
       type={type}
       onClick={onClickHandler}
       disabled={disabled}

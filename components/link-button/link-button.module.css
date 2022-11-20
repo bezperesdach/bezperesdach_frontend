@@ -24,8 +24,3 @@
 .button_text {
   color: rgb(255 255 255);
 }
-
-.no_select {
-  -webkit-touch-callout: none; /* iOS Safari */
-  user-select: none; /* Safari */
-}

@@ -91,6 +91,7 @@ export const typeOptionsOrder = new Map([
   ["essay", "Эссе"],
   ["tasks", "Решение задач"],
   ["other", "Другое"],
+  ["new", "Работу"],
 ]);
 
 export const getOrderDescription = (option?: string) => {

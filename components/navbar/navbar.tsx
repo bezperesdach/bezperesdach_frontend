@@ -7,8 +7,8 @@ import urls from "../../urls/urls.json";
 
 const DynamicSidebar = dynamic(() => import("./components/sidebar/sidebar").then((mod) => mod.Sidebar));
 
-import logo from "public/logo.svg";
-import mini_logo from "public/logo_mini.svg";
+import logo from "public/assets/logo.svg";
+import mini_logo from "public/assets/logo_mini.svg";
 
 import styles from "./navbar.module.css";
 import { MenuItem } from "./components/menu-item/menu-item";
@@ -29,7 +29,7 @@ export const Navbar = () => {
         <Image src={mini_logo} priority={true} height={64} width={64} alt="logo" />
       </Link>
       <div className={styles.mobile_menu}>
-        <Hamburger toggled={isOpen} toggle={setOpen} size={32} />
+        <Hamburger toggled={isOpen} toggle={setOpen} size={32} label="Open the menu" />
       </div>
       <ul className={styles.desktop_menu}>
         <MenuItem url={urls.base} reverseUrl>

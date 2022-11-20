@@ -36,7 +36,7 @@ const MenuButton = ({
     },
     opened: {
       rotate: 45,
-      translateY: 2,
+      translateY: 1.5,
       transition: { duration: 0.25 },
     },
   };
@@ -58,7 +58,7 @@ const MenuButton = ({
     },
     opened: {
       rotate: -45,
-      translateY: -2,
+      translateY: -1.5,
       transition: { duration: 0.25 },
     },
   };
@@ -85,8 +85,8 @@ const MenuButton = ({
       {...props}
     >
       <motion.line x1="0" x2={unitWidth} y1="0" y2="0" variants={top} {...lineProps} />
-      <motion.line x1="0" x2={unitWidth} y1="2" y2="2" variants={center} {...lineProps} />
-      <motion.line x1="0" x2={unitWidth} y1="4" y2="4" variants={bottom} {...lineProps} />
+      <motion.line x1="0" x2={unitWidth} y1="1.5" y2="1.5" variants={center} {...lineProps} />
+      <motion.line x1="0" x2={unitWidth} y1="3" y2="3" variants={bottom} {...lineProps} />
     </motion.svg>
   );
 };

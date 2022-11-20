@@ -29,7 +29,7 @@ export const Navbar = () => {
         <Image src={mini_logo} priority={true} height={64} width={64} alt="logo" />
       </Link>
       <div className={styles.mobile_menu} onClick={() => setOpen(!isOpen)}>
-        <MenuButton isOpen={isOpen} strokeWidth="4" width={48} color="rgb(17 112 238)" transition={{ ease: "easeInOut" }} />
+        <MenuButton isOpen={isOpen} strokeWidth="4" color="rgb(17 112 238)" transition={{ ease: "easeInOut" }} />
       </div>
       <ul className={styles.desktop_menu}>
         <MenuItem url={urls.base} reverseUrl>

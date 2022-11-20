@@ -30,8 +30,13 @@
   line-height: 15px;
 }
 
-#document_link {
+.document_link {
   text-decoration: underline;
+}
+
+.document_link:hover {
+  color: rgb(17 112 238);
+  transition: all 0.3s ease-in-out;
 }
 
 .link:hover {

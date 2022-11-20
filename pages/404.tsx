@@ -1,4 +1,3 @@
-import Head from "next/head";
 import React from "react";
 import { LinkButton } from "../components/link-button/link-button";
 import urls from "../urls/urls.json";
@@ -12,7 +11,7 @@ export default function NotFound() {
       <SEO
         title="Страница не найдена - Безпересдач - онлайн-проект помощи в учёбе"
         description="Наша команда поможет написать дипломную, курсовую и множество других работ, проведет консультацию и подготовит к успешной сдачи!"
-        url={`https://bezperesdach.ru/order/notfound`}
+        url={`https://bezperesdach.ru/404`}
         keywords={
           "купить курсовую,купить диплом,где заказать курсовую работу,заказать готовую работу,дипломы курсовые на заказ,заказать научную статью,контрольные работы на заказ,заказать перевод с английского на русский,написать статью на заказ, безпересдач, без пересдач"
         }

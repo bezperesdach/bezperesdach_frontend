@@ -16,7 +16,7 @@ type Props = {
 export const LinkButton = ({ className, children, backgroundColor, color, outlined, href, style }: Props) => {
   return (
     <Link
-      className={`${styles.button} ${className} no_select`}
+      className={`${styles.button} ${className}`}
       href={href}
       style={{
         ...style,

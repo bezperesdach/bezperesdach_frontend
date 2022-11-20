@@ -17,11 +17,6 @@
   font-weight: bold;
 }
 
-.list a:hover {
-  color: rgb(12 115 254 / 85%);
-  transition: all 0.3s ease-in-out;
-}
-
 .line {
   animation-duration: 0.5s;
   animation-name: animate-fade;
@@ -54,12 +49,6 @@
   transition: all 0.3s ease-in-out;
 }
 
-.list a:hover::before {
-  bottom: -16px;
-  background: rgb(12 115 254 / 85%);
-  opacity: 1;
-}
-
 @keyframes animate-fade {
   0% {
     opacity: 0;
@@ -67,5 +56,18 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .list a:hover::before {
+    bottom: -16px;
+    background: rgb(12 115 254 / 85%);
+    opacity: 1;
+  }
+
+  .list a:hover {
+    color: rgb(12 115 254 / 85%);
+    transition: all 0.3s ease-in-out;
   }
 }

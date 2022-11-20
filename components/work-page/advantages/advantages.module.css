@@ -39,7 +39,7 @@
 }
 
 .colored_background {
-  --bg-color: rgb(12 115 254 / 100%);
+  --bg-color: rgb(17 112 238);
 
   margin-bottom: -1px;
   background-color: var(--bg-color);
@@ -50,7 +50,6 @@
 
 @media screen and (max-width: 1023px) {
   .advantages {
-    flex-direction: column;
     padding-top: 64px;
   }
 

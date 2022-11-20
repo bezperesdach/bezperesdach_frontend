@@ -11,7 +11,7 @@ export const Prices = () => {
         description={"Рекомендуемая цена: от 2990 \nСрок выполнения: от 7 дней\nСрочно: от 14990 рублей\nСрок выполнения: 24 часа"}
         url="/order/?pt=term-paper"
         backgroundColor="rgba(12, 115, 254, 0.9)"
-        buttonBackgroundColor="#0C73FE"
+        buttonBackgroundColor="rgb(17 112 238)"
         colorText="#ffffff"
         boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       ></Card>
@@ -20,7 +20,7 @@ export const Prices = () => {
         description={"Рекомендуемая цена: от 4990 \nСрок выполнения: от 14 дней\nСрочно: от 24990 рублей\nСрок выполнения: 24 часа"}
         url="/order/?pt=graduation-work"
         backgroundColor="rgba(12, 115, 254, 0.85)"
-        buttonBackgroundColor="#0C73FE"
+        buttonBackgroundColor="rgb(17 112 238)"
         colorText="#ffffff"
         boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       ></Card>
@@ -29,7 +29,7 @@ export const Prices = () => {
         description={"Рекомендуемая цена: от 9990 \nСрок выполнения: от 30 дней\nСрочно: от 49990 рублей\nСрок выполнения: 3 дня"}
         url="/order/?pt=masters"
         backgroundColor="rgba(12, 115, 254, 0.8)"
-        buttonBackgroundColor="#0C73FE"
+        buttonBackgroundColor="rgb(17 112 238)"
         colorText="#ffffff"
         boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       ></Card>
@@ -38,7 +38,7 @@ export const Prices = () => {
         description={"Рекомендуемая цена: от 1990 \nСрок выполнения: от 5 дней\nСрочно: от 4990\nСрок выполнения: 20 часов"}
         url="/order/?pt=practice-report"
         backgroundColor="rgba(12, 115, 254, 0.75)"
-        buttonBackgroundColor="#0C73FE"
+        buttonBackgroundColor="rgb(17 112 238)"
         colorText="#ffffff"
         boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       ></Card>

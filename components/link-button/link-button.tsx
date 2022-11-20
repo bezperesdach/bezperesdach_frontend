@@ -16,13 +16,13 @@ type Props = {
 export const LinkButton = ({ className, children, backgroundColor, color, outlined, href, style }: Props) => {
   return (
     <Link
-      className={`${styles.button} ${className}`}
+      className={`${styles.button} ${className} ${styles.no_select}`}
       href={href}
       style={{
         ...style,
-        backgroundColor: outlined ? "transparent" : backgroundColor ?? "#0b73fe",
+        backgroundColor: outlined ? "transparent" : backgroundColor ?? "rgb(17 112 238)",
         color: color ?? "inherit",
-        boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor ?? "#0b73fe"}` : "none",
+        boxShadow: outlined ? `inset 0px 0px 0px 3px ${backgroundColor ?? "rgb(17 112 238)"}` : "none",
       }}
     >
       {children}

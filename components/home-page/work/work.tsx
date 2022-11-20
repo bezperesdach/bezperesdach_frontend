@@ -18,16 +18,14 @@ export const Work = () => {
           description={`Теперь вы знаете все про проект “Безпересдач”. Заполните заявку и проверьте как это работает. Это быстро и
 					бесплатно`}
           textButton="Заказать работу"
-          backgroundColor="#0b73fe"
-          color="white"
+          color="#fff"
           href={urls.order}
         />
         <Card
           title="ДЛЯ АВТОРОВ"
           description="Вы решаете задачи - мы выплачиваем деньги. Все прозрачно, быстро и удобно. Мы предлагаем лучшие условия среди конкурентов."
           textButton="Стать автором"
-          backgroundColor="#0b73fe"
-          color="white"
+          color="#fff"
           href={urls.work}
         />
       </div>

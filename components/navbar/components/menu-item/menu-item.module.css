@@ -71,3 +71,28 @@
     transition: all 0.3s ease-in-out;
   }
 }
+
+@media (hover: hover) and screen and (max-width: 1024px) {
+  .list a::before {
+    position: absolute;
+    top: calc(50% - 4px);
+    right: 0;
+    bottom: 0;
+    left: unset;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    background: rgb(0 0 0 / 85%);
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .list a:hover::before {
+    right: -24px;
+    bottom: unset;
+    background: rgb(12 115 254 / 85%);
+    opacity: 1;
+  }
+}

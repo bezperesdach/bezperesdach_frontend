@@ -1,7 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-import Layout from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
+import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 const DynamicBecomeWorkerForm = dynamic(() =>
   import("../components/forms/become-worker-form/become-worker-form").then((mod) => mod.BecomeWorkerForm)
 );
@@ -13,7 +13,7 @@ import { SEO } from "../components/seo/seo";
 
 export default function Work() {
   return (
-    <Layout>
+    <UnauthorizedUserLayout>
       <SEO
         title="Стать автором - Безпересдач"
         description="Как зарабатывать не выходя из дома? Стань автором на Безпересдач! Получай стабильный заработок удаленно, помогай студентам и делай мир лучше!"
@@ -27,6 +27,6 @@ export default function Work() {
       <Offer />
       <DynamicBecomeWorkerForm />
       <Contact />
-    </Layout>
+    </UnauthorizedUserLayout>
   );
 }

@@ -1,15 +1,17 @@
-import { Navbar } from "../../navbar/navbar";
-import { Footer } from "../../footer/footer";
+import dynamic from "next/dynamic";
 import type { ReactNode } from "react";
+
+const DynamicNavbar = dynamic(() => import("../../navbar/navbar").then((mod) => mod.Navbar));
+const DynamicFooter = dynamic(() => import("../../footer/footer").then((mod) => mod.Footer));
 
 import styles from "./unauthorized-user-layout.module.css";
 
-export default function UnauthorizedUserLayout({ children }: { children: ReactNode }) {
+export const UnauthorizedUserLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className={styles.main}>
-      <Navbar />
+      <DynamicNavbar />
       <main>{children}</main>
-      <Footer />
+      <DynamicFooter />
     </div>
   );
-}
+};

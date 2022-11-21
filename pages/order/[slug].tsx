@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { GetStaticProps, InferGetStaticPropsType } from "next/types";
 import { ParsedUrlQuery } from "querystring";
 
-import Layout from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
+import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { descriptionValueLabel, getOrderDescription } from "../../utils/form/new-order-form";
 import { SEO } from "../../components/seo/seo";
 const DynamicNewOrderForm = dynamic(() =>
@@ -16,7 +16,7 @@ interface IParams extends ParsedUrlQuery {
 
 export default function Order({ slug }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Layout>
+    <UnauthorizedUserLayout>
       <SEO
         title="Сделать заказ - Безпересдач - онлайн-проект помощи в учёбе"
         description={getOrderDescription(slug)}
@@ -29,7 +29,7 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
       </SEO>
 
       <DynamicNewOrderForm projectType={slug === "new" ? undefined : slug} />
-    </Layout>
+    </UnauthorizedUserLayout>
   );
 }
 

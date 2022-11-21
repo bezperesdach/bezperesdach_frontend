@@ -1,10 +1,10 @@
-import Layout from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
+import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { Prices } from "../components/price-page/prices/prices";
 import { SEO } from "../components/seo/seo";
 
 export default function Price() {
   return (
-    <Layout>
+    <UnauthorizedUserLayout>
       <SEO
         title="Цены и услуги - Безпересдач"
         description="Команда безпересдач изучила рынок и теперь знает какие цены нужны каждому студенту. Спешите - на первый заказ мы дарим 10% скидку"
@@ -15,6 +15,6 @@ export default function Price() {
       />
 
       <Prices />
-    </Layout>
+    </UnauthorizedUserLayout>
   );
 }

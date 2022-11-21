@@ -23,7 +23,7 @@ export const Navbar = () => {
   return (
     <header className={`${styles.navbar} ${styles.colored_background}`}>
       <Link href={urls.base} className={styles.desktop_logo}>
-        <Image src={logo} height={100} width={320} alt="logo" />
+        <Image src={logo} priority={true} height={100} width={320} alt="logo" />
       </Link>
       <Link href={urls.base} className={styles.mobile_logo}>
         <Image src={mini_logo} priority={true} height={64} width={64} alt="logo" />

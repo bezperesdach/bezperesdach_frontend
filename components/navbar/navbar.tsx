@@ -35,6 +35,7 @@ export const Navbar = () => {
         <MenuItem url={urls.base} reverseUrl>
           Главная
         </MenuItem>
+        <MenuItem url={urls.about_us}>О нас</MenuItem>
         <MenuItem url={urls.prices}>Цены и Услуги</MenuItem>
       </ul>
       <DynamicSidebar isOpen={isOpen} closeMenu={closeMenu} />

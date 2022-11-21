@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "./components/card";
 import Image from "next/image";
-import urls from "../../../urls/urls.json";
+import urls from "../../../utils/urls.json";
 
 import WorkImage from "public/assets/images/work/work.webp";
 import FallbackWorkImage from "public/assets/images/work/fallback-work.png";

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import React from "react";
 import styles from "./footer.module.css";
-import urls from "../../urls/urls.json";
+import urls from "../../utils/urls.json";
 
 export const Footer = () => {
   const router = useRouter();

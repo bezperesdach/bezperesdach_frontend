@@ -16,14 +16,14 @@
   color: rgb(255 255 255);
 }
 
-.footer_text h2 {
+.text h2 {
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
 }
 
-.footer_text p {
+.text p {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -45,21 +45,26 @@
   transition: all 0.3s ease-in-out;
 }
 
-.footer_agreements .link {
+.links .link {
   color: white;
 }
 
-@media screen and (min-width: 769px) {
-  .footer_agreements {
+.links_container {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+  gap: 32px;
+}
+
+@media screen and (min-width: 1024px) {
+  .links {
     display: flex;
-    width: 50%;
-    max-width: 380px;
     flex-direction: column;
     gap: 10px;
     text-align: right;
   }
 
-  .footer_text {
+  .text {
     display: flex;
     width: 50%;
     flex-direction: column;
@@ -67,7 +72,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1023px) {
   .footer {
     display: flex;
     width: 100%;
@@ -75,13 +80,18 @@
     gap: 16px;
   }
 
-  .footer_text {
+  .text {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
 
-  .footer_agreements {
+  .links_container {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .links {
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;

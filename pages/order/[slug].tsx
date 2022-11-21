@@ -7,9 +7,7 @@ import { RECAPTCHA_SITE_KEY } from "../../utils/recaptcha";
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { descriptionValueLabel, getOrderDescription } from "../../utils/form/new-order-form";
 import { SEO } from "../../components/seo/seo";
-const DynamicNewOrderForm = dynamic(() =>
-  import("../../components/forms/new-order-form/new-order-form").then((mod) => mod.NewOrderForm)
-);
+import { NewOrderForm } from "../../components/forms/new-order-form/new-order-form";
 const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
 
 interface IParams extends ParsedUrlQuery {
@@ -39,7 +37,7 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
           nonce: undefined,
         }}
       >
-        <DynamicNewOrderForm />
+        <NewOrderForm />
       </DynamicGoogleReCaptchaProvider>
     </UnauthorizedUserLayout>
   );

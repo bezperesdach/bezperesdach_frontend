@@ -3,7 +3,7 @@ import Image from "next/image";
 import Hero from "public/assets/images/hero/hero.webp";
 import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 import { LinkButton } from "../../link-button/link-button";
-import urls from "../../../urls/urls.json";
+import urls from "../../../utils/urls.json";
 
 import styles from "./main.module.css";
 

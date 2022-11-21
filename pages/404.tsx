@@ -1,6 +1,6 @@
 import React from "react";
 import { LinkButton } from "../components/link-button/link-button";
-import urls from "../urls/urls.json";
+import urls from "../utils/urls.json";
 import { SEO } from "../components/seo/seo";
 
 import styles from "../styles/404.module.css";

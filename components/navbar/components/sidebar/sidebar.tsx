@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import Portal from "../../../portal/portal";
 import { MenuItem } from "../menu-item/menu-item";
-import urls from "../../../../urls/urls.json";
+import urls from "../../../../utils/urls.json";
 import { typeOptionsOrder } from "../../../../utils/form/new-order-form";
 
 import styles from "./sidebar.module.css";

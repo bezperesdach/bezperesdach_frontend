@@ -1,6 +1,7 @@
 {
 	"base": "/",
 	"prices":"/prices",
+	"about_us":"/about_us",
 	"order": "/order/new",
 	"work": "/work"
 }

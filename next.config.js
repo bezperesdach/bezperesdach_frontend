@@ -34,6 +34,13 @@ let nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   productionBrowserSourceMaps: process.env.NODE_ENV === "development" ? true : false,
+  redirects: async () => [
+    {
+      source: "/order",
+      destination: "/order/new",
+      permanent: true,
+    },
+  ],
   webpack: (config, { dev }) => {
     config.plugins.push(
       new CircularDependencyPlugin({

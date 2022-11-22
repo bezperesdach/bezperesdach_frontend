@@ -3,12 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { createOrder } from "../../api/api";
 
 const captchaSuccess = process.env.NODE_ENV === "development" ? false : true;
-const hostname =
-  process.env.NODE_ENV === "development"
-    ? "dummy-key-pass"
-    : process.env.CONTEXT === "preview"
-    ? process.env.DEPLOY_PRIME_URL
-    : "bezperesdach.ru";
+const hostname = process.env.NODE_ENV === "development" ? "dummy-key-pass" : "bezperesdach.ru";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body, method } = req;

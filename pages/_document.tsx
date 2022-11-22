@@ -26,6 +26,11 @@ export default function Document() {
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)" />
 
         <meta property="og:image" content="/assets/og_logo.png" />
+
+        <meta name="twitter:image" content="/assets/og_logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="bezperesdach.ru" />
+
         <meta property="og:site_name" content="Безпересдач" />
       </Head>
 

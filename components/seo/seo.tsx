@@ -20,6 +20,11 @@ export const SEO = ({ title, description, url, keywords, type, children }: Props
       <meta name="keywords" content={keywords} />
       <meta property="og:type" content={type ?? "website"} />
       <meta name="og:locale" content="ru_RU" />
+
+      <meta property="twitter:url" content={url} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+
       {children}
     </Head>
   );

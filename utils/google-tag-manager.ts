@@ -1,0 +1,1 @@
+export const GOOGLE_TAG_MANAGER_ID = "GTM-5NRRLFH";

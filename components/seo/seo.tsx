@@ -14,6 +14,7 @@ export const SEO = ({ title, description, url, keywords, type, children }: Props
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta name="keywords" content={keywords} />

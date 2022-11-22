@@ -42,6 +42,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const captchaValidation = await data;
 
+      console.log(hostname, captchaValidation);
+
       if (captchaValidation.success === captchaSuccess && captchaValidation.hostname === hostname) {
         await createOrder(order);
 

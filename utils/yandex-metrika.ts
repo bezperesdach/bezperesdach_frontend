@@ -1,4 +1,4 @@
-export const YANDEX_METRIKA_ID = 90995178;
+export const YANDEX_METRIKA_ID = Number(process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID);
 
 const isDevelopment = process.env.NODE_ENV === "development";
 

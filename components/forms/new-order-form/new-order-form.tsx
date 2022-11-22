@@ -57,6 +57,8 @@ export const NewOrderForm = ({ projectType }: Props) => {
 
   if (projectType) {
     initialValue.projectType = getInitValue(projectType);
+  } else {
+    initialValue.projectType = "";
   }
 
   const formik = useFormik({

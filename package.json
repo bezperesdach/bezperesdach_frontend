@@ -17,6 +17,7 @@
     "stylelint": "stylelint \"**/*.css\" --fix"
   },
   "dependencies": {
+    "@types/google.analytics": "^0.0.42",
     "axios": "^1.1.3",
     "formik": "^2.2.9",
     "framer-motion": "^7.6.5",

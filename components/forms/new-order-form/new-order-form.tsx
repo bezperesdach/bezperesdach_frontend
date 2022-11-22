@@ -112,7 +112,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
     const filteredOptions = typeOptionsInit.filter((option) => option.label.toLowerCase().includes(rawInput.toLowerCase()));
 
     if (filteredOptions.length === 0) {
-      filteredOptions.push({ value: "Другое", label: "Другое" });
+      filteredOptions.push({ value: "other", label: "Другое" });
     }
 
     setTypeOptions(filteredOptions);

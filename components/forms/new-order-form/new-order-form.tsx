@@ -11,10 +11,13 @@ import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 
 import { Button } from "../../button/button";
 import { ReactSelector } from "../components/react-selector/react-selector";
-import { createOrder } from "../../../api/api";
 import { ym } from "../../../utils/yandex-metrika";
 import Portal from "../../portal/portal";
 import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/form/new-order-form";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { HCAPTCHA_SITE_KEY } from "../../../utils/hcaptcha";
+import { getErrorMessage, showAndHideError } from "../../../utils/utils";
+import axios from "axios";
 
 import styles from "../form.module.css";
 
@@ -53,6 +56,8 @@ interface Props {
 }
 
 export const NewOrderForm = ({ projectType }: Props) => {
+  const hcaptchaRef = React.useRef<HCaptcha>(null);
+
   const router = useRouter();
 
   if (projectType) {
@@ -61,41 +66,88 @@ export const NewOrderForm = ({ projectType }: Props) => {
     initialValue.projectType = "";
   }
 
+  const onCaptchaClose = () => {
+    setSendOrder((prevState) => {
+      return { ...prevState, loading: false };
+    });
+    hcaptchaRef.current?.resetCaptcha();
+  };
+
+  const onCaptchaVerify = async (captchaCode: string) => {
+    if (!captchaCode) {
+      showAndHideError(
+        () =>
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: false, error: true, errorText: "Каптча устарела, повторите попытку" };
+          }),
+        () =>
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: false, error: false, errorText: "" };
+          }),
+        5000
+      );
+
+      return;
+    }
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: "/api/new-order-form-api",
+        data: {
+          order: formik.values,
+          captcha: captchaCode,
+        },
+      });
+
+      if (response.statusText === "OK") {
+        setSendOrder((prevState) => {
+          return { ...prevState, loading: false, isModal: true };
+        });
+        formik.resetForm();
+        formik.setSubmitting(false);
+        ym("reachGoal", "orderCreateSuccess");
+        if (router.pathname !== "new") {
+          router.replace(
+            {
+              pathname: "new",
+            },
+            undefined,
+            { shallow: true }
+          );
+        }
+      } else {
+        const error = await response.data;
+        throw new Error(error);
+      }
+    } catch (error) {
+      formik.setSubmitting(false);
+      ym("reachGoal", "orderCreateError");
+      showAndHideError(
+        () =>
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: false, error: true, errorText: getErrorMessage(error) };
+          }),
+        () =>
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: false, error: false, errorText: "" };
+          }),
+        5000
+      );
+    } finally {
+      hcaptchaRef.current?.resetCaptcha();
+    }
+  };
+
   const formik = useFormik({
     initialValues: initialValue,
     validationSchema: RequestProjectSchema,
-    onSubmit: async (values, { setSubmitting, resetForm }) => {
-      createOrder(
-        values,
-        () => {
-          setSendOrder((prevState) => {
-            return { ...prevState, loading: true };
-          });
-        },
-        () => {
-          setSendOrder((prevState) => {
-            return { ...prevState, loading: false, isModal: true };
-          });
-          resetForm();
-          setSubmitting(false);
-          ym("reachGoal", "orderCreateSuccess");
-          if (projectType) {
-            router.push("/");
-          }
-        },
-        (err) => {
-          setSendOrder((prevState) => {
-            return { ...prevState, loading: false, error: true, errorText: `${err}` };
-          });
-          setSubmitting(false);
-          ym("reachGoal", "orderCreateError");
-        },
-        () => {
-          setSendOrder((prevState) => {
-            return { ...prevState, loading: false, error: false, errorText: "" };
-          });
-        }
-      );
+    onSubmit: () => {
+      setSendOrder((prevState) => {
+        return { ...prevState, loading: true };
+      });
+
+      hcaptchaRef.current?.execute();
     },
   });
 
@@ -318,6 +370,14 @@ export const NewOrderForm = ({ projectType }: Props) => {
                 >
                   Отправить запрос
                 </Button>
+                <HCaptcha
+                  id="test-captcha"
+                  size="invisible"
+                  ref={hcaptchaRef}
+                  sitekey={HCAPTCHA_SITE_KEY}
+                  onVerify={onCaptchaVerify}
+                  onClose={onCaptchaClose}
+                />
               </div>
             </Form>
           </div>

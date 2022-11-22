@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import { Button } from "../../button/button";
-import { becomeWorker } from "../../../api/api";
 import Link from "next/link";
 import Portal from "../../portal/portal";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { HCAPTCHA_SITE_KEY } from "../../../utils/hcaptcha";
+import { getErrorMessage, showAndHideError } from "../../../utils/utils";
+import axios from "axios";
 
 import styles from "./become-worker-form.module.css";
+import { ym } from "../../../utils/yandex-metrika";
 
 interface IValues {
   name: string;
@@ -24,82 +28,148 @@ const UserSchema = Yup.object().shape({
 });
 
 export const BecomeWorkerForm = () => {
+  const hcaptchaRef = React.useRef<HCaptcha>(null);
+
   const [newWorker, setNewWorker] = useState({
     loading: false,
     error: false,
     isModal: false,
     errorText: "",
   });
+
+  const formik = useFormik({
+    initialValues: initialValue,
+    validationSchema: UserSchema,
+    onSubmit: () => {
+      setNewWorker((prevState) => {
+        return { ...prevState, loading: true };
+      });
+
+      hcaptchaRef.current?.execute();
+    },
+  });
+
+  const onCaptchaClose = () => {
+    setNewWorker((prevState) => {
+      return { ...prevState, loading: false };
+    });
+    hcaptchaRef.current?.resetCaptcha();
+  };
+
+  const onCaptchaVerify = async (captchaCode: string) => {
+    if (!captchaCode) {
+      showAndHideError(
+        () =>
+          setNewWorker((prevState) => {
+            return { ...prevState, loading: false, error: true, errorText: "Каптча устарела, повторите попытку" };
+          }),
+        () =>
+          setNewWorker((prevState) => {
+            return { ...prevState, loading: false, error: false, errorText: "" };
+          }),
+        5000
+      );
+
+      return;
+    }
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: "/api/new-worker",
+        data: {
+          worker: formik.values,
+          captcha: captchaCode,
+        },
+      });
+
+      if (response.statusText === "OK") {
+        setNewWorker((prevState) => {
+          return { ...prevState, loading: false, isModal: true };
+        });
+        formik.resetForm();
+        formik.setSubmitting(false);
+        ym("reachGoal", "orderCreateSuccess");
+      } else {
+        const error = await response.data;
+        throw new Error(error);
+      }
+    } catch (error) {
+      formik.setSubmitting(false);
+      ym("reachGoal", "orderCreateError");
+      showAndHideError(
+        () =>
+          setNewWorker((prevState) => {
+            return { ...prevState, loading: false, error: true, errorText: getErrorMessage(error) };
+          }),
+        () =>
+          setNewWorker((prevState) => {
+            return { ...prevState, loading: false, error: false, errorText: "" };
+          }),
+        5000
+      );
+    } finally {
+      hcaptchaRef.current?.resetCaptcha();
+    }
+  };
+
   return (
     <>
-      <Formik
-        initialValues={initialValue}
-        validationSchema={UserSchema}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          becomeWorker(
-            values,
-            () => {
-              setNewWorker((prevState) => {
-                return { ...prevState, loading: true };
-              });
-            },
-            () => {
-              setNewWorker((prevState) => {
-                return { ...prevState, loading: false, isModal: true };
-              });
-              resetForm();
-              setSubmitting(false);
-            },
-            (err) => {
-              setNewWorker((prevState) => {
-                return { ...prevState, loading: false, error: true, errorText: `${err}` };
-              });
-              setSubmitting(false);
-            },
-            () => {
-              setNewWorker((prevState) => {
-                return { ...prevState, error: false, errorText: "" };
-              });
-            }
-          );
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form className={`${styles.form} noValidate ${styles.form_background_work}`}>
-            <div className={styles.form_work}>
-              <div className={styles.form_item}>
-                <label className={styles.headline}>Ваше имя *</label>
-                <div className={styles.input_container}>
-                  <Field className={styles.input} type="text" name="name" placeholder="Как к вам обращаться?" disabled={isSubmitting} />
-                </div>
-                <ErrorMessage className={styles.error_label} name="name" component="div" />
+      <FormikProvider value={formik}>
+        <Form className={`${styles.form} noValidate ${styles.form_background_work}`}>
+          <div className={styles.form_work}>
+            <div className={styles.form_item}>
+              <label className={styles.headline}>Ваше имя *</label>
+              <div className={styles.input_container}>
+                <Field
+                  className={styles.input}
+                  type="text"
+                  name="name"
+                  placeholder="Как к вам обращаться?"
+                  disabled={formik.isSubmitting}
+                />
               </div>
-
-              <div className={styles.form_item}>
-                <label className={styles.headline}>Email *</label>
-                <div className={styles.input_container}>
-                  <Field className={styles.input} type="email" name="email" placeholder="example@example.ru" disabled={isSubmitting} />
-                </div>
-                <ErrorMessage className={styles.error_label} name="email" component="div" />
-              </div>
-
-              <div className={styles.submit_button_container}>
-                {newWorker.error && <p className={styles.submit_error}>{newWorker.errorText}</p>}
-                <Button
-                  type="submit"
-                  color="#fff"
-                  disabled={isSubmitting}
-                  loading={newWorker.loading}
-                  style={{ alignSelf: "center" }}
-                  error={newWorker.error}
-                >
-                  Отправить
-                </Button>
-              </div>
+              <ErrorMessage className={styles.error_label} name="name" component="div" />
             </div>
-          </Form>
-        )}
-      </Formik>
+
+            <div className={styles.form_item}>
+              <label className={styles.headline}>Email *</label>
+              <div className={styles.input_container}>
+                <Field
+                  className={styles.input}
+                  type="email"
+                  name="email"
+                  placeholder="example@example.ru"
+                  disabled={formik.isSubmitting}
+                />
+              </div>
+              <ErrorMessage className={styles.error_label} name="email" component="div" />
+            </div>
+
+            <div className={styles.submit_button_container}>
+              {newWorker.error && <p className={styles.submit_error}>{newWorker.errorText}</p>}
+              <Button
+                type="submit"
+                color="#fff"
+                disabled={formik.isSubmitting}
+                loading={newWorker.loading}
+                style={{ alignSelf: "center" }}
+                error={newWorker.error}
+              >
+                Отправить
+              </Button>
+              <HCaptcha
+                id="test-captcha"
+                size="invisible"
+                ref={hcaptchaRef}
+                sitekey={HCAPTCHA_SITE_KEY}
+                onVerify={onCaptchaVerify}
+                onClose={onCaptchaClose}
+              />
+            </div>
+          </div>
+        </Form>
+      </FormikProvider>
       {newWorker.isModal && (
         <Portal>
           <div className={styles.modal_overlay}>

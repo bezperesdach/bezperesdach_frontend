@@ -28,17 +28,17 @@ export default function Document() {
         <meta property="og:image" content="/assets/og_logo.png" />
         <meta property="og:site_name" content="Безпересдач" />
       </Head>
+
       <body>
         <Main />
         <NextScript />
 
         {analyticsEnabled && (
-          <>
-            <Script
-              id="yandex-metrica"
-              strategy="lazyOnload"
-              dangerouslySetInnerHTML={{
-                __html: `
+          <Script
+            id="yandex-metrica"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
   m[i].l=1*new Date();
   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -50,31 +50,34 @@ export default function Document() {
         accurateTrackBounce:true,
         webvisor:true
   });`,
-              }}
-            />
-            <Script
-              id="google-tag-manager"
-              strategy="lazyOnload"
-              dangerouslySetInnerHTML={{
-                __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            }}
+          />
+        )}
+
+        {analyticsEnabled && (
+          <Script
+            id="google-tag-manager"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${GOOGLE_TAG_MANAGER_ID}');`,
-              }}
+            }}
+          />
+        )}
+
+        {analyticsEnabled && (
+          <noscript>
+            <img src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`} style={{ position: "absolute", left: "-9999px" }} alt="" />
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GOOGLE_TAG_MANAGER_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
             />
-
-            <noscript>
-              <img src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`} style={{ position: "absolute", left: "-9999px" }} alt="" />
-
-              <iframe
-                src={`https://www.googletagmanager.com/ns.html?id=${GOOGLE_TAG_MANAGER_ID}`}
-                height="0"
-                width="0"
-                style={{ display: "none", visibility: "hidden" }}
-              />
-            </noscript>
-          </>
+          </noscript>
         )}
       </body>
     </Html>

@@ -89,14 +89,14 @@ export const BecomeWorkerForm = () => {
         });
         formik.resetForm();
         formik.setSubmitting(false);
-        ym("reachGoal", "orderCreateSuccess");
+        ym("reachGoal", "newWorkerSuccess");
       } else {
         const error = await response.data;
         throw new Error(error);
       }
     } catch (error) {
       formik.setSubmitting(false);
-      ym("reachGoal", "orderCreateError");
+      ym("reachGoal", "newWorkerError");
       showAndHideError(
         () =>
           setNewWorker((prevState) => {

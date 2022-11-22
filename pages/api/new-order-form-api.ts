@@ -48,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     } catch (error) {
       console.log(error);
-      return res.status(422).json({ message: "Что-то пошло не так, повторите отправку" });
+      return res.status(422).json({ message: `Что-то пошло не так, повторите отправку: ${error}` });
     }
   }
   return res.status(404).send("Not found");

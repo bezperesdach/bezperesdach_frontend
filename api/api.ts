@@ -16,18 +16,10 @@ export const createOrder = async (order: IOrder) => {
   const data = axios
     .post(`${API_URL}/new-orders`, { data: order }, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } })
     .then((res) => res.data);
-  const res = await Promise.allSettled([data, waitFor(300)]);
 
-  const response = res.find(isFulfilled)?.value;
-  const rejected = res.find(isRejected)?.reason;
+  const res = await data;
 
-  if (response) {
-    return response;
-  }
-
-  if (rejected) {
-    throw rejected;
-  }
+  return res.data;
 };
 
 export const becomeWorker = async (worker: IWorker) => {
@@ -35,18 +27,9 @@ export const becomeWorker = async (worker: IWorker) => {
     .post(`${API_URL}/new-workers`, { data: worker }, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } })
     .then((res) => res.data);
 
-  const res = await Promise.allSettled([data, waitFor(300)]);
+  const res = await data;
 
-  const response = res.find(isFulfilled)?.value;
-  const rejected = res.find(isRejected)?.reason;
-
-  if (response) {
-    return response;
-  }
-
-  if (rejected) {
-    throw rejected;
-  }
+  return res.data;
 };
 
 export const authenticateUser = async (

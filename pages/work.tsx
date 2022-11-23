@@ -1,12 +1,12 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { RECAPTCHA_SITE_KEY } from "../utils/recaptcha";
 
 import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 const DynamicBecomeWorkerForm = dynamic(() =>
   import("../components/forms/become-worker-form/become-worker-form").then((mod) => mod.BecomeWorkerForm)
 );
+const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
 
 import { Advantages } from "../components/work-page/advantages/advantages";
 import { Offer } from "../components/work-page/offer/offer";
@@ -27,7 +27,7 @@ export default function Work() {
 
       <Advantages />
       <Offer />
-      <GoogleReCaptchaProvider
+      <DynamicGoogleReCaptchaProvider
         reCaptchaKey={RECAPTCHA_SITE_KEY}
         scriptProps={{
           async: false, // optional, default to false,
@@ -37,7 +37,7 @@ export default function Work() {
         }}
       >
         <DynamicBecomeWorkerForm />
-      </GoogleReCaptchaProvider>
+      </DynamicGoogleReCaptchaProvider>
 
       <Contact />
     </UnauthorizedUserLayout>

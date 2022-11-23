@@ -2,7 +2,6 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { GetStaticProps, InferGetStaticPropsType } from "next/types";
 import { ParsedUrlQuery } from "querystring";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { RECAPTCHA_SITE_KEY } from "../../utils/recaptcha";
 
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
@@ -11,6 +10,7 @@ import { SEO } from "../../components/seo/seo";
 const DynamicNewOrderForm = dynamic(() =>
   import("../../components/forms/new-order-form/new-order-form").then((mod) => mod.NewOrderForm)
 );
+const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
 
 interface IParams extends ParsedUrlQuery {
   slug: string;
@@ -30,7 +30,7 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>
 
-      <GoogleReCaptchaProvider
+      <DynamicGoogleReCaptchaProvider
         reCaptchaKey={RECAPTCHA_SITE_KEY}
         scriptProps={{
           async: false, // optional, default to false,
@@ -40,7 +40,7 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
         }}
       >
         <DynamicNewOrderForm />
-      </GoogleReCaptchaProvider>
+      </DynamicGoogleReCaptchaProvider>
     </UnauthorizedUserLayout>
   );
 }

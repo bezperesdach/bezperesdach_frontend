@@ -3,7 +3,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { createOrder } from "../../api/api";
 
 const captchaSuccess = process.env.NODE_ENV === "development" ? false : true;
-const hostname = process.env.NODE_ENV === "development" ? "dummy-key-pass" : "bezperesdach.ru";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body, method } = req;
@@ -37,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const captchaValidation = await data;
 
-      if (captchaValidation.success === captchaSuccess && captchaValidation.hostname === hostname) {
+      if (captchaValidation.success === captchaSuccess) {
         await createOrder(order);
 
         return res.status(200).send("OK");
@@ -48,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     } catch (error) {
       console.log(error);
-      return res.status(422).json({ message: `Что-то пошло не так, повторите отправку: ${error}` });
+      return res.status(422).json({ message: "Что-то пошло не так, повторите отправку" });
     }
   }
   return res.status(404).send("Not found");

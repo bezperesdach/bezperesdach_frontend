@@ -1,5 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import { RECAPTCHA_SITE_KEY } from "../utils/recaptcha";
 
 import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 const DynamicBecomeWorkerForm = dynamic(() =>
@@ -25,7 +27,18 @@ export default function Work() {
 
       <Advantages />
       <Offer />
-      <DynamicBecomeWorkerForm />
+      <GoogleReCaptchaProvider
+        reCaptchaKey={RECAPTCHA_SITE_KEY}
+        scriptProps={{
+          async: false, // optional, default to false,
+          defer: true, // optional, default to false
+          appendTo: "body", // optional, default to "head", can be "head" or "body",
+          nonce: undefined,
+        }}
+      >
+        <DynamicBecomeWorkerForm />
+      </GoogleReCaptchaProvider>
+
       <Contact />
     </UnauthorizedUserLayout>
   );

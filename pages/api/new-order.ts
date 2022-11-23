@@ -1,35 +1,23 @@
-import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import { createOrder } from "../../api/api";
+import { verifyRecaptcha } from "../../utils/recaptcha";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body, method } = req;
-
-  // Extract the email and captcha code from the request body
-  const { order, captcha } = body;
+  const { order, token } = body;
 
   if (method === "POST") {
-    // If email or captcha are missing return an error
-    if ((order && Object.keys(order).length === 0 && Object.getPrototypeOf(order) === Object.prototype) || !captcha) {
+    if ((order && Object.keys(order).length === 0 && Object.getPrototypeOf(order) === Object.prototype) || !token) {
       return res.status(422).json({
         message: "Форма не заполнена",
       });
     }
 
     try {
-      const data = axios
-        .post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-          },
-        })
-        .then((res) => res.data);
+      const response = await verifyRecaptcha(token);
 
-      const captchaValidation = await data;
-
-      if (captchaValidation.success) {
-        await createOrder(order);
-
+      if (response.data.success) {
+        await createOrder({ ...order, robotScore: response.data.score });
         return res.status(200).send("OK");
       }
 
@@ -38,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     } catch (error) {
       console.log(error);
-      return res.status(422).json({ message: `Что-то пошло не так, повторите отправку: ${error}` });
+      return res.status(422).json({ message: "Что-то пошло не так, повторите отправку" });
     }
   }
   return res.status(404).send("Not found");

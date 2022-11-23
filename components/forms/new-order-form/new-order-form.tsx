@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -14,11 +14,10 @@ import { ReactSelector } from "../components/react-selector/react-selector";
 import { ym } from "../../../utils/yandex-metrika";
 import Portal from "../../portal/portal";
 import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/form/new-order-form";
-import Reaptcha from "reaptcha";
-import { RECAPTCHA_SITE_KEY } from "../../../utils/recaptcha";
-import { getErrorMessage, showAndHideError } from "../../../utils/utils";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { showAndHideError } from "../../../utils/utils";
 import axios from "axios";
-import useInterval from "react-useinterval";
+import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
 
 import styles from "../form.module.css";
 
@@ -53,34 +52,9 @@ const RequestProjectSchema = Yup.object().shape({
 });
 
 export const NewOrderForm = () => {
-  const recaptchaRef = React.useRef<Reaptcha>(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const router = useRouter();
-
-  const [processing, setProcessing] = useState(false); // condition for recaptchaRef.current.executeAsync() being called
-  const [showed, setShowed] = useState(false); // condition for challenge showed
-
-  //handle reCaptcha cancel
-  useInterval(
-    () => {
-      const iframes = document.querySelectorAll('iframe[src*="recaptcha/api2/bframe"]');
-      if (iframes.length === 0) return;
-      const recaptchaOverlay = iframes[0].parentNode?.parentNode as HTMLElement;
-      if (recaptchaOverlay) {
-        if (processing && recaptchaOverlay.style.visibility === "visible") setShowed(true);
-        if (processing && recaptchaOverlay.style.visibility === "hidden" && showed) {
-          setProcessing(false);
-          setShowed(false);
-
-          setSendOrder((prevState) => {
-            return { ...prevState, loading: false };
-          });
-          formik.setSubmitting(false);
-        }
-      }
-    },
-    processing ? 100 : null
-  );
 
   const closeModal = () => {
     if (router.pathname !== "new") {
@@ -98,88 +72,30 @@ export const NewOrderForm = () => {
     });
   };
 
-  const onCaptchaVerify = async (captchaCode: string | null) => {
-    if (captchaCode === null) {
-      showAndHideError(
-        () =>
-          setSendOrder((prevState) => {
-            return { ...prevState, loading: false, error: true, errorText: "Капча устарела, повторите попытку" };
-          }),
-        () =>
-          setSendOrder((prevState) => {
-            return { ...prevState, loading: false, error: false, errorText: "" };
-          }),
-        5000
-      );
-
-      setProcessing(false);
-      formik.setSubmitting(false);
-      recaptchaRef.current?.reset();
-
-      return;
-    }
-
-    setProcessing(false);
-
-    try {
-      const data = axios
-        .post("/api/new-order", {
-          order: formik.values,
-          captcha: captchaCode,
-        })
-        .then((res) => res.data);
-
-      const response = await data;
-
-      if (response === "OK") {
-        ym("reachGoal", "orderCreateSuccess");
-
-        setSendOrder((prevState) => {
-          return { ...prevState, loading: false, isModal: true };
-        });
-      } else {
-        const error = await response;
-        throw new Error(error);
-      }
-    } catch (error) {
-      ym("reachGoal", "orderCreateError");
-      showAndHideError(
-        () =>
-          setSendOrder((prevState) => {
-            return { ...prevState, loading: false, error: true, errorText: getErrorMessage(error) };
-          }),
-        () =>
-          setSendOrder((prevState) => {
-            return { ...prevState, loading: false, error: false, errorText: "" };
-          }),
-        5000
-      );
-    } finally {
-      formik.setSubmitting(false);
-      recaptchaRef.current?.reset();
-    }
-  };
-
   const formik = useFormik({
     initialValues: initialValue,
     validationSchema: RequestProjectSchema,
-    onSubmit: () => {
+    onSubmit: (values) => formSubmit(values),
+  });
+
+  const formSubmit = useCallback(
+    async (values: IOrder) => {
+      if (!executeRecaptcha) {
+        formik.setSubmitting(false);
+        return;
+      }
+
       setSendOrder((prevState) => {
         return { ...prevState, loading: true };
       });
 
-      setProcessing(true);
-
       try {
-        recaptchaRef.current?.execute();
-      } catch (err) {
-        if (err === "This recaptcha instance did not render yet") {
-          setProcessing(false);
-          formik.setSubmitting(false);
+        const token = await executeRecaptcha();
+        if (!token) {
           showAndHideError(
             () =>
               setSendOrder((prevState) => {
-                return { ...prevState, loading: false, error: true, errorText: "Неверная капча" };
+                return { ...prevState, loading: false, error: true, errorText: "Произошла ошибка при отправке, попробуйте еще раз" };
               }),
             () =>
               setSendOrder((prevState) => {
@@ -187,10 +103,44 @@ export const NewOrderForm = () => {
               }),
             5000
           );
+          return;
         }
+
+        const result = await axios.post("/api/new-order", {
+          order: values,
+          token: token,
+        });
+
+        if (result.data) {
+          ym("reachGoal", "orderCreateSuccess");
+
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: false, isModal: true };
+          });
+        }
+      } catch (error) {
+        ym("reachGoal", "orderCreateError");
+        showAndHideError(
+          () =>
+            setSendOrder((prevState) => {
+              return {
+                ...prevState,
+                loading: false,
+                error: true,
+                errorText: `Произошла ошибка при отправке, попробуйте еще раз:${error}`,
+              };
+            }),
+          () =>
+            setSendOrder((prevState) => {
+              return { ...prevState, loading: false, error: false, errorText: "" };
+            }),
+          5000
+        );
       }
     },
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [executeRecaptcha]
+  );
 
   useEffect(() => {
     const slug = router.query.slug as string;
@@ -422,15 +372,7 @@ export const NewOrderForm = () => {
                 >
                   Отправить запрос
                 </Button>
-                <Reaptcha
-                  size="invisible"
-                  ref={recaptchaRef}
-                  hl="ru"
-                  sitekey={RECAPTCHA_SITE_KEY}
-                  onVerify={onCaptchaVerify}
-                  badge="inline"
-                  theme="dark"
-                />
+                <RecaptchaDisclaimer />
               </div>
             </Form>
           </div>

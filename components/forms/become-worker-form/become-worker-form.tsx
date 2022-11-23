@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import { Button } from "../../button/button";
 import Link from "next/link";
 import Portal from "../../portal/portal";
 import { ym } from "../../../utils/yandex-metrika";
-import Reaptcha from "reaptcha";
-import { RECAPTCHA_SITE_KEY } from "../../../utils/recaptcha";
-import { getErrorMessage, showAndHideError } from "../../../utils/utils";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { showAndHideError } from "../../../utils/utils";
 import axios from "axios";
-import useInterval from "react-useinterval";
+import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
 
 import styles from "./become-worker-form.module.css";
 
@@ -29,70 +28,13 @@ const UserSchema = Yup.object().shape({
 });
 
 export const BecomeWorkerForm = () => {
-  const recaptchaRef = React.useRef<Reaptcha>(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [newWorker, setNewWorker] = useState({
     loading: false,
     error: false,
     isModal: false,
     errorText: "",
-  });
-
-  const [processing, setProcessing] = useState(false); // condition for recaptchaRef.current.executeAsync() being called
-  const [showed, setShowed] = useState(false); // condition for challenge showed
-
-  //handle reCaptcha cancel
-  useInterval(
-    () => {
-      const iframes = document.querySelectorAll('iframe[src*="recaptcha/api2/bframe"]');
-      if (iframes.length === 0) return;
-      const recaptchaOverlay = iframes[0].parentNode?.parentNode as HTMLElement;
-      if (recaptchaOverlay) {
-        if (processing && recaptchaOverlay.style.visibility === "visible") setShowed(true);
-        if (processing && recaptchaOverlay.style.visibility === "hidden" && showed) {
-          setProcessing(false);
-          setShowed(false);
-
-          setNewWorker((prevState) => {
-            return { ...prevState, loading: false };
-          });
-          formik.setSubmitting(false);
-        }
-      }
-    },
-    processing ? 100 : null
-  );
-
-  const formik = useFormik({
-    initialValues: initialValue,
-    validationSchema: UserSchema,
-    onSubmit: () => {
-      setNewWorker((prevState) => {
-        return { ...prevState, loading: true };
-      });
-
-      setProcessing(true);
-
-      try {
-        recaptchaRef.current?.execute();
-      } catch (err) {
-        if (err === "This recaptcha instance did not render yet") {
-          setProcessing(false);
-          formik.setSubmitting(false);
-          showAndHideError(
-            () =>
-              setNewWorker((prevState) => {
-                return { ...prevState, loading: false, error: true, errorText: "Неверная капча" };
-              }),
-            () =>
-              setNewWorker((prevState) => {
-                return { ...prevState, loading: false, error: false, errorText: "" };
-              }),
-            5000
-          );
-        }
-      }
-    },
   });
 
   const closeModal = () => {
@@ -102,67 +44,75 @@ export const BecomeWorkerForm = () => {
     });
   };
 
-  const onCaptchaVerify = async (captchaCode: string | null) => {
-    if (captchaCode === null) {
-      showAndHideError(
-        () =>
-          setNewWorker((prevState) => {
-            return { ...prevState, loading: false, error: true, errorText: "Капча устарела, повторите попытку" };
-          }),
-        () =>
-          setNewWorker((prevState) => {
-            return { ...prevState, loading: false, error: false, errorText: "" };
-          }),
-        5000
-      );
+  const formik = useFormik({
+    initialValues: initialValue,
+    validationSchema: UserSchema,
+    onSubmit: (values) => formSubmit(values),
+  });
 
-      setProcessing(false);
-      formik.setSubmitting(false);
-      recaptchaRef.current?.reset();
+  const formSubmit = useCallback(
+    async (values: IValues) => {
+      if (!executeRecaptcha) {
+        formik.setSubmitting(false);
+        return;
+      }
 
-      return;
-    }
+      setNewWorker((prevState) => {
+        return { ...prevState, loading: true };
+      });
 
-    setProcessing(false);
+      try {
+        const token = await executeRecaptcha();
+        if (!token) {
+          showAndHideError(
+            () =>
+              setNewWorker((prevState) => {
+                return { ...prevState, loading: false, error: true, errorText: "Произошла ошибка при отправке, попробуйте еще раз" };
+              }),
+            () =>
+              setNewWorker((prevState) => {
+                return { ...prevState, loading: false, error: false, errorText: "" };
+              }),
+            5000
+          );
+          return;
+        }
 
-    try {
-      const data = axios
-        .post("/api/new-worker", {
-          order: formik.values,
-          captcha: captchaCode,
-        })
-        .then((res) => res.data);
-
-      const response = await data;
-
-      if (response === "OK") {
-        setNewWorker((prevState) => {
-          return { ...prevState, loading: false, isModal: true };
+        const result = await axios.post("/api/new-worker", {
+          worker: values,
+          token: token,
         });
 
-        ym("reachGoal", "newWorkerSuccess");
-      } else {
-        const error = await response;
-        throw new Error(error);
+        if (result.data) {
+          ym("reachGoal", "newWorkerSuccess");
+
+          setNewWorker((prevState) => {
+            return { ...prevState, loading: false, isModal: true };
+          });
+        }
+      } catch (error) {
+        ym("reachGoal", "newWorkeError");
+        showAndHideError(
+          () =>
+            setNewWorker((prevState) => {
+              return {
+                ...prevState,
+                loading: false,
+                error: true,
+                errorText: `Произошла ошибка при отправке, попробуйте еще раз:${error}`,
+              };
+            }),
+          () =>
+            setNewWorker((prevState) => {
+              return { ...prevState, loading: false, error: false, errorText: "" };
+            }),
+          5000
+        );
       }
-    } catch (error) {
-      ym("reachGoal", "newWorkerError");
-      showAndHideError(
-        () =>
-          setNewWorker((prevState) => {
-            return { ...prevState, loading: false, error: true, errorText: getErrorMessage(error) };
-          }),
-        () =>
-          setNewWorker((prevState) => {
-            return { ...prevState, loading: false, error: false, errorText: "" };
-          }),
-        5000
-      );
-    } finally {
-      formik.setSubmitting(false);
-      recaptchaRef.current?.reset();
-    }
-  };
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [executeRecaptcha]
+  );
 
   return (
     <>
@@ -209,15 +159,7 @@ export const BecomeWorkerForm = () => {
               >
                 Отправить
               </Button>
-              <Reaptcha
-                size="invisible"
-                ref={recaptchaRef}
-                hl="ru"
-                sitekey={RECAPTCHA_SITE_KEY}
-                onVerify={onCaptchaVerify}
-                badge="inline"
-                theme="dark"
-              />
+              <RecaptchaDisclaimer color="rgb(255 255 255 / 40%)" />
             </div>
           </div>
         </Form>

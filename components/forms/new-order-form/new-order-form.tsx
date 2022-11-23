@@ -51,17 +51,15 @@ const RequestProjectSchema = Yup.object().shape({
   email: Yup.string().email("Неверный email").required("Обязательное поле"),
 });
 
-interface Props {
-  projectType?: string;
-}
-
-export const NewOrderForm = ({ projectType }: Props) => {
+export const NewOrderForm = () => {
   const hcaptchaRef = React.useRef<HCaptcha>(null);
 
   const router = useRouter();
 
-  if (projectType) {
-    initialValue.projectType = getInitValue(projectType);
+  const slug = router.query.slug as string;
+
+  if (slug !== "new") {
+    initialValue.projectType = getInitValue(slug);
   } else {
     initialValue.projectType = "";
   }

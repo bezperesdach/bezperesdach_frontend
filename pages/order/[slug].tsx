@@ -28,7 +28,7 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>
 
-      <DynamicNewOrderForm projectType={slug === "new" ? undefined : slug} />
+      <DynamicNewOrderForm />
     </UnauthorizedUserLayout>
   );
 }

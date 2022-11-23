@@ -102,7 +102,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
 
       console.log(response);
 
-      if (response.statusText === "OK") {
+      if (response.data === "OK") {
         setSendOrder((prevState) => {
           return { ...prevState, loading: false, isModal: true };
         });

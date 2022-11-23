@@ -82,8 +82,24 @@ export const NewOrderForm = () => {
     processing ? 100 : null
   );
 
+  const closeModal = () => {
+    if (router.pathname !== "new") {
+      router.replace(
+        {
+          pathname: "new",
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
+    formik.resetForm();
+    setSendOrder((prevState) => {
+      return { ...prevState, isModal: false };
+    });
+  };
+
   const onCaptchaVerify = async (captchaCode: string | null) => {
-    if (!captchaCode) {
+    if (captchaCode === null) {
       showAndHideError(
         () =>
           setSendOrder((prevState) => {
@@ -103,42 +119,29 @@ export const NewOrderForm = () => {
       return;
     }
 
+    setProcessing(false);
+
     try {
-      const response = await axios({
-        method: "post",
-        url: "/api/new-order-form-api",
-        data: {
+      const data = axios
+        .post("/api/new-order", {
           order: formik.values,
           captcha: captchaCode,
-        },
-      });
+        })
+        .then((res) => res.data);
 
-      if (response.data === "OK") {
-        setProcessing(false);
+      const response = await data;
+
+      if (response === "OK") {
+        ym("reachGoal", "orderCreateSuccess");
 
         setSendOrder((prevState) => {
           return { ...prevState, loading: false, isModal: true };
         });
-
-        formik.resetForm();
-        formik.setSubmitting(false);
-        ym("reachGoal", "orderCreateSuccess");
-        if (router.pathname !== "new") {
-          router.replace(
-            {
-              pathname: "new",
-            },
-            undefined,
-            { shallow: true }
-          );
-        }
       } else {
-        const error = await response.data;
+        const error = await response;
         throw new Error(error);
       }
     } catch (error) {
-      setProcessing(false);
-      formik.setSubmitting(false);
       ym("reachGoal", "orderCreateError");
       showAndHideError(
         () =>
@@ -152,6 +155,7 @@ export const NewOrderForm = () => {
         5000
       );
     } finally {
+      formik.setSubmitting(false);
       recaptchaRef.current?.reset();
     }
   };
@@ -454,15 +458,7 @@ export const NewOrderForm = () => {
                       help@bezperesdach.ru
                     </Link>
                   </p>
-                  <Button
-                    type="button"
-                    color="#fff"
-                    onClick={() =>
-                      setSendOrder((prevState) => {
-                        return { ...prevState, isModal: false };
-                      })
-                    }
-                  >
+                  <Button type="button" color="#fff" onClick={closeModal}>
                     Закрыть
                   </Button>
                 </div>

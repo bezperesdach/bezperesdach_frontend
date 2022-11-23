@@ -95,8 +95,15 @@ export const BecomeWorkerForm = () => {
     },
   });
 
+  const closeModal = () => {
+    formik.resetForm();
+    setNewWorker((prevState) => {
+      return { ...prevState, isModal: false };
+    });
+  };
+
   const onCaptchaVerify = async (captchaCode: string | null) => {
-    if (!captchaCode) {
+    if (captchaCode === null) {
       showAndHideError(
         () =>
           setNewWorker((prevState) => {
@@ -116,32 +123,29 @@ export const BecomeWorkerForm = () => {
       return;
     }
 
+    setProcessing(false);
+
     try {
-      const response = await axios({
-        method: "post",
-        url: "/api/new-worker",
-        data: {
-          worker: formik.values,
+      const data = axios
+        .post("/api/new-worker", {
+          order: formik.values,
           captcha: captchaCode,
-        },
-      });
+        })
+        .then((res) => res.data);
 
-      if (response.data === "OK") {
-        setProcessing(false);
+      const response = await data;
 
+      if (response === "OK") {
         setNewWorker((prevState) => {
           return { ...prevState, loading: false, isModal: true };
         });
-        formik.resetForm();
-        formik.setSubmitting(false);
+
         ym("reachGoal", "newWorkerSuccess");
       } else {
-        const error = await response.data;
+        const error = await response;
         throw new Error(error);
       }
     } catch (error) {
-      setProcessing(false);
-      formik.setSubmitting(false);
       ym("reachGoal", "newWorkerError");
       showAndHideError(
         () =>
@@ -155,6 +159,7 @@ export const BecomeWorkerForm = () => {
         5000
       );
     } finally {
+      formik.setSubmitting(false);
       recaptchaRef.current?.reset();
     }
   };
@@ -232,15 +237,7 @@ export const BecomeWorkerForm = () => {
                   work@bezperesdach.ru
                 </Link>
               </p>
-              <Button
-                type="button"
-                color="#fff"
-                onClick={() =>
-                  setNewWorker((prevState) => {
-                    return { ...prevState, isModal: false };
-                  })
-                }
-              >
+              <Button type="button" color="#fff" onClick={closeModal}>
                 Закрыть
               </Button>
             </div>

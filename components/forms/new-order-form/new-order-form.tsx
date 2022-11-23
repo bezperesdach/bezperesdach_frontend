@@ -70,6 +70,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
     setSendOrder((prevState) => {
       return { ...prevState, loading: false };
     });
+    formik.setSubmitting(false);
     hcaptchaRef.current?.resetCaptcha();
   };
 

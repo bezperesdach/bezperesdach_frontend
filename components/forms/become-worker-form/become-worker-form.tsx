@@ -53,6 +53,7 @@ export const BecomeWorkerForm = () => {
     setNewWorker((prevState) => {
       return { ...prevState, loading: false };
     });
+    formik.setSubmitting(false);
     hcaptchaRef.current?.resetCaptcha();
   };
 

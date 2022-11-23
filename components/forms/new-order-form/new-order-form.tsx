@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -14,10 +14,11 @@ import { ReactSelector } from "../components/react-selector/react-selector";
 import { ym } from "../../../utils/yandex-metrika";
 import Portal from "../../portal/portal";
 import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/form/new-order-form";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { HCAPTCHA_SITE_KEY } from "../../../utils/hcaptcha";
+import Reaptcha from "reaptcha";
+import { RECAPTCHA_SITE_KEY } from "../../../utils/recaptcha";
 import { getErrorMessage, showAndHideError } from "../../../utils/utils";
 import axios from "axios";
+import useInterval from "react-useinterval";
 
 import styles from "../form.module.css";
 
@@ -51,35 +52,44 @@ const RequestProjectSchema = Yup.object().shape({
   email: Yup.string().email("Неверный email").required("Обязательное поле"),
 });
 
-interface Props {
-  projectType?: string;
-}
-
-export const NewOrderForm = ({ projectType }: Props) => {
-  const hcaptchaRef = React.useRef<HCaptcha>(null);
+export const NewOrderForm = () => {
+  const recaptchaRef = React.useRef<Reaptcha>(null);
 
   const router = useRouter();
 
-  if (projectType) {
-    initialValue.projectType = getInitValue(projectType);
-  } else {
-    initialValue.projectType = "";
-  }
+  const [processing, setProcessing] = useState(false); // condition for recaptchaRef.current.executeAsync() being called
+  const [showed, setShowed] = useState(false); // condition for challenge showed
 
-  const onCaptchaClose = () => {
-    setSendOrder((prevState) => {
-      return { ...prevState, loading: false };
-    });
-    formik.setSubmitting(false);
-    hcaptchaRef.current?.resetCaptcha();
-  };
+  //handle reCaptcha cancel
+  useInterval(
+    () => {
+      const iframes = document.querySelectorAll('iframe[src*="recaptcha/api2/bframe"]');
+      if (iframes.length === 0) return;
+      const recaptchaOverlay = iframes[0].parentNode?.parentNode as HTMLElement;
+      if (recaptchaOverlay) {
+        if (processing && recaptchaOverlay.style.visibility === "visible") setShowed(true);
+        if (processing && recaptchaOverlay.style.visibility === "hidden" && showed) {
+          setProcessing(false);
+          setShowed(false);
 
-  const onCaptchaVerify = async (captchaCode: string) => {
+          setSendOrder((prevState) => {
+            return { ...prevState, loading: false };
+          });
+          formik.setSubmitting(false);
+
+          console.log("closed captcha");
+        }
+      }
+    },
+    processing ? 100 : null
+  );
+
+  const onCaptchaVerify = async (captchaCode: string | null) => {
     if (!captchaCode) {
       showAndHideError(
         () =>
           setSendOrder((prevState) => {
-            return { ...prevState, loading: false, error: true, errorText: "Каптча устарела, повторите попытку" };
+            return { ...prevState, loading: false, error: true, errorText: "Капча устарела, повторите попытку" };
           }),
         () =>
           setSendOrder((prevState) => {
@@ -87,6 +97,10 @@ export const NewOrderForm = ({ projectType }: Props) => {
           }),
         5000
       );
+
+      setProcessing(false);
+      formik.setSubmitting(false);
+      recaptchaRef.current?.reset();
 
       return;
     }
@@ -102,9 +116,12 @@ export const NewOrderForm = ({ projectType }: Props) => {
       });
 
       if (response.data === "OK") {
+        setProcessing(false);
+
         setSendOrder((prevState) => {
           return { ...prevState, loading: false, isModal: true };
         });
+
         formik.resetForm();
         formik.setSubmitting(false);
         ym("reachGoal", "orderCreateSuccess");
@@ -122,6 +139,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
         throw new Error(error);
       }
     } catch (error) {
+      setProcessing(false);
       formik.setSubmitting(false);
       ym("reachGoal", "orderCreateError");
       showAndHideError(
@@ -136,7 +154,7 @@ export const NewOrderForm = ({ projectType }: Props) => {
         5000
       );
     } finally {
-      hcaptchaRef.current?.resetCaptcha();
+      recaptchaRef.current?.reset();
     }
   };
 
@@ -148,9 +166,22 @@ export const NewOrderForm = ({ projectType }: Props) => {
         return { ...prevState, loading: true };
       });
 
-      hcaptchaRef.current?.execute();
+      setProcessing(true);
+
+      recaptchaRef.current?.execute();
     },
   });
+
+  useEffect(() => {
+    const slug = router.query.slug as string;
+
+    if (slug !== "new") {
+      formik.setFieldValue("projectType", getInitValue(slug));
+    } else {
+      formik.setFieldValue("projectType", "");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.slug]);
 
   const [sendOrder, setSendOrder] = useState({
     loading: false,
@@ -371,13 +402,14 @@ export const NewOrderForm = ({ projectType }: Props) => {
                 >
                   Отправить запрос
                 </Button>
-                <HCaptcha
-                  id="test-captcha"
+                <Reaptcha
                   size="invisible"
-                  ref={hcaptchaRef}
-                  sitekey={HCAPTCHA_SITE_KEY}
+                  ref={recaptchaRef}
+                  hl="ru"
+                  sitekey={RECAPTCHA_SITE_KEY}
                   onVerify={onCaptchaVerify}
-                  onClose={onCaptchaClose}
+                  badge="inline"
+                  theme="dark"
                 />
               </div>
             </Form>

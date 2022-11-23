@@ -4,13 +4,14 @@ import * as Yup from "yup";
 import { Button } from "../../button/button";
 import Link from "next/link";
 import Portal from "../../portal/portal";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { HCAPTCHA_SITE_KEY } from "../../../utils/hcaptcha";
+import { ym } from "../../../utils/yandex-metrika";
+import Reaptcha from "reaptcha";
+import { RECAPTCHA_SITE_KEY } from "../../../utils/recaptcha";
 import { getErrorMessage, showAndHideError } from "../../../utils/utils";
 import axios from "axios";
+import useInterval from "react-useinterval";
 
 import styles from "./become-worker-form.module.css";
-import { ym } from "../../../utils/yandex-metrika";
 
 interface IValues {
   name: string;
@@ -28,7 +29,7 @@ const UserSchema = Yup.object().shape({
 });
 
 export const BecomeWorkerForm = () => {
-  const hcaptchaRef = React.useRef<HCaptcha>(null);
+  const recaptchaRef = React.useRef<Reaptcha>(null);
 
   const [newWorker, setNewWorker] = useState({
     loading: false,
@@ -36,6 +37,33 @@ export const BecomeWorkerForm = () => {
     isModal: false,
     errorText: "",
   });
+
+  const [processing, setProcessing] = useState(false); // condition for recaptchaRef.current.executeAsync() being called
+  const [showed, setShowed] = useState(false); // condition for challenge showed
+
+  //handle reCaptcha cancel
+  useInterval(
+    () => {
+      const iframes = document.querySelectorAll('iframe[src*="recaptcha/api2/bframe"]');
+      if (iframes.length === 0) return;
+      const recaptchaOverlay = iframes[0].parentNode?.parentNode as HTMLElement;
+      if (recaptchaOverlay) {
+        if (processing && recaptchaOverlay.style.visibility === "visible") setShowed(true);
+        if (processing && recaptchaOverlay.style.visibility === "hidden" && showed) {
+          setProcessing(false);
+          setShowed(false);
+
+          setNewWorker((prevState) => {
+            return { ...prevState, loading: false };
+          });
+          formik.setSubmitting(false);
+
+          // recaptchaRef.current?.reset();
+        }
+      }
+    },
+    processing ? 100 : null
+  );
 
   const formik = useFormik({
     initialValues: initialValue,
@@ -45,24 +73,18 @@ export const BecomeWorkerForm = () => {
         return { ...prevState, loading: true };
       });
 
-      hcaptchaRef.current?.execute();
+      setProcessing(true);
+
+      recaptchaRef.current?.execute();
     },
   });
 
-  const onCaptchaClose = () => {
-    setNewWorker((prevState) => {
-      return { ...prevState, loading: false };
-    });
-    formik.setSubmitting(false);
-    hcaptchaRef.current?.resetCaptcha();
-  };
-
-  const onCaptchaVerify = async (captchaCode: string) => {
+  const onCaptchaVerify = async (captchaCode: string | null) => {
     if (!captchaCode) {
       showAndHideError(
         () =>
           setNewWorker((prevState) => {
-            return { ...prevState, loading: false, error: true, errorText: "Каптча устарела, повторите попытку" };
+            return { ...prevState, loading: false, error: true, errorText: "Капча устарела, повторите попытку" };
           }),
         () =>
           setNewWorker((prevState) => {
@@ -70,6 +92,10 @@ export const BecomeWorkerForm = () => {
           }),
         5000
       );
+
+      setProcessing(false);
+      formik.setSubmitting(false);
+      recaptchaRef.current?.reset();
 
       return;
     }
@@ -85,6 +111,8 @@ export const BecomeWorkerForm = () => {
       });
 
       if (response.data === "OK") {
+        setProcessing(false);
+
         setNewWorker((prevState) => {
           return { ...prevState, loading: false, isModal: true };
         });
@@ -96,6 +124,7 @@ export const BecomeWorkerForm = () => {
         throw new Error(error);
       }
     } catch (error) {
+      setProcessing(false);
       formik.setSubmitting(false);
       ym("reachGoal", "newWorkerError");
       showAndHideError(
@@ -110,7 +139,7 @@ export const BecomeWorkerForm = () => {
         5000
       );
     } finally {
-      hcaptchaRef.current?.resetCaptcha();
+      recaptchaRef.current?.reset();
     }
   };
 
@@ -159,13 +188,14 @@ export const BecomeWorkerForm = () => {
               >
                 Отправить
               </Button>
-              <HCaptcha
-                id="test-captcha"
+              <Reaptcha
                 size="invisible"
-                ref={hcaptchaRef}
-                sitekey={HCAPTCHA_SITE_KEY}
+                ref={recaptchaRef}
+                hl="ru"
+                sitekey={RECAPTCHA_SITE_KEY}
                 onVerify={onCaptchaVerify}
-                onClose={onCaptchaClose}
+                badge="inline"
+                theme="dark"
               />
             </div>
           </div>

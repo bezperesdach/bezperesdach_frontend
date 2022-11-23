@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PUBLIC_TOKEN = process.env.STRAPI_PUBLIC_TOKEN;
+const PUBLIC_TOKEN = process.env.NODE_ENV === "development" ? process.env.STRAPI_LOCAL_TOKEN : process.env.STRAPI_PUBLIC_TOKEN;
 
 export const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:1337/api" : process.env.BACKEND_API_URL;
 

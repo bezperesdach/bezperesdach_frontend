@@ -52,6 +52,7 @@ interface CustomSelectProps extends FieldProps {
   onItemSelected?: (item: string) => void;
   placeholder?: string;
   borderRadius?: number;
+  disabled?: boolean;
 }
 
 export const ReactSelector = ({
@@ -63,6 +64,7 @@ export const ReactSelector = ({
   options,
   isMulti = false,
   isSearchable = true,
+  disabled = false,
   filterOption,
   onInputChange,
   onItemSelected,
@@ -115,6 +117,7 @@ export const ReactSelector = ({
       noOptionsMessage={({ inputValue }) => (!inputValue ? "" : "Тип не найден")}
       filterOption={filterOption}
       onInputChange={onInputChange}
+      isDisabled={disabled}
     />
   );
 };

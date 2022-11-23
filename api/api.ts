@@ -12,7 +12,11 @@ const waitFor = (amount: number) => {
   return new Promise((resolve) => setTimeout(resolve, amount));
 };
 
-export const createOrder = async (order: IOrder) => {
+interface IOrderExtended extends IOrder {
+  robotScore: number;
+}
+
+export const createOrder = async (order: IOrderExtended) => {
   const data = axios
     .post(`${API_URL}/new-orders`, { data: order }, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } })
     .then((res) => res.data);

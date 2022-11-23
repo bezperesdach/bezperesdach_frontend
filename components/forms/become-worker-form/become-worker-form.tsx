@@ -83,7 +83,7 @@ export const BecomeWorkerForm = () => {
         },
       });
 
-      if (response.statusText === "OK") {
+      if (response.data === "OK") {
         setNewWorker((prevState) => {
           return { ...prevState, loading: false, isModal: true };
         });

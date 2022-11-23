@@ -76,8 +76,6 @@ export const NewOrderForm = () => {
             return { ...prevState, loading: false };
           });
           formik.setSubmitting(false);
-
-          console.log("closed captcha");
         }
       }
     },
@@ -168,7 +166,25 @@ export const NewOrderForm = () => {
 
       setProcessing(true);
 
-      recaptchaRef.current?.execute();
+      try {
+        recaptchaRef.current?.execute();
+      } catch (err) {
+        if (err === "This recaptcha instance did not render yet") {
+          setProcessing(false);
+          formik.setSubmitting(false);
+          showAndHideError(
+            () =>
+              setSendOrder((prevState) => {
+                return { ...prevState, loading: false, error: true, errorText: "Неверная капча" };
+              }),
+            () =>
+              setSendOrder((prevState) => {
+                return { ...prevState, loading: false, error: false, errorText: "" };
+              }),
+            5000
+          );
+        }
+      }
     },
   });
 

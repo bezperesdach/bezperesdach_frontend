@@ -57,8 +57,6 @@ export const BecomeWorkerForm = () => {
             return { ...prevState, loading: false };
           });
           formik.setSubmitting(false);
-
-          // recaptchaRef.current?.reset();
         }
       }
     },
@@ -75,7 +73,25 @@ export const BecomeWorkerForm = () => {
 
       setProcessing(true);
 
-      recaptchaRef.current?.execute();
+      try {
+        recaptchaRef.current?.execute();
+      } catch (err) {
+        if (err === "This recaptcha instance did not render yet") {
+          setProcessing(false);
+          formik.setSubmitting(false);
+          showAndHideError(
+            () =>
+              setNewWorker((prevState) => {
+                return { ...prevState, loading: false, error: true, errorText: "Неверная капча" };
+              }),
+            () =>
+              setNewWorker((prevState) => {
+                return { ...prevState, loading: false, error: false, errorText: "" };
+              }),
+            5000
+          );
+        }
+      }
     },
   });
 

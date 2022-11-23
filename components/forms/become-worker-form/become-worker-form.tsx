@@ -91,6 +91,7 @@ export const BecomeWorkerForm = () => {
           });
         }
       } catch (error) {
+        console.log(error);
         ym("reachGoal", "newWorkeError");
         showAndHideError(
           () =>
@@ -99,7 +100,7 @@ export const BecomeWorkerForm = () => {
                 ...prevState,
                 loading: false,
                 error: true,
-                errorText: `Произошла ошибка при отправке, попробуйте еще раз:${error}`,
+                errorText: "Произошла ошибка при отправке, попробуйте еще раз",
               };
             }),
           () =>

@@ -2,6 +2,8 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { GetStaticProps, InferGetStaticPropsType } from "next/types";
 import { ParsedUrlQuery } from "querystring";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import { RECAPTCHA_SITE_KEY } from "../../utils/recaptcha";
 
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { descriptionValueLabel, getOrderDescription } from "../../utils/form/new-order-form";
@@ -28,7 +30,17 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>
 
-      <DynamicNewOrderForm />
+      <GoogleReCaptchaProvider
+        reCaptchaKey={RECAPTCHA_SITE_KEY}
+        scriptProps={{
+          async: false, // optional, default to false,
+          defer: true, // optional, default to false
+          appendTo: "body", // optional, default to "head", can be "head" or "body",
+          nonce: undefined,
+        }}
+      >
+        <DynamicNewOrderForm />
+      </GoogleReCaptchaProvider>
     </UnauthorizedUserLayout>
   );
 }

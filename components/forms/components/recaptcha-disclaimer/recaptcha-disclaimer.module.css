@@ -1,0 +1,22 @@
+.recaptcha {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -10px;
+  color: rgb(0 0 0 / 40%);
+}
+
+.recaptcha_logo_text {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.recaptcha_logo {
+  width: 48px;
+  height: auto;
+}
+
+.link {
+  text-decoration: underline;
+}

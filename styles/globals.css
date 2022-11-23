@@ -152,6 +152,12 @@ p {
   letter-spacing: 0.5px;
 }
 
+/* Hide recaptcha badge */
+/* stylelint-disable-next-line selector-class-pattern */
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 .no_select {
   -webkit-touch-callout: none; /* iOS Safari */
   user-select: none; /* Safari */

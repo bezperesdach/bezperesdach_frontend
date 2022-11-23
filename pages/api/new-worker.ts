@@ -1,34 +1,23 @@
-import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import { becomeWorker } from "../../api/api";
+import { verifyRecaptcha } from "../../utils/recaptcha";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body, method } = req;
-
-  // Extract the email and captcha code from the request body
-  const { worker, captcha } = body;
+  const { worker, token } = body;
 
   if (method === "POST") {
-    // If email or captcha are missing return an error
-    if ((worker && Object.keys(worker).length === 0 && Object.getPrototypeOf(worker) === Object.prototype) || !captcha) {
+    if ((worker && Object.keys(worker).length === 0 && Object.getPrototypeOf(worker) === Object.prototype) || !token) {
       return res.status(422).json({
         message: "Форма не заполнена",
       });
     }
 
     try {
-      const data = axios
-        .post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-          },
-        })
-        .then((res) => res.data);
+      const response = await verifyRecaptcha(token);
 
-      const captchaValidation = await data;
-
-      if (captchaValidation.success) {
-        await becomeWorker(worker);
+      if (response.data.success) {
+        await becomeWorker({ ...worker, robotScore: response.data.score });
 
         return res.status(200).send("OK");
       }

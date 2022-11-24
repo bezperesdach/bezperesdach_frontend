@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useMemo, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDebounce } from "usehooks-ts";
@@ -236,6 +236,16 @@ export const NewOrderForm = () => {
     errorText: "",
   });
 
+  const errorText = useMemo(() => {
+    if (sendOrder.errorText) {
+      return sendOrder.errorText;
+    }
+    if (!formik.isValid) {
+      return "В каком-то из полей ошибка";
+    }
+    return "";
+  }, [formik.isValid, sendOrder.errorText]);
+
   const [typeOptions, setTypeOptions] = useState(typeOptionsInit);
 
   const filterAllOptions = (rawInput: string) => {
@@ -462,7 +472,7 @@ export const NewOrderForm = () => {
               </div>
 
               <div className={styles.submit_button_container}>
-                {sendOrder.error && <p className={styles.submit_error}>{sendOrder.errorText}</p>}
+                {errorText && <p className={styles.submit_error}>{errorText}</p>}
                 <Button
                   type="submit"
                   color="#fff"

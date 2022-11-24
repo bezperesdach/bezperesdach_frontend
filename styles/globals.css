@@ -155,7 +155,7 @@ p {
 /* Hide recaptcha badge */
 /* stylelint-disable-next-line selector-class-pattern */
 .grecaptcha-badge {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 .no_select {

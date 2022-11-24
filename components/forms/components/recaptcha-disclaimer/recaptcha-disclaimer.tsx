@@ -23,7 +23,9 @@ export const RecaptchaDisclaimer = ({ color }: Props) => {
           <Image src={RecaptchaLogo} className={styles.recaptcha_logo} alt={"recaptcha logo"} />
         </a>
       </div>
-      <div className="grecaptcha-badge" />
+      <div className="grecaptcha-badge">
+        <div />
+      </div>
     </div>
   );
 };

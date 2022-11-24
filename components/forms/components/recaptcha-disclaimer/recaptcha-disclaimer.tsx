@@ -23,6 +23,16 @@ export const RecaptchaDisclaimer = ({ color }: Props) => {
           <Image src={RecaptchaLogo} className={styles.recaptcha_logo} alt={"recaptcha logo"} />
         </a>
       </div>
+      <p className={styles.agreements}>
+        {" "}
+        <a href="https://policies.google.com/privacy" className={styles.link} target="_blank" rel="noreferrer">
+          Политика конфиденциальности
+        </a>{" "}
+        и{" "}
+        <a href="https://policies.google.com/terms" className={styles.link} target="_blank" rel="noreferrer">
+          пользовательское соглашение
+        </a>{" "}
+      </p>
     </div>
   );
 };

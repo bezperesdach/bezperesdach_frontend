@@ -160,7 +160,7 @@ export const BecomeWorkerForm = () => {
               >
                 Отправить
               </Button>
-              <RecaptchaDisclaimer color="rgb(255 255 255 / 40%)" />
+              <RecaptchaDisclaimer color="rgb(255 255 255 / 80%)" />
             </div>
           </div>
         </Form>

@@ -1,9 +1,10 @@
 .recaptcha {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin-top: -10px;
-  color: rgb(0 0 0 / 40%);
+  color: rgb(0 0 0 / 55%);
 }
 
 .recaptcha_logo_text {
@@ -15,6 +16,15 @@
 .recaptcha_logo {
   width: 48px;
   height: auto;
+}
+
+.agreements {
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.recaptcha:hover > .agreements {
+  visibility: visible;
 }
 
 .link {

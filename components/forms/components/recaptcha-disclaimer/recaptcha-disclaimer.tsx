@@ -25,7 +25,7 @@ export const RecaptchaDisclaimer = ({ color }: Props) => {
       </div>
       <p className={styles.agreements}>
         {" "}
-        <a href="hhttps://policies.google.com/privacy" className={styles.link} target="_blank" rel="noreferrer">
+        <a href="https://policies.google.com/privacy" className={styles.link} target="_blank" rel="noreferrer">
           Политика конфиденциальности
         </a>{" "}
         и{" "}

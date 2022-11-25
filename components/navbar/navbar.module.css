@@ -13,6 +13,11 @@
   display: none;
 }
 
+.logo_image {
+  width: auto;
+  height: 64px;
+}
+
 .mobile_logo {
   display: none;
 }

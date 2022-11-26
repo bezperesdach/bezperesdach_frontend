@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useDebounce } from "usehooks-ts";
+import dynamic from "next/dynamic";
+import { AnimatePresence } from "framer-motion";
 
 import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
@@ -11,9 +12,11 @@ import Hero from "public/assets/images/hero/hero.webp";
 import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 
 import { Button } from "../../button/button";
-import { ReactSelector } from "../components/react-selector/react-selector";
+const DynamicReactSelector = dynamic(() => import("../components/react-selector/react-selector").then((mod) => mod.ReactSelector));
 import { ym } from "../../../utils/yandex-metrika";
-import Portal from "../../portal/portal";
+const DynamicModalRequest = dynamic(() =>
+  import("../../portal/components/modal-request/modal-request").then((mod) => mod.ModalRequest)
+);
 import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/form/new-order-form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { showAndHideError } from "../../../utils/utils";
@@ -287,7 +290,7 @@ export const NewOrderForm = () => {
                   <Field
                     name="projectType"
                     options={typeOptions}
-                    component={ReactSelector}
+                    component={DynamicReactSelector}
                     borderRadius={15}
                     placeholder="Укажите тип"
                     isMulti={false}
@@ -414,7 +417,7 @@ export const NewOrderForm = () => {
                   <Field
                     name="antiPlagiarism"
                     options={antiPlagiarismOptions}
-                    component={ReactSelector}
+                    component={DynamicReactSelector}
                     borderRadius={15}
                     placeholder="Тип проверки"
                     isMulti={false}
@@ -473,14 +476,7 @@ export const NewOrderForm = () => {
 
               <div className={styles.submit_button_container}>
                 {errorText && <p className={styles.submit_error}>{errorText}</p>}
-                <Button
-                  type="submit"
-                  color="#fff"
-                  disabled={formik.isSubmitting}
-                  loading={sendOrder.loading}
-                  style={{ alignSelf: "center" }}
-                  error={sendOrder.error}
-                >
+                <Button type="submit" color="#fff" disabled={formik.isSubmitting} loading={sendOrder.loading} error={sendOrder.error}>
                   Отправить запрос
                 </Button>
                 <RecaptchaDisclaimer />
@@ -496,28 +492,18 @@ export const NewOrderForm = () => {
               onError={(e) => (e.currentTarget.src = FallbackHero.src)}
             />
           </div>
-          {sendOrder.isModal && (
-            <Portal>
-              <div className={styles.modal_overlay}>
-                <div className={styles.modal}>
-                  <h1>Заявка отправлена!</h1>
-                  <p>Совсем скоро мы напишем вам на почту (не забудьте проверить папку &quot;спам&quot;) чтобы уточнить все детали</p>
-                  <p>
-                    Если у вас возникли какие-то вопросы, пишите нам на{" "}
-                    <Link
-                      href="mailto:help@bezperesdach.ru?subject=%D0%9F%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5"
-                      style={{ color: "#3D8EE8" }}
-                    >
-                      help@bezperesdach.ru
-                    </Link>
-                  </p>
-                  <Button type="button" color="#fff" onClick={closeModal}>
-                    Закрыть
-                  </Button>
-                </div>
-              </div>
-            </Portal>
-          )}
+          <AnimatePresence>
+            {sendOrder.isModal && (
+              <DynamicModalRequest
+                handleClose={() =>
+                  setSendOrder((prevState) => {
+                    return { ...prevState, isModal: false };
+                  })
+                }
+                email="help@bezperesdach.ru"
+              />
+            )}
+          </AnimatePresence>
         </div>
       </section>
     </FormikProvider>

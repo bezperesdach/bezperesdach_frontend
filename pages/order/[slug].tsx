@@ -24,7 +24,7 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
       <SEO
         title={`${
           slug
-            ? `Заказать ${typeOptionsOrder.get(slug)!.toLowerCase()} - Безпересдач - онлайн-проект помощи в учёбе`
+            ? `Заказать ${typeOptionsOrder.get(slug)?.toLowerCase()} - Безпересдач - онлайн-проект помощи в учёбе`
             : "Сделать заказ - Безпересдач - онлайн-проект помощи в учёбе"
         }`}
         description={getOrderDescription(slug)}

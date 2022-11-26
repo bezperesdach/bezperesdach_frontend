@@ -1,19 +1,16 @@
 .list {
   position: relative;
   display: inline-block;
+  color: rgb(0 0 0 / 70%);
 }
 
 .inactive {
-  cursor: unset;
+  color: rgb(0 0 0);
   pointer-events: none;
 }
 
 .mobile {
   color: rgb(12 115 254 / 85%);
-  font-weight: bold;
-}
-
-.mobile a:hover {
   font-weight: bold;
 }
 
@@ -38,7 +35,7 @@
   opacity: 1;
 }
 
-.list a::before {
+.hover_select::before {
   position: absolute;
   top: -4px;
   width: 100%;
@@ -64,18 +61,18 @@
 }
 
 @media (hover: hover) {
-  .list a:hover::before {
+  .hover_select:hover::before {
     background-size: 60% 2px, auto;
     transition: all 0.3s ease-in-out;
   }
 
-  .list a:focus::before {
+  .hover_select:focus::before {
     background-size: 60% 2px, auto;
     transition: all 0.3s ease-in-out;
   }
 
-  .list a:hover {
-    color: rgb(12 115 254 / 85%);
+  .hover_select:hover {
+    color: rgb(12 115 254 / 100%);
     transition: all 0.3s ease-in-out;
   }
 }

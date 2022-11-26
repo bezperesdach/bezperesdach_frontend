@@ -12,6 +12,7 @@ interface IOrder {
   antiPlagiarism: "free" | "paid";
   email: string;
   expectedPrice: string;
+  promoCode: string;
 }
 
 interface IUser {

@@ -37,6 +37,7 @@ const initialValue: IOrder = {
   antiPlagiarism: "free",
   email: "",
   expectedPrice: "",
+  promoCode: "",
 };
 
 const today = new Date();
@@ -57,16 +58,24 @@ export const NewOrderForm = () => {
   const router = useRouter();
 
   const closeModal = () => {
+    formik.resetForm();
+    const promo = router.query.promo as string;
+
     if (router.pathname !== "new") {
       router.replace(
         {
-          pathname: "new",
+          pathname: "/order/new",
+          query: {
+            promo,
+          },
         },
         undefined,
         { shallow: true }
       );
     }
-    formik.resetForm();
+
+    formik.setFieldValue("promoCode", promo ?? "");
+
     setSendOrder((prevState) => {
       return { ...prevState, isModal: false };
     });
@@ -145,14 +154,31 @@ export const NewOrderForm = () => {
 
   useEffect(() => {
     const slug = router.query.slug as string;
+    const promo = formik.values.promoCode;
 
-    if (slug !== "new") {
-      formik.setFieldValue("projectType", getInitValue(slug));
-    } else {
-      formik.setFieldValue("projectType", "");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.slug]);
+    router.replace(
+      {
+        pathname: "/order/[slug]",
+        query: promo
+          ? {
+              slug,
+              promo,
+            }
+          : { slug },
+      },
+      undefined,
+      { shallow: true }
+    );
+  }, [formik.values.promoCode]);
+
+  useEffect(() => {
+    const slug = router.query.slug as string;
+    const promo = router.query.promo as string;
+
+    formik.setFieldValue("projectType", slug !== "new" ? getInitValue(slug) : "");
+
+    formik.setFieldValue("promoCode", promo ?? "");
+  }, [router.query]);
 
   const [sendOrder, setSendOrder] = useState({
     loading: false,
@@ -209,9 +235,14 @@ export const NewOrderForm = () => {
                     filterOption={() => true}
                     onInputChange={(e: string) => filterAllOptions(e)}
                     onItemSelected={(item: string) => {
+                      const promo = router.query.promo as string;
                       router.replace(
                         {
-                          pathname: item,
+                          pathname: "/order/[slug]",
+                          query: {
+                            slug: item,
+                            promo,
+                          },
                         },
                         undefined,
                         { shallow: true }
@@ -359,6 +390,20 @@ export const NewOrderForm = () => {
                   />
                 </div>
                 <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
+              </div>
+
+              <div className={styles.form_item}>
+                <label className={styles.label}>Промокод</label>
+                <div className={styles.input_container}>
+                  <Field
+                    className={styles.input}
+                    type="text"
+                    name="promoCode"
+                    placeholder="Укажите промокод"
+                    disabled={formik.isSubmitting}
+                  />
+                </div>
+                <ErrorMessage className={styles.error_label} name="promoCode" component="div" />
               </div>
 
               <div className={styles.submit_button_container}>

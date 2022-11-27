@@ -14,7 +14,7 @@ export const Footer = () => {
         </h2>
         <p>
           Используя сервис “Безпересдач”, вы принимаете{" "}
-          <Link href="/assets/documents/terms-of-use.pdf" className={styles.document_link}>
+          <Link href="/about_us/agreement" className={styles.document_link}>
             пользовательское соглашение
           </Link>
           , а также
@@ -28,12 +28,14 @@ export const Footer = () => {
         </p>
       </div>
       <div className={styles.links_container}>
-        <div className={styles.links}>
-          {router.pathname !== urls.base && (
+        {router.pathname !== urls.base && (
+          <div className={styles.links}>
             <Link href={urls.base} className={styles.link}>
               Главная
             </Link>
-          )}
+          </div>
+        )}
+        <div className={styles.links}>
           <Link href={urls.order} className={styles.link}>
             Заказать работу
           </Link>
@@ -47,6 +49,9 @@ export const Footer = () => {
         <div className={styles.links}>
           <Link href={urls.about_us} className={styles.link}>
             О нас
+          </Link>
+          <Link href={urls.garantees} className={styles.link}>
+            Гарантии
           </Link>
         </div>
       </div>

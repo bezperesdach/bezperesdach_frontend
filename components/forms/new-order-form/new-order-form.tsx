@@ -219,8 +219,12 @@ export const NewOrderForm = () => {
 
   useEffect(() => {
     const slug = router.query.slug as string;
+    const promo = router.query.promo as string;
 
     formik.setFieldValue("projectType", slug !== "new" ? getInitValue(slug) : "");
+    if (promo) {
+      formik.setFieldValue("promoCode", promo);
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
@@ -449,7 +453,7 @@ export const NewOrderForm = () => {
                     autoComplete="off"
                     autoCorrect="off"
                     autoCapitalize="off"
-                    spellcheck={false}
+                    spellCheck={false}
                     placeholder="Укажите промокод"
                     disabled={formik.isSubmitting}
                   />

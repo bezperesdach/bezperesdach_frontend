@@ -14,5 +14,31 @@
   "files.eol": "\n",
   "editor.tabSize": 2,
   "editor.insertSpaces": false,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "cSpell.language": "en,ru",
+  "cSpell.ignoreWords": ["Unfollow", "favorited"],
+  "cSpell.userWords": [
+    "bezperesdach",
+    "bframe",
+    "draggable",
+    "firstname",
+    "Formik",
+    "hcaptcha",
+    "heatmaps",
+    "iframes",
+    "metrika",
+    "Reaptcha",
+    "recaptcha",
+    "sitekey",
+    "strapi",
+    "stylelint",
+    "usehooks",
+    "useinterval",
+    "webp",
+    "WithYandexMetrika",
+    "YANDEX_METRIKA_ID",
+    "yandexMetrikaEnabled",
+    "Безпересдач",
+    "Капча"
+  ]
 }

@@ -36,6 +36,7 @@ export const Navbar = () => {
           Главная
         </MenuItem>
         <MenuItem url={urls.about_us}>О нас</MenuItem>
+        <MenuItem url={urls.garantees}>Гарантии</MenuItem>
         <MenuItem url={urls.prices}>Цены и Услуги</MenuItem>
       </ul>
       <DynamicSidebar isOpen={isOpen} closeMenu={closeMenu} />

@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useMemo, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
+import { useDebounce } from "usehooks-ts";
+import dynamic from "next/dynamic";
+import { AnimatePresence } from "framer-motion";
 
 import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
@@ -10,14 +12,17 @@ import Hero from "public/assets/images/hero/hero.webp";
 import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 
 import { Button } from "../../button/button";
-import { ReactSelector } from "../components/react-selector/react-selector";
+const DynamicReactSelector = dynamic(() => import("../components/react-selector/react-selector").then((mod) => mod.ReactSelector));
 import { ym } from "../../../utils/yandex-metrika";
-import Portal from "../../portal/portal";
+const DynamicModalRequest = dynamic(() =>
+  import("../../portal/components/modal-request/modal-request").then((mod) => mod.ModalRequest)
+);
 import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/form/new-order-form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { showAndHideError } from "../../../utils/utils";
 import axios from "axios";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
+import { PromoCodeStatus } from "./components/promo-code-status/promo-code-status";
 
 import styles from "../form.module.css";
 
@@ -37,6 +42,7 @@ const initialValue: IOrder = {
   antiPlagiarism: "free",
   email: "",
   expectedPrice: "",
+  promoCode: "",
 };
 
 const today = new Date();
@@ -57,16 +63,28 @@ export const NewOrderForm = () => {
   const router = useRouter();
 
   const closeModal = () => {
+    formik.resetForm();
+    const promo = router.query.promo as string;
+
     if (router.pathname !== "new") {
+      const query = promo
+        ? {
+            promo,
+          }
+        : {};
+
       router.replace(
         {
-          pathname: "new",
+          pathname: "/order/new",
+          query,
         },
         undefined,
         { shallow: true }
       );
     }
-    formik.resetForm();
+
+    formik.setFieldValue("promoCode", promo ?? "");
+
     setSendOrder((prevState) => {
       return { ...prevState, isModal: false };
     });
@@ -77,6 +95,69 @@ export const NewOrderForm = () => {
     validationSchema: RequestProjectSchema,
     onSubmit: (values) => formSubmit(values),
   });
+
+  const [foundPromoCode, setFoundPromoCode] = useState({
+    show: false,
+    found: false,
+  });
+
+  const debouncedPromoCode = useDebounce<string>(formik.values.promoCode, 950);
+
+  useEffect(() => {
+    async function fetchPromoCode() {
+      const slug = router.query.slug as string;
+
+      try {
+        const result = await axios(`/api/promo-codes?promo=${debouncedPromoCode}`);
+
+        if (result.data === "OK") {
+          setFoundPromoCode({ show: true, found: true });
+          router.replace(
+            {
+              pathname: "/order/[slug]",
+              query: {
+                slug,
+                promo: debouncedPromoCode,
+              },
+            },
+            undefined,
+            { shallow: true }
+          );
+        } else {
+          setFoundPromoCode({ show: true, found: false });
+          router.replace(
+            {
+              pathname: "/order/[slug]",
+              query: {
+                slug,
+              },
+            },
+            undefined,
+            { shallow: true }
+          );
+        }
+      } catch (error) {
+        setFoundPromoCode({ show: true, found: false });
+        router.replace(
+          {
+            pathname: "/order/[slug]",
+            query: {
+              slug,
+            },
+          },
+          undefined,
+          { shallow: true }
+        );
+      }
+    }
+
+    if (debouncedPromoCode !== "") {
+      fetchPromoCode();
+    } else {
+      setFoundPromoCode({ show: false, found: false });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedPromoCode]);
 
   const formSubmit = useCallback(
     async (values: IOrder) => {
@@ -145,14 +226,18 @@ export const NewOrderForm = () => {
 
   useEffect(() => {
     const slug = router.query.slug as string;
+    const promo = router.query.promo as string;
 
     if (slug !== "new") {
       formik.setFieldValue("projectType", getInitValue(slug));
-    } else {
-      formik.setFieldValue("projectType", "");
     }
+
+    if (promo) {
+      formik.setFieldValue("promoCode", promo);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.slug]);
+  }, [router.query]);
 
   const [sendOrder, setSendOrder] = useState({
     loading: false,
@@ -160,6 +245,18 @@ export const NewOrderForm = () => {
     error: false,
     errorText: "",
   });
+
+  const errorText = useMemo(() => {
+    if (sendOrder.errorText) {
+      return sendOrder.errorText;
+    }
+    if (formik.submitCount > 0 && !formik.isValid) {
+      console.log(formik.errors);
+      return "В каком-то из полей ошибка";
+    }
+    return "";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formik.submitCount, formik.isValid, sendOrder.errorText]);
 
   const [typeOptions, setTypeOptions] = useState(typeOptionsInit);
 
@@ -202,16 +299,23 @@ export const NewOrderForm = () => {
                   <Field
                     name="projectType"
                     options={typeOptions}
-                    component={ReactSelector}
+                    component={DynamicReactSelector}
                     borderRadius={15}
                     placeholder="Укажите тип"
                     isMulti={false}
                     filterOption={() => true}
                     onInputChange={(e: string) => filterAllOptions(e)}
                     onItemSelected={(item: string) => {
+                      const promo = router.query.promo as string;
                       router.replace(
                         {
-                          pathname: item,
+                          pathname: "/order/[slug]",
+                          query: promo
+                            ? {
+                                slug: item,
+                                promo,
+                              }
+                            : { slug: item },
                         },
                         undefined,
                         { shallow: true }
@@ -322,7 +426,7 @@ export const NewOrderForm = () => {
                   <Field
                     name="antiPlagiarism"
                     options={antiPlagiarismOptions}
-                    component={ReactSelector}
+                    component={DynamicReactSelector}
                     borderRadius={15}
                     placeholder="Тип проверки"
                     isMulti={false}
@@ -361,16 +465,27 @@ export const NewOrderForm = () => {
                 <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
               </div>
 
+              <div className={styles.form_item}>
+                <label className={styles.label}>Промокод</label>
+                <div className={styles.input_container}>
+                  <Field
+                    className={styles.input}
+                    type="text"
+                    name="promoCode"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck={false}
+                    placeholder="Укажите промокод"
+                    disabled={formik.isSubmitting}
+                  />
+                </div>
+                <PromoCodeStatus show={foundPromoCode.show} found={foundPromoCode.found} />
+              </div>
+
               <div className={styles.submit_button_container}>
-                {sendOrder.error && <p className={styles.submit_error}>{sendOrder.errorText}</p>}
-                <Button
-                  type="submit"
-                  color="#fff"
-                  disabled={formik.isSubmitting}
-                  loading={sendOrder.loading}
-                  style={{ alignSelf: "center" }}
-                  error={sendOrder.error}
-                >
+                {errorText && <p className={styles.submit_error}>{errorText}</p>}
+                <Button type="submit" color="#fff" disabled={formik.isSubmitting} loading={sendOrder.loading} error={sendOrder.error}>
                   Отправить запрос
                 </Button>
                 <RecaptchaDisclaimer />
@@ -386,28 +501,9 @@ export const NewOrderForm = () => {
               onError={(e) => (e.currentTarget.src = FallbackHero.src)}
             />
           </div>
-          {sendOrder.isModal && (
-            <Portal>
-              <div className={styles.modal_overlay}>
-                <div className={styles.modal}>
-                  <h1>Заявка отправлена!</h1>
-                  <p>Совсем скоро мы напишем вам на почту (не забудьте проверить папку &quot;спам&quot;) чтобы уточнить все детали</p>
-                  <p>
-                    Если у вас возникли какие-то вопросы, пишите нам на{" "}
-                    <Link
-                      href="mailto:help@bezperesdach.ru?subject=%D0%9F%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5"
-                      style={{ color: "#3D8EE8" }}
-                    >
-                      help@bezperesdach.ru
-                    </Link>
-                  </p>
-                  <Button type="button" color="#fff" onClick={closeModal}>
-                    Закрыть
-                  </Button>
-                </div>
-              </div>
-            </Portal>
-          )}
+          <AnimatePresence>
+            {sendOrder.isModal && <DynamicModalRequest handleClose={closeModal} email="help@bezperesdach.ru" />}
+          </AnimatePresence>
         </div>
       </section>
     </FormikProvider>

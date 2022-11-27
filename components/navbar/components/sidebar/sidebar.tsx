@@ -27,6 +27,9 @@ export const Sidebar = ({ isOpen, closeMenu }: Props) => {
             <MenuItem url={urls.base} closeMenu={closeMenu} reverseUrl mobile>
               Главная
             </MenuItem>
+            <MenuItem url={urls.about_us} closeMenu={closeMenu} mobile>
+              О нас
+            </MenuItem>
             <MenuItem url={urls.prices} closeMenu={closeMenu} mobile>
               Цены и Услуги
             </MenuItem>
@@ -35,6 +38,9 @@ export const Sidebar = ({ isOpen, closeMenu }: Props) => {
             </MenuItem>
             <MenuItem url={urls.work} closeMenu={closeMenu} mobile>
               Стать автором
+            </MenuItem>
+            <MenuItem url={urls.guarantees} closeMenu={closeMenu} mobile>
+              Гарантии
             </MenuItem>
           </motion.aside>
         </Portal>

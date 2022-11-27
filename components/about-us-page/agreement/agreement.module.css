@@ -1,0 +1,27 @@
+.main {
+  padding-bottom: 48px;
+}
+
+.main h1 {
+  padding-top: 36px;
+  padding-bottom: 40px;
+  line-height: 100%;
+}
+
+.main h2 {
+  padding-bottom: 20px;
+  line-height: 150%;
+}
+
+.main p {
+  padding-bottom: 20px;
+  line-height: 150%;
+}
+
+.image {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 20px;
+  padding-left: 50px;
+}

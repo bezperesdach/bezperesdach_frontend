@@ -3,11 +3,12 @@ import type { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
 
 import "../styles/globals.css";
+import "../styles/typography.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ErrorBoundary>
-      <NextNProgress height={6} showOnShallow={false} options={{ showSpinner: false }} />
+      <NextNProgress color="#1070EE" height={6} showOnShallow={false} options={{ showSpinner: false }} />
       <Component {...pageProps} />
     </ErrorBoundary>
   );

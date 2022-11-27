@@ -29,7 +29,7 @@ export const Bonus = () => {
         <p>
           Пока ты думаешь - <br></br> другие заказывают
         </p>
-        <LinkButton href={urls.order}>Заказать работу</LinkButton>
+        <LinkButton href={`${urls.order}?promo=NEW2022`}>Заказать работу</LinkButton>
       </div>
       <Image
         src={Right}

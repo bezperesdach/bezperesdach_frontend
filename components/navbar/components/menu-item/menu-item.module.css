@@ -1,10 +1,11 @@
 .list {
   position: relative;
   display: inline-block;
+  color: rgb(0 0 0 / 70%);
 }
 
 .inactive {
-  cursor: unset;
+  color: rgb(0 0 0);
   pointer-events: none;
 }
 
@@ -13,14 +14,7 @@
   font-weight: bold;
 }
 
-.mobile a:hover {
-  font-weight: bold;
-}
-
 .line {
-  animation-duration: 0.5s;
-  animation-name: animate-fade;
-  animation-timing-function: ease;
   pointer-events: none;
 }
 
@@ -29,45 +23,56 @@
   top: -4px;
   left: 0;
   width: 100%;
-  height: 100%;
-  border-top: 2px solid rgb(12 115 254 / 85%);
+  height: 2px;
+  animation-duration: 0.4s;
+  animation-name: line-grow;
+  animation-timing-function: ease;
+  background-image: linear-gradient(rgb(12 115 254 / 85%), rgb(12 115 254 / 85%)), linear-gradient(transparent, transparent);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 2px, auto;
   content: "";
   opacity: 1;
 }
 
-.list a::before {
+.hover_select::before {
   position: absolute;
-  bottom: 0;
-  left: calc(50% - 6px);
-  width: 12px;
-  height: 12px;
-  border-radius: 100%;
-  background: rgb(0 0 0 / 85%);
+  top: -4px;
+  width: 100%;
+  height: 2px;
+  background-image: linear-gradient(rgb(12 115 254 / 85%), rgb(12 115 254 / 85%)), linear-gradient(transparent, transparent);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 0% 2px, auto;
   content: "";
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
   transition: all 0.3s ease-in-out;
 }
 
-@keyframes animate-fade {
+@keyframes line-grow {
   0% {
-    opacity: 0;
+    background-size: 60% 2px, auto;
   }
 
   100% {
-    opacity: 1;
+    background-size: 100% 2px, auto;
   }
 }
 
 @media (hover: hover) {
-  .list a:hover::before {
-    bottom: -16px;
-    background: rgb(12 115 254 / 85%);
-    opacity: 1;
+  .hover_select:hover::before {
+    background-size: 60% 2px, auto;
+    transition: all 0.3s ease-in-out;
   }
 
-  .list a:hover {
-    color: rgb(12 115 254 / 85%);
+  .hover_select:focus::before {
+    background-size: 60% 2px, auto;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .hover_select:hover {
+    color: rgb(12 115 254 / 100%);
     transition: all 0.3s ease-in-out;
   }
 }

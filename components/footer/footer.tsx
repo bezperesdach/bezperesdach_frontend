@@ -8,13 +8,13 @@ export const Footer = () => {
   const router = useRouter();
   return (
     <footer className={`${styles.footer} ${styles.colored_background}`}>
-      <div className={styles.footer_text}>
+      <div className={styles.text}>
         <h2>
-          <strong>“Безпересдач”</strong> - онлайн-проект помощи студентам
+          <strong>“Без пересдач”</strong> - онлайн-проект помощи студентам
         </h2>
         <p>
-          Используя сервис “Безпересдач”, вы принимаете{" "}
-          <Link href="/assets/documents/terms-of-use.pdf" className={styles.document_link}>
+          Используя сервис “Без пересдач”, вы принимаете{" "}
+          <Link href={urls.agreement} className={styles.document_link}>
             пользовательское соглашение
           </Link>
           , а также
@@ -24,24 +24,36 @@ export const Footer = () => {
           </Link>
         </p>
         <p>
-          <strong>© 2022 “Безпересдач”</strong>
+          <strong>© 2022 “Без пересдач”</strong>
         </p>
       </div>
-      <div className={styles.footer_agreements}>
+      <div className={styles.links_container}>
         {router.pathname !== urls.base && (
-          <Link href={urls.base} className={styles.link}>
-            Главная
-          </Link>
+          <div className={styles.links}>
+            <Link href={urls.base} className={styles.link}>
+              Главная
+            </Link>
+          </div>
         )}
-        <Link href={urls.order} className={styles.link}>
-          Заказать работу
-        </Link>
-        <Link href={urls.prices} className={styles.link}>
-          Цены и услуги
-        </Link>
-        <Link href={urls.work} className={styles.link}>
-          Стать автором
-        </Link>
+        <div className={styles.links}>
+          <Link href={urls.order} className={styles.link}>
+            Заказать работу
+          </Link>
+          <Link href={urls.prices} className={styles.link}>
+            Цены и услуги
+          </Link>
+          <Link href={urls.work} className={styles.link}>
+            Стать автором
+          </Link>
+        </div>
+        <div className={styles.links}>
+          <Link href={urls.about_us} className={styles.link}>
+            О нас
+          </Link>
+          <Link href={urls.guarantees} className={styles.link}>
+            Гарантии
+          </Link>
+        </div>
       </div>
     </footer>
   );

@@ -1,14 +1,17 @@
 import React, { useCallback, useState } from "react";
+import dynamic from "next/dynamic";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import { Button } from "../../button/button";
-import Link from "next/link";
-import Portal from "../../portal/portal";
 import { ym } from "../../../utils/yandex-metrika";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import { showAndHideError } from "../../../utils/utils";
 import axios from "axios";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
+import { AnimatePresence } from "framer-motion";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { showAndHideError } from "../../../utils/utils";
+const DynamicModalRequest = dynamic(() =>
+  import("../../portal/components/modal-request/modal-request").then((mod) => mod.ModalRequest)
+);
 
 import styles from "./become-worker-form.module.css";
 
@@ -92,7 +95,7 @@ export const BecomeWorkerForm = () => {
         }
       } catch (error) {
         console.log(error);
-        ym("reachGoal", "newWorkeError");
+        ym("reachGoal", "newWorkerError");
         showAndHideError(
           () =>
             setNewWorker((prevState) => {
@@ -116,77 +119,56 @@ export const BecomeWorkerForm = () => {
   );
 
   return (
-    <>
-      <FormikProvider value={formik}>
-        <Form className={`${styles.form} noValidate ${styles.form_background_work}`}>
-          <div className={styles.form_work}>
-            <div className={styles.form_item}>
-              <label className={styles.headline}>Ваше имя *</label>
-              <div className={styles.input_container}>
-                <Field
-                  className={styles.input}
-                  type="text"
-                  name="name"
-                  placeholder="Как к вам обращаться?"
-                  disabled={formik.isSubmitting}
-                />
-              </div>
-              <ErrorMessage className={styles.error_label} name="name" component="div" />
-            </div>
-
-            <div className={styles.form_item}>
-              <label className={styles.headline}>Email *</label>
-              <div className={styles.input_container}>
-                <Field
-                  className={styles.input}
-                  type="email"
-                  name="email"
-                  placeholder="example@example.ru"
-                  disabled={formik.isSubmitting}
-                />
-              </div>
-              <ErrorMessage className={styles.error_label} name="email" component="div" />
-            </div>
-
-            <div className={styles.submit_button_container}>
-              {newWorker.error && <p className={styles.submit_error}>{newWorker.errorText}</p>}
-              <Button
-                type="submit"
-                color="#fff"
+    <FormikProvider value={formik}>
+      <Form className={`${styles.form} noValidate ${styles.form_background_work}`}>
+        <div className={styles.form_work}>
+          <div className={styles.form_item}>
+            <label className={styles.headline}>Ваше имя *</label>
+            <div className={styles.input_container}>
+              <Field
+                className={styles.input}
+                type="text"
+                name="name"
+                placeholder="Как к вам обращаться?"
                 disabled={formik.isSubmitting}
-                loading={newWorker.loading}
-                style={{ alignSelf: "center" }}
-                error={newWorker.error}
-              >
-                Отправить
-              </Button>
-              <RecaptchaDisclaimer color="rgb(255 255 255 / 80%)" />
+              />
             </div>
+            <ErrorMessage className={styles.error_label} name="name" component="div" />
           </div>
-        </Form>
-      </FormikProvider>
-      {newWorker.isModal && (
-        <Portal>
-          <div className={styles.modal_overlay}>
-            <div className={styles.modal}>
-              <h1>Заявка отправлена!</h1>
-              <p>Совсем скоро мы напишем вам на почту (не забудьте проверить папку &quot;спам&quot;) чтобы уточнить все детали</p>
-              <p>
-                Если у вас возникли какие-то вопросы, пишите нам на{" "}
-                <Link
-                  href="mailto:work@bezperesdach.ru?subject=%D0%9F%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5"
-                  style={{ color: "#3D8EE8" }}
-                >
-                  work@bezperesdach.ru
-                </Link>
-              </p>
-              <Button type="button" color="#fff" onClick={closeModal}>
-                Закрыть
-              </Button>
+
+          <div className={styles.form_item}>
+            <label className={styles.headline}>Email *</label>
+            <div className={styles.input_container}>
+              <Field
+                className={styles.input}
+                type="email"
+                name="email"
+                placeholder="example@example.ru"
+                disabled={formik.isSubmitting}
+              />
             </div>
+            <ErrorMessage className={styles.error_label} name="email" component="div" />
           </div>
-        </Portal>
-      )}
-    </>
+
+          <div className={styles.submit_button_container}>
+            {newWorker.error && <p className={styles.submit_error}>{newWorker.errorText}</p>}
+            <Button
+              type="submit"
+              color="#fff"
+              disabled={formik.isSubmitting}
+              loading={newWorker.loading}
+              style={{ alignSelf: "center" }}
+              error={newWorker.error}
+            >
+              Отправить
+            </Button>
+            <RecaptchaDisclaimer color="rgb(255 255 255 / 80%)" />
+          </div>
+        </div>
+      </Form>
+      <AnimatePresence>
+        {newWorker.isModal && <DynamicModalRequest handleClose={closeModal} email="work@bezperesdach.ru" />}
+      </AnimatePresence>
+    </FormikProvider>
   );
 };

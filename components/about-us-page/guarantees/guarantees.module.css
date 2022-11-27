@@ -1,0 +1,36 @@
+.main {
+  padding-bottom: 48px;
+}
+
+.main h1 {
+  padding-top: 36px;
+  padding-bottom: 40px;
+  line-height: 150%;
+}
+
+.main p {
+  line-height: 150%;
+}
+
+.main h3 {
+  padding-bottom: 30px;
+  line-height: 130%;
+}
+
+.image {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 20px;
+  padding-left: 50px;
+}
+
+/* .colored_background {
+  --bg-color: rgb(17 112 238/ 100%);
+
+  margin-bottom: -1px;
+  background-color: var(--bg-color);
+  box-shadow: 0 0 0 100vmax var(--bg-color);
+  clip-path: inset(0 -100vmax);
+  color: rgb(255 255 255);
+} */

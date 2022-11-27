@@ -24,10 +24,11 @@ export const Main = () => {
       </div>
 
       <div className={styles.text}>
-        <p>
-          <strong>“Безпересдач”</strong>- проект онлайн-помощи студентам. <br></br>Мы помогаем тем, кто учится в ВУЗах, колледжах и
-          техникумах.
-        </p>
+        <div className={styles.text_main}>
+          <h1>Без пересдач</h1>
+          <h3>проект онлайн-помощи студентам </h3>
+        </div>
+
         <div className={styles.buttons}>
           <LinkButton color="white" href={urls.order}>
             Заказать работу

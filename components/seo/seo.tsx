@@ -13,12 +13,18 @@ export const SEO = ({ title, description, url, keywords, type, children }: Props
   return (
     <Head>
       <title>{title}</title>
+      <meta name="og:title" content={title} />
       <meta name="description" content={description} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta name="keywords" content={keywords} />
       <meta property="og:type" content={type ?? "website"} />
       <meta name="og:locale" content="ru_RU" />
+
+      <meta property="twitter:url" content={url} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+
       {children}
     </Head>
   );

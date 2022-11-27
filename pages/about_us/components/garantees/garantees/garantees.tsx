@@ -7,7 +7,7 @@ export const Garantees = () => {
   return (
     <section className={`${styles.main} ${styles.colored_background}`}>
       <div className={styles.text}>
-        <h1>Гарантии сервиса Безпересдач.рф</h1>
+        <h1>Гарантии сервиса</h1>
         <h3>
           Цель команды &ldquo;Без пересдач&rdquo;&nbsp;&mdash; сдача работы и&nbsp;получение положительной оценки студентом. Каждая
           контрольная, тест, курсовая работа на&nbsp;заказ&nbsp;&mdash; это проект, выполняемый экспертом с&nbsp;подтвержденной

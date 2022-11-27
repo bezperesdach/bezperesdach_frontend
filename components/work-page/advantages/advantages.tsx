@@ -18,7 +18,7 @@ export const Advantages = () => {
   return (
     <section className={`${styles.advantages} ${styles.colored_background}`}>
       <div className={styles.cards}>
-        <h2>ЗАРАБАТЫВАЙ С БЕЗПЕРЕСДАЧ ОТ 40 ТЫСЯЧ РУБЛЕЙ</h2>
+        <h2>ЗАРАБАТЫВАЙ С БЕЗ ПЕРЕСДАЧ ОТ 40 ТЫСЯЧ РУБЛЕЙ</h2>
         <ImageWithText description={"Мы выплачиваем 100% от заказа вам на карту"} img={One} fallbackImg={FallbackOne} alt="one" />
         <ImageWithText description={"Работа полностью удаленная"} img={Two} fallbackImg={FallbackTwo} alt="two" />
         <ImageWithText

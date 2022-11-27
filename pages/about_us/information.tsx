@@ -10,7 +10,7 @@ export default function Information() {
   return (
     <UnauthorizedUserLayout>
       <SEO
-        title="Подробнее о сервисе Безпересдач"
+        title="Подробнее о сервисе"
         description="Не знаете сколько стоит курсовая работа? Обратитесь в Безпересдач. Команда Безпересдач работает с лучшими исполнителями по низким ценам"
         url={"https://bezperesdach.ru/price"}
         keywords={

@@ -8,7 +8,7 @@ import styles from "./aboutSite.module.css";
 export const AboutSite = () => {
   return (
     <section className={`${styles.main} ${styles.colored_background}`}>
-      <h1>Подробнее о сервисе Безпересдач</h1>
+      <h1>Подробнее о сервисе</h1>
       <div className={styles.block}>
         <div className={styles.text}>
           <h3>

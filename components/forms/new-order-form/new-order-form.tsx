@@ -502,7 +502,7 @@ export const NewOrderForm = () => {
             />
           </div>
           <AnimatePresence>
-            {sendOrder.isModal && <DynamicModalRequest handleClose={closeModal} email="work@bezperesdach.ru" />}
+            {sendOrder.isModal && <DynamicModalRequest handleClose={closeModal} email="help@bezperesdach.ru" />}
           </AnimatePresence>
         </div>
       </section>

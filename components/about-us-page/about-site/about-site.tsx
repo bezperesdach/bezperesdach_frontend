@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./about-us.module.css";
+import styles from "./about-site.module.css";
 
 export const AboutSite = () => {
   return (

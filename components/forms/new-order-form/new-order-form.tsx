@@ -493,16 +493,7 @@ export const NewOrderForm = () => {
             />
           </div>
           <AnimatePresence>
-            {sendOrder.isModal && (
-              <DynamicModalRequest
-                handleClose={() =>
-                  setSendOrder((prevState) => {
-                    return { ...prevState, isModal: false };
-                  })
-                }
-                email="help@bezperesdach.ru"
-              />
-            )}
+            {sendOrder.isModal && <DynamicModalRequest handleClose={closeModal} email="help@bezperesdach.ru" />}
           </AnimatePresence>
         </div>
       </section>

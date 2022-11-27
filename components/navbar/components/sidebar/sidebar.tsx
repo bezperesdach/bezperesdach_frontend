@@ -39,7 +39,7 @@ export const Sidebar = ({ isOpen, closeMenu }: Props) => {
             <MenuItem url={urls.work} closeMenu={closeMenu} mobile>
               Стать автором
             </MenuItem>
-            <MenuItem url={urls.garantees} closeMenu={closeMenu} mobile>
+            <MenuItem url={urls.guarantees} closeMenu={closeMenu} mobile>
               Гарантии
             </MenuItem>
           </motion.aside>

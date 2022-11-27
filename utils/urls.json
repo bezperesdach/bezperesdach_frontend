@@ -4,6 +4,6 @@
 	"order": "/order/new",
 	"work": "/work",
 	"about_us": "/about_us/information",
-	"garantees": "/about_us/garantees",
+	"guarantees": "/about_us/guarantees",
 	"agreement": "/about_us/agreement"
 }

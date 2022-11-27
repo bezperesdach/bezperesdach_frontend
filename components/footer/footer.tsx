@@ -50,7 +50,7 @@ export const Footer = () => {
           <Link href={urls.about_us} className={styles.link}>
             О нас
           </Link>
-          <Link href={urls.garantees} className={styles.link}>
+          <Link href={urls.guarantees} className={styles.link}>
             Гарантии
           </Link>
         </div>

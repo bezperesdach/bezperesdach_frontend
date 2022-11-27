@@ -41,6 +41,30 @@
   gap: 30px;
 }
 
+.text_main {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.text_main h1 {
+  padding-bottom: 20px;
+  font-size: calc((100vw - 480px) / (1920 - 480) * (64 - 40) + 40px);
+  font-weight: 800;
+  text-align: center;
+}
+
+.text_main h2 {
+  padding-bottom: 20px;
+  font-size: calc((100vw - 480px) / (1920 - 480) * (28 - 20) + 20px);
+  font-weight: 700;
+}
+
+.text_main h3 {
+  font-size: calc((100vw - 480px) / (1920 - 480) * (18 - 16) + 16px);
+  font-weight: 300;
+  line-height: 150%;
+}
+
 /* .button_active {
   display: flex;
   flex-direction: column-reverse;

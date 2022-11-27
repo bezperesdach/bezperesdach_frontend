@@ -108,9 +108,21 @@
     padding-bottom: 100px;
     gap: unset;
   }
+
+  .image_container {
+    width: 50%;
+    flex: unset;
+    flex-basis: unset;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  .image_container {
+    width: 90%;
+    flex: unset;
+    flex-basis: unset;
+  }
+
   .image {
     display: flex;
     height: auto;
@@ -119,7 +131,7 @@
 
   .main_hero {
     flex-direction: column;
-    padding-top: 64px;
+    padding-top: 32px;
     gap: unset;
   }
 

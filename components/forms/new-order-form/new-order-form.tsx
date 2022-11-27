@@ -67,12 +67,16 @@ export const NewOrderForm = () => {
     const promo = router.query.promo as string;
 
     if (router.pathname !== "new") {
+      const query = promo
+        ? {
+            promo,
+          }
+        : {};
+
       router.replace(
         {
           pathname: "/order/new",
-          query: {
-            promo,
-          },
+          query,
         },
         undefined,
         { shallow: true }
@@ -224,7 +228,10 @@ export const NewOrderForm = () => {
     const slug = router.query.slug as string;
     const promo = router.query.promo as string;
 
-    formik.setFieldValue("projectType", slug !== "new" ? getInitValue(slug) : "");
+    if (slug !== "new") {
+      formik.setFieldValue("projectType", getInitValue(slug));
+    }
+
     if (promo) {
       formik.setFieldValue("promoCode", promo);
     }
@@ -243,11 +250,12 @@ export const NewOrderForm = () => {
     if (sendOrder.errorText) {
       return sendOrder.errorText;
     }
-    if (!formik.isValid) {
+    if (formik.submitCount > 0 && !formik.isValid) {
+      console.log(formik.errors);
       return "В каком-то из полей ошибка";
     }
     return "";
-  }, [formik.isValid, sendOrder.errorText]);
+  }, [formik.submitCount, formik.isValid, sendOrder.errorText]);
 
   const [typeOptions, setTypeOptions] = useState(typeOptionsInit);
 
@@ -493,7 +501,7 @@ export const NewOrderForm = () => {
             />
           </div>
           <AnimatePresence>
-            {sendOrder.isModal && <DynamicModalRequest handleClose={closeModal} email="help@bezperesdach.ru" />}
+            {sendOrder.isModal && <DynamicModalRequest handleClose={closeModal} email="work@bezperesdach.ru" />}
           </AnimatePresence>
         </div>
       </section>

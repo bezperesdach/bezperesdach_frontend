@@ -17,23 +17,25 @@ interface IOrderExtended extends IOrder {
 }
 
 export const createOrder = async (order: IOrderExtended) => {
-  const data = axios
-    .post(`${API_URL}/new-orders`, { data: order }, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } })
-    .then((res) => res.data);
+  const response = await axios.post(`${API_URL}/new-orders`, { data: order }, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } });
 
-  const res = await data;
-
-  return res.data;
+  return response.data;
 };
 
 export const becomeWorker = async (worker: IWorker) => {
-  const data = axios
-    .post(`${API_URL}/new-workers`, { data: worker }, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } })
-    .then((res) => res.data);
+  const response = await axios.post(
+    `${API_URL}/new-workers`,
+    { data: worker },
+    { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } }
+  );
 
-  const res = await data;
+  return response.data;
+};
 
-  return res.data;
+export const getPromoCode = async (promoCode: string) => {
+  const response = await axios(`${API_URL}/promo-codes/${promoCode}`, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } });
+
+  return response.data;
 };
 
 export const authenticateUser = async (

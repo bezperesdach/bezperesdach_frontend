@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useDebounce } from "usehooks-ts";
 
 import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
@@ -18,6 +19,7 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { showAndHideError } from "../../../utils/utils";
 import axios from "axios";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
+import { PromoCodeStatus } from "./components/promo-code-status/promo-code-status";
 
 import styles from "../form.module.css";
 
@@ -87,6 +89,69 @@ export const NewOrderForm = () => {
     onSubmit: (values) => formSubmit(values),
   });
 
+  const [foundPromoCode, setFoundPromoCode] = useState({
+    show: false,
+    found: false,
+  });
+
+  const debouncedPromoCode = useDebounce<string>(formik.values.promoCode, 950);
+
+  useEffect(() => {
+    async function fetchPromoCode() {
+      const slug = router.query.slug as string;
+
+      try {
+        const result = await axios(`/api/promo-codes?promo=${debouncedPromoCode}`);
+
+        if (result.data === "OK") {
+          setFoundPromoCode({ show: true, found: true });
+          router.replace(
+            {
+              pathname: "/order/[slug]",
+              query: {
+                slug,
+                promo: debouncedPromoCode,
+              },
+            },
+            undefined,
+            { shallow: true }
+          );
+        } else {
+          setFoundPromoCode({ show: true, found: false });
+          router.replace(
+            {
+              pathname: "/order/[slug]",
+              query: {
+                slug,
+              },
+            },
+            undefined,
+            { shallow: true }
+          );
+        }
+      } catch (error) {
+        setFoundPromoCode({ show: true, found: false });
+        router.replace(
+          {
+            pathname: "/order/[slug]",
+            query: {
+              slug,
+            },
+          },
+          undefined,
+          { shallow: true }
+        );
+      }
+    }
+
+    if (debouncedPromoCode !== "") {
+      fetchPromoCode();
+    } else {
+      setFoundPromoCode({ show: false, found: false });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedPromoCode]);
+
   const formSubmit = useCallback(
     async (values: IOrder) => {
       if (!executeRecaptcha) {
@@ -154,30 +219,10 @@ export const NewOrderForm = () => {
 
   useEffect(() => {
     const slug = router.query.slug as string;
-    const promo = formik.values.promoCode;
-
-    router.replace(
-      {
-        pathname: "/order/[slug]",
-        query: promo
-          ? {
-              slug,
-              promo,
-            }
-          : { slug },
-      },
-      undefined,
-      { shallow: true }
-    );
-  }, [formik.values.promoCode]);
-
-  useEffect(() => {
-    const slug = router.query.slug as string;
-    const promo = router.query.promo as string;
 
     formik.setFieldValue("projectType", slug !== "new" ? getInitValue(slug) : "");
 
-    formik.setFieldValue("promoCode", promo ?? "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
 
   const [sendOrder, setSendOrder] = useState({
@@ -239,10 +284,12 @@ export const NewOrderForm = () => {
                       router.replace(
                         {
                           pathname: "/order/[slug]",
-                          query: {
-                            slug: item,
-                            promo,
-                          },
+                          query: promo
+                            ? {
+                                slug: item,
+                                promo,
+                              }
+                            : { slug: item },
                         },
                         undefined,
                         { shallow: true }
@@ -399,11 +446,15 @@ export const NewOrderForm = () => {
                     className={styles.input}
                     type="text"
                     name="promoCode"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellcheck={false}
                     placeholder="Укажите промокод"
                     disabled={formik.isSubmitting}
                   />
                 </div>
-                <ErrorMessage className={styles.error_label} name="promoCode" component="div" />
+                <PromoCodeStatus show={foundPromoCode.show} found={foundPromoCode.found} />
               </div>
 
               <div className={styles.submit_button_container}>

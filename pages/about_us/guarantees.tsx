@@ -1,10 +1,10 @@
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { SEO } from "../../components/seo/seo";
-import { Garantees } from "./components/garantees/garantees/garantees";
+import { Guarantees } from "./components/guarantees/guarantees";
 import dynamic from "next/dynamic";
 const DynamicContact = dynamic(() => import("../../components/home-page/contact/contact").then((mod) => mod.Contact));
 
-export default function Information() {
+export default function GuaranteesPage() {
   return (
     <UnauthorizedUserLayout>
       <SEO
@@ -16,7 +16,7 @@ export default function Information() {
         }
       />
 
-      <Garantees />
+      <Guarantees />
       <DynamicContact />
     </UnauthorizedUserLayout>
   );

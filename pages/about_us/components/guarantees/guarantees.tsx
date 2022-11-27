@@ -1,9 +1,8 @@
 import React from "react";
-import Link from "next/link";
 
-import styles from "./garantees.module.css";
+import styles from "./guarantees.module.css";
 
-export const Garantees = () => {
+export const Guarantees = () => {
   return (
     <section className={`${styles.main} ${styles.colored_background}`}>
       <div className={styles.text}>

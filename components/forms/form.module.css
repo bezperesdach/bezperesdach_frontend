@@ -234,7 +234,7 @@
   .hero {
     width: 100%;
     height: unset;
-    padding-top: 0;
+    padding-top: 8px;
   }
 
   .image_container {

@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { SEO } from "../../components/seo/seo";
-import { AboutSite } from "./components/about_us/aboutSite/aboutSite";
+import { AboutSite } from "../../components/about-us-page/about-site/about-site";
 
 const DynamicContact = dynamic(() => import("../../components/home-page/contact/contact").then((mod) => mod.Contact));
 

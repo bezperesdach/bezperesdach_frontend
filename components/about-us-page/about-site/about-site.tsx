@@ -1,9 +1,6 @@
 import React from "react";
-// import Image from "next/image";
 
-// import About from "public/assets/images/about.svg";
-
-import styles from "./aboutSite.module.css";
+import styles from "./about-us.module.css";
 
 export const AboutSite = () => {
   return (

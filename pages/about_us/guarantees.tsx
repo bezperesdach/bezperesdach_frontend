@@ -1,6 +1,6 @@
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { SEO } from "../../components/seo/seo";
-import { Guarantees } from "./components/guarantees/guarantees";
+import { Guarantees } from "../../components/about-us-page/guarantees/guarantees";
 import dynamic from "next/dynamic";
 const DynamicContact = dynamic(() => import("../../components/home-page/contact/contact").then((mod) => mod.Contact));
 

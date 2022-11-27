@@ -1,7 +1,6 @@
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { SEO } from "../../components/seo/seo";
-
-import { Agreement } from "./components/agreement/agreement/agreement";
+import { Agreement } from "../../components/about-us-page/agreement/agreement";
 
 export default function Information() {
   return (

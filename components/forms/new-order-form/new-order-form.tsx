@@ -255,6 +255,7 @@ export const NewOrderForm = () => {
       return "В каком-то из полей ошибка";
     }
     return "";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formik.submitCount, formik.isValid, sendOrder.errorText]);
 
   const [typeOptions, setTypeOptions] = useState(typeOptionsInit);

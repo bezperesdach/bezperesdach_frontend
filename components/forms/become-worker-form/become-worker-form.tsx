@@ -119,58 +119,56 @@ export const BecomeWorkerForm = () => {
   );
 
   return (
-    <>
-      <FormikProvider value={formik}>
-        <Form className={`${styles.form} noValidate ${styles.form_background_work}`}>
-          <div className={styles.form_work}>
-            <div className={styles.form_item}>
-              <label className={styles.headline}>Ваше имя *</label>
-              <div className={styles.input_container}>
-                <Field
-                  className={styles.input}
-                  type="text"
-                  name="name"
-                  placeholder="Как к вам обращаться?"
-                  disabled={formik.isSubmitting}
-                />
-              </div>
-              <ErrorMessage className={styles.error_label} name="name" component="div" />
-            </div>
-
-            <div className={styles.form_item}>
-              <label className={styles.headline}>Email *</label>
-              <div className={styles.input_container}>
-                <Field
-                  className={styles.input}
-                  type="email"
-                  name="email"
-                  placeholder="example@example.ru"
-                  disabled={formik.isSubmitting}
-                />
-              </div>
-              <ErrorMessage className={styles.error_label} name="email" component="div" />
-            </div>
-
-            <div className={styles.submit_button_container}>
-              {newWorker.error && <p className={styles.submit_error}>{newWorker.errorText}</p>}
-              <Button
-                type="submit"
-                color="#fff"
+    <FormikProvider value={formik}>
+      <Form className={`${styles.form} noValidate ${styles.form_background_work}`}>
+        <div className={styles.form_work}>
+          <div className={styles.form_item}>
+            <label className={styles.headline}>Ваше имя *</label>
+            <div className={styles.input_container}>
+              <Field
+                className={styles.input}
+                type="text"
+                name="name"
+                placeholder="Как к вам обращаться?"
                 disabled={formik.isSubmitting}
-                loading={newWorker.loading}
-                style={{ alignSelf: "center" }}
-                error={newWorker.error}
-              >
-                Отправить
-              </Button>
-              <RecaptchaDisclaimer color="rgb(255 255 255 / 80%)" />
+              />
             </div>
+            <ErrorMessage className={styles.error_label} name="name" component="div" />
           </div>
-        </Form>
-      </FormikProvider>
+
+          <div className={styles.form_item}>
+            <label className={styles.headline}>Email *</label>
+            <div className={styles.input_container}>
+              <Field
+                className={styles.input}
+                type="email"
+                name="email"
+                placeholder="example@example.ru"
+                disabled={formik.isSubmitting}
+              />
+            </div>
+            <ErrorMessage className={styles.error_label} name="email" component="div" />
+          </div>
+
+          <div className={styles.submit_button_container}>
+            {newWorker.error && <p className={styles.submit_error}>{newWorker.errorText}</p>}
+            <Button
+              type="submit"
+              color="#fff"
+              disabled={formik.isSubmitting}
+              loading={newWorker.loading}
+              style={{ alignSelf: "center" }}
+              error={newWorker.error}
+            >
+              Отправить
+            </Button>
+            <RecaptchaDisclaimer color="rgb(255 255 255 / 80%)" />
+          </div>
+        </div>
+      </Form>
       <AnimatePresence>
         {newWorker.isModal && <DynamicModalRequest handleClose={closeModal} email="work@bezperesdach.ru" />}
       </AnimatePresence>
-    </>
+    </FormikProvider>
   );
 };

@@ -3,7 +3,7 @@
 	"prices":"/prices",
 	"order": "/order/new",
 	"work": "/work",
-	"about_us": "/about_us/information",
-	"guarantees": "/about_us/guarantees",
-	"agreement": "/about_us/agreement"
+	"about_us": "/about_us",
+	"guarantees": "/guarantees",
+	"agreement": "/agreement"
 }

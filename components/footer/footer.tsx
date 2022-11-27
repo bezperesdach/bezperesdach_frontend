@@ -14,7 +14,7 @@ export const Footer = () => {
         </h2>
         <p>
           Используя сервис “Без пересдач”, вы принимаете{" "}
-          <Link href="/about_us/agreement" className={styles.document_link}>
+          <Link href={urls.agreement} className={styles.document_link}>
             пользовательское соглашение
           </Link>
           , а также
@@ -24,7 +24,7 @@ export const Footer = () => {
           </Link>
         </p>
         <p>
-          <strong>© 2022 “Безпересдач”</strong>
+          <strong>© 2022 “Без пересдач”</strong>
         </p>
       </div>
       <div className={styles.links_container}>

@@ -10,10 +10,10 @@ export const Footer = () => {
     <footer className={`${styles.footer} ${styles.colored_background}`}>
       <div className={styles.text}>
         <h2>
-          <strong>“Безпересдач”</strong> - онлайн-проект помощи студентам
+          <strong>“Без пересдач”</strong> - онлайн-проект помощи студентам
         </h2>
         <p>
-          Используя сервис “Безпересдач”, вы принимаете{" "}
+          Используя сервис “Без пересдач”, вы принимаете{" "}
           <Link href="/about_us/agreement" className={styles.document_link}>
             пользовательское соглашение
           </Link>

@@ -26,7 +26,7 @@ export const Main = () => {
       <div className={styles.text}>
         <div className={styles.text_main}>
           <h1>Без пересдач</h1>
-          <h3>проект онлайн-помощи студентам </h3>
+          <h2>проект онлайн-помощи студентам </h2>
         </div>
 
         <div className={styles.buttons}>

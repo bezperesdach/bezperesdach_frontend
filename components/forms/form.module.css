@@ -106,7 +106,7 @@
 
 .label {
   padding-left: 6px;
-  color: hsl(0deg 0% 50%);
+  color: rgb(0 0 0 / 60%);
   font-size: 14px;
 }
 
@@ -126,6 +126,7 @@
 .input {
   width: 100%;
   min-width: 100%;
+  min-height: 43px;
   padding: 10px;
   border: none;
   border-radius: inherit;

@@ -17,7 +17,7 @@
   "editor.formatOnSave": true,
   "cSpell.language": "en,ru",
   "cSpell.ignoreWords": ["Unfollow", "favorited"],
-  "cSpell.userWords": [
+  "cSpell.words": [
     "bezperesdach",
     "bframe",
     "draggable",

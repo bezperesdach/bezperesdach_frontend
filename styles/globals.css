@@ -40,7 +40,7 @@ textarea {
   pointer-events: none;
 }
 
-:focus {
+*:focus {
   outline: none !important;
   -webkit-tap-highlight-color: transparent;
 }
@@ -55,20 +55,3 @@ textarea {
     color: black;
   }
 }
-
-/* fix safari grey border on image loading */
-@media not all and (min-resolution: 0.001dpcm) {
-  img[loading="lazy"] {
-    clip-path: inset(0.5px);
-  }
-}
-
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-} */

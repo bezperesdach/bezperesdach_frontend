@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useEffect, useState } from "react";
+import React, { useCallback, useMemo, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { useDebounce } from "usehooks-ts";
 import dynamic from "next/dynamic";
@@ -23,6 +23,7 @@ import { showAndHideError } from "../../../utils/utils";
 import axios from "axios";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
 import { PromoCodeStatus } from "./components/promo-code-status/promo-code-status";
+import { useAutosizeTextArea } from "./components/use-auto-text-aria/use-auto-text-aria";
 
 import styles from "../form.module.css";
 
@@ -251,7 +252,6 @@ export const NewOrderForm = () => {
       return sendOrder.errorText;
     }
     if (formik.submitCount > 0 && !formik.isValid) {
-      console.log(formik.errors);
       return "В каком-то из полей ошибка";
     }
     return "";
@@ -269,6 +269,10 @@ export const NewOrderForm = () => {
 
     setTypeOptions(filteredOptions);
   };
+
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  useAutosizeTextArea(textAreaRef.current, formik.values.description);
 
   return (
     <FormikProvider value={formik}>
@@ -363,7 +367,8 @@ export const NewOrderForm = () => {
                     className={styles.input}
                     type="text"
                     component="textarea"
-                    rows="7"
+                    rows="4"
+                    innerRef={textAreaRef}
                     name="description"
                     placeholder="Укажите детали к работе: необходимый объем, оформление, требования от преподавателя"
                     id={styles.form_item_description_textarea}
@@ -373,52 +378,36 @@ export const NewOrderForm = () => {
                 <ErrorMessage className={styles.error_label} name="description" component="div" />
               </div>
 
-              <div className={styles.date_orig}>
-                <div className={styles.date_orig_container}>
-                  <div className={styles.form_item} id={styles.form_item_due_date}>
-                    <label className={styles.label}>Дата сдачи *</label>
-                    <div className={styles.input_container}>
-                      <Field
-                        className={styles.input}
-                        type="date"
-                        name="dueDate"
-                        placeholder="Когда нужно сдать работу"
-                        disabled={formik.isSubmitting}
-                      />
-                    </div>
-                    <ErrorMessage className={styles.error_label} name="dueDate" component="div" />
+              <div className={styles.multi_item_row}>
+                <div className={styles.form_item} id={styles.form_item_originality}>
+                  <label className={styles.label}>Антиплагиат *</label>
+                  <div className={styles.input_container}>
+                    <Field
+                      className={styles.input}
+                      type="text"
+                      pattern="\d*"
+                      name="originality"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                        if (value === "" || value === "0") {
+                          return formik.setFieldValue("originality", "");
+                        }
+                        if (value.length >= 3) {
+                          return;
+                        }
+                        return formik.setFieldValue("originality", `${value}%`);
+                      }}
+                      onKeyDown={(e: React.KeyboardEvent) => {
+                        if (e.key === "Backspace") {
+                          formik.setFieldValue("originality", formik.values.originality.slice(0, -1));
+                        }
+                      }}
+                      placeholder="Оригинальность"
+                      disabled={formik.isSubmitting}
+                      data-value="originality"
+                    />
                   </div>
-
-                  <div className={styles.form_item} id={styles.form_item_originality}>
-                    <label className={styles.label}>Антиплагиат *</label>
-                    <div className={styles.input_container}>
-                      <Field
-                        className={styles.input}
-                        type="text"
-                        pattern="\d*"
-                        name="originality"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                          const value = e.target.value.trim().replace(/[^0-9]/gi, "");
-                          if (value === "" || value === "0") {
-                            return formik.setFieldValue("originality", "");
-                          }
-                          if (value.length >= 3) {
-                            return;
-                          }
-                          return formik.setFieldValue("originality", `${value}%`);
-                        }}
-                        onKeyDown={(e: React.KeyboardEvent) => {
-                          if (e.key === "Backspace") {
-                            formik.setFieldValue("originality", formik.values.originality.slice(0, -1));
-                          }
-                        }}
-                        placeholder="Оригинальность"
-                        disabled={formik.isSubmitting}
-                        data-value="originality"
-                      />
-                    </div>
-                    <ErrorMessage className={styles.error_label} name="originality" component="div" />
-                  </div>
+                  <ErrorMessage className={styles.error_label} name="originality" component="div" />
                 </div>
 
                 <div className={styles.form_item} id={styles.form_item_anti_plagiarism}>
@@ -438,31 +427,47 @@ export const NewOrderForm = () => {
                 </div>
               </div>
 
-              <div className={styles.form_item} id={styles.form_item_due_date}>
-                <label className={styles.label}>Пожелания по цене</label>
-                <div className={styles.input_container}>
-                  <Field
-                    className={styles.input}
-                    type="text"
-                    pattern="\d*"
-                    name="expectedPrice"
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      const value = e.target.value.trim().replace(/[^0-9]/gi, "");
-                      if (value === "" || value === "0") {
-                        return formik.setFieldValue("expectedPrice", "");
-                      }
-                      return formik.setFieldValue("expectedPrice", `${value}₽`);
-                    }}
-                    onKeyDown={(e: React.KeyboardEvent) => {
-                      if (e.key === "Backspace") {
-                        formik.setFieldValue("expectedPrice", formik.values.expectedPrice.slice(0, -1));
-                      }
-                    }}
-                    placeholder="Укажите пожелания по цене"
-                    disabled={formik.isSubmitting}
-                  />
+              <div className={styles.multi_item_row}>
+                <div className={styles.form_item} id={styles.form_item_due_date}>
+                  <label className={styles.label}>Дата сдачи *</label>
+                  <div className={styles.input_container}>
+                    <Field
+                      className={styles.input}
+                      type="date"
+                      name="dueDate"
+                      placeholder="Когда нужно сдать работу"
+                      disabled={formik.isSubmitting}
+                    />
+                  </div>
+                  <ErrorMessage className={styles.error_label} name="dueDate" component="div" />
                 </div>
-                <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
+
+                <div className={styles.form_item} id={styles.form_item_due_date}>
+                  <label className={styles.label}>Пожелания по цене</label>
+                  <div className={styles.input_container}>
+                    <Field
+                      className={styles.input}
+                      type="text"
+                      pattern="\d*"
+                      name="expectedPrice"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                        if (value === "" || value === "0") {
+                          return formik.setFieldValue("expectedPrice", "");
+                        }
+                        return formik.setFieldValue("expectedPrice", `${value}₽`);
+                      }}
+                      onKeyDown={(e: React.KeyboardEvent) => {
+                        if (e.key === "Backspace") {
+                          formik.setFieldValue("expectedPrice", formik.values.expectedPrice.slice(0, -1));
+                        }
+                      }}
+                      placeholder="Укажите пожелания по цене"
+                      disabled={formik.isSubmitting}
+                    />
+                  </div>
+                  <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
+                </div>
               </div>
 
               <div className={styles.form_item}>

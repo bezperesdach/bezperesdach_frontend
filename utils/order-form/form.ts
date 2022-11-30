@@ -81,7 +81,7 @@ export const typeOptionsOrder = new Map([
   ["exam-preparation", "Подготовку к экзамену"],
   ["research", "Поиск информации"],
   ["presentation", "Презентацию"],
-  ["programming", "Программирование"],
+  ["programming", "Помощь с программированием"],
   ["composition", "Реферат"],
   ["review", "Рецензию"],
   ["opus", "Сочинение"],

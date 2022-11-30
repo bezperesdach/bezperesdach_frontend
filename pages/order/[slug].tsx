@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from "querystring";
 import { RECAPTCHA_SITE_KEY } from "../../utils/recaptcha";
 
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
-import { descriptionValueLabel, getOrderDescription, typeOptionsOrder } from "../../utils/form/new-order-form";
+import { descriptionValueLabel, getOrderDescription, typeOptionsOrder } from "../../utils/order-form/form";
 import { SEO } from "../../components/seo/seo";
 import { NewOrderForm } from "../../components/forms/new-order-form/new-order-form";
 const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));

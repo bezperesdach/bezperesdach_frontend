@@ -6,7 +6,6 @@ import { AnimatePresence } from "framer-motion";
 
 import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
-import * as Yup from "yup";
 
 import Hero from "public/assets/images/hero/hero.webp";
 import FallbackHero from "public/assets/images/hero/fallback-hero.png";
@@ -17,46 +16,16 @@ import { ym } from "../../../utils/yandex-metrika";
 const DynamicModalRequest = dynamic(() =>
   import("../../portal/components/modal-request/modal-request").then((mod) => mod.ModalRequest)
 );
-import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/form/new-order-form";
+import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/order-form/form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { showAndHideError } from "../../../utils/utils";
 import axios from "axios";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
 import { PromoCodeStatus } from "./components/promo-code-status/promo-code-status";
 import { useAutosizeTextArea } from "./components/use-auto-text-aria/use-auto-text-aria";
+import { initialValues, orderSchema } from "../../../utils/order-form/validation";
 
 import styles from "../form.module.css";
-
-const nextWeek = () => {
-  const now = new Date();
-  const twoWeeks = new Date(now.getTime() + 13 * 24 * 60 * 60 * 1000);
-  return twoWeeks;
-};
-
-const initialValue: IOrder = {
-  projectType: "",
-  subject: "",
-  projectName: "",
-  description: "",
-  dueDate: nextWeek().toLocaleDateString("en-CA"),
-  originality: "45%",
-  antiPlagiarism: "free",
-  email: "",
-  expectedPrice: "",
-  promoCode: "",
-};
-
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
-const RequestProjectSchema = Yup.object().shape({
-  projectType: Yup.string().required("Обязательное поле"),
-  subject: Yup.string().required("Обязательное поле"),
-  dueDate: Yup.date().required("Обязательное поле").min(today, "Дата сдачи не может быть в прошлом"),
-  originality: Yup.string().required("Обязательное поле"),
-  antiPlagiarism: Yup.string().required("Обязательное поле"),
-  email: Yup.string().email("Неверный email").required("Обязательное поле"),
-});
 
 export const NewOrderForm = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -92,8 +61,8 @@ export const NewOrderForm = () => {
   };
 
   const formik = useFormik({
-    initialValues: initialValue,
-    validationSchema: RequestProjectSchema,
+    initialValues: initialValues,
+    validationSchema: orderSchema,
     onSubmit: (values) => formSubmit(values),
   });
 
@@ -305,7 +274,7 @@ export const NewOrderForm = () => {
                     options={typeOptions}
                     component={DynamicReactSelector}
                     borderRadius={15}
-                    placeholder="Укажите тип"
+                    placeholder="Начните набирать..."
                     isMulti={false}
                     filterOption={() => true}
                     onInputChange={(e: string) => filterAllOptions(e)}
@@ -333,7 +302,7 @@ export const NewOrderForm = () => {
               </div>
 
               <div className={styles.form_item}>
-                <label className={styles.label}>Предмет *</label>
+                <label className={styles.label}>Предмет</label>
                 <div className={styles.input_container}>
                   <Field
                     className={styles.input}
@@ -380,7 +349,7 @@ export const NewOrderForm = () => {
 
               <div className={styles.multi_item_row}>
                 <div className={styles.form_item} id={styles.form_item_originality}>
-                  <label className={styles.label}>Антиплагиат *</label>
+                  <label className={styles.label}>Антиплагиат</label>
                   <div className={styles.input_container}>
                     <Field
                       className={styles.input}
@@ -411,7 +380,7 @@ export const NewOrderForm = () => {
                 </div>
 
                 <div className={styles.form_item} id={styles.form_item_anti_plagiarism}>
-                  <label className={styles.label}>Проверка *</label>
+                  <label className={styles.label}>Проверка</label>
                   <Field
                     name="antiPlagiarism"
                     options={antiPlagiarismOptions}

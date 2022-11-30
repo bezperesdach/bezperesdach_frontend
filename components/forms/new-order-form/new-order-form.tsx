@@ -187,7 +187,7 @@ export const NewOrderForm = () => {
           return;
         }
 
-        const result = await axios.post("/api/new-order", {
+        const result = await axios.post("/api/order", {
           order: values,
           token: token,
         });

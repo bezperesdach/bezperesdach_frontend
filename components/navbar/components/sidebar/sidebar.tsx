@@ -3,7 +3,7 @@ import React from "react";
 import Portal from "../../../portal/portal";
 import { MenuItem } from "../menu-item/menu-item";
 import urls from "../../../../utils/urls.json";
-import { typeOptionsOrder } from "../../../../utils/form/new-order-form";
+import { typeOptionsOrder } from "../../../../utils/order-form/form";
 
 import styles from "./sidebar.module.css";
 

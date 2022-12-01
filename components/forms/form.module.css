@@ -64,7 +64,7 @@
   gap: 4px;
 }
 
-.date_orig {
+.multi_item_row {
   display: flex;
   flex-basis: 10%;
   gap: 8px;
@@ -75,7 +75,7 @@
   gap: 8px;
 }
 
-.date_orig > * {
+.item_container > * {
   flex-basis: 50%;
 }
 
@@ -132,7 +132,6 @@
   border-radius: inherit;
   background: none;
   color: hsl(0deg 0% 20%);
-  font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 16px;
   text-align: start;
 }
@@ -266,7 +265,7 @@
     display: none;
   }
 
-  .date_orig {
+  .multi_item_row {
     display: flex;
     flex-basis: unset;
     flex-direction: column;

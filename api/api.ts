@@ -17,7 +17,7 @@ interface IOrderExtended extends IOrder {
 }
 
 export const createOrder = async (order: IOrderExtended) => {
-  const response = await axios.post(`${API_URL}/new-orders`, { data: order }, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } });
+  const response = await axios.post(`${API_URL}/orders`, { data: order }, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } });
 
   return response.data;
 };

@@ -34,6 +34,29 @@ export const typeOptionsInit = [
   { value: "other", label: "Другое" },
 ];
 
+export const isAntiplagiatVisible = (option: string) => {
+  const valuesArrayToHide = [
+    "consultation",
+    "test-work",
+    "online-help",
+    "ticket-answers",
+    "practice-report",
+    "literature",
+    "exam-preparation",
+    "research",
+    "programming",
+    "tests",
+    "scheme",
+    "tasks",
+  ];
+
+  if (valuesArrayToHide.indexOf(option) > -1) {
+    return false;
+  }
+
+  return true;
+};
+
 export const getInitValue = (option?: string) => {
   if (option) {
     const result = typeOptionsOrder.get(option);
@@ -81,7 +104,7 @@ export const typeOptionsOrder = new Map([
   ["exam-preparation", "Подготовку к экзамену"],
   ["research", "Поиск информации"],
   ["presentation", "Презентацию"],
-  ["programming", "Программирование"],
+  ["programming", "Помощь с программированием"],
   ["composition", "Реферат"],
   ["review", "Рецензию"],
   ["opus", "Сочинение"],

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useEffect, useState } from "react";
+import React, { useCallback, useMemo, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { useDebounce } from "usehooks-ts";
 import dynamic from "next/dynamic";
@@ -6,7 +6,6 @@ import { AnimatePresence } from "framer-motion";
 
 import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
-import * as Yup from "yup";
 
 import Hero from "public/assets/images/hero/hero.webp";
 import FallbackHero from "public/assets/images/hero/fallback-hero.png";
@@ -17,45 +16,22 @@ import { ym } from "../../../utils/yandex-metrika";
 const DynamicModalRequest = dynamic(() =>
   import("../../portal/components/modal-request/modal-request").then((mod) => mod.ModalRequest)
 );
-import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/form/new-order-form";
+import {
+  antiPlagiarismOptions,
+  getInitValue,
+  getOrderTypeLabel,
+  isAntiplagiatVisible,
+  typeOptionsInit,
+} from "../../../utils/order-form/form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { showAndHideError } from "../../../utils/utils";
 import axios from "axios";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
 import { PromoCodeStatus } from "./components/promo-code-status/promo-code-status";
+import { useAutosizeTextArea } from "./components/use-auto-text-aria/use-auto-text-aria";
+import { initialValues, orderSchema } from "../../../utils/order-form/validation";
 
 import styles from "../form.module.css";
-
-const nextWeek = () => {
-  const now = new Date();
-  const twoWeeks = new Date(now.getTime() + 13 * 24 * 60 * 60 * 1000);
-  return twoWeeks;
-};
-
-const initialValue: IOrder = {
-  projectType: "",
-  subject: "",
-  projectName: "",
-  description: "",
-  dueDate: nextWeek().toLocaleDateString("en-CA"),
-  originality: "45%",
-  antiPlagiarism: "free",
-  email: "",
-  expectedPrice: "",
-  promoCode: "",
-};
-
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
-const RequestProjectSchema = Yup.object().shape({
-  projectType: Yup.string().required("Обязательное поле"),
-  subject: Yup.string().required("Обязательное поле"),
-  dueDate: Yup.date().required("Обязательное поле").min(today, "Дата сдачи не может быть в прошлом"),
-  originality: Yup.string().required("Обязательное поле"),
-  antiPlagiarism: Yup.string().required("Обязательное поле"),
-  email: Yup.string().email("Неверный email").required("Обязательное поле"),
-});
 
 export const NewOrderForm = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -91,8 +67,8 @@ export const NewOrderForm = () => {
   };
 
   const formik = useFormik({
-    initialValues: initialValue,
-    validationSchema: RequestProjectSchema,
+    initialValues: initialValues,
+    validationSchema: orderSchema,
     onSubmit: (values) => formSubmit(values),
   });
 
@@ -187,7 +163,7 @@ export const NewOrderForm = () => {
           return;
         }
 
-        const result = await axios.post("/api/new-order", {
+        const result = await axios.post("/api/order", {
           order: values,
           token: token,
         });
@@ -251,7 +227,6 @@ export const NewOrderForm = () => {
       return sendOrder.errorText;
     }
     if (formik.submitCount > 0 && !formik.isValid) {
-      console.log(formik.errors);
       return "В каком-то из полей ошибка";
     }
     return "";
@@ -269,6 +244,23 @@ export const NewOrderForm = () => {
 
     setTypeOptions(filteredOptions);
   };
+
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  useAutosizeTextArea(textAreaRef.current, formik.values.description);
+
+  const showAntiPlagiat = useMemo(() => {
+    const slug = router.query.slug as string;
+    if (isAntiplagiatVisible(slug)) {
+      formik.values.originality = "45%";
+      formik.values.antiPlagiarism = "free";
+      return true;
+    } else {
+      formik.values.originality = "";
+      formik.values.antiPlagiarism = "none";
+      return false;
+    }
+  }, [router.query.slug]);
 
   return (
     <FormikProvider value={formik}>
@@ -301,7 +293,7 @@ export const NewOrderForm = () => {
                     options={typeOptions}
                     component={DynamicReactSelector}
                     borderRadius={15}
-                    placeholder="Укажите тип"
+                    placeholder="Начните набирать..."
                     isMulti={false}
                     filterOption={() => true}
                     onInputChange={(e: string) => filterAllOptions(e)}
@@ -329,7 +321,7 @@ export const NewOrderForm = () => {
               </div>
 
               <div className={styles.form_item}>
-                <label className={styles.label}>Предмет *</label>
+                <label className={styles.label}>Предмет</label>
                 <div className={styles.input_container}>
                   <Field
                     className={styles.input}
@@ -363,7 +355,8 @@ export const NewOrderForm = () => {
                     className={styles.input}
                     type="text"
                     component="textarea"
-                    rows="7"
+                    rows="4"
+                    innerRef={textAreaRef}
                     name="description"
                     placeholder="Укажите детали к работе: необходимый объем, оформление, требования от преподавателя"
                     id={styles.form_item_description_textarea}
@@ -373,24 +366,10 @@ export const NewOrderForm = () => {
                 <ErrorMessage className={styles.error_label} name="description" component="div" />
               </div>
 
-              <div className={styles.date_orig}>
-                <div className={styles.date_orig_container}>
-                  <div className={styles.form_item} id={styles.form_item_due_date}>
-                    <label className={styles.label}>Дата сдачи *</label>
-                    <div className={styles.input_container}>
-                      <Field
-                        className={styles.input}
-                        type="date"
-                        name="dueDate"
-                        placeholder="Когда нужно сдать работу"
-                        disabled={formik.isSubmitting}
-                      />
-                    </div>
-                    <ErrorMessage className={styles.error_label} name="dueDate" component="div" />
-                  </div>
-
+              {showAntiPlagiat && (
+                <div className={styles.multi_item_row}>
                   <div className={styles.form_item} id={styles.form_item_originality}>
-                    <label className={styles.label}>Антиплагиат *</label>
+                    <label className={styles.label}>Антиплагиат</label>
                     <div className={styles.input_container}>
                       <Field
                         className={styles.input}
@@ -419,50 +398,66 @@ export const NewOrderForm = () => {
                     </div>
                     <ErrorMessage className={styles.error_label} name="originality" component="div" />
                   </div>
+
+                  <div className={styles.form_item} id={styles.form_item_anti_plagiarism}>
+                    <label className={styles.label}>Проверка</label>
+                    <Field
+                      name="antiPlagiarism"
+                      options={antiPlagiarismOptions}
+                      component={DynamicReactSelector}
+                      borderRadius={15}
+                      placeholder="Тип проверки"
+                      isMulti={false}
+                      isSearchable={false}
+                      disabled={formik.isSubmitting}
+                    />
+
+                    <ErrorMessage className={styles.error_label} name="antiPlagiarism" component="div" />
+                  </div>
+                </div>
+              )}
+
+              <div className={styles.multi_item_row}>
+                <div className={styles.form_item} id={styles.form_item_due_date}>
+                  <label className={styles.label}>Дата сдачи *</label>
+                  <div className={styles.input_container}>
+                    <Field
+                      className={styles.input}
+                      type="date"
+                      name="dueDate"
+                      placeholder="Когда нужно сдать работу"
+                      disabled={formik.isSubmitting}
+                    />
+                  </div>
+                  <ErrorMessage className={styles.error_label} name="dueDate" component="div" />
                 </div>
 
-                <div className={styles.form_item} id={styles.form_item_anti_plagiarism}>
-                  <label className={styles.label}>Проверка *</label>
-                  <Field
-                    name="antiPlagiarism"
-                    options={antiPlagiarismOptions}
-                    component={DynamicReactSelector}
-                    borderRadius={15}
-                    placeholder="Тип проверки"
-                    isMulti={false}
-                    isSearchable={false}
-                    disabled={formik.isSubmitting}
-                  />
-
-                  <ErrorMessage className={styles.error_label} name="antiPlagiarism" component="div" />
+                <div className={styles.form_item} id={styles.form_item_due_date}>
+                  <label className={styles.label}>Пожелания по цене</label>
+                  <div className={styles.input_container}>
+                    <Field
+                      className={styles.input}
+                      type="text"
+                      pattern="\d*"
+                      name="expectedPrice"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                        if (value === "" || value === "0") {
+                          return formik.setFieldValue("expectedPrice", "");
+                        }
+                        return formik.setFieldValue("expectedPrice", `${value}₽`);
+                      }}
+                      onKeyDown={(e: React.KeyboardEvent) => {
+                        if (e.key === "Backspace") {
+                          formik.setFieldValue("expectedPrice", formik.values.expectedPrice.slice(0, -1));
+                        }
+                      }}
+                      placeholder="Укажите пожелания по цене"
+                      disabled={formik.isSubmitting}
+                    />
+                  </div>
+                  <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
                 </div>
-              </div>
-
-              <div className={styles.form_item} id={styles.form_item_due_date}>
-                <label className={styles.label}>Пожелания по цене</label>
-                <div className={styles.input_container}>
-                  <Field
-                    className={styles.input}
-                    type="text"
-                    pattern="\d*"
-                    name="expectedPrice"
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      const value = e.target.value.trim().replace(/[^0-9]/gi, "");
-                      if (value === "" || value === "0") {
-                        return formik.setFieldValue("expectedPrice", "");
-                      }
-                      return formik.setFieldValue("expectedPrice", `${value}₽`);
-                    }}
-                    onKeyDown={(e: React.KeyboardEvent) => {
-                      if (e.key === "Backspace") {
-                        formik.setFieldValue("expectedPrice", formik.values.expectedPrice.slice(0, -1));
-                      }
-                    }}
-                    placeholder="Укажите пожелания по цене"
-                    disabled={formik.isSubmitting}
-                  />
-                </div>
-                <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
               </div>
 
               <div className={styles.form_item}>

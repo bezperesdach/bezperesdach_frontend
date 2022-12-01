@@ -9,7 +9,7 @@ interface IOrder {
   description: string;
   dueDate: date;
   originality: string;
-  antiPlagiarism: "free" | "paid";
+  antiPlagiarism: "free" | "paid" | "none";
   email: string;
   expectedPrice: string;
   promoCode: string;

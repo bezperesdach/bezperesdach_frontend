@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from "querystring";
 import { RECAPTCHA_SITE_KEY } from "../../utils/recaptcha";
 
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
-import { descriptionValueLabel, getOrderDescription, typeOptionsOrder } from "../../utils/form/new-order-form";
+import { descriptionValueLabel, getOrderDescription, typeOptionsOrder } from "../../utils/order-form/form";
 import { SEO } from "../../components/seo/seo";
 import { NewOrderForm } from "../../components/forms/new-order-form/new-order-form";
 const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
@@ -29,9 +29,6 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
         }`}
         description={getOrderDescription(slug)}
         url={`https://bezperesdach.ru/order/${slug}`}
-        keywords={
-          "купить курсовую,купить диплом,где заказать курсовую работу,заказать готовую работу,дипломы курсовые на заказ,заказать научную статью,контрольные работы на заказ,заказать перевод с английского на русский,написать статью на заказ, безпересдач, без пересдач"
-        }
       >
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>

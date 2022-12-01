@@ -16,7 +16,13 @@ import { ym } from "../../../utils/yandex-metrika";
 const DynamicModalRequest = dynamic(() =>
   import("../../portal/components/modal-request/modal-request").then((mod) => mod.ModalRequest)
 );
-import { antiPlagiarismOptions, getInitValue, getOrderTypeLabel, typeOptionsInit } from "../../../utils/order-form/form";
+import {
+  antiPlagiarismOptions,
+  getInitValue,
+  getOrderTypeLabel,
+  isAntiplagiatVisible,
+  typeOptionsInit,
+} from "../../../utils/order-form/form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { showAndHideError } from "../../../utils/utils";
 import axios from "axios";
@@ -243,6 +249,19 @@ export const NewOrderForm = () => {
 
   useAutosizeTextArea(textAreaRef.current, formik.values.description);
 
+  const showAntiPlagiat = useMemo(() => {
+    const slug = router.query.slug as string;
+    if (isAntiplagiatVisible(slug)) {
+      formik.values.originality = "45%";
+      formik.values.antiPlagiarism = "free";
+      return true;
+    } else {
+      formik.values.originality = "";
+      formik.values.antiPlagiarism = "none";
+      return false;
+    }
+  }, [router.query.slug]);
+
   return (
     <FormikProvider value={formik}>
       <section className={styles.hero}>
@@ -347,54 +366,56 @@ export const NewOrderForm = () => {
                 <ErrorMessage className={styles.error_label} name="description" component="div" />
               </div>
 
-              <div className={styles.multi_item_row}>
-                <div className={styles.form_item} id={styles.form_item_originality}>
-                  <label className={styles.label}>Антиплагиат</label>
-                  <div className={styles.input_container}>
-                    <Field
-                      className={styles.input}
-                      type="text"
-                      pattern="\d*"
-                      name="originality"
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        const value = e.target.value.trim().replace(/[^0-9]/gi, "");
-                        if (value === "" || value === "0") {
-                          return formik.setFieldValue("originality", "");
-                        }
-                        if (value.length >= 3) {
-                          return;
-                        }
-                        return formik.setFieldValue("originality", `${value}%`);
-                      }}
-                      onKeyDown={(e: React.KeyboardEvent) => {
-                        if (e.key === "Backspace") {
-                          formik.setFieldValue("originality", formik.values.originality.slice(0, -1));
-                        }
-                      }}
-                      placeholder="Оригинальность"
-                      disabled={formik.isSubmitting}
-                      data-value="originality"
-                    />
+              {showAntiPlagiat && (
+                <div className={styles.multi_item_row}>
+                  <div className={styles.form_item} id={styles.form_item_originality}>
+                    <label className={styles.label}>Антиплагиат</label>
+                    <div className={styles.input_container}>
+                      <Field
+                        className={styles.input}
+                        type="text"
+                        pattern="\d*"
+                        name="originality"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                          if (value === "" || value === "0") {
+                            return formik.setFieldValue("originality", "");
+                          }
+                          if (value.length >= 3) {
+                            return;
+                          }
+                          return formik.setFieldValue("originality", `${value}%`);
+                        }}
+                        onKeyDown={(e: React.KeyboardEvent) => {
+                          if (e.key === "Backspace") {
+                            formik.setFieldValue("originality", formik.values.originality.slice(0, -1));
+                          }
+                        }}
+                        placeholder="Оригинальность"
+                        disabled={formik.isSubmitting}
+                        data-value="originality"
+                      />
+                    </div>
+                    <ErrorMessage className={styles.error_label} name="originality" component="div" />
                   </div>
-                  <ErrorMessage className={styles.error_label} name="originality" component="div" />
-                </div>
 
-                <div className={styles.form_item} id={styles.form_item_anti_plagiarism}>
-                  <label className={styles.label}>Проверка</label>
-                  <Field
-                    name="antiPlagiarism"
-                    options={antiPlagiarismOptions}
-                    component={DynamicReactSelector}
-                    borderRadius={15}
-                    placeholder="Тип проверки"
-                    isMulti={false}
-                    isSearchable={false}
-                    disabled={formik.isSubmitting}
-                  />
+                  <div className={styles.form_item} id={styles.form_item_anti_plagiarism}>
+                    <label className={styles.label}>Проверка</label>
+                    <Field
+                      name="antiPlagiarism"
+                      options={antiPlagiarismOptions}
+                      component={DynamicReactSelector}
+                      borderRadius={15}
+                      placeholder="Тип проверки"
+                      isMulti={false}
+                      isSearchable={false}
+                      disabled={formik.isSubmitting}
+                    />
 
-                  <ErrorMessage className={styles.error_label} name="antiPlagiarism" component="div" />
+                    <ErrorMessage className={styles.error_label} name="antiPlagiarism" component="div" />
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className={styles.multi_item_row}>
                 <div className={styles.form_item} id={styles.form_item_due_date}>

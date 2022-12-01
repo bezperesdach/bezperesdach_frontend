@@ -34,6 +34,30 @@ export const typeOptionsInit = [
   { value: "other", label: "Другое" },
 ];
 
+export const isAntiplagiatVisible = (option: string) => {
+  const valuesArrayToHide = [
+    "cases",
+    "consultation",
+    "test-work",
+    "online-help",
+    "ticket-answers",
+    "practice-report",
+    "literature",
+    "exam-preparation",
+    "research",
+    "programming",
+    "tests",
+    "scheme",
+    "tasks",
+  ];
+
+  if (valuesArrayToHide.indexOf(option) > -1) {
+    return false;
+  }
+
+  return true;
+};
+
 export const getInitValue = (option?: string) => {
   if (option) {
     const result = typeOptionsOrder.get(option);

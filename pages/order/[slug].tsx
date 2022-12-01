@@ -29,9 +29,6 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
         }`}
         description={getOrderDescription(slug)}
         url={`https://bezperesdach.ru/order/${slug}`}
-        keywords={
-          "купить курсовую,купить диплом,где заказать курсовую работу,заказать готовую работу,дипломы курсовые на заказ,заказать научную статью,контрольные работы на заказ,заказать перевод с английского на русский,написать статью на заказ, безпересдач, без пересдач"
-        }
       >
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>

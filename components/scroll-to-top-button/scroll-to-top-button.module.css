@@ -10,14 +10,6 @@
   pointer-events: none;
 }
 
-.shown {
-  animation: show-anim 0.4s;
-}
-
-.hidden {
-  animation: hide-anim 0.4s;
-}
-
 .scroll_top_wrap {
   position: fixed;
   z-index: 1;
@@ -28,26 +20,6 @@
   cursor: pointer;
   font-size: 3rem;
   opacity: 0.8;
-}
-
-@keyframes show-anim {
-  from {
-    left: -13%;
-  }
-
-  to {
-    left: 5%;
-  }
-}
-
-@keyframes hide-anim {
-  from {
-    left: 5%;
-  }
-
-  to {
-    left: -10%;
-  }
 }
 
 .scroll_top_wrap:hover {

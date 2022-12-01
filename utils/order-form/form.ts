@@ -36,7 +36,6 @@ export const typeOptionsInit = [
 
 export const isAntiplagiatVisible = (option: string) => {
   const valuesArrayToHide = [
-    "cases",
     "consultation",
     "test-work",
     "online-help",

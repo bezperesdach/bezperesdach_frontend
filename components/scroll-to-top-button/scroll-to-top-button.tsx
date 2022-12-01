@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useScroll } from "framer-motion";
 
 import styles from "./scroll-to-top-button.module.css";
 
 export const ScrollTopButton = () => {
+  const { scrollY } = useScroll();
+
   const [visible, setVisible] = useState(false);
-
-  const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-
-    if (scrolled > 500) {
-      setVisible(true);
-    } else if (scrolled <= 500) {
-      setVisible(false);
-    }
-  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -24,11 +17,13 @@ export const ScrollTopButton = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisible);
-
-    return () => {
-      window.removeEventListener("scroll", toggleVisible);
-    };
+    return scrollY.onChange((latest) => {
+      if (latest > 500) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    });
   }, []);
 
   return (
@@ -36,10 +31,11 @@ export const ScrollTopButton = () => {
       <AnimatePresence>
         {visible && (
           <motion.div
-            initial={{ x: "-500%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-500%" }}
-            transition={{ type: "ease", duration: 0.45 }}
+            initial={{ y: "200%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "200%" }}
+            whileHover={{ scale: 1.2 }}
+            transition={{ type: "spring", stiffness: 600, damping: 20, duration: 0.8 }}
             className={styles.scroll_top_wrap}
           >
             <a role="button" aria-label="Scroll to top" onClick={scrollToTop}>

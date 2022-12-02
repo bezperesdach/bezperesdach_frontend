@@ -6,7 +6,7 @@ import urls from "../../utils/urls.json";
 import { MenuItem } from "./components/menu-item/menu-item";
 
 const DynamicSidebar = dynamic(() => import("./components/sidebar/sidebar").then((mod) => mod.Sidebar));
-const DynamicMenuButton = dynamic(() => import("./components/menu-button/menu-button").then((mod) => mod.MenuButton));
+const DynamicMenuIcon = dynamic(() => import("./components/menu-icon/menu-icon").then((mod) => mod.MenuIcon));
 
 import logo from "public/assets/logo.svg";
 import mini_logo from "public/assets/logo_mini.svg";
@@ -28,9 +28,9 @@ export const Navbar = () => {
       <Link href={urls.base} className={styles.mobile_logo}>
         <Image src={mini_logo} priority={true} height={64} width={64} alt="logo" />
       </Link>
-      <div className={styles.mobile_menu} onClick={() => setOpen(!isOpen)}>
-        <DynamicMenuButton isOpen={isOpen} strokeWidth="4" color="rgb(17 112 238)" transition={{ ease: "easeInOut" }} />
-      </div>
+      <button className={styles.mobile_menu} onClick={() => setOpen(!isOpen)}>
+        <DynamicMenuIcon isOpen={isOpen} strokeWidth="4" color="rgb(17 112 238)" transition={{ ease: "easeInOut" }} />
+      </button>
       <ul className={styles.desktop_menu}>
         <MenuItem url={urls.base} reverseUrl>
           Главная

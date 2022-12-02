@@ -32,8 +32,14 @@
 .mobile_menu {
   display: none;
   padding: 2rem;
+  border: none;
   margin-right: -2rem;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
   font-size: 18px;
+  outline: inherit;
 }
 
 .analytics {

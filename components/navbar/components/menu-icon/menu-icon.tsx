@@ -17,7 +17,7 @@ interface Props extends SVGMotionProps<SVGSVGElement> {
   height?: number;
 }
 
-const MenuButton = ({
+export const MenuIcon = ({
   isOpen = false,
   width = 32,
   height = 32,
@@ -90,5 +90,3 @@ const MenuButton = ({
     </motion.svg>
   );
 };
-
-export { MenuButton };

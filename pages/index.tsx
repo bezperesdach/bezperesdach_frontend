@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 
 import { Main } from "../components/home-page/main/main";
 import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
+import { Overlay } from "../components/overlay/overlay";
 import { SEO } from "../components/seo/seo";
 
 const DynamicService = dynamic(() => import("../components/home-page/service/service").then((mod) => mod.Service));
@@ -12,6 +13,7 @@ const DynamicContact = dynamic(() => import("../components/home-page/contact/con
 const DynamicScrollTopButton = dynamic(() =>
   import("../components/scroll-to-top-button/scroll-to-top-button").then((mod) => mod.ScrollTopButton)
 );
+const DynamicHelpButton = dynamic(() => import("../components/help-button/help-button").then((mod) => mod.HelpButton));
 
 // import styles from "../styles/Home.module.css";
 
@@ -30,7 +32,11 @@ export default function Home() {
       <DynamicWork />
       <DynamicBonus />
       <DynamicContact />
-      <DynamicScrollTopButton />
+
+      <Overlay>
+        <DynamicScrollTopButton />
+        <DynamicHelpButton />
+      </Overlay>
     </UnauthorizedUserLayout>
   );
 }

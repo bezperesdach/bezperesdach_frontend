@@ -46,6 +46,7 @@ export const ScrollTopButton = () => {
           exit={{ y: "200%", opacity: 0.8 }}
           variants={containerVariants}
           whileHover="hover"
+          whileTap="hover"
           transition={{ type: "ease" }}
         >
           <a role="button" aria-label="Scroll to top" onClick={scrollToTop}>
@@ -53,6 +54,7 @@ export const ScrollTopButton = () => {
               className={styles.svg_wrap}
               initial="rest"
               whileHover="hover"
+              whileTap="hover"
               variants={buttonVariants}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >

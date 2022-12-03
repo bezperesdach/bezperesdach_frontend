@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: 10%;
+  padding-top: 100px;
+  padding-bottom: 50px;
   gap: 50px;
 }
 
@@ -47,6 +48,8 @@
 @media screen and (max-width: 768px) {
   .work {
     flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: unset;
   }
 
   .image_container {
@@ -54,9 +57,7 @@
   }
 
   .blocks h2 {
+    padding-bottom: 32px;
     font-size: 28px;
   }
 }
-
-/* @media (min-width: 768px) and (max-width: 1023px) {
-} */

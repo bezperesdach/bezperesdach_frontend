@@ -1,7 +1,25 @@
-.card {
+.prices {
+  display: flex;
+  flex-direction: column;
+  padding-top: 32px;
+  padding-bottom: 50px;
+}
+
+.cards {
   display: flex;
   flex-wrap: wrap;
-  padding-top: 50px;
+  padding-top: 32px;
   padding-bottom: 50px;
   row-gap: 50px;
+}
+
+.prices h1 {
+  padding-left: 16px;
+  color: rgb(39 52 67);
+}
+
+@media screen and (min-width: 768px) {
+  .prices h1 {
+    padding-left: 32px;
+  }
 }

@@ -2,6 +2,7 @@
   position: absolute;
   z-index: 1;
   bottom: 20px;
+  left: 0;
   width: 36px;
   height: 36px;
   cursor: pointer;
@@ -29,5 +30,17 @@
 @media print {
   .scroll_top_wrap {
     display: none !important;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .scroll_top_wrap {
+    left: 2rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .scroll_top_wrap {
+    left: 1rem;
   }
 }

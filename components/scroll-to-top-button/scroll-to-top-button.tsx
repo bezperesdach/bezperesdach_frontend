@@ -27,7 +27,9 @@ export const ScrollTopButton = () => {
 
   useEffect(() => {
     return scrollY.onChange((latest) => {
-      if (latest > 1000) {
+      const currentPosInPercents = Math.trunc(((latest + window.innerHeight) / document.body.offsetHeight) * 100);
+
+      if (latest > 1000 || currentPosInPercents > 90) {
         setVisible(true);
       } else {
         setVisible(false);

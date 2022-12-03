@@ -1,9 +1,10 @@
 .main_hero {
   position: relative;
   display: flex;
-  min-height: calc(100vh - 100px);
   align-items: center;
-  padding-bottom: 24px;
+  padding-top: 160px;
+  padding-bottom: 160px;
+  color: rgb(39 52 67);
   gap: 60px;
 }
 
@@ -108,10 +109,9 @@
 
 @media screen and (max-width: 1023px) {
   .main_hero {
-    min-height: calc(100vh - 84px);
     flex-direction: column;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     gap: unset;
   }
 }
@@ -132,6 +132,7 @@
   .main_hero {
     flex-direction: column;
     padding-top: 32px;
+    padding-bottom: 32px;
     gap: unset;
   }
 
@@ -152,7 +153,8 @@
 
 @media screen and (max-width: 375px) {
   .main_hero {
-    padding-top: 32px;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 
   .image_container {

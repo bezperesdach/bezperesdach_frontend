@@ -1,5 +1,6 @@
 .main {
   padding-bottom: 48px;
+  color: rgb(39 52 67);
 }
 
 .main h1 {
@@ -27,8 +28,6 @@
 
 .block {
   display: flex;
-
-  /* min-height: 100vh; */
   flex-direction: row;
   align-items: center;
   justify-content: center;

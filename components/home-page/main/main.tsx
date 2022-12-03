@@ -30,7 +30,7 @@ export const Main = () => {
         </div>
 
         <div className={styles.buttons}>
-          <LinkButton color="white" href={urls.order}>
+          <LinkButton color="#fff" href={urls.order}>
             Заказать работу
           </LinkButton>
           <LinkButton outlined={true} href={urls.work}>

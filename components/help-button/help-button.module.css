@@ -32,7 +32,7 @@
   pointer-events: all;
 }
 
-@media screen and (max-width: 1240px) {
+@media screen and (max-width: 1366px) {
   .container {
     right: 2rem;
   }

@@ -28,13 +28,6 @@ export const Footer = () => {
         </p>
       </div>
       <div className={styles.links_container}>
-        {router.pathname !== urls.base && (
-          <div className={styles.links}>
-            <Link href={urls.base} className={styles.link}>
-              Главная
-            </Link>
-          </div>
-        )}
         <div className={styles.links}>
           <Link href={urls.order} className={styles.link}>
             Заказать работу

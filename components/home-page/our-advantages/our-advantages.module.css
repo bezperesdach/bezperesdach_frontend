@@ -1,13 +1,14 @@
-.service {
+.our_advantages {
   display: flex;
-  min-height: 100vh;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
+  padding-top: 160px;
+  padding-bottom: 160px;
   gap: 24px;
 }
 
-.service h2 {
+.our_advantages h2 {
   padding-bottom: 100px;
   color: white;
   font-size: 36px;
@@ -16,7 +17,7 @@
   line-height: 100%;
 }
 
-.service p {
+.our_advantages p {
   padding-top: 0;
   font-size: 16px;
   font-weight: 300;
@@ -50,8 +51,10 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .service {
+  .our_advantages {
     flex-direction: column-reverse;
+    padding-top: 100px;
+    padding-bottom: 100px;
     gap: unset;
   }
 
@@ -64,22 +67,26 @@
     flex: unset;
   }
 
-  .service h2 {
+  .our_advantages h2 {
     font-size: 32px;
   }
 
-  .service h3 {
+  .our_advantages h3 {
     font-size: 16px;
   }
 
   @media (max-width: 768px) {
-    .service h2 {
+    .our_advantages {
       padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .our_advantages h2 {
       padding-bottom: 50px;
       font-size: 28px;
     }
 
-    .service h3 {
+    .our_advantages h3 {
       font-size: 16px;
     }
   }

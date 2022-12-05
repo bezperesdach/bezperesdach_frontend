@@ -270,6 +270,7 @@ export const NewOrderForm = () => {
   const [contactPlaceholder, setContactPlaceholder] = useState("example@example.ru");
 
   const changeContactType = (item: string) => {
+    formik.values.contact = "";
     setContactLabel(getContactLabel(item));
     setContactPlaceholder(getContactPlaceholder(item));
     setOrderSchema(extendOrderSchema(item));

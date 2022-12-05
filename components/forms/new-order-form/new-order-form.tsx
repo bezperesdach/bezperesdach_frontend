@@ -18,6 +18,7 @@ const DynamicModalRequest = dynamic(() =>
 );
 import {
   antiPlagiarismOptions,
+  contactTypeOptions,
   getInitValue,
   getOrderTypeLabel,
   isAntiplagiatVisible,
@@ -29,7 +30,7 @@ import axios from "axios";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
 import { PromoCodeStatus } from "./components/promo-code-status/promo-code-status";
 import { useAutosizeTextArea } from "./components/use-auto-text-aria/use-auto-text-aria";
-import { initialValues, orderSchema } from "../../../utils/order-form/validation";
+import { initialValues, extendOrderSchema, getContactPlaceholder, getContactLabel } from "../../../utils/order-form/validation";
 
 import styles from "../form.module.css";
 
@@ -65,6 +66,8 @@ export const NewOrderForm = () => {
       return { ...prevState, isModal: false };
     });
   };
+
+  const [orderSchema, setOrderSchema] = useState(extendOrderSchema("email"));
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -263,6 +266,15 @@ export const NewOrderForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.slug]);
 
+  const [contactLabel, setContactLabel] = useState("Email *");
+  const [contactPlaceholder, setContactPlaceholder] = useState("example@example.ru");
+
+  const changeContactType = (item: string) => {
+    setContactLabel(getContactLabel(item));
+    setContactPlaceholder(getContactPlaceholder(item));
+    setOrderSchema(extendOrderSchema(item));
+  };
+
   return (
     <FormikProvider value={formik}>
       <section className={styles.hero}>
@@ -271,22 +283,39 @@ export const NewOrderForm = () => {
             <h1 className={styles.hero_title}>{getOrderTypeLabel(formik.values.projectType)}</h1>
 
             <Form className={styles.form} noValidate>
-              <div className={styles.email_type}>
-                <div className={styles.form_item} id={styles.form_item_email}>
-                  <label className={styles.label}>Email *</label>
-                  <div className={styles.input_container}>
+              <div className={styles.form_item}>
+                <div className={styles.multi_item_row}>
+                  <div className={styles.form_item} id={styles.form_item_contact_type}>
+                    <label className={styles.label}>Тип связи</label>
                     <Field
-                      className={styles.input}
-                      type="email"
-                      name="email"
-                      placeholder="example@example.ru"
+                      name="contactType"
+                      options={contactTypeOptions}
+                      component={DynamicReactSelector}
+                      borderRadius={15}
+                      placeholder="Тип связи"
+                      isMulti={false}
+                      onItemSelected={changeContactType}
                       disabled={formik.isSubmitting}
                     />
                   </div>
 
-                  <ErrorMessage className={styles.error_label} name="email" component="div" />
+                  <div className={styles.form_item} id={styles.form_item_contact}>
+                    <label className={styles.label}>{contactLabel}</label>
+                    <div className={styles.input_container}>
+                      <Field
+                        className={styles.input}
+                        type="text"
+                        name="contact"
+                        placeholder={contactPlaceholder}
+                        disabled={formik.isSubmitting}
+                      />
+                    </div>
+                  </div>
                 </div>
+                <ErrorMessage className={styles.error_label} name="contact" component="div" />
+              </div>
 
+              <div className={styles.multi_item_row}>
                 <div className={styles.form_item} id={styles.form_item_type}>
                   <label className={styles.label}>Тип работы *</label>
                   <Field
@@ -319,20 +348,20 @@ export const NewOrderForm = () => {
 
                   <ErrorMessage className={styles.error_label} name="projectType" component="div" />
                 </div>
-              </div>
 
-              <div className={styles.form_item}>
-                <label className={styles.label}>Предмет</label>
-                <div className={styles.input_container}>
-                  <Field
-                    className={styles.input}
-                    type="text"
-                    name="subject"
-                    placeholder="Укажите предмет"
-                    disabled={formik.isSubmitting}
-                  />
+                <div className={styles.form_item} id={styles.form_item_subject}>
+                  <label className={styles.label}>Предмет</label>
+                  <div className={styles.input_container}>
+                    <Field
+                      className={styles.input}
+                      type="text"
+                      name="subject"
+                      placeholder="Укажите предмет"
+                      disabled={formik.isSubmitting}
+                    />
+                  </div>
+                  <ErrorMessage className={styles.error_label} name="subject" component="div" />
                 </div>
-                <ErrorMessage className={styles.error_label} name="subject" component="div" />
               </div>
 
               <div className={styles.form_item}>

@@ -3,6 +3,8 @@ interface Window {
 }
 
 interface IOrder {
+  contactType: string;
+  contact: string;
   projectType: string;
   subject: string;
   projectName: string;
@@ -10,7 +12,6 @@ interface IOrder {
   dueDate: date;
   originality: string;
   antiPlagiarism: "free" | "paid" | "none";
-  email: string;
   expectedPrice: string;
   promoCode: string;
 }

@@ -1,20 +1,20 @@
 import React from "react";
 import Image from "next/image";
 import { Card } from "./components/card/card";
-import Main from "public/assets/images/service/main.webp";
-import FallbackMain from "public/assets/images/service/fallback-main.png";
-import One from "public/assets/images/service/1.webp";
-import FallbackOne from "public/assets/images/service/fallback-1.png";
-import Two from "public/assets/images/service/2.webp";
-import FallbackTwo from "public/assets/images/service/fallback-2.png";
-import Three from "public/assets/images/service/3.webp";
-import FallbackThree from "public/assets/images/service/fallback-3.png";
+import Main from "public/assets/images/our-advantages/main.webp";
+import FallbackMain from "public/assets/images/our-advantages/fallback-main.png";
+import One from "public/assets/images/our-advantages/1.webp";
+import FallbackOne from "public/assets/images/our-advantages/fallback-1.png";
+import Two from "public/assets/images/our-advantages/2.webp";
+import FallbackTwo from "public/assets/images/our-advantages/fallback-2.png";
+import Three from "public/assets/images/our-advantages/3.webp";
+import FallbackThree from "public/assets/images/our-advantages/fallback-3.png";
 
-import styles from "./service.module.css";
+import styles from "./our-advantages.module.css";
 
-export const Service = () => {
+export const OurAdvantages = () => {
   return (
-    <section className={`${styles.service} ${styles.colored_background}`}>
+    <section className={`${styles.our_advantages} ${styles.colored_background}`}>
       <div className={styles.image_container}>
         <Image
           src={Main}

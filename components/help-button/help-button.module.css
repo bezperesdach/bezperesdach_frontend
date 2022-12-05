@@ -1,0 +1,45 @@
+.container {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 24px;
+  display: flex;
+  overflow: hidden;
+  width: 56px;
+  height: 56px;
+  align-items: flex-end;
+  border-radius: 18px;
+  background: rgb(255 255 255);
+  box-shadow: 0 0 2.8px -10px rgb(0 0 0 / 5.6%), 0 0 6.7px -10px rgb(0 0 0 / 8.1%), 0 0 12.5px -10px rgb(0 0 0 / 10%),
+    0 0 22.3px -10px rgb(0 0 0 / 11.9%), 0 0 41.8px -10px rgb(0 0 0 / 14.4%), 0 0 100px -10px rgb(0 0 0 / 20%);
+}
+
+.chat_button_container {
+  display: flex;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 18px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 3rem;
+  outline: inherit;
+  pointer-events: all;
+}
+
+@media screen and (max-width: 1366px) {
+  .container {
+    right: 2rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .container {
+    right: 1rem;
+  }
+}

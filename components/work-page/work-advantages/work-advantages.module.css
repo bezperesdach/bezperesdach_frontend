@@ -1,4 +1,4 @@
-.advantages {
+.work_advantages {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -6,12 +6,12 @@
   gap: 24px;
 }
 
-.advantages h2 {
+.work_advantages h2 {
   padding-bottom: 100px;
   color: white;
 }
 
-.advantages p {
+.work_advantages p {
   padding-top: 0;
 }
 
@@ -43,15 +43,15 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .advantages {
+  .work_advantages {
     padding-top: 64px;
   }
 
-  .advantages h2 {
+  .work_advantages h2 {
     font-size: 32px;
   }
 
-  .advantages h3 {
+  .work_advantages h3 {
     font-size: 16px;
   }
 
@@ -61,16 +61,16 @@
 }
 
 @media screen and (max-width: 768px) {
-  .advantages {
+  .work_advantages {
     flex-direction: column;
   }
 
-  .advantages h2 {
+  .work_advantages h2 {
     padding-bottom: 50px;
     font-size: 28px;
   }
 
-  .advantages h3 {
+  .work_advantages h3 {
     font-size: 16px;
   }
 }

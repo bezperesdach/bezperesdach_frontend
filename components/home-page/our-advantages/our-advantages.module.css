@@ -1,13 +1,14 @@
-.guarantees {
+.our_advantages {
   display: flex;
-  min-height: 100vh;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
+  padding-top: 160px;
+  padding-bottom: 160px;
   gap: 24px;
 }
 
-.guarantees h2 {
+.our_advantages h2 {
   padding-bottom: 100px;
   color: white;
   font-size: 36px;
@@ -16,7 +17,8 @@
   line-height: 100%;
 }
 
-.guarantees p {
+.our_advantages p {
+  padding-top: 0;
   font-size: 16px;
   font-weight: 300;
 }
@@ -39,7 +41,7 @@
 }
 
 .colored_background {
-  --bg-color: rgb(102 36 130 / 100%);
+  --bg-color: rgb(17 112 238);
 
   margin-bottom: -1px;
   background-color: var(--bg-color);
@@ -49,9 +51,11 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .guarantees {
-    flex-direction: column;
-    gap: 0;
+  .our_advantages {
+    flex-direction: column-reverse;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    gap: unset;
   }
 
   .cards {
@@ -63,35 +67,33 @@
     flex: unset;
   }
 
-  .guarantees h2 {
-    padding-bottom: 50px;
+  .our_advantages h2 {
     font-size: 32px;
   }
 
-  .guarantees h3 {
+  .our_advantages h3 {
     font-size: 16px;
   }
-}
 
-@media screen and (max-width: 768px) {
-  .guarantees {
-    flex-direction: column;
-    gap: 0;
+  @media (max-width: 768px) {
+    .our_advantages {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .our_advantages h2 {
+      padding-bottom: 50px;
+      font-size: 28px;
+    }
+
+    .our_advantages h3 {
+      font-size: 16px;
+    }
   }
 
-  .guarantees h2 {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    font-size: 28px;
-  }
-
-  .guarantees h3 {
-    font-size: 16px;
-  }
-}
-
-@media screen and (max-width: 380px) {
-  .image_container {
-    display: none;
+  @media screen and (max-width: 380px) {
+    .image_container {
+      display: none;
+    }
   }
 }

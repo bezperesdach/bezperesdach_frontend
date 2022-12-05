@@ -8,7 +8,7 @@ const DynamicBecomeWorkerForm = dynamic(() =>
 );
 const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
 
-import { Advantages } from "../components/work-page/advantages/advantages";
+import { WorkAdvantages } from "../components/work-page/work-advantages/work-advantages";
 import { Offer } from "../components/work-page/offer/offer";
 import { Contact } from "../components/home-page/contact/contact";
 import { SEO } from "../components/seo/seo";
@@ -22,7 +22,7 @@ export default function Work() {
         url={"https://bezperesdach.ru/work"}
       />
 
-      <Advantages />
+      <WorkAdvantages />
       <Offer />
       <DynamicGoogleReCaptchaProvider
         reCaptchaKey={RECAPTCHA_SITE_KEY}

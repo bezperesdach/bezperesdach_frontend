@@ -260,6 +260,7 @@ export const NewOrderForm = () => {
       formik.values.antiPlagiarism = "none";
       return false;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.slug]);
 
   return (

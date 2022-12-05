@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
+// import generateCSP from "../utils/generate-csp";
 import { GOOGLE_TAG_MANAGER_ID } from "../utils/google-tag-manager";
 import { YANDEX_METRIKA_ID } from "../utils/yandex-metrika";
 
@@ -10,6 +11,7 @@ export default function Document() {
   return (
     <Html lang="ru">
       <Head>
+        {/* <meta httpEquiv="Content-Security-Policy" content={generateCSP()} /> */}
         <meta charSet="UTF-8" />
 
         <link rel="apple-touch-icon" sizes="180x180" href="https://bezperesdach.ru/assets/favicon/apple-touch-icon.png?v=3" />

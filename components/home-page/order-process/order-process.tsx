@@ -1,17 +1,17 @@
 import React from "react";
 import Image from "next/image";
 import { ImageWithText } from "../../image-with-text/image-with-text";
-import Main from "public/assets/images/guarantees/1.webp";
-import FallbackMain from "public/assets/images/guarantees/fallback-1.png";
+import Main from "public/assets/images/order-process/1.webp";
+import FallbackMain from "public/assets/images/order-process/fallback-1.png";
 
-import Cloud from "public/assets/images/guarantees/2.webp";
-import FallbackCloud from "public/assets/images/guarantees/fallback-2.png";
+import Cloud from "public/assets/images/order-process/2.webp";
+import FallbackCloud from "public/assets/images/order-process/fallback-2.png";
 
-import styles from "./guarantees.module.css";
+import styles from "./order-process.module.css";
 
-export const Guarantees = () => {
+export const OrderProcess = () => {
   return (
-    <section className={`${styles.guarantees} ${styles.colored_background}`}>
+    <section className={`${styles.order_process} ${styles.colored_background}`}>
       <div className={styles.cards}>
         <h2>
           ПРОСТОЙ <br></br>ПРОЦЕСС ЗАКАЗА

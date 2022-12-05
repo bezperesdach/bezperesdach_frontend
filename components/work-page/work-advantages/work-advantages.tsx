@@ -1,22 +1,22 @@
 import React from "react";
 import Image from "next/image";
 import { ImageWithText } from "../../image-with-text/image-with-text";
-import Main from "public/assets/images/advantages/main.webp";
-import FallbackMain from "public/assets/images/advantages/fallback-main.png";
-import One from "public/assets/images/advantages/one.webp";
-import FallbackOne from "public/assets/images/advantages/fallback-one.png";
-import Two from "public/assets/images/advantages/two.webp";
-import FallbackTwo from "public/assets/images/advantages/fallback-two.png";
-import Three from "public/assets/images/advantages/three.webp";
-import FallbackThree from "public/assets/images/advantages/fallback-three.png";
-import Four from "public/assets/images/advantages/four.webp";
-import FallbackFour from "public/assets/images/advantages/fallback-four.png";
+import Main from "public/assets/images/work-advantages/main.webp";
+import FallbackMain from "public/assets/images/work-advantages/fallback-main.png";
+import One from "public/assets/images/work-advantages/one.webp";
+import FallbackOne from "public/assets/images/work-advantages/fallback-one.png";
+import Two from "public/assets/images/work-advantages/two.webp";
+import FallbackTwo from "public/assets/images/work-advantages/fallback-two.png";
+import Three from "public/assets/images/work-advantages/three.webp";
+import FallbackThree from "public/assets/images/work-advantages/fallback-three.png";
+import Four from "public/assets/images/work-advantages/four.webp";
+import FallbackFour from "public/assets/images/work-advantages/fallback-four.png";
 
-import styles from "./advantages.module.css";
+import styles from "./work-advantages.module.css";
 
-export const Advantages = () => {
+export const WorkAdvantages = () => {
   return (
-    <section className={`${styles.advantages} ${styles.colored_background}`}>
+    <section className={`${styles.work_advantages} ${styles.colored_background}`}>
       <div className={styles.cards}>
         <h2>ЗАРАБАТЫВАЙ С БЕЗ ПЕРЕСДАЧ ОТ 40 ТЫСЯЧ РУБЛЕЙ</h2>
         <ImageWithText description={"Мы выплачиваем 100% от заказа вам на карту"} img={One} fallbackImg={FallbackOne} alt="one" />

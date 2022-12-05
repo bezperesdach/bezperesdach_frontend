@@ -1,109 +1,30 @@
-.scroll_top_container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  width: 100%;
-  margin: 0 auto;
-  pointer-events: none;
-}
-
-.shown {
-  animation: show-anim 0.4s;
-}
-
-.hidden {
-  animation: hide-anim 0.4s;
-}
-
 .scroll_top_wrap {
-  position: fixed;
+  position: absolute;
   z-index: 1;
   bottom: 20px;
-  left: 5%;
+  left: 0;
   width: 36px;
   height: 36px;
   cursor: pointer;
   font-size: 3rem;
   opacity: 0.8;
-}
-
-@keyframes show-anim {
-  from {
-    left: -13%;
-  }
-
-  to {
-    left: 5%;
-  }
-}
-
-@keyframes hide-anim {
-  from {
-    left: 5%;
-  }
-
-  to {
-    left: -10%;
-  }
-}
-
-.scroll_top_wrap:hover {
-  opacity: 1;
-}
-
-.scroll_top_wrap #scroll_top_bg {
-  fill: rgba(0 123 255);
-}
-
-.scroll_top_wrap #scroll_top_arrow {
-  fill: white;
-}
-
-.scroll_top_wrap a #scroll_top_arrow {
-  transform: scale(0.96);
-  transform-origin: center;
-}
-
-.scroll_top_wrap a:hover #scroll_top_bg {
-  fill: rgb(41 144 255);
-}
-
-.scroll_top_wrap a:hover #scroll_top_arrow {
-  fill: white;
-}
-@supports (-moz-appearance: meterbar) {
-  .scroll_top_wrap {
-    clip: rect(0, 3rem, auto, 0);
-  }
-}
-
-.scroll_top_wrap a {
-  position: sticky;
-  top: 0;
-  overflow: hidden;
-  width: 3rem;
-  height: 3rem;
-  backface-visibility: hidden;
-  outline: none;
   pointer-events: all;
-  text-decoration: none;
-  transform: translateY(94vh);
-  user-select: none;
+}
+
+.svg_wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 13px;
+  background: rgb(35 138 249);
+  box-shadow: 0 0 2.8px -10px rgb(0 0 0 / 5.6%), 0 0 6.7px -10px rgb(0 0 0 / 8.1%), 0 0 12.5px -10px rgb(0 0 0 / 10%),
+    0 0 22.3px -10px rgb(0 0 0 / 11.9%), 0 0 41.8px -10px rgb(0 0 0 / 14.4%), 0 0 100px -10px rgb(0 0 0 / 20%);
 }
 
 .scroll_top_wrap a svg {
-  display: block;
+  position: absolute;
   width: 100%;
   height: 100%;
-  border: 2px solid rgb(255 255 255);
-  border-radius: 50%;
-}
-
-.scroll_top_wrap a svg path {
-  transition: all 0.1s;
+  fill: rgb(255 255 255);
 }
 
 @media print {
@@ -112,8 +33,14 @@
   }
 }
 
-@media screen and (min-width: 1240px) {
-  .scroll_top_container {
-    width: 1240px;
+@media screen and (max-width: 1366px) {
+  .scroll_top_wrap {
+    left: 2rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .scroll_top_wrap {
+    left: 1rem;
   }
 }

@@ -5,6 +5,8 @@ import Script from "next/script";
 import { GOOGLE_TAG_MANAGER_ID } from "../utils/google-tag-manager";
 import { YANDEX_METRIKA_ID } from "../utils/yandex-metrika";
 
+const VK_ADS_ID = process.env.NEXT_PUBLIC_VK_ADS_ID;
+
 const analyticsEnabled = process.env.NODE_ENV === "production";
 
 export default function Document() {
@@ -84,6 +86,7 @@ export default function Document() {
               width="0"
               style={{ display: "none", visibility: "hidden" }}
             />
+            <img src={`https://vk.com/rtrg?p=${VK_ADS_ID}`} style={{ position: "fixed", left: "-999px" }} alt="" />
           </noscript>
         )}
       </body>

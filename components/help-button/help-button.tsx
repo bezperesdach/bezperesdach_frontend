@@ -56,7 +56,7 @@ export const HelpButton = () => {
             rel="nofollow noopener noreferrer"
             onClick={() => setShowHelpMenu(false)}
           >
-            <Image src={EmailIcon} priority={true} width={36} height={36} alt="chat menu" />
+            <Image className="image_no_pointer_events" src={EmailIcon} priority={true} width={36} height={36} alt="chat menu" />
           </motion.a>
           <motion.a
             className={styles.chat_button_container}

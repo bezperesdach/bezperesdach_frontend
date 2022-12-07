@@ -78,9 +78,30 @@ export const NewOrderForm = () => {
   const [foundPromoCode, setFoundPromoCode] = useState({
     show: false,
     found: false,
+    changed: false,
   });
 
-  const debouncedPromoCode = useDebounce<string>(formik.values.promoCode, 950);
+  const debouncedPromoCode = useDebounce<string>(formik.values.promoCode, 750);
+
+  const changePromoCodeState = (value: string) => {
+    if (value !== "") {
+      const promo = router.query.promo as string;
+      if (promo && promo === value) {
+        setFoundPromoCode((prev) => {
+          return { ...prev, found: true, changed: false };
+        });
+        return;
+      }
+
+      setFoundPromoCode((prev) => {
+        return { ...prev, show: true, changed: true };
+      });
+    } else {
+      setFoundPromoCode((prev) => {
+        return { ...prev, show: false };
+      });
+    }
+  };
 
   useEffect(() => {
     async function fetchPromoCode() {
@@ -90,7 +111,10 @@ export const NewOrderForm = () => {
         const result = await axios(`/api/promo-codes?promo=${debouncedPromoCode}`);
 
         if (result.data === "OK") {
-          setFoundPromoCode({ show: true, found: true });
+          setFoundPromoCode((prev) => {
+            return { ...prev, found: true, changed: false };
+          });
+
           router.replace(
             {
               pathname: "/order/[slug]",
@@ -103,7 +127,9 @@ export const NewOrderForm = () => {
             { shallow: true }
           );
         } else {
-          setFoundPromoCode({ show: true, found: false });
+          setFoundPromoCode((prev) => {
+            return { ...prev, found: false, changed: false };
+          });
           router.replace(
             {
               pathname: "/order/[slug]",
@@ -116,7 +142,9 @@ export const NewOrderForm = () => {
           );
         }
       } catch (error) {
-        setFoundPromoCode({ show: true, found: false });
+        setFoundPromoCode((prev) => {
+          return { ...prev, found: false, changed: false };
+        });
         router.replace(
           {
             pathname: "/order/[slug]",
@@ -132,8 +160,6 @@ export const NewOrderForm = () => {
 
     if (debouncedPromoCode !== "") {
       fetchPromoCode();
-    } else {
-      setFoundPromoCode({ show: false, found: false });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedPromoCode]);
@@ -502,11 +528,16 @@ export const NewOrderForm = () => {
                     autoCorrect="off"
                     autoCapitalize="off"
                     spellCheck={false}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      const value = e.target.value;
+                      changePromoCodeState(value);
+                      return formik.setFieldValue("promoCode", value);
+                    }}
                     placeholder="Укажите промокод"
                     disabled={formik.isSubmitting}
                   />
                 </div>
-                <PromoCodeStatus show={foundPromoCode.show} found={foundPromoCode.found} />
+                <PromoCodeStatus show={foundPromoCode.show} found={foundPromoCode.found} changed={foundPromoCode.changed} />
               </div>
 
               <div className={styles.submit_button_container}>

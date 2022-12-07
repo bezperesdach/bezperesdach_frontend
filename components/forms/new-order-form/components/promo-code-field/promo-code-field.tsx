@@ -15,7 +15,7 @@ interface Props extends FieldProps {
   router: NextRouter;
 }
 
-export const PromoCodeField = ({ field, form, router, className, placeholder, disabled, ...rest }: Props) => {
+export const PromoCodeField = ({ field, form, router, className, placeholder, ...rest }: Props) => {
   const [foundPromoCode, setFoundPromoCode] = useState({
     show: false,
     found: false,
@@ -112,11 +112,11 @@ export const PromoCodeField = ({ field, form, router, className, placeholder, di
         <input
           className={className}
           placeholder={placeholder}
-          disabled={form.isSubmitting}
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck={false}
+          value={field.value}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             const value = e.target.value;
             changePromoCodeState(value);

@@ -429,11 +429,12 @@ export const NewOrderForm = () => {
 
               <Field
                 className={styles.input}
+                router={router}
                 component={PromoCodeField}
                 type="text"
                 name="promoCode"
                 placeholder="Укажите промокод"
-                router={router}
+                disabled={formik.isSubmitting}
               />
 
               <div className={styles.submit_button_container}>

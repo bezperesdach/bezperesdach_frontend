@@ -50,6 +50,16 @@
   color: rgb(255 255 255);
 }
 
+.link {
+  color: rgb(255 255 255);
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
 @media screen and (max-width: 1023px) {
   .our_advantages {
     flex-direction: column-reverse;

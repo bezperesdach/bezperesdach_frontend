@@ -4,20 +4,29 @@ import Select from "react-select";
 import { Options, OnChangeValue, StylesConfig } from "react-select";
 
 const selectStyle: StylesConfig<Option | Option[] | string, boolean> = {
-  control: (styles) => {
+  control: (styles, { isDisabled }) => {
     return {
       ...styles,
       "&:hover": { borderColor: "#000" },
+      color: isDisabled ? "#2734438c" : "#273443",
+      background: isDisabled ? "#27344317" : "#fff",
       borderColor: "#000",
       minHeight: "45px",
       height: "auto",
       boxShadow: "none",
     };
   },
-  placeholder: (styles) => {
+  // option: (styles, { isDisabled }) => {
+  //   return {
+  //     ...styles,
+  //     background: isDisabled ? "red" : "#fff",
+  //     color: isDisabled ? "red" : "#273443",
+  //   };
+  // },
+  placeholder: (styles, { isDisabled }) => {
     return {
       ...styles,
-      color: "hsl(0, 0%, 70%)",
+      color: isDisabled ? "red" : "#273443",
       fontSize: "14px",
     };
   },

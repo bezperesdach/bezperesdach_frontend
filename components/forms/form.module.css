@@ -3,6 +3,7 @@
   width: 100%;
   flex-direction: column;
   justify-content: center;
+  color: rgb(39 52 67);
 }
 
 .form_background_work {
@@ -128,9 +129,15 @@
   border: none;
   border-radius: inherit;
   background: none;
-  color: hsl(0deg 0% 20%);
+  color: rgb(39 52 67);
   font-size: 16px;
   text-align: start;
+}
+
+.input:disabled {
+  background: rgb(39 52 67 / 9.02%);
+  color: rgb(39 52 67 / 54.9%);
+  transition: all 100ms;
 }
 
 .input::-webkit-date-and-time-value {

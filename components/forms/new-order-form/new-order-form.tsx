@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
-import { useDebounce } from "usehooks-ts";
 import dynamic from "next/dynamic";
+import axios from "axios";
 import { AnimatePresence } from "framer-motion";
 
 import Image from "next/image";
@@ -26,13 +26,12 @@ import {
 } from "../../../utils/order-form/form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { showAndHideError } from "../../../utils/utils";
-import axios from "axios";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
-import { PromoCodeStatus } from "./components/promo-code-status/promo-code-status";
 import { useAutosizeTextArea } from "./components/use-auto-text-aria/use-auto-text-aria";
 import { initialValues, extendOrderSchema, getContactPlaceholder, getContactLabel } from "../../../utils/order-form/validation";
 
 import styles from "../form.module.css";
+import { PromoCodeField } from "./components/promo-code-field/promo-code-field";
 
 export const NewOrderForm = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -74,95 +73,6 @@ export const NewOrderForm = () => {
     validationSchema: orderSchema,
     onSubmit: (values) => formSubmit(values),
   });
-
-  const [foundPromoCode, setFoundPromoCode] = useState({
-    show: false,
-    found: false,
-    changed: false,
-  });
-
-  const debouncedPromoCode = useDebounce<string>(formik.values.promoCode, 750);
-
-  const changePromoCodeState = (value: string) => {
-    if (value !== "") {
-      const promo = router.query.promo as string;
-      if (promo && promo === value) {
-        setFoundPromoCode((prev) => {
-          return { ...prev, found: true, changed: false };
-        });
-        return;
-      }
-
-      setFoundPromoCode((prev) => {
-        return { ...prev, show: true, changed: true };
-      });
-    } else {
-      setFoundPromoCode((prev) => {
-        return { ...prev, show: false };
-      });
-    }
-  };
-
-  useEffect(() => {
-    async function fetchPromoCode() {
-      const slug = router.query.slug as string;
-
-      try {
-        const result = await axios(`/api/promo-codes?promo=${debouncedPromoCode}`);
-
-        if (result.data === "OK") {
-          setFoundPromoCode((prev) => {
-            return { ...prev, found: true, changed: false };
-          });
-
-          router.replace(
-            {
-              pathname: "/order/[slug]",
-              query: {
-                slug,
-                promo: debouncedPromoCode,
-              },
-            },
-            undefined,
-            { shallow: true }
-          );
-        } else {
-          setFoundPromoCode((prev) => {
-            return { ...prev, found: false, changed: false };
-          });
-          router.replace(
-            {
-              pathname: "/order/[slug]",
-              query: {
-                slug,
-              },
-            },
-            undefined,
-            { shallow: true }
-          );
-        }
-      } catch (error) {
-        setFoundPromoCode((prev) => {
-          return { ...prev, found: false, changed: false };
-        });
-        router.replace(
-          {
-            pathname: "/order/[slug]",
-            query: {
-              slug,
-            },
-          },
-          undefined,
-          { shallow: true }
-        );
-      }
-    }
-
-    if (debouncedPromoCode !== "") {
-      fetchPromoCode();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedPromoCode]);
 
   const formSubmit = useCallback(
     async (values: IOrder) => {
@@ -517,28 +427,14 @@ export const NewOrderForm = () => {
                 </div>
               </div>
 
-              <div className={styles.form_item}>
-                <label className={styles.label}>Промокод</label>
-                <div className={styles.input_container}>
-                  <Field
-                    className={styles.input}
-                    type="text"
-                    name="promoCode"
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize="off"
-                    spellCheck={false}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      const value = e.target.value;
-                      changePromoCodeState(value);
-                      return formik.setFieldValue("promoCode", value);
-                    }}
-                    placeholder="Укажите промокод"
-                    disabled={formik.isSubmitting}
-                  />
-                </div>
-                <PromoCodeStatus show={foundPromoCode.show} found={foundPromoCode.found} changed={foundPromoCode.changed} />
-              </div>
+              <Field
+                className={styles.input}
+                component={PromoCodeField}
+                type="text"
+                name="promoCode"
+                placeholder="Укажите промокод"
+                router={router}
+              />
 
               <div className={styles.submit_button_container}>
                 {errorText && <p className={styles.submit_error}>{errorText}</p>}

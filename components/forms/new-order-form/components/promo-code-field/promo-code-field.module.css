@@ -1,0 +1,36 @@
+.form_item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  padding-left: 6px;
+  color: rgb(0 0 0 / 60%);
+  font-size: 14px;
+}
+
+.input_container {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  display: flexbox;
+  display: flex;
+  min-height: 45px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  border-width: 1px;
+  border-style: solid;
+  border-color: hsl(0deg 0% 20%);
+  border-radius: 15px;
+  background-color: hsl(0deg 0% 100%);
+  -webkit-box-align: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  cursor: default;
+  -ms-flex-align: center;
+  outline: 0 !important;
+  transition: all 100ms;
+}

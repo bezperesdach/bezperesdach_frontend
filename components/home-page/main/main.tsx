@@ -31,7 +31,7 @@ export const Main = () => {
 
         <div className={styles.buttons}>
           <LinkButton color="#fff" href={urls.order}>
-            Заказать работу
+            Оставить заявку
           </LinkButton>
           <LinkButton outlined={true} href={urls.work}>
             Стать автором

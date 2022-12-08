@@ -9,6 +9,7 @@ import { descriptionValueLabel, getOrderDescription, typeOptionsOrder } from "..
 import { SEO } from "../../components/seo/seo";
 import { NewOrderForm } from "../../components/forms/new-order-form/new-order-form";
 const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
+const DynamicContact = dynamic(() => import("../../components/home-page/contact/contact").then((mod) => mod.Contact));
 
 interface IParams extends ParsedUrlQuery {
   slug: string;
@@ -44,6 +45,7 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
       >
         <NewOrderForm />
       </DynamicGoogleReCaptchaProvider>
+      <DynamicContact />
     </UnauthorizedUserLayout>
   );
 }

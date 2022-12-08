@@ -15,34 +15,36 @@ interface Props extends FieldProps {
   router: NextRouter;
 }
 
-export const PromoCodeField = ({ field, form, router, className, placeholder, ...rest }: Props) => {
+export const PromoCodeField = ({ router, field, className, placeholder, disabled }: Props) => {
   const [foundPromoCode, setFoundPromoCode] = useState({
     show: false,
     found: false,
     changed: false,
   });
 
-  const debouncedPromoCode = useDebounce<string>(form.values.promoCode, 750);
+  const debouncedPromoCode = useDebounce<string>(field.value, 750);
 
-  const changePromoCodeState = (value: string) => {
-    if (value !== "") {
+  useEffect(() => {
+    if (field.value !== "") {
       const promo = router.query.promo as string;
-      if (promo && promo === value) {
+
+      if (promo && promo === field.value) {
         setFoundPromoCode((prev) => {
-          return { ...prev, found: true, changed: false };
+          return { ...prev, show: true, found: true, changed: false };
         });
         return;
       }
 
       setFoundPromoCode((prev) => {
-        return { ...prev, show: true, changed: true };
+        return { ...prev, changed: true };
       });
     } else {
       setFoundPromoCode((prev) => {
         return { ...prev, show: false };
       });
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [field.value]);
 
   useEffect(() => {
     async function fetchPromoCode() {
@@ -116,13 +118,8 @@ export const PromoCodeField = ({ field, form, router, className, placeholder, ..
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck={false}
-          value={field.value}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const value = e.target.value;
-            changePromoCodeState(value);
-            return form.setFieldValue(field.name, value);
-          }}
-          {...rest}
+          disabled={disabled}
+          {...field}
         />
       </div>
       <PromoCodeStatus show={foundPromoCode.show} found={foundPromoCode.found} changed={foundPromoCode.changed} />

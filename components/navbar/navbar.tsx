@@ -26,7 +26,7 @@ export const Navbar = () => {
         <Image src={logo} className={styles.logo_image} priority={true} alt="logo" />
       </Link>
       <Link href={urls.base} className={styles.mobile_logo}>
-        <Image src={mini_logo} priority={true} height={64} width={64} alt="logo" />
+        <Image className={styles.image} src={mini_logo} priority={true} height={64} width={64} alt="logo" />
       </Link>
       <button className={styles.mobile_menu} onClick={() => setOpen(!isOpen)}>
         <DynamicMenuIcon isOpen={isOpen} strokeWidth="4" color="rgb(17 112 238)" transition={{ ease: "easeInOut" }} />

@@ -5,7 +5,7 @@
   padding: 0 8px;
   border: none;
   border-radius: 50px;
-  margin: 16px;
+  margin: 16px auto;
   background-size: 300% 100%;
   color: rgb(255 255 255);
   cursor: pointer;
@@ -55,6 +55,11 @@
   content: "";
 }
 
+
+.loading {
+  cursor: wait;
+}
+
 @keyframes button-loading-spinner {
   from {
     transform: rotate(0turn);
@@ -65,7 +70,7 @@
   }
 }
 
-@media screen and (min-width: 360px) and (max-width: 768px) {
+@media screen and (min-width: 360px) and (max-width: 440px) {
   .button {
     min-width: 175px;
   }

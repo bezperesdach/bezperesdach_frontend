@@ -26,7 +26,7 @@
   color: rgb(255 255 255);
 }
 
-@media screen and (min-width: 360px) and (max-width: 768px) {
+@media screen and (min-width: 360px) and (max-width: 440px) {
   .button {
     min-width: 175px;
   }

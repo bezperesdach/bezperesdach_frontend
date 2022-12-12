@@ -17,21 +17,8 @@ export const OurAdvantages = () => {
   const { isMobile } = useDeviceDetect();
   return (
     <section className={`${styles.our_advantages} ${styles.colored_background}`}>
-      <div className={styles.image_container}>
-        <Image
-          src={Main}
-          placeholder="blur"
-          className={`${styles.image} no_select image_no_pointer_events`}
-          alt="our advantages"
-          sizes="(max-width: 1240px) 100vw,
-          55vw"
-          onError={(e) => (e.currentTarget.src = FallbackMain.src)}
-        />
-      </div>
       <div className={styles.cards}>
-        <h2>
-          НАШИ <br></br>ПРЕИМУЩЕСТВА
-        </h2>
+        <h2>НАШИ ПРЕИМУЩЕСТВА</h2>
         <Card title="ДОРАБОТКИ - БЕСПЛАТНО" img={One} fallbackImg={FallbackOne} alt="free revision">
           <p>Гарантийный срок - до 30 дней. В этот период вы можете обратиться за бесплатными доработками</p>
         </Card>
@@ -64,6 +51,17 @@ export const OurAdvantages = () => {
         <Card title="ГАРАНТИЯ ВОЗВРАТА ДЕНЕГ" img={Three} fallbackImg={FallbackThree} alt="guarantees">
           <p>В случае, если что-то пойдет не так, мы гарантируем возврат полной уплаченной суммы</p>
         </Card>
+      </div>
+      <div className={styles.image_container}>
+        <Image
+          src={Main}
+          placeholder="blur"
+          className={`${styles.image} no_select image_no_pointer_events`}
+          alt="our advantages"
+          sizes="(max-width: 1240px) 100vw,
+          55vw"
+          onError={(e) => (e.currentTarget.src = FallbackMain.src)}
+        />
       </div>
     </section>
   );

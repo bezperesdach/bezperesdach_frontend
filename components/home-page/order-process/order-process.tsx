@@ -16,20 +16,15 @@ export const OrderProcess = () => {
         <h2>
           ПРОСТОЙ <br></br>ПРОЦЕСС ЗАКАЗА
         </h2>
+        <ImageWithText description={"Вы оставляете заявку на сайте"} img={Cloud} fallbackImg={FallbackCloud} alt="cloud point" />
         <ImageWithText
-          description={"Оставляете заявку на сайте через форму"}
+          description={"В течении 15 минут вы получаете от нас ответ"}
           img={Cloud}
           fallbackImg={FallbackCloud}
           alt="cloud point"
         />
         <ImageWithText
-          description={"Администратор свяжется с вами в течение 15 минут"}
-          img={Cloud}
-          fallbackImg={FallbackCloud}
-          alt="cloud point"
-        />
-        <ImageWithText
-          description={"После уточнения деталей заказ будет передан автору"}
+          description={"После уточнения деталей заказ будет передан нашему автору"}
           img={Cloud}
           fallbackImg={FallbackCloud}
           alt="cloud point"

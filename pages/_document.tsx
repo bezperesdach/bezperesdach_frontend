@@ -16,14 +16,17 @@ export default function Document() {
         {/* <meta httpEquiv="Content-Security-Policy" content={generateCSP()} /> */}
         <meta charSet="UTF-8" />
 
-        <link rel="apple-touch-icon" sizes="180x180" href="https://bezperesdach.ru/assets/favicon/apple-touch-icon.png?v=3" />
-        <link rel="icon" type="image/png" sizes="32x32" href="https://bezperesdach.ru/assets/favicon/favicon-32x32.png?v=3" />
-        <link rel="icon" type="image/png" sizes="16x16" href="https://bezperesdach.ru/assets/favicon/favicon-16x16.png?v=3" />
-        <link rel="manifest" href="https://bezperesdach.ru/assets/favicon/site.webmanifest?v=3" />
-        <link rel="mask-icon" href="https://bezperesdach.ru/assets/favicon/safari-pinned-tab.svg?v=3" color="#1170ee" />
-        <link rel="shortcut icon" href="/favicon.ico?v=3" />
-        <meta name="msapplication-TileColor" content="#603cba" />
-        <meta name="msapplication-config" content="https://bezperesdach.ru/assets/favicon/browserconfig.xml?v=3" />
+        <link rel="apple-touch-icon" sizes="180x180" href="https://bezperesdach.ru/assets/favicon/apple-touch-icon.png?v=4" />
+        <link rel="icon" type="image/png" sizes="32x32" href="https://bezperesdach.ru/assets/favicon/favicon-32x32.png?v=4" />
+        <link rel="icon" type="image/png" sizes="16x16" href="https://bezperesdach.ru/assets/favicon/favicon-16x16.png?v=4" />
+        <link rel="manifest" href="https://bezperesdach.ru/assets/favicon/site.webmanifest?v=4" />
+        <link rel="mask-icon" href="https://bezperesdach.ru/assets/favicon/safari-pinned-tab.svg?v=4" color="#1170ee" />
+        <link rel="shortcut icon" href="/favicon.ico?v=4" />
+        <meta name="apple-mobile-web-app-title" content="Безпересдач" />
+        <meta name="application-name" content="Безпересдач" />
+        <meta name="msapplication-TileColor" content="#2d89ef" />
+
+        <meta name="msapplication-config" content="https://bezperesdach.ru/assets/favicon/browserconfig.xml?v=4" />
         <meta name="theme-color" content="#ffffff" />
 
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />

@@ -27,14 +27,14 @@ export const Sidebar = ({ isOpen, closeMenu }: Props) => {
             <MenuItem url={urls.base} closeMenu={closeMenu} reverseUrl mobile>
               Главная
             </MenuItem>
+            <MenuItem url={urls.order} allowedUrl={(url) => typeOptionsOrder.get(url) !== undefined} closeMenu={closeMenu} mobile>
+              Оставить заявку
+            </MenuItem>
             <MenuItem url={urls.about_us} closeMenu={closeMenu} mobile>
               О нас
             </MenuItem>
             <MenuItem url={urls.prices} closeMenu={closeMenu} mobile>
               Цены и Услуги
-            </MenuItem>
-            <MenuItem url={urls.order} allowedUrl={(url) => typeOptionsOrder.get(url) !== undefined} closeMenu={closeMenu} mobile>
-              Заказать работу
             </MenuItem>
             <MenuItem url={urls.work} closeMenu={closeMenu} mobile>
               Стать автором

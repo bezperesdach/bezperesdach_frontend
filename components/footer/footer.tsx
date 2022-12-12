@@ -30,7 +30,7 @@ export const Footer = () => {
       <div className={styles.links_container}>
         <div className={styles.links}>
           <Link href={urls.order} className={styles.link}>
-            Заказать работу
+            Оставить заявку
           </Link>
           <Link href={urls.prices} className={styles.link}>
             Цены и услуги

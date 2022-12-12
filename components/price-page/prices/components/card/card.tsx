@@ -19,7 +19,7 @@ export const Card = ({ title, description, url, backgroundColor, boxShadow, butt
       <h3> {title}</h3>
       <p className={styles.description}>{description}</p>
       <LinkButton href={url} className={styles.url} backgroundColor={buttonBackgroundColor} style={{ width: "100%", margin: 0 }}>
-        Заказать работу
+        Оставить заявку
       </LinkButton>
     </div>
   );

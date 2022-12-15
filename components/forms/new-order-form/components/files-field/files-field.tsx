@@ -116,7 +116,7 @@ export const FilesField = ({ totalSize, setTotalSize, field, form, disabled, acc
           disabled={disabled}
         />
 
-        <div className={styles.files_container}>
+        <div className={styles.files_container} style={disabled ? { pointerEvents: "none" } : {}}>
           {field.value &&
             field.value.length > 0 &&
             field.value.map((file, index) => {
@@ -125,7 +125,7 @@ export const FilesField = ({ totalSize, setTotalSize, field, form, disabled, acc
                   <div className={styles.file}>
                     <span className={styles.file_name}> {file.name} </span>
                     <button type="button" className={styles.file_size_and_remove} onClick={() => removeFile(file)}>
-                      <p className={styles.blue_text}>{convertBytesToAppropriateUnit(file.size)}</p>
+                      <p className={disabled ? "" : styles.blue_text}>{convertBytesToAppropriateUnit(file.size)}</p>
                       <div className={styles.remove}>X</div>
                     </button>
                   </div>
@@ -150,7 +150,7 @@ export const FilesField = ({ totalSize, setTotalSize, field, form, disabled, acc
             ) : (
               <p className={styles.placeholder}>
                 Добавлено <span className={disabled ? "" : styles.blue_text}>{field.value.length}/8</span>, размер:{" "}
-                <span style={totalSize / (1024 * 1024) > 20 ? { color: "#FE3D26" } : { color: "#1070EE" }}>
+                <span style={!disabled ? (totalSize / (1024 * 1024) > 20 ? { color: "#FE3D26" } : { color: "#1070EE" }) : {}}>
                   {roundTo(totalSize / (1024 * 1024), 2)}/20 МБ
                 </span>
               </p>

@@ -25,14 +25,7 @@
   flex-basis: 50%;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
-}
-
-.main_hero p {
-  color: rgb(0 0 0);
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 200;
+  gap: 16px;
 }
 
 .buttons {
@@ -93,7 +86,7 @@
   text-align: center;
 } */
 
-@media screen and (max-width: 1239px) {
+@media screen and (max-width: 1023px) {
   .main_hero {
     flex-direction: column;
     padding-top: 100px;
@@ -118,7 +111,7 @@
 
 @media screen and (max-width: 768px) {
   .image_container {
-    width: 90%;
+    width: 60%;
     flex: unset;
     flex-basis: unset;
   }
@@ -140,14 +133,22 @@
     text-align: center;
   }
 
-  .main_hero p {
-    font-size: 20px;
-    font-weight: 300;
-  }
-
   .buttons {
-    flex-direction: column;
-    gap: unset;
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .buttons {
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .buttons {
+    flex-direction: row;
+    gap: 8px;
   }
 }
 
@@ -161,5 +162,10 @@
     width: 70%;
     flex: unset;
     flex-basis: unset;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: unset;
   }
 }

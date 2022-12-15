@@ -4,7 +4,7 @@ import { verifyRecaptcha } from "../../utils/recaptcha";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body, method } = req;
-  const { worker, token } = body;
+  const { worker, token } = JSON.parse(body);
 
   if (method === "POST") {
     if ((worker && Object.keys(worker).length === 0 && Object.getPrototypeOf(worker) === Object.prototype) || !token) {
@@ -16,10 +16,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const response = await verifyRecaptcha(token);
 
-      if (response.data.success) {
-        await becomeWorker({ ...worker, robotScore: response.data.score });
+      if (response.success) {
+        const workerResponse = await becomeWorker({ ...worker, robotScore: response.score });
+        if (workerResponse.ok) {
+          return res.status(200).send("OK");
+        }
 
-        return res.status(200).send("OK");
+        const msg = await workerResponse.json().then((res) => res.error.message);
+
+        throw msg;
       }
 
       return res.status(422).json({

@@ -21,3 +21,8 @@ interface IUser {
   identifier: string;
   password: string;
 }
+
+interface ReactSelectOption {
+  label: string;
+  value: string;
+}

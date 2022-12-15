@@ -30,19 +30,11 @@ export const createOrder = async (req: NextApiRequest, robotScore: number) => {
 export const becomeWorker = async (worker: IWorker) => {
   const response = await fetch(`${API_URL}/new-workers`, {
     method: "post",
-    // body: { data: worker } as unknown as BodyInit,
-    headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` },
+    body: JSON.stringify({ data: worker }),
+    headers: { "Content-Type": "application/json; charset=UTF-8", Authorization: `Bearer ${PUBLIC_TOKEN}` },
   });
 
-  console.log(response);
-
   return response;
-};
-
-export const getPromoCode = async (promoCode: string) => {
-  const response = await fetch(`${API_URL}/promo-codes/${promoCode}`, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } });
-
-  return await response.json();
 };
 
 export const authenticateUser = async (

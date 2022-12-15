@@ -94,6 +94,7 @@ export const NewOrderForm = () => {
         formik.setSubmitting(false);
         return;
       }
+
       if (attachedFilesSize / (1024 * 1024) > 20) {
         return;
       }
@@ -182,7 +183,7 @@ export const NewOrderForm = () => {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [executeRecaptcha]
+    [executeRecaptcha, attachedFilesSize]
   );
 
   useEffect(() => {

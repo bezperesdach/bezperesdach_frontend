@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { NextRouter } from "next/router";
 import { FieldProps } from "formik";
-import axios from "axios";
 import { useDebounce } from "usehooks-ts";
 
-import { PromoCodeStatus } from "../../components/promo-code-status/promo-code-status";
+import { PromoCodeStatus } from "../../../components/promo-code-status/promo-code-status";
 
 import styles from "./promo-code-field.module.css";
 
@@ -18,7 +17,7 @@ interface Props extends FieldProps {
 export const PromoCodeField = ({ router, field, className, placeholder, disabled }: Props) => {
   const [foundPromoCode, setFoundPromoCode] = useState({
     show: false,
-    found: false,
+    found: "",
     changed: false,
   });
 
@@ -28,9 +27,13 @@ export const PromoCodeField = ({ router, field, className, placeholder, disabled
     if (field.value !== "") {
       const promo = router.query.promo as string;
 
+      setFoundPromoCode((prev) => {
+        return { ...prev, show: true };
+      });
+
       if (promo && promo === field.value) {
         setFoundPromoCode((prev) => {
-          return { ...prev, show: true, found: true, changed: false };
+          return { ...prev, found: field.value, changed: false };
         });
         return;
       }
@@ -51,11 +54,10 @@ export const PromoCodeField = ({ router, field, className, placeholder, disabled
       const slug = router.query.slug as string;
 
       try {
-        const result = await axios(`/api/promo-codes?promo=${debouncedPromoCode}`);
-
-        if (result.data === "OK") {
+        const result = await fetch(`/api/promo-codes?promo=${debouncedPromoCode}`);
+        if (result.ok) {
           setFoundPromoCode((prev) => {
-            return { ...prev, found: true, changed: false };
+            return { ...prev, found: debouncedPromoCode, changed: false };
           });
 
           router.replace(
@@ -71,7 +73,7 @@ export const PromoCodeField = ({ router, field, className, placeholder, disabled
           );
         } else {
           setFoundPromoCode((prev) => {
-            return { ...prev, found: false, changed: false };
+            return { ...prev, found: "", changed: false };
           });
           router.replace(
             {
@@ -86,7 +88,7 @@ export const PromoCodeField = ({ router, field, className, placeholder, disabled
         }
       } catch (error) {
         setFoundPromoCode((prev) => {
-          return { ...prev, found: false, changed: false };
+          return { ...prev, found: "", changed: false };
         });
         router.replace(
           {
@@ -122,7 +124,7 @@ export const PromoCodeField = ({ router, field, className, placeholder, disabled
           {...field}
         />
       </div>
-      <PromoCodeStatus show={foundPromoCode.show} found={foundPromoCode.found} changed={foundPromoCode.changed} />
+      <PromoCodeStatus show={foundPromoCode.show} value={field.value} found={foundPromoCode.found} changed={foundPromoCode.changed} />
     </div>
   );
 };

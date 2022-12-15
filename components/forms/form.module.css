@@ -79,12 +79,8 @@
 
 .input_container {
   position: relative;
-  display: -webkit-box;
-  display: flex;
-  display: flexbox;
   display: flex;
   min-height: 45px;
-  box-sizing: border-box;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
@@ -93,11 +89,7 @@
   border-color: hsl(0deg 0% 20%);
   border-radius: 15px;
   background-color: hsl(0deg 0% 100%);
-  -webkit-box-align: center;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-box-pack: justify;
   cursor: default;
-  -ms-flex-align: center;
   outline: 0 !important;
   transition: all 100ms;
 }
@@ -191,6 +183,55 @@
   box-shadow: 0 8px 24px rgb(129 135 189 15%);
   gap: 24px;
   text-align: center;
+}
+
+.additional_fields {
+  display: inherit;
+  overflow: hidden;
+  height: 100%;
+  flex-direction: inherit;
+  gap: inherit;
+}
+
+.text_button {
+  position: relative;
+  display: flex;
+  min-height: 45px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  border: unset;
+  background: none;
+  background-color: hsl(0deg 0% 100%);
+  color: rgb(39 52 67);
+  cursor: pointer;
+  font: inherit;
+  outline: 0 !important;
+  transition: all 100ms;
+}
+
+.arrow {
+  display: inline-block;
+  padding: 3px;
+  border: solid rgb(39 52 67);
+  border-width: 0 3px 3px 0;
+}
+
+.right {
+  transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
 }
 
 @media screen and (min-width: 1366px) {

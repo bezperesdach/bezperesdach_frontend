@@ -30,7 +30,7 @@ export const LegalNotification = () => {
         Результат этой работы не является окончательным научным документом, но может быть использован как источник информации для его
         создания
       </p>
-      <a className={styles.close} />
+      <i className={styles.close} />
     </div>
   );
 };

@@ -78,9 +78,8 @@
     margin-top: 6px;
   }
 
-  .mobile_logo {
+  .desktop_logo {
     display: flex;
-    width: 48px;
   }
 
   .mobile_menu {
@@ -93,6 +92,16 @@
   .navbar {
     display: flex;
     justify-content: space-between;
+  }
+
+  .desktop_logo {
+    display: none;
+  }
+
+
+  .mobile_logo {
+    display: flex;
+    width: 48px;
   }
 
   .mobile_menu {

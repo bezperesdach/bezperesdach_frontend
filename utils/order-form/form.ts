@@ -1,8 +1,8 @@
 export const contactTypeOptions = [
   { value: "email", label: "Email" },
   { value: "telegram", label: "Telegram" },
-  { value: "whatsapp", label: "WhatsApp" },
-  { value: "viber", label: "Viber" },
+  // { value: "whatsapp", label: "WhatsApp" },
+  // { value: "viber", label: "Viber" },
   { value: "vk", label: "Вконтакте" },
 ];
 

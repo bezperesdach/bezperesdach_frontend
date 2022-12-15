@@ -14,6 +14,7 @@ interface IOrder {
   antiPlagiarism: "free" | "paid" | "none";
   expectedPrice: string;
   promoCode: string;
+  media?: File[] | null;
 }
 
 interface IUser {

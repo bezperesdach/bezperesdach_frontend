@@ -1,0 +1,122 @@
+.form_item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  padding-left: 6px;
+  color: rgb(0 0 0 / 60%);
+  font-size: 14px;
+}
+
+.input_container {
+  position: relative;
+  display: flex;
+  min-height: 45px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: hsl(0deg 0% 20%);
+  border-radius: 15px;
+  background-color: hsl(0deg 0% 100%);
+  cursor: default;
+  outline: 0 !important;
+  transition: all 100ms;
+}
+
+.disabled_input_container {
+  background: rgb(39 52 67 / 9.02%);
+  color: rgb(39 52 67 / 54.9%);
+  transition: all 100ms;
+}
+
+.input {
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+}
+
+.files_container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 10px;
+  border: unset;
+}
+
+.add_files {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border: unset;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.file {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  gap: 8px;
+}
+
+.file_name {
+  word-break: break-all;
+}
+
+.file_size_and_remove {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 10px;
+  border: unset;
+  margin: -10px;
+  background-color: transparent;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.remove {
+  border: none;
+  background: none;
+  color: rgb(254 61 38);
+  font: inherit;
+  outline: inherit;
+}
+
+.separator_line {
+  height: 1px;
+  border: unset;
+  margin: 4px 0;
+  background: repeating-linear-gradient(to right, transparent, transparent 16px, hsl(0deg 0% 60%) 16px, hsl(0deg 0% 60%) 32px);
+}
+
+.placeholder {
+  padding-top: 8px;
+  color: hsl(0deg 0% 70%);
+  font-size: 14px;
+}
+
+.add_more_container {
+  padding: 8px;
+  border: unset;
+  background-color: transparent;
+}
+
+.temporary_error {
+  align-self: center;
+  padding-bottom: 8px;
+  color: rgb(254 61 38);
+}
+
+.blue_text {
+  color: rgb(16 112 238);
+}

@@ -2,23 +2,34 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { createOrder } from "../../api/api";
 import { verifyRecaptcha } from "../../utils/recaptcha";
 
+export const config = {
+  api: {
+    bodyParser: false,
+    responseLimit: "30MB",
+  },
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { body, method } = req;
-  const { order, token } = body;
+  const { method, headers } = req;
 
   if (method === "POST") {
-    if ((order && Object.keys(order).length === 0 && Object.getPrototypeOf(order) === Object.prototype) || !token) {
-      return res.status(422).json({
-        message: "Форма не заполнена",
-      });
-    }
-
     try {
-      const response = await verifyRecaptcha(token);
+      if (!headers.token) {
+        return res.status(422).json({
+          message: "Форма не заполнена",
+        });
+      }
 
-      if (response.data.success) {
-        await createOrder({ ...order, robotScore: response.data.score });
-        return res.status(200).send("OK");
+      const response = await verifyRecaptcha(headers.token as string);
+
+      if (response.success) {
+        const orderRes = await createOrder(req, response.score);
+
+        if (orderRes.ok) {
+          return res.status(200).send("OK");
+        } else {
+          return res.status(500).send({ error: true, msg: "Не удалось отправить на сервер" });
+        }
       }
 
       return res.status(422).json({

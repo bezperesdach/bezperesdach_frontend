@@ -21,6 +21,7 @@ export const initialValues: IOrder = {
   antiPlagiarism: "free",
   expectedPrice: "",
   promoCode: "",
+  media: null,
 };
 
 export const orderSchema = object().shape({

@@ -9,9 +9,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const result = await getPromoCode(promoCode);
 
-      if (result.data.attributes.promoCodeId === promoCode) {
-        return res.status(200).send("OK");
+      if (result.ok) {
+        const promoCodeId = await result.json().then((res) => res.data.attributes.promoCodeId);
+        if (promoCode === promoCodeId) {
+          return res.status(200).send("OK");
+        }
       }
+      return res.status(422).json({ message: "Промокод не найден" });
     } catch (error) {
       return res.status(422).json({ message: "Промокод не найден" });
     }

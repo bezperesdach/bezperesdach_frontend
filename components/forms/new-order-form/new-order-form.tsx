@@ -334,7 +334,7 @@ export const NewOrderForm = () => {
                         type="text"
                         component="textarea"
                         rows="1"
-                        style={{ resize: "none" }}
+                        style={{ resize: "none", lineHeight: "22.5px" }}
                         innerRef={projectNameRef}
                         name="projectName"
                         placeholder="Укажите тему работы"
@@ -345,22 +345,13 @@ export const NewOrderForm = () => {
                   </div>
                 )}
 
-                <Field
-                  className={styles.input}
-                  component={PromoCodeField}
-                  type="text"
-                  name="promoCode"
-                  placeholder="Укажите промокод ( если имеется )"
-                  disabled={formik.isSubmitting}
-                />
-
                 <button
                   type="button"
                   className={styles.text_button}
                   onClick={handleClickOnShowAdditionalFields}
                   ref={additionalInfoRef}
                 >
-                  <p>Дополнительная информация</p>
+                  <p className={styles.blue_text}>Дополнительная информация</p>
                   <svg
                     // animate={{
                     //   rotate: showAdditionalFields ? 180 : 0,
@@ -368,6 +359,7 @@ export const NewOrderForm = () => {
                     style={showAdditionalFields ? { transform: "rotate(180deg)" } : {}}
                     height="20"
                     width="20"
+                    fill="#1070EE"
                     viewBox="0 0 20 20"
                     aria-hidden="true"
                     focusable="false"
@@ -506,6 +498,15 @@ export const NewOrderForm = () => {
                     />
                   </div>
                 )}
+
+                <Field
+                  className={styles.input}
+                  component={PromoCodeField}
+                  type="text"
+                  name="promoCode"
+                  placeholder="Укажите промокод ( если имеется )"
+                  disabled={formik.isSubmitting}
+                />
 
                 <div className={styles.submit_button_container}>
                   {errorText && <p className={styles.submit_error}>{errorText}</p>}

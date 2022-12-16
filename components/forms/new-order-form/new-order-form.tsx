@@ -14,6 +14,8 @@ import { ym } from "../../../utils/yandex-metrika";
 const DynamicModalRequest = dynamic(() =>
   import("../../portal/components/modal-request/modal-request").then((mod) => mod.ModalRequest)
 );
+import { PromoCodeField } from "./components/promo-code-field/promo-code-field";
+const DynamicFilesFields = dynamic(() => import("./components/files-field/files-field").then((mod) => mod.FilesField));
 import {
   antiPlagiarismOptions,
   contactTypeOptions,
@@ -29,13 +31,13 @@ import { useAutosizeTextArea } from "../components/use-auto-text-aria/use-auto-t
 import { initialValues, extendOrderSchema, getContactPlaceholder, getContactLabel } from "../../../utils/order-form/validation";
 
 import styles from "../form.module.css";
-import { PromoCodeField } from "./components/promo-code-field/promo-code-field";
-const DynamicFilesFields = dynamic(() => import("./components/files-field/files-field").then((mod) => mod.FilesField));
 
 // const additionalFieldsVariants = {
 //   closed: { height: "0" },
 //   open: { height: "100%" },
 // };
+
+const todayDate = new Date().toISOString().split("T")[0];
 
 export const NewOrderForm = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -304,54 +306,39 @@ export const NewOrderForm = () => {
                   <ErrorMessage className={styles.error_label} name="contact" component="div" />
                 </div>
 
-                <div className={styles.form_item} id={styles.form_item_type}>
-                  <label className={styles.label}>Тип работы *</label>
-                  <Field
-                    name="projectType"
-                    options={typeOptions}
-                    component={DynamicReactSelector}
-                    borderRadius={15}
-                    placeholder="Начните набирать..."
-                    isMulti={false}
-                    filterOption={() => true}
-                    onInputChange={(e: string) => filterAllOptions(e)}
-                    onItemSelected={(item: string) => {
-                      const promo = router.query.promo as string;
-                      router.replace(
-                        {
-                          pathname: "/order/[slug]",
-                          query: promo
-                            ? {
-                                slug: item,
-                                promo,
-                              }
-                            : { slug: item },
-                        },
-                        undefined,
-                        { shallow: true }
-                      );
-                    }}
-                    disabled={formik.isSubmitting}
-                  />
-
-                  <ErrorMessage className={styles.error_label} name="projectType" component="div" />
-                </div>
-
-                <div className={styles.form_item}>
-                  <label className={styles.label}>Тема работы</label>
-                  <div className={styles.input_container}>
+                <div className={styles.multi_item_row}>
+                  <div className={styles.form_item} id={styles.form_item_type}>
+                    <label className={styles.label}>Тип работы *</label>
                     <Field
-                      className={styles.input}
-                      type="text"
-                      name="projectName"
-                      placeholder="Укажите тему работы"
+                      name="projectType"
+                      options={typeOptions}
+                      component={DynamicReactSelector}
+                      borderRadius={15}
+                      placeholder="Начните набирать..."
+                      isMulti={false}
+                      filterOption={() => true}
+                      onInputChange={(e: string) => filterAllOptions(e)}
+                      onItemSelected={(item: string) => {
+                        const promo = router.query.promo as string;
+                        router.replace(
+                          {
+                            pathname: "/order/[slug]",
+                            query: promo
+                              ? {
+                                  slug: item,
+                                  promo,
+                                }
+                              : { slug: item },
+                          },
+                          undefined,
+                          { shallow: true }
+                        );
+                      }}
                       disabled={formik.isSubmitting}
                     />
-                  </div>
-                  <ErrorMessage className={styles.error_label} name="projectName" component="div" />
-                </div>
 
-                <div className={styles.multi_item_row}>
+                    <ErrorMessage className={styles.error_label} name="projectType" component="div" />
+                  </div>
                   <div className={styles.form_item} id={styles.form_item_due_date}>
                     <label className={styles.label}>Дата сдачи *</label>
                     <div className={styles.input_container}>
@@ -359,40 +346,30 @@ export const NewOrderForm = () => {
                         className={styles.input}
                         type="date"
                         name="dueDate"
+                        min={todayDate}
                         placeholder="Когда нужно сдать работу"
                         disabled={formik.isSubmitting}
                       />
                     </div>
                     <ErrorMessage className={styles.error_label} name="dueDate" component="div" />
                   </div>
+                </div>
 
-                  <div className={styles.form_item} id={styles.form_item_due_date}>
-                    <label className={styles.label}>Пожелания по цене</label>
+                {formik.values.projectType !== "" && (
+                  <div className={styles.form_item}>
+                    <label className={styles.label}>Тема работы</label>
                     <div className={styles.input_container}>
                       <Field
                         className={styles.input}
                         type="text"
-                        pattern="\d*"
-                        name="expectedPrice"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                          const value = e.target.value.trim().replace(/[^0-9]/gi, "");
-                          if (value === "" || value === "0") {
-                            return formik.setFieldValue("expectedPrice", "");
-                          }
-                          return formik.setFieldValue("expectedPrice", `${value}₽`);
-                        }}
-                        onKeyDown={(e: React.KeyboardEvent) => {
-                          if (e.key === "Backspace") {
-                            formik.setFieldValue("expectedPrice", formik.values.expectedPrice.slice(0, -1));
-                          }
-                        }}
-                        placeholder="Укажите пожелания по цене"
+                        name="projectName"
+                        placeholder="Укажите тему работы"
                         disabled={formik.isSubmitting}
                       />
                     </div>
-                    <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
+                    <ErrorMessage className={styles.error_label} name="projectName" component="div" />
                   </div>
-                </div>
+                )}
 
                 <Field
                   className={styles.input}
@@ -515,6 +492,33 @@ export const NewOrderForm = () => {
                         />
                       </div>
                       <ErrorMessage className={styles.error_label} name="description" component="div" />
+                    </div>
+
+                    <div className={styles.form_item}>
+                      <label className={styles.label}>Пожелания по цене</label>
+                      <div className={styles.input_container}>
+                        <Field
+                          className={styles.input}
+                          type="text"
+                          pattern="\d*"
+                          name="expectedPrice"
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            const value = e.target.value.trim().replace(/[^0-9]/gi, "");
+                            if (value === "" || value === "0") {
+                              return formik.setFieldValue("expectedPrice", "");
+                            }
+                            return formik.setFieldValue("expectedPrice", `${value}₽`);
+                          }}
+                          onKeyDown={(e: React.KeyboardEvent) => {
+                            if (e.key === "Backspace") {
+                              formik.setFieldValue("expectedPrice", formik.values.expectedPrice.slice(0, -1));
+                            }
+                          }}
+                          placeholder="Укажите пожелания по цене"
+                          disabled={formik.isSubmitting}
+                        />
+                      </div>
+                      <ErrorMessage className={styles.error_label} name="expectedPrice" component="div" />
                     </div>
 
                     <Field

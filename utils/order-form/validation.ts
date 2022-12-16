@@ -2,7 +2,7 @@ import { string, date, object } from "yup";
 
 const nextWeek = () => {
   const now = new Date();
-  const twoWeeks = new Date(now.getTime() + 13 * 24 * 60 * 60 * 1000);
+  const twoWeeks = new Date(now.getTime() + 13 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
   return twoWeeks;
 };
 
@@ -16,7 +16,7 @@ export const initialValues: IOrder = {
   subject: "",
   projectName: "",
   description: "",
-  dueDate: nextWeek().toLocaleDateString("en-CA"),
+  dueDate: "",
   originality: "45%",
   antiPlagiarism: "free",
   expectedPrice: "",

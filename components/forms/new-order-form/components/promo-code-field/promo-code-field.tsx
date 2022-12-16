@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { NextRouter } from "next/router";
 import { FieldProps } from "formik";
 import { useDebounce } from "usehooks-ts";
 
@@ -11,10 +10,9 @@ interface Props extends FieldProps {
   className?: string;
   placeholder: string;
   disabled: boolean;
-  router: NextRouter;
 }
 
-export const PromoCodeField = ({ router, field, className, placeholder, disabled }: Props) => {
+export const PromoCodeField = ({ field, className, placeholder, disabled }: Props) => {
   const [foundPromoCode, setFoundPromoCode] = useState({
     show: false,
     found: "",
@@ -24,90 +22,42 @@ export const PromoCodeField = ({ router, field, className, placeholder, disabled
   const debouncedPromoCode = useDebounce<string>(field.value, 750);
 
   useEffect(() => {
-    if (field.value !== "") {
-      const promo = router.query.promo as string;
-
-      setFoundPromoCode((prev) => {
-        return { ...prev, show: true };
-      });
-
-      if (promo && promo === field.value) {
-        setFoundPromoCode((prev) => {
-          return { ...prev, found: field.value, changed: false };
-        });
-        return;
-      }
-
-      setFoundPromoCode((prev) => {
-        return { ...prev, changed: true };
-      });
-    } else {
-      setFoundPromoCode((prev) => {
-        return { ...prev, show: false };
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [field.value]);
-
-  useEffect(() => {
     async function fetchPromoCode() {
-      const slug = router.query.slug as string;
-
       try {
         const result = await fetch(`/api/promo-codes?promo=${debouncedPromoCode}`);
         if (result.ok) {
           setFoundPromoCode((prev) => {
             return { ...prev, found: debouncedPromoCode, changed: false };
           });
-
-          router.replace(
-            {
-              pathname: "/order/[slug]",
-              query: {
-                slug,
-                promo: debouncedPromoCode,
-              },
-            },
-            undefined,
-            { shallow: true }
-          );
         } else {
           setFoundPromoCode((prev) => {
             return { ...prev, found: "", changed: false };
           });
-          router.replace(
-            {
-              pathname: "/order/[slug]",
-              query: {
-                slug,
-              },
-            },
-            undefined,
-            { shallow: true }
-          );
         }
       } catch (error) {
         setFoundPromoCode((prev) => {
           return { ...prev, found: "", changed: false };
         });
-        router.replace(
-          {
-            pathname: "/order/[slug]",
-            query: {
-              slug,
-            },
-          },
-          undefined,
-          { shallow: true }
-        );
       }
     }
 
-    if (debouncedPromoCode !== "") {
+    if (debouncedPromoCode !== "" && foundPromoCode.found === "") {
       fetchPromoCode();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedPromoCode]);
+
+  useEffect(() => {
+    if (field.value !== "") {
+      setFoundPromoCode((prev) => {
+        return { ...prev, show: true, changed: foundPromoCode.found === "" ? true : false };
+      });
+    } else {
+      setFoundPromoCode((prev) => {
+        return { ...prev, show: false };
+      });
+    }
+  }, [field.value, foundPromoCode.found]);
 
   return (
     <div className={styles.form_item}>
@@ -120,7 +70,7 @@ export const PromoCodeField = ({ router, field, className, placeholder, disabled
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck={false}
-          disabled={disabled}
+          disabled={disabled ? disabled : foundPromoCode.found !== ""}
           {...field}
         />
       </div>

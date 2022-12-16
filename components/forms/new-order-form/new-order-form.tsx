@@ -56,27 +56,6 @@ export const NewOrderForm = () => {
   const closeModal = () => {
     formik.resetForm();
 
-    const promo = router.query.promo as string;
-
-    if (router.pathname !== "new") {
-      const query = promo
-        ? {
-            promo,
-          }
-        : {};
-
-      router.replace(
-        {
-          pathname: "/order/new",
-          query,
-        },
-        undefined,
-        { shallow: true }
-      );
-    }
-
-    formik.setFieldValue("promoCode", promo ?? "");
-
     setSendOrder((prevState) => {
       return { ...prevState, isModal: false };
     });
@@ -190,14 +169,9 @@ export const NewOrderForm = () => {
 
   useEffect(() => {
     const slug = router.query.slug as string;
-    const promo = router.query.promo as string;
 
     if (slug !== "new") {
       formik.setFieldValue("projectType", getInitValue(slug));
-    }
-
-    if (promo) {
-      formik.setFieldValue("promoCode", promo);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -321,16 +295,10 @@ export const NewOrderForm = () => {
                       filterOption={() => true}
                       onInputChange={(e: string) => filterAllOptions(e)}
                       onItemSelected={(item: string) => {
-                        const promo = router.query.promo as string;
                         router.replace(
                           {
                             pathname: "/order/[slug]",
-                            query: promo
-                              ? {
-                                  slug: item,
-                                  promo,
-                                }
-                              : { slug: item },
+                            query: { slug: item },
                           },
                           undefined,
                           { shallow: true }
@@ -379,11 +347,10 @@ export const NewOrderForm = () => {
 
                 <Field
                   className={styles.input}
-                  router={router}
                   component={PromoCodeField}
                   type="text"
                   name="promoCode"
-                  placeholder="Укажите промокод"
+                  placeholder="Укажите промокод ( если имеется )"
                   disabled={formik.isSubmitting}
                 />
 

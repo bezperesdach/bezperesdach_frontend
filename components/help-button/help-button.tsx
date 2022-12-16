@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import useDeviceDetect from "../../hooks/use-device-detect/use-device-detect";
+import { ym } from "../../utils/yandex-metrika";
 
 import ChatIcon from "../../public/assets/icons/chat-icon.svg";
 import TgIcon from "../../public/assets/images/contact/telegram.svg";
@@ -25,6 +26,11 @@ export const HelpButton = () => {
   const { isMobile } = useDeviceDetect();
   const [showHelpMenu, setShowHelpMenu] = useState(false);
 
+  const openHelpMenu = () => {
+    setShowHelpMenu(true);
+    ym("reachGoal", "helpClick");
+  };
+
   return (
     <AnimatePresence initial={false}>
       <motion.div
@@ -42,7 +48,7 @@ export const HelpButton = () => {
             className={styles.chat_button_container}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 1.2 }}
-            onClick={() => setShowHelpMenu(true)}
+            onClick={openHelpMenu}
           >
             <Image src={ChatIcon} priority={true} width={36} height={36} alt="chat menu" />
           </motion.button>

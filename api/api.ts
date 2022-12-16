@@ -38,7 +38,7 @@ export const becomeWorker = async (worker: IWorker) => {
 };
 
 export const getPromoCode = async (promoCode: string) => {
-  const response = await fetch(`${API_URL}/promo-code/${promoCode}`, {
+  const response = await fetch(`${API_URL}/promo-codes/${promoCode}`, {
     headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` },
   });
 

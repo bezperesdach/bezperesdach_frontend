@@ -236,8 +236,10 @@ export const NewOrderForm = () => {
     setTypeOptions(filteredOptions);
   };
 
+  const projectNameRef = useRef<HTMLTextAreaElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
+  useAutosizeTextArea(projectNameRef.current, formik.values.projectName);
   useAutosizeTextArea(textAreaRef.current, formik.values.description);
 
   const showAntiPlagiat = useMemo(() => {
@@ -362,6 +364,10 @@ export const NewOrderForm = () => {
                       <Field
                         className={styles.input}
                         type="text"
+                        component="textarea"
+                        rows="1"
+                        style={{ resize: "none" }}
+                        innerRef={projectNameRef}
                         name="projectName"
                         placeholder="Укажите тему работы"
                         disabled={formik.isSubmitting}

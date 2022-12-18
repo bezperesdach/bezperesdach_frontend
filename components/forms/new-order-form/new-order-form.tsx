@@ -243,10 +243,9 @@ export const NewOrderForm = () => {
   return (
     <FormikProvider value={formik}>
       <section className={styles.hero}>
+        <h1 className={styles.hero_title}>{getOrderTypeLabel(formik.values.projectType)}</h1>
         <div className={styles.form_container}>
           <div className={styles.hero}>
-            <h1 className={styles.hero_title}>{getOrderTypeLabel(formik.values.projectType)}</h1>
-
             <Form noValidate>
               <div className={styles.form}>
                 <div className={styles.form_item}>

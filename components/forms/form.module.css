@@ -348,6 +348,10 @@
     text-align: left;
   }
 
+  .hero_title {
+    font-size: 28px;
+  }
+
   .image_container {
     display: none;
   }

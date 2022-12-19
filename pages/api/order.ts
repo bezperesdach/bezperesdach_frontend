@@ -22,14 +22,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const response = await verifyRecaptcha(headers.token as string);
 
-      // if (response.success) {
-      const orderRes = await createOrder(req, 0.8);
+      if (response.success) {
+        const orderRes = await createOrder(req, response.score);
 
-      if (orderRes.ok) {
-        return res.status(200).send("OK");
-      } else {
-        return res.status(500).send({ error: true, msg: "Не удалось отправить на сервер" });
+        if (orderRes.ok) {
+          return res.status(200).send("OK");
+        } else {
+          return res.status(500).send({ error: true, msg: "Не удалось отправить на сервер" });
+        }
       }
+
+      return res.status(422).json({
+        message: "Неверная Капча",
+      });
     } catch (error) {
       console.log(error);
       return res.status(422).json({ message: "Что-то пошло не так, повторите отправку" });

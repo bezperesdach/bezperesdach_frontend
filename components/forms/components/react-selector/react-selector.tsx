@@ -9,7 +9,7 @@ const selectStyle: StylesConfig<ReactSelectOption | ReactSelectOption[] | string
       ...styles,
       "&:hover": { borderColor: "#000" },
       color: isDisabled ? "#DADDDF" : "#273443",
-      background: isDisabled ? "##DADDDF" : "#fff",
+      background: isDisabled ? "#ECEDEE" : "#fff",
       borderColor: "#000",
       minHeight: "45px",
       height: "auto",

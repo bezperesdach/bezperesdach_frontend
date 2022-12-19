@@ -53,9 +53,7 @@ export const PromoCodeField = ({ field, className, placeholder, disabled }: Prop
         return { ...prev, show: true, changed: foundPromoCode.found === "" ? true : false };
       });
     } else {
-      setFoundPromoCode((prev) => {
-        return { ...prev, show: false };
-      });
+      setFoundPromoCode({ show: false, found: "", changed: false });
     }
   }, [field.value, foundPromoCode.found]);
 

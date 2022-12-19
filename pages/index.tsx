@@ -4,6 +4,9 @@ import { Main } from "../components/home-page/main/main";
 import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { SEO } from "../components/seo/seo";
 
+const AboutUsHomePageDynamic = dynamic(() =>
+  import("../components/home-page/about-us-home-page/about-us-home-page").then((mod) => mod.AboutUsHomePage)
+);
 const DynamicOurAdvantages = dynamic(() =>
   import("../components/home-page/our-advantages/our-advantages").then((mod) => mod.OurAdvantages)
 );
@@ -26,6 +29,7 @@ export default function Home() {
       />
 
       <Main />
+      <AboutUsHomePageDynamic />
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
       <DynamicWork />

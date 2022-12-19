@@ -3,6 +3,7 @@ import { SEO } from "../components/seo/seo";
 import { Guarantees } from "../components/about-us-page/guarantees/guarantees";
 import dynamic from "next/dynamic";
 const DynamicContact = dynamic(() => import("../components/home-page/contact/contact").then((mod) => mod.Contact));
+const DynamicBonus = dynamic(() => import("../components/home-page/bonus/bonus").then((mod) => mod.Bonus));
 
 export default function GuaranteesPage() {
   return (
@@ -14,6 +15,7 @@ export default function GuaranteesPage() {
       />
 
       <Guarantees />
+      <DynamicBonus />
       <DynamicContact />
     </UnauthorizedUserLayout>
   );

@@ -10,6 +10,17 @@ import { SEO } from "../../components/seo/seo";
 import { NewOrderForm } from "../../components/forms/new-order-form/new-order-form";
 const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
 
+const AboutUsHomePageDynamic = dynamic(() =>
+  import("../../components/home-page/about-us-home-page/about-us-home-page").then((mod) => mod.AboutUsHomePage)
+);
+const DynamicOurAdvantages = dynamic(() =>
+  import("../../components/home-page/our-advantages/our-advantages").then((mod) => mod.OurAdvantages)
+);
+const DynamicOrderProcess = dynamic(() =>
+  import("../../components/home-page/order-process/order-process").then((mod) => mod.OrderProcess)
+);
+const DynamicContact = dynamic(() => import("../../components/home-page/contact/contact").then((mod) => mod.Contact));
+
 interface IParams extends ParsedUrlQuery {
   slug: string;
 }
@@ -44,6 +55,10 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
       >
         <NewOrderForm />
       </DynamicGoogleReCaptchaProvider>
+      <AboutUsHomePageDynamic />
+      <DynamicOurAdvantages />
+      <DynamicOrderProcess />
+      <DynamicContact />
     </UnauthorizedUserLayout>
   );
 }

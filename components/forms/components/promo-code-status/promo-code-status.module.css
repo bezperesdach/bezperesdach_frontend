@@ -5,3 +5,7 @@
 .missing {
   color: rgb(187 62 62);
 }
+
+.searching {
+  color: rgb(39 52 67 / 70%);
+}

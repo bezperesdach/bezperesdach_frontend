@@ -1,0 +1,124 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+  gap: 16px;
+  text-align: start;
+}
+
+.input_container {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  display: flexbox;
+  display: flex;
+  min-height: 45px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgb(16 112 238);
+  border-radius: 25px;
+  background-color: hsl(0deg 0% 100%);
+  -webkit-box-align: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  cursor: default;
+  -ms-flex-align: center;
+  outline: 0 !important;
+  transition: all 100ms;
+}
+
+.label {
+  padding-left: 6px;
+  color: rgb(0 0 0 / 60%);
+  font-size: 14px;
+}
+
+.input {
+  width: 100%;
+  min-width: 100%;
+  min-height: 43px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: inherit;
+  background: none;
+  color: rgb(39 52 67);
+  font-size: 16px;
+  text-align: start;
+}
+
+.text_button {
+  padding: 0;
+  padding: 8px 0;
+  border: none;
+  background: none;
+  color: inherit;
+  color: rgb(39 52 67 / 80%);
+  cursor: pointer;
+  font: inherit;
+  outline: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.text_area {
+  width: 100%;
+  min-width: 100%;
+  min-height: 43px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: inherit;
+  background: none;
+  color: rgb(39 52 67);
+  font-size: 16px;
+  text-align: start;
+}
+
+.input:disabled,
+.text_area:disabled {
+  background: rgb(39 52 67 / 9.02%);
+  color: rgb(39 52 67 / 54.9%);
+  cursor: wait;
+  transition: all 100ms;
+}
+
+.disabled {
+  border-color: rgb(39 52 68);
+  background: rgb(39 52 67 / 9.02%);
+  color: rgb(39 52 67 / 54.9%);
+  cursor: wait;
+  transition: all 100ms;
+}
+
+.loading {
+  cursor: wait;
+}
+
+.input::placeholder {
+  color: hsl(0deg 0% 70%);
+  font-size: 16px;
+}
+
+.text_area::placeholder {
+  color: hsl(0deg 0% 70%);
+  font-size: 16px;
+  line-height: 22.5px;
+}
+
+.error_label {
+  padding-left: 10px;
+  color: rgb(187 62 62);
+}
+
+.submit_error {
+  padding-top: 8px;
+  color: rgb(187 62 62);
+}
+
+.promo_code_status {
+  padding: 4px 20px;
+  font-weight: 400;
+}

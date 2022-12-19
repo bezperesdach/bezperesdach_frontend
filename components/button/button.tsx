@@ -6,6 +6,7 @@ type Props = {
   children: string;
   onClick?: () => void;
   disabled?: boolean;
+  form?: string;
   loading?: boolean;
   error?: boolean;
   backgroundColor?: string;
@@ -15,7 +16,7 @@ type Props = {
   style?: React.CSSProperties;
 };
 
-export const Button = ({ children, type, backgroundColor, color, outlined, onClick, loading, error, disabled, style }: Props) => {
+export const Button = ({ children, form, type, backgroundColor, color, outlined, onClick, loading, error, disabled, style }: Props) => {
   const buttonLoading = () => {
     if (error) {
       return <>ОШИБКА</>;
@@ -45,8 +46,9 @@ export const Button = ({ children, type, backgroundColor, color, outlined, onCli
 
   return (
     <button
-      className={`${styles.button} ${buttonError()} no_select`}
+      className={`${styles.button} ${buttonError()} ${loading ? styles.loading : ""} no_select`}
       type={type}
+      form={form}
       onClick={onClickHandler}
       disabled={disabled}
       style={{

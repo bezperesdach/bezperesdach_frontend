@@ -5,6 +5,7 @@ import { SEO } from "../components/seo/seo";
 import { AboutSite } from "../components/about-us-page/about-site/about-site";
 
 const DynamicContact = dynamic(() => import("../components/home-page/contact/contact").then((mod) => mod.Contact));
+const DynamicBonus = dynamic(() => import("../components/home-page/bonus/bonus").then((mod) => mod.Bonus));
 
 export default function Information() {
   return (
@@ -17,6 +18,7 @@ export default function Information() {
 
       <AboutSite />
 
+      <DynamicBonus />
       <DynamicContact />
     </UnauthorizedUserLayout>
   );

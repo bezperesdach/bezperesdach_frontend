@@ -43,7 +43,7 @@ export const MenuItem = ({ url, allowedUrl, reverseUrl = false, mobile = false, 
         <>
           {relativeURL != url && (
             <li className={styles.list}>
-              <Link className={styles.hover_select} href={url}>
+              <Link prefetch={false} className={styles.hover_select} href={url}>
                 {children}
               </Link>
             </li>
@@ -51,7 +51,7 @@ export const MenuItem = ({ url, allowedUrl, reverseUrl = false, mobile = false, 
         </>
       ) : (
         <li className={`${styles.list} ${!mobile && currentUrl && styles.inactive} ${mobile && currentUrl && styles.mobile}`}>
-          <Link className={styles.hover_select} onClick={handleClick} href={url}>
+          <Link prefetch={false} className={styles.hover_select} onClick={handleClick} href={url}>
             {children}
           </Link>
           {!mobile && currentUrl && <div className={styles.line} />}

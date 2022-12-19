@@ -4,9 +4,7 @@ import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import { Button } from "../../button/button";
 import { ym } from "../../../utils/yandex-metrika";
-import axios from "axios";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
-import { AnimatePresence } from "framer-motion";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { showAndHideError } from "../../../utils/utils";
 const DynamicModalRequest = dynamic(() =>
@@ -81,18 +79,38 @@ export const BecomeWorkerForm = () => {
           return;
         }
 
-        const result = await axios.post("/api/new-worker", {
-          worker: values,
-          token: token,
+        const result = await fetch("/api/new-worker", {
+          method: "post",
+          body: JSON.stringify({ worker: values, token }),
         });
 
-        if (result.data) {
+        if (result.ok) {
           ym("reachGoal", "newWorkerSuccess");
 
           setNewWorker((prevState) => {
             return { ...prevState, loading: false, isModal: true };
           });
+          return;
         }
+
+        ym("reachGoal", "newWorkerError");
+
+        showAndHideError(
+          () =>
+            setNewWorker((prevState) => {
+              return {
+                ...prevState,
+                loading: false,
+                error: true,
+                errorText: "Произошла непредвиденная ошибка",
+              };
+            }),
+          () =>
+            setNewWorker((prevState) => {
+              return { ...prevState, loading: false, error: false, errorText: "" };
+            }),
+          5000
+        );
       } catch (error) {
         console.log(error);
         ym("reachGoal", "newWorkerError");
@@ -166,9 +184,8 @@ export const BecomeWorkerForm = () => {
           </div>
         </div>
       </Form>
-      <AnimatePresence>
-        {newWorker.isModal && <DynamicModalRequest handleClose={closeModal} email="work@bezperesdach.ru" />}
-      </AnimatePresence>
+
+      <DynamicModalRequest shouldShow={newWorker.isModal} handleClose={closeModal} email="work@bezperesdach.ru" />
     </FormikProvider>
   );
 };

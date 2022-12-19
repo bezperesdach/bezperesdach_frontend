@@ -9,7 +9,7 @@ module.exports = {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin"],
+        disallow: ["/admin", "/agreement", "/assets/documents/processing-policy.pdf"],
       },
     ],
   },

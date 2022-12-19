@@ -1,9 +1,14 @@
 .footer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   padding-top: 50px;
   padding-bottom: 64px;
+}
+
+.footer_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .colored_background {
@@ -56,6 +61,14 @@
   gap: 32px;
 }
 
+.legal_notification {
+  padding-top: 13px;
+  padding-bottom: 24px;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: unset;
+}
+
 @media screen and (min-width: 1024px) {
   .links {
     display: flex;
@@ -73,7 +86,7 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .footer {
+  .footer_container {
     display: flex;
     width: 100%;
     flex-direction: column-reverse;
@@ -96,5 +109,11 @@
     flex-direction: column;
     padding-bottom: 20px;
     gap: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .legal_notification {
+    font-size: 12px;
   }
 }

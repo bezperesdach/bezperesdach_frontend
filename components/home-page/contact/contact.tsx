@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import useDeviceDetect from "../../../hooks/use-device-detect/use-device-detect";
 import { Card } from "./components/card/card";
 import Map from "public/assets/images/contact/map.webp";
 import FallbackMap from "public/assets/images/contact/fallback-map.png";
@@ -15,6 +16,8 @@ import FallbackVk from "public/assets/images/contact/fallback-vk.png";
 import styles from "./contact.module.css";
 
 export const Contact = () => {
+  const { isMobile } = useDeviceDetect();
+
   return (
     <section className={`${styles.contact_text} ${styles.colored_background}`}>
       <h2>
@@ -35,22 +38,33 @@ export const Contact = () => {
 
         <div className={styles.cards}>
           <Card
-            url="https://t.me/bezperesdach_official"
-            description={"@bezperesdach_official"}
+            url={isMobile ? "tg://resolve?domain=bezperesdach_bot" : "https://bezperesdach_bot.t.me"}
+            description="Телеграм бот "
+            link="@bezperesdach_bot"
+            img={Telegram}
+            fallbackImg={FallbackTelegram}
+            alt="telegram"
+          />
+          <Card
+            url={isMobile ? "tg://resolve?domain=bezperesdach_official" : "https://bezperesdach_official.t.me"}
+            description="Телеграм канал "
+            link="@bezperesdach_official"
             img={Telegram}
             fallbackImg={FallbackTelegram}
             alt="telegram"
           />
           <Card
             url="mailto:help@bezperesdach.ru?subject=%D0%9F%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5"
-            description={"help@bezperesdach.ru"}
+            description="Почта "
+            link="help@bezperesdach.ru"
             img={Mail}
             fallbackImg={FallbackMail}
             alt="email"
           />
           <Card
-            url="https://vk.com/bezperesdach_official"
-            description={"@bezperesdach_official"}
+            url={isMobile ? "vk://vk.com/bezperesdach_official" : "https://vk.com/bezperesdach_official"}
+            description="Группа Вконтакте "
+            link="@bezperesdach_official"
             img={Vk}
             fallbackImg={FallbackVk}
             alt="vk"

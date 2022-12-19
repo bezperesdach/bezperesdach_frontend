@@ -1,13 +1,18 @@
-import React from "react";
+// import React, { useState } from "react";
 import Image from "next/image";
 import Hero from "public/assets/images/hero/hero.webp";
 import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 import { LinkButton } from "../../link-button/link-button";
+// import { Button } from "../../button/button";
+// import { QuickOrder } from "../../forms/quick-order/quick-order";
 import urls from "../../../utils/urls.json";
+// import { RecaptchaDisclaimer } from "../../forms/components/recaptcha-disclaimer/recaptcha-disclaimer";
 
 import styles from "./main.module.css";
 
 export const Main = () => {
+  // const [isFormSubmitting, setFormSubmitting] = useState(false);
+
   return (
     <section className={styles.main_hero}>
       <div className={styles.image_container}>
@@ -29,14 +34,22 @@ export const Main = () => {
           <h2>проект онлайн-помощи студентам </h2>
         </div>
 
-        <div className={styles.buttons}>
-          <LinkButton color="#fff" href={urls.order}>
-            Заказать работу
-          </LinkButton>
-          <LinkButton outlined={true} href={urls.work}>
-            Стать автором
-          </LinkButton>
+        <div>
+          {/* <QuickOrder isSubmitting={isFormSubmitting} setSubmitting={setFormSubmitting} /> */}
+
+          <div className={styles.buttons}>
+            {/* <Button form="quick-order" type="submit" color="#fff" disabled={isFormSubmitting} loading={isFormSubmitting}>
+              Оставить заявку
+            </Button> */}
+            <LinkButton color="#fff" href={urls.order}>
+              Оставить заявку
+            </LinkButton>
+            <LinkButton outlined={true} href={urls.work}>
+              Стать автором
+            </LinkButton>
+          </div>
         </div>
+        {/* <RecaptchaDisclaimer /> */}
       </div>
     </section>
   );

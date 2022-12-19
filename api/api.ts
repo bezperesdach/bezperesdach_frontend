@@ -1,4 +1,4 @@
-import axios from "axios";
+import { NextApiRequest } from "next";
 
 const PUBLIC_TOKEN = process.env.NODE_ENV === "development" ? process.env.STRAPI_LOCAL_TOKEN : process.env.STRAPI_PUBLIC_TOKEN;
 
@@ -12,30 +12,37 @@ const waitFor = (amount: number) => {
   return new Promise((resolve) => setTimeout(resolve, amount));
 };
 
-interface IOrderExtended extends IOrder {
-  robotScore: number;
-}
+export const createOrder = async (req: NextApiRequest, robotScore: number) => {
+  const response = await fetch(`${API_URL}/orders`, {
+    method: "post",
+    body: req as unknown as BodyInit,
+    headers: {
+      "Content-Type": req.headers["content-type"] || "",
+      "Content-Length": req.headers["content-length"] || "",
+      robotScore: robotScore.toString(),
+      Authorization: `Bearer ${PUBLIC_TOKEN}`,
+    },
+  });
 
-export const createOrder = async (order: IOrderExtended) => {
-  const response = await axios.post(`${API_URL}/orders`, { data: order }, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } });
-
-  return response.data;
+  return response;
 };
 
 export const becomeWorker = async (worker: IWorker) => {
-  const response = await axios.post(
-    `${API_URL}/new-workers`,
-    { data: worker },
-    { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } }
-  );
+  const response = await fetch(`${API_URL}/new-workers`, {
+    method: "post",
+    body: JSON.stringify({ data: worker }),
+    headers: { "Content-Type": "application/json; charset=UTF-8", Authorization: `Bearer ${PUBLIC_TOKEN}` },
+  });
 
-  return response.data;
+  return response;
 };
 
 export const getPromoCode = async (promoCode: string) => {
-  const response = await axios(`${API_URL}/promo-codes/${promoCode}`, { headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` } });
+  const response = await fetch(`${API_URL}/promo-codes/${promoCode}`, {
+    headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` },
+  });
 
-  return response.data;
+  return response;
 };
 
 export const authenticateUser = async (
@@ -48,7 +55,7 @@ export const authenticateUser = async (
   onRequest();
 
   try {
-    const data = axios.post(`${API_URL}/auth/local`, { ...user }).then((res) => res.data);
+    const data = fetch(`${API_URL}/auth/local`, { method: "post", body: JSON.stringify({ ...user }) }).then((res) => res.json());
 
     const res = await Promise.allSettled([data, waitFor(300)]);
 

@@ -1,3 +1,11 @@
+export const contactTypeOptions = [
+  { value: "email", label: "Email" },
+  { value: "telegram", label: "Telegram" },
+  // { value: "whatsapp", label: "WhatsApp" },
+  // { value: "viber", label: "Viber" },
+  { value: "vk", label: "Вконтакте" },
+];
+
 export const typeOptionsInit = [
   { value: "graduation-work", label: "Дипломная работа" },
   { value: "business-plan", label: "Бизнес-план" },

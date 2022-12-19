@@ -2,7 +2,6 @@ import Router from "next/router";
 import type { NextApiRequest } from "next";
 import Cookies from "js-cookie";
 import { API_URL } from "./api";
-import axios from "axios";
 
 interface IUser {
   id: string;
@@ -44,12 +43,15 @@ export const unsetToken = () => {
 export const getUserFromLocalCookie = async () => {
   const jwt = getTokenFromLocalCookie();
   if (jwt) {
-    return await axios(`${API_URL}/users/me`, {
+    return await fetch(`${API_URL}/users/me`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
     })
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
         return data.data.username;
       })
@@ -62,14 +64,18 @@ export const getUserFromLocalCookie = async () => {
 export const getIdFromLocalCookie = async () => {
   const jwt = getTokenFromLocalCookie();
   if (jwt) {
-    return await axios(`${API_URL}/users/me`, {
+    return await fetch(`${API_URL}/users/me`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
-    }).then((data) => {
-      return data.data.id;
-    });
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        return data.data.id;
+      });
   } else {
     return;
   }

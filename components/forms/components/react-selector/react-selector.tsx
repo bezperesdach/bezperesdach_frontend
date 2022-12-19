@@ -3,21 +3,30 @@ import { FieldProps } from "formik";
 import Select from "react-select";
 import { Options, OnChangeValue, StylesConfig } from "react-select";
 
-const selectStyle: StylesConfig<Option | Option[] | string, boolean> = {
-  control: (styles) => {
+const selectStyle: StylesConfig<ReactSelectOption | ReactSelectOption[] | string, boolean> = {
+  control: (styles, { isDisabled }) => {
     return {
       ...styles,
       "&:hover": { borderColor: "#000" },
+      color: isDisabled ? "#DADDDF" : "#273443",
+      background: isDisabled ? "##DADDDF" : "#fff",
       borderColor: "#000",
       minHeight: "45px",
       height: "auto",
       boxShadow: "none",
     };
   },
-  placeholder: (styles) => {
+  // option: (styles, { isDisabled }) => {
+  //   return {
+  //     ...styles,
+  //     background: isDisabled ? "red" : "#fff",
+  //     color: isDisabled ? "red" : "#273443",
+  //   };
+  // },
+  placeholder: (styles, { isDisabled }) => {
     return {
       ...styles,
-      color: "hsl(0, 0%, 70%)",
+      color: isDisabled ? "#2734438c" : "#B3B3B3",
       fontSize: "14px",
     };
   },
@@ -37,13 +46,8 @@ const selectStyle: StylesConfig<Option | Option[] | string, boolean> = {
   },
 };
 
-export interface Option {
-  label: string;
-  value: string;
-}
-
 interface CustomSelectProps extends FieldProps {
-  options: Options<Option>;
+  options: Options<ReactSelectOption>;
   isMulti?: boolean;
   isSearchable?: boolean;
   className?: string;
@@ -69,13 +73,16 @@ export const ReactSelector = ({
   onInputChange,
   onItemSelected,
 }: CustomSelectProps) => {
-  const onChange = (option: OnChangeValue<Option | Option[] | string, boolean>) => {
-    form.setFieldValue(field.name, isMulti ? (option as Option[]).map((item: Option) => item.value) : (option as Option).value);
+  const onChange = (option: OnChangeValue<ReactSelectOption | ReactSelectOption[] | string, boolean>) => {
+    form.setFieldValue(
+      field.name,
+      isMulti ? (option as ReactSelectOption[]).map((item: ReactSelectOption) => item.value) : (option as ReactSelectOption).value
+    );
     if (onItemSelected) {
       if (option === null) {
         onItemSelected("other");
       } else {
-        onItemSelected((option as Option).value);
+        onItemSelected((option as ReactSelectOption).value);
       }
     }
   };

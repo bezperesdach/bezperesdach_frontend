@@ -4,13 +4,13 @@ import styles from "./card.module.css";
 
 type Props = {
   title: string;
-  description: string;
+  children: React.ReactNode;
   img: string | StaticImageData;
   fallbackImg: StaticImageData;
   alt: string;
 };
 
-export const Card = ({ title, description, img, fallbackImg, alt }: Props) => {
+export const Card = ({ title, children, img, fallbackImg, alt }: Props) => {
   return (
     <div className={styles.card_style}>
       <Image
@@ -22,7 +22,7 @@ export const Card = ({ title, description, img, fallbackImg, alt }: Props) => {
       />
       <div className={styles.card_text}>
         <h3>{title}</h3>
-        <p>{description}</p>
+        {children}
       </div>
     </div>
   );

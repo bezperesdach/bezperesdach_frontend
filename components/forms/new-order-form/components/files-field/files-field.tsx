@@ -143,7 +143,9 @@ export const FilesField = ({ totalSize, setTotalSize, field, form, disabled, acc
             style={sizeOrAmountIsTooLarge ? { cursor: "normal" } : { cursor: "pointer" }}
           >
             {!sizeOrAmountIsTooLarge && (
-              <p className={disabled ? "" : styles.blue_text}>{field.value === null ? "Добавить файлы" : "Добавить файл"}</p>
+              <p className={disabled ? styles.disabled_text : styles.blue_text}>
+                {field.value === null ? "Добавить файлы" : "Добавить файл"}
+              </p>
             )}
             {field.value === null ? (
               <p className={styles.placeholder}>Максимум 8 файлов общим размером до 20 МБ</p>

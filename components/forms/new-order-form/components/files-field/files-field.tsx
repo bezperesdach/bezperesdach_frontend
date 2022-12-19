@@ -125,8 +125,8 @@ export const FilesField = ({ totalSize, setTotalSize, field, form, disabled, acc
                   <div className={styles.file}>
                     <span className={styles.file_name}> {file.name} </span>
                     <button type="button" className={styles.file_size_and_remove} onClick={() => removeFile(file)}>
-                      <p className={disabled ? "" : styles.blue_text}>{convertBytesToAppropriateUnit(file.size)}</p>
-                      <div className={styles.remove}>X</div>
+                      <p className={disabled ? styles.disabled_text : styles.blue_text}>{convertBytesToAppropriateUnit(file.size)}</p>
+                      <div className={disabled ? styles.disabled_text : styles.remove}>X</div>
                     </button>
                   </div>
                   {field.value.length - 1 !== index && <hr className={styles.separator_line} />}

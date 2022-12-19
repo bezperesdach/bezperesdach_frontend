@@ -120,3 +120,7 @@
 .blue_text {
   color: rgb(16 112 238);
 }
+
+.disabled_text {
+  color: rgb(39 52 67 / 54.9%);
+}

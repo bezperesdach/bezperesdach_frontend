@@ -1,4 +1,4 @@
-import FormData from "form-data";
+import { NextApiRequest } from "next";
 
 const PUBLIC_TOKEN = process.env.NODE_ENV === "development" ? process.env.STRAPI_LOCAL_TOKEN : process.env.STRAPI_PUBLIC_TOKEN;
 
@@ -12,13 +12,14 @@ const waitFor = (amount: number) => {
   return new Promise((resolve) => setTimeout(resolve, amount));
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const createOrder = async (form: any, header: FormData.Headers) => {
+export const createOrder = async (req: NextApiRequest, robotScore: number) => {
   const response = await fetch(`${API_URL}/orders`, {
     method: "post",
-    body: form,
+    body: req as unknown as BodyInit,
     headers: {
-      ...header,
+      "Content-Type": req.headers["content-type"] || "",
+      "Content-Length": req.headers["content-length"] || "",
+      robotScore: robotScore.toString(),
       Authorization: `Bearer ${PUBLIC_TOKEN}`,
     },
   });

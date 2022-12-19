@@ -5,7 +5,7 @@ import { verifyRecaptcha } from "../../utils/recaptcha";
 export const config = {
   api: {
     bodyParser: false,
-    responseLimit: "30MB",
+    responseLimit: false,
   },
 };
 

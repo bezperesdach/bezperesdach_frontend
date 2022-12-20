@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { FieldProps } from "formik";
 import { useDebounce } from "usehooks-ts";
+import { getPromoCode } from "../../../../../api/api";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 import { PromoCodeStatus } from "../../../components/promo-code-status/promo-code-status";
 
@@ -13,6 +15,8 @@ interface Props extends FieldProps {
 }
 
 export const PromoCodeField = ({ field, className, placeholder, disabled }: Props) => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const [foundPromoCode, setFoundPromoCode] = useState({
     show: false,
     found: "",
@@ -23,8 +27,15 @@ export const PromoCodeField = ({ field, className, placeholder, disabled }: Prop
 
   useEffect(() => {
     async function fetchPromoCode() {
+      if (!executeRecaptcha) {
+        return;
+      }
+
       try {
-        const result = await fetch(`/api/promo-codes?promo=${debouncedPromoCode}`);
+        const token = await executeRecaptcha();
+
+        const result = await getPromoCode(debouncedPromoCode, token);
+        console.log(result);
         if (result.ok) {
           setFoundPromoCode((prev) => {
             return { ...prev, found: debouncedPromoCode, changed: false };

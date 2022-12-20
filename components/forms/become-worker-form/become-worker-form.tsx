@@ -12,6 +12,7 @@ const DynamicModalRequest = dynamic(() =>
 );
 
 import styles from "./become-worker-form.module.css";
+import { becomeWorker } from "../../../api/api";
 
 interface IValues {
   name: string;
@@ -79,10 +80,7 @@ export const BecomeWorkerForm = () => {
           return;
         }
 
-        const result = await fetch("/api/new-worker", {
-          method: "post",
-          body: JSON.stringify({ worker: values, token }),
-        });
+        const result = await becomeWorker(values, token);
 
         if (result.ok) {
           ym("reachGoal", "newWorkerSuccess");

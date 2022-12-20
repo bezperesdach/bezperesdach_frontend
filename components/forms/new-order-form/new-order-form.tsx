@@ -2,11 +2,11 @@ import React, { useCallback, useMemo, useEffect, useState, useRef } from "react"
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
-import Image from "next/image";
+// import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 
-import Hero from "public/assets/images/hero/hero.webp";
-import FallbackHero from "public/assets/images/hero/fallback-hero.png";
+// import Hero from "public/assets/images/hero/hero.webp";
+// import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 
 import { Button } from "../../button/button";
 const DynamicReactSelector = dynamic(() => import("../components/react-selector/react-selector").then((mod) => mod.ReactSelector));

@@ -42,6 +42,11 @@ export const typeOptionsInit = [
   { value: "other", label: "Другое" },
 ];
 
+export const getProjectType = (slug: string) => {
+  const result = typeOptionsInit.filter((item) => item.value === slug);
+  return result[0] ? `${result[0].label} | Консультация` : "Оставить заявку";
+};
+
 export const isAntiplagiatVisible = (option: string) => {
   const valuesArrayToHide = [
     "consultation",
@@ -81,11 +86,11 @@ export const antiPlagiarismOptions = [
 
 export const getOrderTypeLabel = (option?: string) => {
   if (option) {
-    const result = typeOptionsOrder.get(option);
-    return result ? `Заказать ${result.toLowerCase()}` : "Заказать работу";
+    const result = typeOptionsInit.filter((item) => item.value === option);
+    return result[0] ? `${result[0].label}` : "Оставить заявку";
   }
 
-  return "Заказать работу";
+  return "Оставить заявку";
 };
 
 export const typeOptionsOrder = new Map([

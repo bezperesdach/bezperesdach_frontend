@@ -22,12 +22,14 @@
 }
 
 .hero_title {
+  font-size: calc((100vw - 480px) / (1920 - 480) * (54 - 28) + 28px);
   text-align: center;
 }
 
 .form_container {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
 }
 
 #form_item_description_textarea {
@@ -244,7 +246,7 @@
 
 @media screen and (min-width: 1366px) {
   .hero {
-    padding-top: 8px;
+    padding-top: 25px;
   }
 
   .form_container {
@@ -256,6 +258,7 @@
 @media screen and (min-width: 1024px) {
   .hero {
     flex-basis: 50%;
+    padding-top: 16px;
   }
 
   .image_container {
@@ -265,10 +268,6 @@
 
   .date_orig_container {
     flex-basis: 60%;
-  }
-
-  .hero_title {
-    font-size: 54px;
   }
 
   .modal {
@@ -316,10 +315,6 @@
     flex-basis: 60%;
   }
 
-  .hero_title {
-    font-size: 48px;
-  }
-
   .form_item#form_item_originality,
   .form_item#form_item_due_date,
   .form_item#form_item_anti_plagiarism,
@@ -347,10 +342,6 @@
     width: 100%;
     justify-content: center;
     text-align: left;
-  }
-
-  .hero_title {
-    font-size: 28px;
   }
 
   .image_container {

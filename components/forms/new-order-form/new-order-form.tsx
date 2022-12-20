@@ -518,7 +518,7 @@ export const NewOrderForm = () => {
               </div>
             </Form>
           </div>
-          <div className={styles.image_container}>
+          {/* <div className={styles.image_container}>
             <Image
               src={Hero}
               placeholder="blur"
@@ -526,7 +526,7 @@ export const NewOrderForm = () => {
               alt="hero"
               onError={(e) => (e.currentTarget.src = FallbackHero.src)}
             />
-          </div>
+          </div> */}
           <DynamicModalRequest shouldShow={sendOrder.isModal} handleClose={closeModal} email="help@bezperesdach.ru" />
         </div>
       </section>

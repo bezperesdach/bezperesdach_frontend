@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from "querystring";
 import { RECAPTCHA_SITE_KEY } from "../../utils/recaptcha";
 
 import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
-import { descriptionValueLabel, getOrderDescription, typeOptionsOrder } from "../../utils/order-form/form";
+import { descriptionValueLabel, getOrderDescription, getProjectType } from "../../utils/order-form/form";
 import { SEO } from "../../components/seo/seo";
 import { NewOrderForm } from "../../components/forms/new-order-form/new-order-form";
 const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
@@ -35,8 +35,8 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
       <SEO
         title={`${
           slug
-            ? `Заказать ${typeOptionsOrder.get(slug)?.toLowerCase()} - Безпересдач - онлайн-проект помощи в учёбе`
-            : "Сделать заказ - Безпересдач - онлайн-проект помощи в учёбе"
+            ? `${getProjectType(slug)} - Безпересдач - онлайн-проект помощи в учёбе`
+            : "Оставить заявку - Безпересдач - онлайн-проект помощи в учёбе"
         }`}
         description={getOrderDescription(slug)}
         url={`https://bezperesdach.ru/order/${slug}`}

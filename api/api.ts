@@ -1,6 +1,7 @@
 import { NextApiRequest } from "next";
 
-const PUBLIC_TOKEN = process.env.NODE_ENV === "development" ? process.env.STRAPI_LOCAL_TOKEN : process.env.STRAPI_PUBLIC_TOKEN;
+const PUBLIC_TOKEN =
+  process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_STRAPI_LOCAL_TOKEN : process.env.NEXT_PUBLIC_STRAPI_PUBLIC_TOKEN;
 
 export const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:1337/api" : process.env.BACKEND_API_URL;
 
@@ -12,17 +13,16 @@ const waitFor = (amount: number) => {
   return new Promise((resolve) => setTimeout(resolve, amount));
 };
 
-export const createOrder = async (req: NextApiRequest, robotScore: number) => {
+export const createOrder = async (data: FormData) => {
   const response = await fetch(`${API_URL}/orders`, {
     method: "post",
-    body: req as unknown as BodyInit,
+    body: data,
     headers: {
-      "Content-Type": req.headers["content-type"] || "",
-      "Content-Length": req.headers["content-length"] || "",
-      robotScore: robotScore.toString(),
       Authorization: `Bearer ${PUBLIC_TOKEN}`,
     },
   });
+
+  console.log(response);
 
   return response;
 };

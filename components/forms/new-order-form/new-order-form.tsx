@@ -31,6 +31,7 @@ import { useAutosizeTextArea } from "../components/use-auto-text-aria/use-auto-t
 import { initialValues, extendOrderSchema, getContactPlaceholder, getContactLabel } from "../../../utils/order-form/validation";
 
 import styles from "../form.module.css";
+import { createOrder } from "../../../api/api";
 
 // const additionalFieldsVariants = {
 //   closed: { height: "0" },
@@ -85,8 +86,8 @@ export const NewOrderForm = () => {
       });
 
       try {
-        const token = await executeRecaptcha();
-        if (!token) {
+        const recaptchaToken = await executeRecaptcha();
+        if (!recaptchaToken) {
           showAndHideError(
             () =>
               setSendOrder((prevState) => {
@@ -112,9 +113,9 @@ export const NewOrderForm = () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const clone = (({ media, ...o }) => o)(values);
 
-        data.append("data", JSON.stringify(clone));
+        data.append("data", JSON.stringify({ ...clone, recaptchaToken }));
 
-        const result = await fetch("/api/order", { method: "post", body: data, headers: { token } });
+        const result = await createOrder(data);
 
         if (result.ok) {
           ym("reachGoal", "orderCreateSuccess");
@@ -132,7 +133,7 @@ export const NewOrderForm = () => {
                   ...prevState,
                   loading: false,
                   error: true,
-                  errorText: data && data.msg ? data.msg : "Произошла ошибка при отправке, попробуйте еще раз",
+                  errorText: data && data.message ? data.message : "Произошла ошибка при отправке, попробуйте еще раз",
                 };
               }),
             () =>

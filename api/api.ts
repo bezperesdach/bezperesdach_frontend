@@ -1,9 +1,7 @@
-import { NextApiRequest } from "next";
-
 const PUBLIC_TOKEN =
   process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_STRAPI_LOCAL_TOKEN : process.env.NEXT_PUBLIC_STRAPI_PUBLIC_TOKEN;
 
-export const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:1337/api" : process.env.BACKEND_API_URL;
+export const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:1337/api" : process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 const isRejected = (input: PromiseSettledResult<unknown>): input is PromiseRejectedResult => input.status === "rejected";
 
@@ -22,23 +20,21 @@ export const createOrder = async (data: FormData) => {
     },
   });
 
-  console.log(response);
-
   return response;
 };
 
-export const becomeWorker = async (worker: IWorker) => {
+export const becomeWorker = async (worker: IWorker, recaptchaToken: string) => {
   const response = await fetch(`${API_URL}/new-workers`, {
     method: "post",
-    body: JSON.stringify({ data: worker }),
+    body: JSON.stringify({ data: { ...worker, recaptchaToken } }),
     headers: { "Content-Type": "application/json; charset=UTF-8", Authorization: `Bearer ${PUBLIC_TOKEN}` },
   });
 
   return response;
 };
 
-export const getPromoCode = async (promoCode: string) => {
-  const response = await fetch(`${API_URL}/promo-codes/${promoCode}`, {
+export const getPromoCode = async (promoCode: string, recaptchaToken: string) => {
+  const response = await fetch(`${API_URL}/promo-codes/${promoCode}?recaptchaToken=${recaptchaToken}`, {
     headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` },
   });
 

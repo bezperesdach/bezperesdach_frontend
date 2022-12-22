@@ -3,7 +3,59 @@
   width: 100%;
   flex-direction: column;
   justify-content: flex-start;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.border {
+  position: relative;
+  padding: 8px;
+  border: 10px solid rgb(255 255 255);
+  border-radius: 10px;
+  margin-top: 32px;
+  margin-bottom: 80px;
+  box-shadow: 0 0 0 20px rgb(16 112 238), 0 5px 20px 10px rgb(0 0 0);
   color: rgb(39 52 67);
+}
+
+.hero::after {
+  margin-right: 8px;
+}
+
+.handle_top {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  width: 160px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: rgb(255 242 137);
+  box-shadow: 0 4px 4px rgb(0 0 0 / 30%);
+  transform: translateX(-50%);
+}
+
+.handle_inner {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 60px;
+  height: 40px;
+  border-radius: 30%;
+  background-color: rgb(255 242 137);
+  transform: translateX(-50%);
+}
+
+.handle_inner::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 35px;
+  height: 20px;
+  border-radius: 30% 30% 0 0;
+  background-color: rgb(255 255 255);
+  clip-path: inset(0 0 50% 0);
+  content: "";
+  transform: translate(-50%, -50%);
 }
 
 .form_background_work {

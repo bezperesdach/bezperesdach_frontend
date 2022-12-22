@@ -244,9 +244,12 @@ export const NewOrderForm = () => {
   return (
     <FormikProvider value={formik}>
       <section className={styles.hero}>
-        <h1 className={styles.hero_title}>{getOrderTypeLabel(formik.values.projectType)}</h1>
-        <div className={styles.form_container}>
-          <div className={styles.hero}>
+        <div className={styles.border}>
+          <div className={styles.handle_top}>
+            <div className={styles.handle_inner}></div>
+          </div>
+          <h1 className={styles.hero_title}>{getOrderTypeLabel(formik.values.projectType)}</h1>
+          <div className={styles.form_container}>
             <Form noValidate>
               <div className={styles.form}>
                 <div className={styles.form_item}>
@@ -517,8 +520,8 @@ export const NewOrderForm = () => {
                 </div>
               </div>
             </Form>
-          </div>
-          {/* <div className={styles.image_container}>
+
+            {/* <div className={styles.image_container}>
             <Image
               src={Hero}
               placeholder="blur"
@@ -527,7 +530,8 @@ export const NewOrderForm = () => {
               onError={(e) => (e.currentTarget.src = FallbackHero.src)}
             />
           </div> */}
-          <DynamicModalRequest shouldShow={sendOrder.isModal} handleClose={closeModal} email="help@bezperesdach.ru" />
+            <DynamicModalRequest shouldShow={sendOrder.isModal} handleClose={closeModal} email="help@bezperesdach.ru" />
+          </div>
         </div>
       </section>
     </FormikProvider>

@@ -98,7 +98,6 @@
     display: none;
   }
 
-
   .mobile_logo {
     display: flex;
     width: 48px;
@@ -106,5 +105,11 @@
 
   .mobile_menu {
     margin-right: -1rem;
+  }
+}
+
+@media screenn and (max-width: 300px) {
+  .mobile_menu {
+    padding: 1.5rem 1.5rem 0;
   }
 }

@@ -100,3 +100,9 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 300px) {
+  .order_process h2 {
+    font-size: 22px;
+  }
+}

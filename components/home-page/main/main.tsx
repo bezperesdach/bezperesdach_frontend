@@ -1,31 +1,20 @@
-// import React, { useState } from "react";
-import Image from "next/image";
-import Hero from "public/assets/images/hero/hero.webp";
-import FallbackHero from "public/assets/images/hero/fallback-hero.png";
+import dynamic from "next/dynamic";
 import { LinkButton } from "../../link-button/link-button";
 // import { Button } from "../../button/button";
 // import { QuickOrder } from "../../forms/quick-order/quick-order";
 import urls from "../../../utils/urls.json";
 // import { RecaptchaDisclaimer } from "../../forms/components/recaptcha-disclaimer/recaptcha-disclaimer";
+const DynamicHeroAnimation = dynamic(() => import("./hero-animated/hero-animated"), {
+  suspense: true,
+});
 
 import styles from "./main.module.css";
 
 export const Main = () => {
-  // const [isFormSubmitting, setFormSubmitting] = useState(false);
-
   return (
     <section className={styles.main_hero}>
       <div className={styles.image_container}>
-        <Image
-          src={Hero}
-          placeholder="blur"
-          className={styles.image}
-          alt="hero"
-          priority={true}
-          sizes="(max-width: 1240px) 100vw,
-          55vw"
-          onError={(e) => (e.currentTarget.src = FallbackHero.src)}
-        />
+        <DynamicHeroAnimation className={styles.image} />
       </div>
 
       <div className={styles.text}>

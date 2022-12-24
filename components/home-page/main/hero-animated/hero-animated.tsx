@@ -1,5 +1,4 @@
-import Lottie from "lottie-react";
-// import { useEffect } from "react";
+import Lottie from "@rookino/react-lottie-light";
 import heroAnimated from "../../../../public/assets/images/hero/Hero.json";
 
 type Props = {
@@ -7,15 +6,18 @@ type Props = {
 };
 
 const HeroAnimated = ({ className }: Props) => {
-  return (
-    <Lottie
-      className={className}
-      animationData={heroAnimated}
-      autoPlay
-      loop
-      // onDOMLoaded={() => (AnimationFinishedLoading ? AnimationFinishedLoading() : undefined)}
-    />
-  );
+  const defaultOptions = {
+    animationData: heroAnimated,
+    loop: true,
+    autoplay: true,
+    rendererSettings: {
+      progressiveLoad: true,
+      hideOnTransparent: true,
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  return <Lottie className={className} options={defaultOptions} />;
 };
 
 export default HeroAnimated;

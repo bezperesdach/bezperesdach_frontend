@@ -17,6 +17,7 @@
     "stylelint": "stylelint \"**/*.css\" --fix"
   },
   "dependencies": {
+    "@rookino/react-lottie-light": "^2.0.9",
     "formik": "^2.2.9",
     "framer-motion": "^7.6.5",
     "js-cookie": "^3.0.1",

@@ -35,7 +35,7 @@ export const PromoCodeField = ({ field, className, placeholder, disabled }: Prop
         const token = await executeRecaptcha();
 
         const result = await getPromoCode(debouncedPromoCode, token);
-        console.log(result);
+
         if (result.ok) {
           setFoundPromoCode((prev) => {
             return { ...prev, found: debouncedPromoCode, changed: false };

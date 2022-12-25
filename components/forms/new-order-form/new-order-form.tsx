@@ -29,9 +29,10 @@ import { showAndHideError } from "../../../utils/utils";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
 import { useAutosizeTextArea } from "../components/use-auto-text-aria/use-auto-text-aria";
 import { initialValues, extendOrderSchema, getContactPlaceholder, getContactLabel } from "../../../utils/order-form/validation";
+import { createOrder } from "../../../api/api";
+import { VK } from "../../../utils/vk-pixel";
 
 import styles from "../form.module.css";
-import { createOrder } from "../../../api/api";
 
 // const additionalFieldsVariants = {
 //   closed: { height: "0" },
@@ -119,6 +120,7 @@ export const NewOrderForm = () => {
 
         if (result.ok) {
           ym("reachGoal", "orderCreateSuccess");
+          VK.Goal("submit_application");
 
           setSendOrder((prevState) => {
             return { ...prevState, loading: false, isModal: true };

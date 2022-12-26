@@ -1,8 +1,10 @@
 import React, { useCallback, useMemo, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import Left from "../../../public/assets/images/order-form/left.svg";
+import Right from "../../../public/assets/images/order-form/right.svg";
 
-// import Image from "next/image";
+import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 
 // import Hero from "public/assets/images/hero/hero.webp";
@@ -534,6 +536,12 @@ export const NewOrderForm = () => {
           </div> */}
             <DynamicModalRequest shouldShow={sendOrder.isModal} handleClose={closeModal} email="help@bezperesdach.ru" />
           </div>
+        </div>
+        <div className={`${styles.order_image} ${styles.order_image_right}`}>
+          <Image className={styles.image} src={Right} alt="image_right" />
+        </div>
+        <div className={`${styles.order_image} ${styles.order_image_left}`}>
+          <Image className={styles.image} src={Left} alt="image_left" />
         </div>
       </section>
     </FormikProvider>

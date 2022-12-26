@@ -10,7 +10,7 @@
 
 .border {
   position: relative;
-  padding: 8px;
+  padding: 16px 8px 8px;
   border: 10px solid rgb(255 255 255);
   border-radius: 10px;
   margin-top: 32px;
@@ -112,7 +112,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  padding: 16px 0;
+  padding: 16px 0 0;
   gap: 16px;
 }
 
@@ -307,12 +307,12 @@
 
 .order_image_right {
   right: -15px;
-  bottom: -120px;
+  bottom: -40px;
   width: 320px;
 }
 
 .order_image_left {
-  bottom: -120px;
+  bottom: -40px;
   left: -15px;
   width: 300px;
 }
@@ -338,7 +338,6 @@
 @media screen and (min-width: 1024px) {
   .hero {
     flex-basis: 50%;
-    padding-top: 16px;
   }
 
   .image_container {
@@ -384,7 +383,6 @@
   .hero {
     width: 100%;
     height: unset;
-    padding-top: 8px;
   }
 
   .image_container {
@@ -417,12 +415,12 @@
   }
 
   .order_image_right {
-    bottom: 24px;
+    bottom: -24px;
     width: 240px;
   }
 
   .order_image_left {
-    bottom: 24px;
+    bottom: -24px;
     width: 240px;
   }
 }

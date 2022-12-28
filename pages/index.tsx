@@ -17,9 +17,17 @@ const DynamicWork = dynamic(() => import("../components/home-page/work/work").th
 const DynamicBonus = dynamic(() => import("../components/home-page/bonus/bonus").then((mod) => mod.Bonus));
 const DynamicContact = dynamic(() => import("../components/home-page/contact/contact").then((mod) => mod.Contact));
 
+import { ReviewsBlock } from "../components/reviews-block/reviews-block";
+import { getReviews } from "../api/api";
+import { GetStaticProps, InferGetStaticPropsType } from "next/types";
+
 // import styles from "../styles/Home.module.css";
 
-export default function Home() {
+interface Props {
+  reviews: Review[];
+}
+
+export default function Home({ reviews }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <UnauthorizedUserLayout>
       <SEO
@@ -29,6 +37,7 @@ export default function Home() {
       />
 
       <Main />
+      <ReviewsBlock reviews={reviews} />
       <AboutUsHomePageDynamic />
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
@@ -38,3 +47,14 @@ export default function Home() {
     </UnauthorizedUserLayout>
   );
 }
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const res = await getReviews();
+  const reviews: Review[] = await res.json().then((data) => data.data);
+
+  return {
+    props: {
+      reviews,
+    },
+  };
+};

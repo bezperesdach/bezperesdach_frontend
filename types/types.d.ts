@@ -50,3 +50,12 @@ interface ReactSelectOption {
   label: string;
   value: string;
 }
+
+interface Review {
+  id: number;
+  name: string;
+  rating: number;
+  text: string;
+  date: Date;
+  avatar: string;
+}

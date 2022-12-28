@@ -1,0 +1,12 @@
+.dynamic_star_rating {
+  display: flex;
+  align-items: center;
+}
+
+.dynamic_star_container {
+  display: flex;
+}
+
+.dynamic_star_container:not(:last-child) {
+  margin-right: 5px;
+}

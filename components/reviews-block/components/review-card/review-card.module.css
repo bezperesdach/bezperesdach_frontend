@@ -4,22 +4,28 @@
   gap: 24px;
 }
 
-.name {
+/* .name {
   padding-left: 4px;
-}
+} */
 
 .name_rating {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
+}
+
+.rating {
+  padding-left: 8px;
 }
 
 .text {
+  padding: 0 8px;
   line-height: 150%;
 }
 
 .image {
   border-radius: 100%;
   box-shadow: 0 0 2px 1px;
+  object-fit: none;
 }

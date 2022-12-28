@@ -27,7 +27,7 @@ export const ReviewCard = ({ className, name, text, rating, date, avatar }: Prop
         />
         <div className={styles.name_rating}>
           <h3 className={styles.name}>{name}</h3>
-          <DynamicStar rating={rating} width={24} height={24} />
+          <DynamicStar outlined rating={rating} width={16} height={16} />
         </div>
       </div>
       <p className={styles.text}>{text}</p>

@@ -41,6 +41,14 @@ export const getPromoCode = async (promoCode: string, recaptchaToken: string) =>
   return response;
 };
 
+export const getReviews = async () => {
+  const response = await fetch(`${API_URL}/reviews/getRandomReviews`, {
+    headers: { Authorization: `Bearer ${PUBLIC_TOKEN}` },
+  });
+
+  return response;
+};
+
 export const authenticateUser = async (
   user: IUser,
   onRequest: () => void,

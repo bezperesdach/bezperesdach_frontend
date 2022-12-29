@@ -20,7 +20,8 @@
 }
 
 .text {
-  padding: 0 8px;
+  padding: 10px 8px 0;
+  color: rgb(39 52 66);
   line-height: 150%;
 }
 

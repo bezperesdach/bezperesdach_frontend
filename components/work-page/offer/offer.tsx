@@ -34,7 +34,7 @@ export const Offer = () => {
           fallbackImg={FallbackOne}
           alt="point"
         />
-        <ImageWithText description={"Портфолио из различных работ"} img={One} fallbackImg={FallbackOne} alt="point" />
+        <ImageWithText description={"Портфолио (желательно) "} img={One} fallbackImg={FallbackOne} alt="point" />
       </div>
     </section>
   );

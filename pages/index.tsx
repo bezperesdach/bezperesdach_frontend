@@ -35,12 +35,14 @@ export default function Home({ reviews, deviceType }: InferGetServerSidePropsTyp
       />
 
       <Main />
-      <ReviewsBlock reviews={reviews} deviceType={deviceType} />
+
       <AboutUsHomePageDynamic />
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
       <DynamicSaveMoney />
+      <ReviewsBlock reviews={reviews} deviceType={deviceType} />
       <DynamicWork />
+
       <DynamicBonus />
       <DynamicContact />
     </UnauthorizedUserLayout>

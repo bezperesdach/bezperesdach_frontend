@@ -14,11 +14,12 @@ const DynamicOurAdvantages = dynamic(() =>
 const DynamicOrderProcess = dynamic(() =>
   import("../components/home-page/order-process/order-process").then((mod) => mod.OrderProcess)
 );
+const DynamicSaveMoney = dynamic(() => import("../components/home-page/save-money/save-money").then((mod) => mod.SaveMoney));
 const DynamicWork = dynamic(() => import("../components/home-page/work/work").then((mod) => mod.Work));
 const DynamicBonus = dynamic(() => import("../components/home-page/bonus/bonus").then((mod) => mod.Bonus));
 const DynamicContact = dynamic(() => import("../components/home-page/contact/contact").then((mod) => mod.Contact));
 
-import { ReviewsBlock } from "../components/reviews-block/reviews-block";
+import { ReviewsBlock } from "../components/home-page/reviews-block/reviews-block";
 import { getReviews } from "../api/api";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
@@ -38,6 +39,7 @@ export default function Home({ reviews, deviceType }: InferGetServerSidePropsTyp
       <AboutUsHomePageDynamic />
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
+      <DynamicSaveMoney />
       <DynamicWork />
       <DynamicBonus />
       <DynamicContact />

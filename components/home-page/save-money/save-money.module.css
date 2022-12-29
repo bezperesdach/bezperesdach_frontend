@@ -1,14 +1,15 @@
-.order_process {
+.save_money {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
-  padding-top: 200px;
-  padding-bottom: 100px;
+
+  /* padding-top: 200px; */
+  padding-bottom: 200px;
   gap: 24px;
 }
 
-.order_process h2 {
+.save_money h2 {
   padding-bottom: 100px;
   color: white;
   font-size: 36px;
@@ -17,7 +18,7 @@
   line-height: 100%;
 }
 
-.order_process p {
+.save_money p {
   font-size: 16px;
   font-weight: 300;
 }
@@ -50,7 +51,7 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .order_process {
+  .save_money {
     flex-direction: column;
     padding-top: 100px;
     padding-bottom: 100px;
@@ -67,30 +68,30 @@
     padding-top: 48px;
   }
 
-  .order_process h2 {
+  .save_money h2 {
     padding-bottom: 50px;
     font-size: 32px;
   }
 
-  .order_process h3 {
+  .save_money h3 {
     font-size: 16px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .order_process {
+  .save_money {
     flex-direction: column;
     padding-top: 50px;
     padding-bottom: 50px;
     gap: 0;
   }
 
-  .order_process h2 {
+  .save_money h2 {
     padding-bottom: 50px;
     font-size: 28px;
   }
 
-  .order_process h3 {
+  .save_money h3 {
     font-size: 16px;
   }
 }
@@ -102,7 +103,7 @@
 }
 
 @media screen and (max-width: 300px) {
-  .order_process h2 {
+  .save_money h2 {
     font-size: 22px;
   }
 }

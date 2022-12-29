@@ -1,0 +1,129 @@
+.carousel_container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.carousel_wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.carousel_content_wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel_content {
+  display: flex;
+  -ms-overflow-style: none; /* hide scrollbar in IE and Edge */
+  scrollbar-width: none; /* hide scrollbar in Firefox */
+  transition: all 300ms ease-in-out;
+}
+
+/* hide scrollbar in webkit browser */
+
+/* .carousel_content::-webkit-scrollbar, */
+.carousel_content::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel_content > * {
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.carousel_content.show_2 > * {
+  width: 50%;
+}
+
+.carousel_content.show_3 > * {
+  width: calc(100% / 3);
+}
+
+.carousel_content.show_4 > * {
+  width: calc(100% / 4);
+}
+
+.left_arrow,
+.right_arrow {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: -80px;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  border: unset;
+  border-radius: 25px;
+  margin-right: auto;
+  margin-left: auto;
+  background: rgb(255 255 255);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.left_arrow {
+  left: -80px;
+}
+
+.right_arrow {
+  position: absolute;
+  right: -80px;
+}
+
+.left_arrow > svg,
+.right_arrow > svg {
+  position: absolute;
+  left: 50%;
+  fill: rgb(39 52 68);
+  transition: all 250ms ease-in-out;
+}
+
+.left_arrow > svg {
+  transform: translate(-50%, -50%) rotate(270deg);
+}
+
+.right_arrow > svg {
+  transform: translate(-50%, -50%) rotate(-270deg);
+}
+
+.left_arrow:hover > svg {
+  fill: rgb(16 112 238);
+  transform: translate(-50%, -50%) rotate(-90deg) scale(125%);
+}
+
+.left_arrow:active > svg {
+  transform: translate(-50%, -50%) rotate(-90deg) scale(85%);
+  transition: all 50ms ease-in;
+}
+
+.right_arrow:hover > svg {
+  fill: rgb(16 112 238);
+  transform: translate(-50%, -50%) rotate(90deg) scale(125%);
+}
+
+.right_arrow:active > svg {
+  transform: translate(-50%, -50%) rotate(90deg) scale(85%);
+  transition: all 50ms ease-in;
+}
+
+/* right: -2rem; */
+
+/* background: linear-gradient(90deg, rgb(255 255 255 / 0%) 0%, rgb(39 52 68 / 65%) 100%); */
+
+/* .left_arrow:hover,
+.right_arrow:hover {
+  background-color: rgb(255 255 255);
+} */
+
+/* 
+@media (hover: none) and (pointer: coarse) {
+  .left_arrow,
+  .right_arrow {
+    display: none;
+  }
+} */

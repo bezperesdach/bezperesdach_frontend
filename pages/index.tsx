@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import UAParser from "ua-parser-js";
 
 import { Main } from "../components/home-page/main/main";
 import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
@@ -19,15 +20,11 @@ const DynamicContact = dynamic(() => import("../components/home-page/contact/con
 
 import { ReviewsBlock } from "../components/reviews-block/reviews-block";
 import { getReviews } from "../api/api";
-import { GetStaticProps, InferGetStaticPropsType } from "next/types";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
 // import styles from "../styles/Home.module.css";
 
-interface Props {
-  reviews: Review[];
-}
-
-export default function Home({ reviews }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({ reviews, deviceType }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <UnauthorizedUserLayout>
       <SEO
@@ -37,7 +34,7 @@ export default function Home({ reviews }: InferGetStaticPropsType<typeof getStat
       />
 
       <Main />
-      <ReviewsBlock reviews={reviews} />
+      <ReviewsBlock reviews={reviews} deviceType={deviceType} />
       <AboutUsHomePageDynamic />
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
@@ -48,13 +45,37 @@ export default function Home({ reviews }: InferGetStaticPropsType<typeof getStat
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+interface Props {
+  deviceType: string;
+  reviews: Review[];
+}
+
+export const getServerSideProps: GetServerSideProps<Props> = async ({ req }) => {
   const res = await getReviews();
   const reviews: Review[] = await res.json().then((data) => data.data);
 
+  let userAgent;
+  if (req) {
+    userAgent = req.headers["user-agent"];
+  } else {
+    userAgent = navigator.userAgent;
+  }
+  const parser = new UAParser();
+  parser.setUA(userAgent as string);
+  const result = parser.getResult();
+  const deviceType = (result.device && result.device.type) || "desktop";
   return {
     props: {
+      deviceType,
       reviews,
     },
   };
 };
+
+// export function getServerSideProps(context) {
+//   return {
+//     props: {
+//       uaString: context.req.headers["user-agent"],
+//     },
+//   };
+// }

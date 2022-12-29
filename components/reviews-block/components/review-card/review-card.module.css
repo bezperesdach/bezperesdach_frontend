@@ -27,5 +27,5 @@
 .image {
   border-radius: 100%;
   box-shadow: 0 0 2px 1px;
-  object-fit: none;
+  object-fit: contain;
 }

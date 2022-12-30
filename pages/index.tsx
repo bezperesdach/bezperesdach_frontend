@@ -51,12 +51,19 @@ export default function Home({ randomReviews, deviceType }: InferGetServerSidePr
 
 interface Props {
   deviceType: string;
-  randomReviews: RandomReviews;
+  randomReviews: RandomReviews | null;
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({ req }) => {
-  const res = await getReviews();
-  const randomReviews: RandomReviews = await res.json().then((data) => data.data);
+export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }) => {
+  res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59");
+
+  let randomReviews: RandomReviews | null = null;
+
+  const randomReviewsResponse = await getReviews();
+
+  if (!randomReviewsResponse.errors) {
+    randomReviews = randomReviewsResponse.data;
+  }
 
   let userAgent;
   if (req) {
@@ -68,6 +75,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req }) => 
   parser.setUA(userAgent as string);
   const result = parser.getResult();
   const deviceType = (result.device && result.device.type) || "desktop";
+
   return {
     props: {
       deviceType,
@@ -75,11 +83,3 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req }) => 
     },
   };
 };
-
-// export function getServerSideProps(context) {
-//   return {
-//     props: {
-//       uaString: context.req.headers["user-agent"],
-//     },
-//   };
-// }

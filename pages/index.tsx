@@ -14,7 +14,9 @@ const DynamicOurAdvantages = dynamic(() =>
 const DynamicOrderProcess = dynamic(() =>
   import("../components/home-page/order-process/order-process").then((mod) => mod.OrderProcess)
 );
-const DynamicSaveMoney = dynamic(() => import("../components/home-page/save-money/save-money").then((mod) => mod.SaveMoney));
+const DynamicSecurePayment = dynamic(() =>
+  import("../components/home-page/secure-payment/secure-payment").then((mod) => mod.SecurePayment)
+);
 const DynamicWork = dynamic(() => import("../components/home-page/work/work").then((mod) => mod.Work));
 const DynamicBonus = dynamic(() => import("../components/home-page/bonus/bonus").then((mod) => mod.Bonus));
 const DynamicContact = dynamic(() => import("../components/home-page/contact/contact").then((mod) => mod.Contact));
@@ -39,7 +41,7 @@ export default function Home({ randomReviews, deviceType }: InferGetServerSidePr
       <AboutUsHomePageDynamic />
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
-      <DynamicSaveMoney />
+      <DynamicSecurePayment />
       <ReviewsBlock randomReviews={randomReviews} deviceType={deviceType} />
       <DynamicWork />
 

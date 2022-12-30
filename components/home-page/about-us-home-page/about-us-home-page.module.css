@@ -71,7 +71,6 @@
   .image_container {
     width: 60%;
     flex: unset;
-    padding-top: 40px;
   }
 
   .description {
@@ -89,17 +88,23 @@
 
 @media screen and (max-width: 768px) {
   .about_us {
+    flex-direction: column-reverse;
     padding-top: 50px;
     padding-bottom: 25px;
   }
 
   .about_us h2 {
-    padding-bottom: 24px;
+    padding-top: 40px;
     font-size: 28px;
   }
 
   .about_us h3 {
     font-size: 16px;
+  }
+
+  .image_container {
+    width: 100%;
+    flex: unset;
   }
 }
 

@@ -48,12 +48,13 @@
 @media screen and (max-width: 768px) {
   .work {
     flex-direction: column;
-    padding-top: 50px;
-    padding-bottom: unset;
+    padding-top: 32px;
+    padding-bottom: 50px;
+    gap: unset;
   }
 
   .image_container {
-    display: none;
+    width: 100%;
   }
 
   .blocks h2 {
@@ -63,6 +64,10 @@
 }
 
 @media screen and (max-width: 300px) {
+  .image_container {
+    display: none;
+  }
+
   .work h2 {
     font-size: 24px;
   }

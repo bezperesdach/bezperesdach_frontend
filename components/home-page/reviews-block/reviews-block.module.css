@@ -1,5 +1,4 @@
 .reviews_block {
-  /* display: flex; */
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -34,6 +33,7 @@
 
 .avg_rating_score {
   color: rgb(102 36 131);
+  font-size: calc((100vw - 480px) / (1920 - 480) * (38 - 30) + 30px);
 }
 
 .reviews_block p {
@@ -46,11 +46,8 @@
 }
 
 .reviews_container {
-  /* display: flex; */
   width: 100%;
   flex-direction: row;
-
-  /* gap: 40px; */
 }
 
 .review_container {
@@ -60,25 +57,16 @@
 }
 
 .review {
-  /* display: flex; */
-
-  /* width: 300px; */
   height: 100%;
   height: auto;
   box-sizing: border-box;
   flex-direction: column;
   padding: 24px;
   border-radius: 25px;
-
-  /* margin: 0 24px; */
-
-  /* background-color: rgb(255 255 255); */
   border-radius: 30px;
   background-color: rgb(255 255 255 / 70%);
   box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
   color: rgb(102 36 131);
-
-  /* gap: 8px; */
 }
 
 @media screen and (max-width: 1366px) {

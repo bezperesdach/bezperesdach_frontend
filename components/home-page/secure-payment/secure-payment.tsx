@@ -17,26 +17,26 @@ export const SecurePayment = () => {
           БЕЗОПАСНЫЙ <br></br>ПЛАТЕЖ
         </h2>
         <ImageWithText
-          description={"Не перечисляем деньги автору до конца сделки"}
+          description={"Автор получает оплату только после успешной сдачи"}
           img={Payment}
           fallbackImg={FallbackPayment}
           alt="cloud point"
         />
         <ImageWithText
-          description={"Работаем с платежной системой YoMoney"}
+          description={"Работаем с платежной системой ЮMoney"}
           img={Payment}
           fallbackImg={FallbackPayment}
           alt="cloud point"
         />
         <ImageWithText
-          description={"Выдаем чек независимо от суммы заказа"}
+          description={"Выдаем чек при необходимости ( независимо от суммы заказа )"}
           img={Payment}
           fallbackImg={FallbackPayment}
           alt="cloud point"
         />
 
         <ImageWithText
-          description={"Авторские права на все предоставленные материалы в ходе консультации переходят к вам согласно ТК РФ"}
+          description={"Авторские права на все предоставленные материалы в ходе консультации переходят к вам"}
           img={Payment}
           fallbackImg={FallbackPayment}
           alt="cloud point"

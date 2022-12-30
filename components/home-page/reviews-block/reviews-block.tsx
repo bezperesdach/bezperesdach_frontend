@@ -36,8 +36,7 @@ export const ReviewsBlock = ({ randomReviews, deviceType }: Props) => {
     <section className={`${styles.reviews_block} ${styles.colored_background}`}>
       <h2>ОТЗЫВЫ</h2>
       <h3 className={styles.avg_rating}>
-        Средняя оценка <span className={styles.avg_rating_score}>{randomReviews.avgRating}</span>/
-        <span className={styles.avg_rating_score}>5</span>
+        Средняя оценка <span className={styles.avg_rating_score}>{randomReviews.avgRating}</span>
       </h3>
 
       <Carousel

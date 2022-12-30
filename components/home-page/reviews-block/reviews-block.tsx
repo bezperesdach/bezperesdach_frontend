@@ -12,17 +12,17 @@ type Props = {
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000, min: 1150 },
     items: 3,
     slidesToSlide: 1,
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 1150, min: 768 },
     items: 2,
     slidesToSlide: 1,
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 768, min: 0 },
     items: 1,
     slidesToSlide: 1,
   },
@@ -50,6 +50,7 @@ export const ReviewsBlock = ({ randomReviews, deviceType }: Props) => {
         draggable={false}
         infinite
         ssr
+        containerClass={styles.carousel_container}
         itemClass={styles.review_container}
         responsive={responsive}
         deviceType={deviceType}

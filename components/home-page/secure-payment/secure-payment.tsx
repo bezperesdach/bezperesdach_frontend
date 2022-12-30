@@ -36,7 +36,7 @@ export const SecurePayment = () => {
         />
 
         <ImageWithText
-          description={"Авторские права переходят к вам согласно ТК РФ"}
+          description={"Авторские права на все предоставленные материалы в ходе консультации переходят к вам согласно ТК РФ"}
           img={Payment}
           fallbackImg={FallbackPayment}
           alt="cloud point"

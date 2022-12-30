@@ -26,7 +26,7 @@ export const ReviewCard = ({ className, name, text, rating, date, avatar }: Prop
           // onError={(e) => (e.currentTarget.src = FallbackMain.src)}
         />
         <div className={styles.name_rating}>
-          <h3 className={styles.name}>{name}</h3>
+          <h4 className={styles.name}>{name}</h4>
           <DynamicStar outlined rating={rating} width={16} height={16} />
         </div>
       </div>

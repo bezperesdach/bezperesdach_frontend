@@ -25,7 +25,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
 // import styles from "../styles/Home.module.css";
 
-export default function Home({ reviews, deviceType }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({ randomReviews, deviceType }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <UnauthorizedUserLayout>
       <SEO
@@ -40,7 +40,7 @@ export default function Home({ reviews, deviceType }: InferGetServerSidePropsTyp
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
       <DynamicSaveMoney />
-      <ReviewsBlock reviews={reviews} deviceType={deviceType} />
+      <ReviewsBlock randomReviews={randomReviews} deviceType={deviceType} />
       <DynamicWork />
 
       <DynamicBonus />
@@ -51,12 +51,12 @@ export default function Home({ reviews, deviceType }: InferGetServerSidePropsTyp
 
 interface Props {
   deviceType: string;
-  reviews: Review[];
+  randomReviews: RandomReviews;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ req }) => {
   const res = await getReviews();
-  const reviews: Review[] = await res.json().then((data) => data.data);
+  const randomReviews: RandomReviews = await res.json().then((data) => data.data);
 
   let userAgent;
   if (req) {
@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req }) => 
   return {
     props: {
       deviceType,
-      reviews,
+      randomReviews,
     },
   };
 };

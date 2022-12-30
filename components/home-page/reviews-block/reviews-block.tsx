@@ -7,7 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 
 type Props = {
   deviceType: string;
-  reviews: Review[];
+  randomReviews: RandomReviews | null;
 };
 
 const responsive = {
@@ -28,13 +28,17 @@ const responsive = {
   },
 };
 
-export const ReviewsBlock = ({ reviews, deviceType }: Props) => {
-  if (!reviews) {
+export const ReviewsBlock = ({ randomReviews, deviceType }: Props) => {
+  if (!randomReviews || !randomReviews.reviews || (randomReviews.reviews && randomReviews.reviews.length <= 0)) {
     return null;
   }
   return (
     <section className={`${styles.reviews_block} ${styles.colored_background}`}>
       <h2>ОТЗЫВЫ</h2>
+      <h3 className={styles.avg_rating}>
+        Средняя оценка <span className={styles.avg_rating_score}>{randomReviews.avgRating}</span>/
+        <span className={styles.avg_rating_score}>5</span>
+      </h3>
 
       <Carousel
         pauseOnHover
@@ -50,7 +54,7 @@ export const ReviewsBlock = ({ reviews, deviceType }: Props) => {
         responsive={responsive}
         deviceType={deviceType}
       >
-        {reviews.map((review) => {
+        {randomReviews.reviews.map((review) => {
           return (
             <ReviewCard
               className={styles.review}

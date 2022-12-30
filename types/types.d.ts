@@ -51,6 +51,11 @@ interface ReactSelectOption {
   value: string;
 }
 
+interface RandomReviews {
+  avgRating: number;
+  reviews: Review[];
+}
+
 interface Review {
   id: number;
   name: string;

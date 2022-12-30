@@ -4,6 +4,9 @@ import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-
 import { SEO } from "../components/seo/seo";
 import { AboutSite } from "../components/about-us-page/about-site/about-site";
 
+const DynamicAboutUsHomePage = dynamic(() =>
+  import("../components/home-page/about-us-home-page/about-us-home-page").then((mod) => mod.AboutUsHomePage)
+);
 const DynamicContact = dynamic(() => import("../components/home-page/contact/contact").then((mod) => mod.Contact));
 const DynamicBonus = dynamic(() => import("../components/home-page/bonus/bonus").then((mod) => mod.Bonus));
 
@@ -18,6 +21,7 @@ export default function Information() {
 
       <AboutSite />
 
+      <DynamicAboutUsHomePage />
       <DynamicBonus />
       <DynamicContact />
     </UnauthorizedUserLayout>

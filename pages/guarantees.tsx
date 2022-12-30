@@ -1,7 +1,14 @@
+import dynamic from "next/dynamic";
 import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { SEO } from "../components/seo/seo";
 import { Guarantees } from "../components/about-us-page/guarantees/guarantees";
-import dynamic from "next/dynamic";
+
+const DynamicOrderProcess = dynamic(() =>
+  import("../components/home-page/order-process/order-process").then((mod) => mod.OrderProcess)
+);
+const DynamicSecurePayment = dynamic(() =>
+  import("../components/home-page/secure-payment/secure-payment").then((mod) => mod.SecurePayment)
+);
 const DynamicContact = dynamic(() => import("../components/home-page/contact/contact").then((mod) => mod.Contact));
 const DynamicBonus = dynamic(() => import("../components/home-page/bonus/bonus").then((mod) => mod.Bonus));
 
@@ -15,6 +22,8 @@ export default function GuaranteesPage() {
       />
 
       <Guarantees />
+      <DynamicOrderProcess />
+      <DynamicSecurePayment />
       <DynamicBonus />
       <DynamicContact />
     </UnauthorizedUserLayout>

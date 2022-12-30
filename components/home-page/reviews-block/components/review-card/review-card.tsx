@@ -23,6 +23,7 @@ export const ReviewCard = ({ className, name, text, rating, date, avatar }: Prop
           alt="avatar image"
           width={64}
           height={64}
+          priority
           // onError={(e) => (e.currentTarget.src = FallbackMain.src)}
         />
         <div className={styles.name_rating}>

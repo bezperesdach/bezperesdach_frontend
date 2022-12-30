@@ -5,7 +5,7 @@ import { Main } from "../components/home-page/main/main";
 import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";
 import { SEO } from "../components/seo/seo";
 
-const AboutUsHomePageDynamic = dynamic(() =>
+const DynamicAboutUsHomePage = dynamic(() =>
   import("../components/home-page/about-us-home-page/about-us-home-page").then((mod) => mod.AboutUsHomePage)
 );
 const DynamicOurAdvantages = dynamic(() =>
@@ -38,7 +38,7 @@ export default function Home({ randomReviews, deviceType }: InferGetServerSidePr
 
       <Main />
 
-      <AboutUsHomePageDynamic />
+      <DynamicAboutUsHomePage />
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
       <DynamicSecurePayment />

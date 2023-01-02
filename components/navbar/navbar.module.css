@@ -37,6 +37,7 @@
 }
 
 .mobile_menu {
+  z-index: 100005;
   display: none;
   padding: 2rem 2rem 0;
   border: none;
@@ -83,7 +84,7 @@
   }
 
   .mobile_menu {
-    z-index: 20;
+    z-index: 1500;
     display: flex;
   }
 }

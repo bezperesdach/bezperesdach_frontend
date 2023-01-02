@@ -9,12 +9,21 @@
 }
 
 .image_container {
+  position: relative;
   flex: 1;
   flex-basis: 50%;
 }
 
 .image {
   position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+  object-fit: contain;
+}
+
+.animated_image {
+  position: absolute !important;
+  top: 0;
   width: 100% !important;
   height: unset !important;
   object-fit: contain;

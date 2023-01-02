@@ -81,7 +81,7 @@
   .order_process {
     flex-direction: column;
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 24px;
     gap: 0;
   }
 

@@ -11,7 +11,7 @@ import styles from "./secure-payment.module.css";
 
 export const SecurePayment = () => {
   return (
-    <section className={`${styles.save_money} ${styles.colored_background}`}>
+    <section className={`${styles.secure_payment} ${styles.colored_background}`}>
       <div className={styles.cards}>
         <h2>
           БЕЗОПАСНЫЙ <br></br>ПЛАТЕЖ

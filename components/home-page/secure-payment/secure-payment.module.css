@@ -1,4 +1,4 @@
-.save_money {
+.secure_payment {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -9,7 +9,7 @@
   gap: 24px;
 }
 
-.save_money h2 {
+.secure_payment h2 {
   padding-bottom: 100px;
   color: white;
   font-size: 36px;
@@ -18,7 +18,7 @@
   line-height: 100%;
 }
 
-.save_money p {
+.secure_payment p {
   font-size: 16px;
   font-weight: 300;
 }
@@ -51,7 +51,7 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .save_money {
+  .secure_payment {
     flex-direction: column;
     padding-top: 100px;
     padding-bottom: 100px;
@@ -68,30 +68,30 @@
     padding-top: 48px;
   }
 
-  .save_money h2 {
+  .secure_payment h2 {
     padding-bottom: 50px;
     font-size: 32px;
   }
 
-  .save_money h3 {
+  .secure_payment h3 {
     font-size: 16px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .save_money {
+  .secure_payment {
     flex-direction: column;
-    padding-top: 50px;
+    padding-top: 24px;
     padding-bottom: 50px;
     gap: 0;
   }
 
-  .save_money h2 {
+  .secure_payment h2 {
     padding-bottom: 50px;
     font-size: 28px;
   }
 
-  .save_money h3 {
+  .secure_payment h3 {
     font-size: 16px;
   }
 
@@ -107,7 +107,7 @@
 }
 
 @media screen and (max-width: 300px) {
-  .save_money h2 {
+  .secure_payment h2 {
     font-size: 22px;
   }
 }

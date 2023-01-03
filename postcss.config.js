@@ -15,9 +15,17 @@ module.exports = {
           [
             "@fullhuman/postcss-purgecss",
             {
-              content: ["./pages/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
-              defaultExtractor: (content) => content.match(/[A-Za-z0-9-_:/]+/g) || [],
-              safelist: ["grecaptcha-badge"],
+              content: [
+                "./pages/**/*.{js,jsx,ts,tsx}",
+                "./components/**/*.{js,jsx,ts,tsx}",
+                "./node_modules/react-multi-carousel/lib/**/*.{js,jsx,ts,tsx}",
+              ],
+              defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+              safelist: {
+                standard: ["grecaptcha-badge"],
+                deep: [],
+                greedy: [/^react-multi-carousel-/],
+              },
             },
           ],
         ]

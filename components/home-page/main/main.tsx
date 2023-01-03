@@ -4,10 +4,7 @@ import Image from "next/image";
 import Hero from "public/assets/images/hero/hero.webp";
 import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 import { LinkButton } from "../../link-button/link-button";
-// import { Button } from "../../button/button";
-// import { QuickOrder } from "../../forms/quick-order/quick-order";
 import urls from "../../../utils/urls.json";
-// import { RecaptchaDisclaimer } from "../../forms/components/recaptcha-disclaimer/recaptcha-disclaimer";
 const DynamicHeroAnimation = dynamic(() => import("./hero-animated/hero-animated"));
 
 import styles from "./main.module.css";
@@ -23,11 +20,10 @@ export const Main = () => {
           className={styles.image}
           alt="hero"
           priority={true}
-          sizes="(max-width: 1200px) 100vw,
+          sizes="(max-width: 1240px) 100vw,
           55vw"
           style={{ visibility: isAnimationLoaded ? "hidden" : "visible" }}
           onError={(e) => (e.currentTarget.src = FallbackHero.src)}
-          objectFit="contain"
         />
 
         <DynamicHeroAnimation className={styles.animated_image} setLoaded={setAnimationLoaded} />

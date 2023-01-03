@@ -24,7 +24,7 @@ module.exports = {
               safelist: {
                 standard: ["grecaptcha-badge"],
                 deep: [],
-                greedy: [/^react-multi-carousel-/],
+                greedy: [/^react-multi-carousel-/, /^react-multiple-/],
               },
             },
           ],

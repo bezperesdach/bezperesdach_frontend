@@ -8,6 +8,7 @@ import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-us
 import { descriptionValueLabel, getOrderDescription, getProjectType } from "../../utils/order-form/form";
 import { SEO } from "../../components/seo/seo";
 import { NewOrderForm } from "../../components/forms/new-order-form/new-order-form";
+
 const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
 
 const AboutUsHomePageDynamic = dynamic(() =>
@@ -18,6 +19,9 @@ const DynamicOurAdvantages = dynamic(() =>
 );
 const DynamicOrderProcess = dynamic(() =>
   import("../../components/home-page/order-process/order-process").then((mod) => mod.OrderProcess)
+);
+const DynamicSecurePayment = dynamic(() =>
+  import("../../components/home-page/secure-payment/secure-payment").then((mod) => mod.SecurePayment)
 );
 const DynamicContact = dynamic(() => import("../../components/home-page/contact/contact").then((mod) => mod.Contact));
 
@@ -55,9 +59,11 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
       >
         <NewOrderForm />
       </DynamicGoogleReCaptchaProvider>
+
       <AboutUsHomePageDynamic />
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
+      <DynamicSecurePayment />
       <DynamicContact />
     </UnauthorizedUserLayout>
   );

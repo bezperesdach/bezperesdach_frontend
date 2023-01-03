@@ -88,22 +88,33 @@
 
 @media screen and (max-width: 768px) {
   .our_advantages {
+    flex-direction: column-reverse;
     padding-top: 25px;
     padding-bottom: 50px;
   }
 
   .our_advantages h2 {
-    padding-bottom: 50px;
     font-size: 28px;
   }
 
   .our_advantages h3 {
     font-size: 16px;
   }
+
+  .image_container {
+    width: 100%;
+    padding-bottom: 40px;
+  }
 }
 
 @media screen and (max-width: 380px) {
   .image_container {
     display: none;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .our_advantages h2 {
+    font-size: 24px;
   }
 }

@@ -49,7 +49,7 @@ export const OurAdvantages = () => {
           </p>
         </Card>
         <Card title="ГАРАНТИЯ ВОЗВРАТА ДЕНЕГ" img={Three} fallbackImg={FallbackThree} alt="guarantees">
-          <p>В случае, если что-то пойдет не так, мы гарантируем возврат полной уплаченной суммы</p>
+          <p>В случае, если Вам не понравится результат, ваши деньги будут возвращены полностью.</p>
         </Card>
       </div>
       <div className={styles.image_container}>

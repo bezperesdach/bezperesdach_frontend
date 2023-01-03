@@ -9,12 +9,21 @@
 }
 
 .image_container {
+  position: relative;
   flex: 1;
   flex-basis: 50%;
 }
 
 .image {
   position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+  object-fit: contain;
+}
+
+.animated_image {
+  position: absolute !important;
+  top: 0;
   width: 100% !important;
   height: unset !important;
   object-fit: contain;
@@ -86,6 +95,7 @@
   text-align: center;
 } */
 
+/* 
 @media screen and (max-width: 1023px) {
   .main_hero {
     flex-direction: column;
@@ -98,7 +108,7 @@
     flex: unset;
     flex-basis: unset;
   }
-}
+} */
 
 @media screen and (max-width: 1023px) {
   .main_hero {
@@ -107,11 +117,17 @@
     padding-bottom: 50px;
     gap: unset;
   }
+
+  .image_container {
+    width: 70%;
+    flex: unset;
+    flex-basis: unset;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .image_container {
-    width: 60%;
+    width: 100%;
     flex: unset;
     flex-basis: unset;
   }
@@ -159,7 +175,7 @@
   }
 
   .image_container {
-    width: 70%;
+    width: 100%;
     flex: unset;
     flex-basis: unset;
   }
@@ -167,5 +183,11 @@
   .buttons {
     flex-direction: column;
     gap: unset;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .text_main h2 {
+    font-size: 22px;
   }
 }

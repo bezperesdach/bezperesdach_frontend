@@ -1,8 +1,10 @@
 import React, { useCallback, useMemo, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import Left from "../../../public/assets/images/order-form/left.svg";
+import Right from "../../../public/assets/images/order-form/right.svg";
 
-// import Image from "next/image";
+import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
 
 // import Hero from "public/assets/images/hero/hero.webp";
@@ -29,9 +31,10 @@ import { showAndHideError } from "../../../utils/utils";
 import { RecaptchaDisclaimer } from "../components/recaptcha-disclaimer/recaptcha-disclaimer";
 import { useAutosizeTextArea } from "../components/use-auto-text-aria/use-auto-text-aria";
 import { initialValues, extendOrderSchema, getContactPlaceholder, getContactLabel } from "../../../utils/order-form/validation";
+import { createOrder } from "../../../api/api";
+import { VK } from "../../../utils/vk-pixel";
 
 import styles from "../form.module.css";
-import { createOrder } from "../../../api/api";
 
 // const additionalFieldsVariants = {
 //   closed: { height: "0" },
@@ -119,6 +122,7 @@ export const NewOrderForm = () => {
 
         if (result.ok) {
           ym("reachGoal", "orderCreateSuccess");
+          VK.Goal("submit_application");
 
           setSendOrder((prevState) => {
             return { ...prevState, loading: false, isModal: true };
@@ -244,9 +248,12 @@ export const NewOrderForm = () => {
   return (
     <FormikProvider value={formik}>
       <section className={styles.hero}>
-        <h1 className={styles.hero_title}>{getOrderTypeLabel(formik.values.projectType)}</h1>
-        <div className={styles.form_container}>
-          <div className={styles.hero}>
+        <div className={styles.border}>
+          <div className={styles.handle_top}>
+            <div className={styles.handle_inner}></div>
+          </div>
+          <h1 className={styles.hero_title}>{getOrderTypeLabel(formik.values.projectType)}</h1>
+          <div className={styles.form_container}>
             <Form noValidate>
               <div className={styles.form}>
                 <div className={styles.form_item}>
@@ -517,8 +524,8 @@ export const NewOrderForm = () => {
                 </div>
               </div>
             </Form>
-          </div>
-          {/* <div className={styles.image_container}>
+
+            {/* <div className={styles.image_container}>
             <Image
               src={Hero}
               placeholder="blur"
@@ -527,7 +534,14 @@ export const NewOrderForm = () => {
               onError={(e) => (e.currentTarget.src = FallbackHero.src)}
             />
           </div> */}
-          <DynamicModalRequest shouldShow={sendOrder.isModal} handleClose={closeModal} email="help@bezperesdach.ru" />
+            <DynamicModalRequest shouldShow={sendOrder.isModal} handleClose={closeModal} email="help@bezperesdach.ru" />
+          </div>
+        </div>
+        <div className={`${styles.order_image} ${styles.order_image_right}`}>
+          <Image className={styles.image} src={Right} alt="image_right" />
+        </div>
+        <div className={`${styles.order_image} ${styles.order_image_left}`}>
+          <Image className={styles.image} src={Left} alt="image_left" />
         </div>
       </section>
     </FormikProvider>

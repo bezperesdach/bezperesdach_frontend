@@ -1,0 +1,124 @@
+.reviews_block {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px;
+  gap: 24px;
+}
+
+.colored_background {
+  --bg-color: rgb(255 242 137 / 100%);
+
+  margin-bottom: -1px;
+  background-color: var(--bg-color);
+  box-shadow: 0 0 0 100vmax var(--bg-color);
+  clip-path: inset(0 -100vmax);
+  color: rgb(255 255 255);
+}
+
+.reviews_block h2 {
+  padding-bottom: 24px;
+  color: rgb(102 36 131);
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.avg_rating {
+  padding-bottom: 32px;
+  color: rgb(39 52 67);
+  font-size: calc((100vw - 480px) / (1920 - 480) * (32 - 24) + 24px);
+  font-weight: 900;
+  text-align: center;
+}
+
+.avg_rating_score {
+  color: rgb(102 36 131);
+  font-size: calc((100vw - 480px) / (1920 - 480) * (38 - 30) + 30px);
+}
+
+.reviews_block p {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.carousel_container {
+  margin: 0 -24px;
+}
+
+.reviews_container {
+  width: 100%;
+  flex-direction: row;
+}
+
+.review_container {
+  height: auto;
+  box-sizing: border-box;
+  padding: 0 24px 24px;
+}
+
+.review {
+  height: 100%;
+  height: auto;
+  box-sizing: border-box;
+  flex-direction: column;
+  padding: 24px;
+  border-radius: 25px;
+  border-radius: 30px;
+  background-color: rgb(255 255 255 / 70%);
+  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  color: rgb(102 36 131);
+}
+
+@media screen and (max-width: 1366px) {
+  .review_container {
+    padding: 0 2rem 24px;
+  }
+
+  .carousel_container {
+    margin: 0 -2rem;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .reviews_block h2 {
+    font-size: 32px;
+  }
+
+  .reviews_block h4 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .review_container {
+    padding: 0 1rem 24px;
+  }
+
+  .carousel_container {
+    margin: 0 -1rem;
+  }
+
+  .review_block {
+    padding-top: 50px;
+  }
+
+  .reviews_block h2 {
+    font-size: 28px;
+  }
+
+  .reviews_block h4 {
+    font-size: 16px;
+  }
+}
+
+/* @media screen and (max-width: 380px) {
+  .image_container {
+    display: none;
+  }
+} */
+
+@media screen and (max-width: 300px) {
+  .reviews_block h2 {
+    font-size: 22px;
+  }
+}

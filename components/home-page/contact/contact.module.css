@@ -92,10 +92,21 @@
   }
 
   .image_container {
-    display: none;
+    width: 100%;
+    padding: unset;
   }
 
   .contact_text {
     height: auto;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .contact_text h2 {
+    font-size: 24px;
+  }
+
+  .image_container {
+    display: none;
   }
 }

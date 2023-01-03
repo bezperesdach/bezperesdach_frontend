@@ -18,13 +18,10 @@ export const ReviewCard = ({ className, name, text, rating, date, avatar }: Prop
       <div className={styles.avatar_name_rating_container}>
         <Image
           src={`/assets/images/avatars/${avatar}.svg`}
-          // placeholder="blur"
           className={`${styles.image} no_select image_no_pointer_events`}
           alt="avatar image"
           width={64}
           height={64}
-          priority
-          // onError={(e) => (e.currentTarget.src = FallbackMain.src)}
         />
         <div className={styles.name_rating}>
           <h4 className={styles.name}>{name}</h4>

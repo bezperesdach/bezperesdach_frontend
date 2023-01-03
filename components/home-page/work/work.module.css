@@ -54,7 +54,7 @@
   }
 
   .image_container {
-    width: 100%;
+    display: none;
   }
 
   .blocks h2 {
@@ -64,10 +64,6 @@
 }
 
 @media screen and (max-width: 300px) {
-  .image_container {
-    display: none;
-  }
-
   .work h2 {
     font-size: 24px;
   }

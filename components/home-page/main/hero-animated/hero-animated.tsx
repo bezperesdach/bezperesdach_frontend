@@ -1,6 +1,6 @@
 import Lottie from "@rookino/react-lottie-light";
 import { useEffect } from "react";
-import heroAnimated from "../../../../public/assets/images/hero/Hero.json";
+import heroAnimated from "../../../../public/assets/images/hero/hero.json";
 
 type Props = {
   className?: string;

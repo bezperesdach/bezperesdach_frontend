@@ -18,7 +18,7 @@ module.exports = {
               content: [
                 "./pages/**/*.{js,jsx,ts,tsx}",
                 "./components/**/*.{js,jsx,ts,tsx}",
-                "./node_modules/react-multi-carousel/lib/**/*.{js,jsx,ts,tsx}",
+                "./node_modules/react-multi-carousel/**/*.{js,jsx,ts,tsx}",
               ],
               defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
               safelist: {

@@ -24,6 +24,7 @@
     "draggable",
     "firstname",
     "Formik",
+    "grecaptcha",
     "hcaptcha",
     "heatmaps",
     "iframes",

@@ -441,6 +441,8 @@
   .hero {
     width: 100%;
     justify-content: center;
+    padding-right: unset;
+    padding-left: unset;
     text-align: left;
   }
 
@@ -475,5 +477,9 @@
 
   .order_image {
     display: none;
+  }
+
+  .border {
+    margin-bottom: unset;
   }
 }

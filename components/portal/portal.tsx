@@ -12,7 +12,6 @@ const Portal = ({ children }: Props) => {
   useEffect(() => {
     const current = wrapper.current as HTMLElement;
     current.setAttribute("id", "overlay");
-    current.setAttribute("z-index", "10");
     document.body.appendChild(current);
     document.body.style.overflow = "hidden";
 

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 32px;
   gap: 24px;
 }
 
@@ -59,7 +59,7 @@
   }
 
   .offer h2 {
-    padding-top: 50px;
+    padding-top: unset;
     padding-bottom: 50px;
     font-size: 28px;
   }

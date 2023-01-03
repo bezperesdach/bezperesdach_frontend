@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 200px;
-  padding-bottom: 200px;
+  padding-bottom: 100px;
   gap: 24px;
 }
 
@@ -81,7 +81,7 @@
   .order_process {
     flex-direction: column;
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 24px;
     gap: 0;
   }
 
@@ -93,10 +93,20 @@
   .order_process h3 {
     font-size: 16px;
   }
+
+  .image_container {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 380px) {
   .image_container {
     display: none;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .order_process h2 {
+    font-size: 22px;
   }
 }

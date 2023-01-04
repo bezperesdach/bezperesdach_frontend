@@ -1,5 +1,8 @@
 .bonus {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
 }
 
 .colored_background {
@@ -12,18 +15,15 @@
   color: rgb(255 255 255);
 }
 
-.images_left {
-  display: flex;
-  width: auto;
-  height: auto;
-  margin: auto;
+.image_container {
+  flex-basis: 20%;
 }
 
-.images_right {
-  display: flex;
-  width: auto;
-  height: auto;
-  margin: auto;
+.image {
+  position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+  object-fit: contain;
 }
 
 .bonus_block {
@@ -57,11 +57,7 @@
     flex-direction: column;
   }
 
-  .images_left {
-    display: none;
-  }
-
-  .images_right {
+  .image {
     display: none;
   }
 

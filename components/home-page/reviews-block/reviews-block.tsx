@@ -48,7 +48,6 @@ export const ReviewsBlock = ({ randomReviews, deviceType }: Props) => {
         draggable={false}
         infinite
         ssr
-        showDots
         containerClass={styles.carousel_container}
         itemClass={styles.review_container}
         responsive={responsive}

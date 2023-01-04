@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { DynamicStar } from "../../../../dynamic-star/dynamic-star";
+import { RatingStars } from "../../../../rating-stars/rating-stars";
 
 import styles from "./review-card.module.css";
 
@@ -25,7 +25,7 @@ export const ReviewCard = ({ className, name, text, rating, date, avatar }: Prop
         />
         <div className={styles.name_rating}>
           <h4 className={styles.name}>{name}</h4>
-          <DynamicStar outlined rating={rating} width={16} height={16} />
+          <RatingStars rating={rating} />
         </div>
       </div>
       <p className={styles.text}>{text}</p>

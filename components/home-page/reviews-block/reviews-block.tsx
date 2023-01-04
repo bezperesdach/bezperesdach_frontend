@@ -40,15 +40,15 @@ export const ReviewsBlock = ({ randomReviews, deviceType }: Props) => {
       </h3>
 
       <Carousel
-        pauseOnHover
         arrows={false}
         autoPlay
-        autoPlaySpeed={4500}
+        autoPlaySpeed={5000}
         shouldResetAutoplay
         swipeable={false}
         draggable={false}
         infinite
         ssr
+        showDots
         containerClass={styles.carousel_container}
         itemClass={styles.review_container}
         responsive={responsive}

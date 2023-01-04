@@ -54,7 +54,8 @@ const montserrat = localFont({
       style: "normal",
     },
   ],
-  fallback: ["Helvetica", "Segoe UI", "system-ui"],
+  fallback: ["Tahoma", "Segoe UI", "system-ui"],
+  adjustFontFallback: "Arial",
   preload: true,
   display: "swap",
 });

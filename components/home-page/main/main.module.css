@@ -10,6 +10,7 @@
 
 .image_container {
   position: relative;
+  overflow: hidden;
   flex: 1;
   flex-basis: 50%;
 }

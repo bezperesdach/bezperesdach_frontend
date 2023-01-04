@@ -14,8 +14,6 @@ export default function Document() {
     <Html lang="ru">
       <Head>
         {/* <meta httpEquiv="Content-Security-Policy" content={generateCSP()} /> */}
-        <meta charSet="UTF-8" />
-
         <link rel="apple-touch-icon" sizes="180x180" href="https://bezperesdach.ru/assets/favicon/apple-touch-icon.png?v=4" />
         <link rel="icon" type="image/png" sizes="32x32" href="https://bezperesdach.ru/assets/favicon/favicon-32x32.png?v=4" />
         <link rel="icon" type="image/png" sizes="16x16" href="https://bezperesdach.ru/assets/favicon/favicon-16x16.png?v=4" />

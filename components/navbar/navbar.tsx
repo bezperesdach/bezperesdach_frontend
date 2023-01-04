@@ -31,7 +31,7 @@ export const Navbar = () => {
       <button className={styles.mobile_menu} onClick={() => setOpen(!isOpen)}>
         <DynamicMenuIcon isOpen={isOpen} strokeWidth="4" color="rgb(17 112 238)" transition={{ ease: "easeInOut" }} />
       </button>
-      <nav>
+      <nav className={styles.nav_menu}>
         <ul className={styles.desktop_menu}>
           <MenuItem url={urls.base} reverseUrl>
             Главная

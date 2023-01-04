@@ -1,30 +1,38 @@
-import Lottie from "@rookino/react-lottie-light";
-import { useEffect } from "react";
-import heroAnimated from "../../../../public/assets/images/hero/hero.json";
+import heroAnimated from "public/assets/images/hero/hero.mp4";
+import { useEffect, useState } from "react";
 
 type Props = {
   className?: string;
   setLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoaded: boolean;
 };
 
-const HeroAnimated = ({ className, setLoaded }: Props) => {
+const HeroAnimated = ({ className, isLoaded, setLoaded }: Props) => {
+  const [domLoaded, setDomLoaded] = useState(false);
   useEffect(() => {
-    setLoaded(true);
+    setDomLoaded(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const defaultOptions = {
-    animationData: heroAnimated,
-    loop: true,
-    autoplay: true,
-    rendererSettings: {
-      progressiveLoad: true,
-      hideOnTransparent: true,
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
-  return <Lottie className={className} options={defaultOptions} />;
+  return (
+    <>
+      {domLoaded && (
+        <video
+          className={className}
+          loop
+          muted
+          autoPlay
+          disablePictureInPicture
+          playsInline
+          src={heroAnimated}
+          style={{ visibility: !isLoaded ? "hidden" : "visible" }}
+          onLoadedData={() => setLoaded(true)}
+          onAbort={() => setLoaded(false)}
+          onPause={() => setLoaded(false)}
+        />
+      )}
+    </>
+  );
 };
 
 export default HeroAnimated;

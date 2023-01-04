@@ -26,7 +26,7 @@ export const Main = () => {
           onError={(e) => (e.currentTarget.src = FallbackHero.src)}
         />
 
-        <DynamicHeroAnimation className={styles.animated_image} setLoaded={setAnimationLoaded} />
+        <DynamicHeroAnimation className={styles.animated_image} setLoaded={setAnimationLoaded} isLoaded={isAnimationLoaded} />
       </div>
 
       <div>

@@ -10,7 +10,6 @@ const DynamicHeroAnimation = dynamic(() => import("./hero-animated/hero-animated
 import styles from "./main.module.css";
 
 export const Main = () => {
-  const [isAnimationLoaded, setAnimationLoaded] = useState(false);
   return (
     <section className={styles.main_hero}>
       <div className={styles.image_container}>
@@ -22,11 +21,10 @@ export const Main = () => {
           priority={true}
           sizes="(max-width: 1240px) 100vw,
           55vw"
-          style={{ visibility: isAnimationLoaded ? "hidden" : "visible" }}
           onError={(e) => (e.currentTarget.src = FallbackHero.src)}
         />
 
-        <DynamicHeroAnimation className={styles.animated_image} setLoaded={setAnimationLoaded} isLoaded={isAnimationLoaded} />
+        <DynamicHeroAnimation className={styles.animated_image} />
       </div>
 
       <div>

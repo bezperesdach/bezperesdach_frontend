@@ -22,7 +22,8 @@
 
   /* height: 80px; */
   height: auto;
-  flex-basis: 12%;
+
+  /* flex-basis: 12%; */
 }
 
 .image {

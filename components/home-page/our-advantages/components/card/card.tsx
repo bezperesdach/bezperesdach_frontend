@@ -2,7 +2,6 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import Image, { StaticImageData } from "next/image";
 import styles from "./card.module.css";
-import { boolean } from "yup";
 
 const DynamicCardVideo = dynamic(() => import("../../../video-component/video-component"));
 

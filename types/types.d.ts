@@ -29,6 +29,12 @@ type VKGoalTypes =
 declare module "*.mp4" {
   export default string;
 }
+declare module "*.mov" {
+  export default string;
+}
+declare module "*.webm" {
+  export default string;
+}
 
 interface IOrder {
   contactType: string;

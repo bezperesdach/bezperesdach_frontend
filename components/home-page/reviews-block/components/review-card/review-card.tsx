@@ -58,8 +58,9 @@ export const ReviewCard = ({ className, name, text, rating, date, avatar }: Prop
           className={`${styles.image} no_select image_no_pointer_events`}
           alt="avatar image"
           width={64}
-          placeholder="blur"
           height={64}
+          placeholder="blur"
+          priority
           onError={(e) => (e.currentTarget.src = `/assets/images/avatars/${avatar}.png`)}
         />
         <div className={styles.name_rating}>

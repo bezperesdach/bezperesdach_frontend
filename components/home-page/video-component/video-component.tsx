@@ -17,7 +17,7 @@ const VideoComponent = ({ className, videoMov, videoWebm, isVisible, setIsVisibl
   }, []);
 
   const loaded = () => {
-    setTimeout(() => setIsVisible(true), 100);
+    setTimeout(() => setIsVisible(true), 350);
   };
 
   return (

@@ -8,8 +8,7 @@ import { UnauthorizedUserLayout } from "../../components/layouts/unauthorized-us
 import { descriptionValueLabel, getOrderDescription, getProjectType } from "../../utils/order-form/form";
 import { SEO } from "../../components/seo/seo";
 import { NewOrderForm } from "../../components/forms/new-order-form/new-order-form";
-
-const DynamicGoogleReCaptchaProvider = dynamic(() => import("react-google-recaptcha-v3").then((mod) => mod.GoogleReCaptchaProvider));
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 const AboutUsHomePageDynamic = dynamic(() =>
   import("../../components/home-page/about-us-home-page/about-us-home-page").then((mod) => mod.AboutUsHomePage)
@@ -48,7 +47,7 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>
 
-      <DynamicGoogleReCaptchaProvider
+      <GoogleReCaptchaProvider
         reCaptchaKey={RECAPTCHA_SITE_KEY}
         scriptProps={{
           async: false, // optional, default to false,
@@ -58,7 +57,7 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
         }}
       >
         <NewOrderForm />
-      </DynamicGoogleReCaptchaProvider>
+      </GoogleReCaptchaProvider>
 
       <AboutUsHomePageDynamic />
       <DynamicOurAdvantages />

@@ -14,6 +14,12 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "react/no-unknown-property": [
+      2,
+      {
+        "ignore": ["jsx", "global"]
+      }
+    ],
     "@typescript-eslint/no-explicit-any": "error",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0

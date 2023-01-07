@@ -31,14 +31,16 @@ export const Navbar = () => {
       <button className={styles.mobile_menu} onClick={() => setOpen(!isOpen)}>
         <DynamicMenuIcon isOpen={isOpen} strokeWidth="4" color="rgb(17 112 238)" transition={{ ease: "easeInOut" }} />
       </button>
-      <ul className={styles.desktop_menu}>
-        <MenuItem url={urls.base} reverseUrl>
-          Главная
-        </MenuItem>
-        <MenuItem url={urls.about_us}>О нас</MenuItem>
-        <MenuItem url={urls.guarantees}>Гарантии</MenuItem>
-        <MenuItem url={urls.prices}>Цены и Услуги</MenuItem>
-      </ul>
+      <nav className={styles.nav_menu}>
+        <ul className={styles.desktop_menu}>
+          <MenuItem url={urls.base} reverseUrl>
+            Главная
+          </MenuItem>
+          <MenuItem url={urls.about_us}>О нас</MenuItem>
+          <MenuItem url={urls.guarantees}>Гарантии</MenuItem>
+          <MenuItem url={urls.prices}>Цены и Услуги</MenuItem>
+        </ul>
+      </nav>
       <DynamicSidebar isOpen={isOpen} closeMenu={closeMenu} />
     </header>
   );

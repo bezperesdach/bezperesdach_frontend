@@ -26,6 +26,16 @@ type VKGoalTypes =
   | "donate" // (рус. Пожертвование средств) — пожертвование средств.
   | "conversion"; // (рус. Конверсия) — конверсия, или целевое действия без уточнения подробностей. Используйте этот тип события, если в списке событий выше вы не нашли подходящее для вашего целевого действия.
 
+declare module "*.mp4" {
+  export default string;
+}
+declare module "*.mov" {
+  export default string;
+}
+declare module "*.webm" {
+  export default string;
+}
+
 interface IOrder {
   contactType: string;
   contact: string;

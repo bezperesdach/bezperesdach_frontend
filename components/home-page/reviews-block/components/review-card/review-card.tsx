@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { DynamicStar } from "../../../../dynamic-star/dynamic-star";
+import { RatingStars } from "../../../../rating-stars/rating-stars";
 
 import styles from "./review-card.module.css";
 
@@ -17,15 +17,17 @@ export const ReviewCard = ({ className, name, text, rating, date, avatar }: Prop
     <div className={className}>
       <div className={styles.avatar_name_rating_container}>
         <Image
-          src={`/assets/images/avatars/${avatar}.svg`}
+          src={`/assets/images/avatars/${avatar}.webp`}
           className={`${styles.image} no_select image_no_pointer_events`}
           alt="avatar image"
           width={64}
+          placeholder="blur"
           height={64}
+          onError={(e) => (e.currentTarget.src = `/assets/images/avatars/${avatar}.png`)}
         />
         <div className={styles.name_rating}>
           <h4 className={styles.name}>{name}</h4>
-          <DynamicStar outlined rating={rating} width={16} height={16} />
+          <RatingStars rating={rating} />
         </div>
       </div>
       <p className={styles.text}>{text}</p>

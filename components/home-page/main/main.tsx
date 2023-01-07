@@ -2,15 +2,17 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Hero from "public/assets/images/hero/hero.webp";
+import HeroMov from "public/assets/images/hero/hero.mov";
+import HerWebm from "public/assets/images/hero/hero.webm";
 import FallbackHero from "public/assets/images/hero/fallback-hero.png";
 import { LinkButton } from "../../link-button/link-button";
 import urls from "../../../utils/urls.json";
-const DynamicHeroAnimation = dynamic(() => import("./hero-animated/hero-animated"));
+const DynamicHeroAnimation = dynamic(() => import("../video-component/video-component"));
 
 import styles from "./main.module.css";
 
 export const Main = () => {
-  const [isAnimationLoaded, setAnimationLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <section className={styles.main_hero}>
       <div className={styles.image_container}>
@@ -22,11 +24,17 @@ export const Main = () => {
           priority={true}
           sizes="(max-width: 1240px) 100vw,
           55vw"
-          style={{ visibility: isAnimationLoaded ? "hidden" : "visible" }}
+          style={{ visibility: !isVisible ? "visible" : "hidden" }}
           onError={(e) => (e.currentTarget.src = FallbackHero.src)}
         />
 
-        <DynamicHeroAnimation className={styles.animated_image} setLoaded={setAnimationLoaded} />
+        <DynamicHeroAnimation
+          className={styles.animated_image}
+          videoMov={HeroMov}
+          videoWebm={HerWebm}
+          isVisible={isVisible}
+          setIsVisible={setIsVisible}
+        />
       </div>
 
       <div>

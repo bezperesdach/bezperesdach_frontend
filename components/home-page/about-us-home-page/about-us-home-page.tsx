@@ -12,8 +12,8 @@ export const AboutUsHomePage = () => {
       <div className={styles.description}>
         <h2>О НАС</h2>
         <h3 style={{ paddingBottom: "32px" }}>
-          Онлайн-сервис <span style={{ fontWeight: "600" }}>&quot;Без пересдач&quot;</span> - это команда преподавателей, которые
-          предоставляют услуги по помощи студентам в учебе.
+          <span style={{ fontWeight: "600" }}>&quot;Без пересдач&quot;</span> - это сервис, который оказывает помощь студентам в учебе
+          онлайн.
         </h3>
         <h3 style={{ paddingBottom: "32px" }}>
           На сайте вы можете получить консультации и обратиться к экспертам для решения различных задач и проблем в учебе.

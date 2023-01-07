@@ -13,15 +13,15 @@ import styles from "./bonus.module.css";
 export const Bonus = () => {
   return (
     <section className={`${styles.bonus} ${styles.colored_background}`}>
-      <Image
-        src={Left}
-        placeholder="blur"
-        className={`${styles.images_left} no_select image_no_pointer_events`}
-        alt="left"
-        sizes="(max-width: 1240px) 100vw,
-        55vw"
-        onError={(e) => (e.currentTarget.src = FallbackLeft.src)}
-      />
+      <div className={styles.image_container}>
+        <Image
+          src={Left}
+          placeholder="blur"
+          className={`${styles.image} no_select image_no_pointer_events`}
+          alt="left"
+          onError={(e) => (e.currentTarget.src = FallbackLeft.src)}
+        />
+      </div>
       <div className={styles.bonus_block}>
         <h2>
           Скидка 10% <br></br> на первый заказ
@@ -31,15 +31,15 @@ export const Bonus = () => {
         </p>
         <LinkButton href={`${urls.order}?promo=NEW2022`}>Оставить заявку</LinkButton>
       </div>
-      <Image
-        src={Right}
-        placeholder="blur"
-        className={`${styles.images_right} no_select image_no_pointer_events`}
-        alt="right"
-        sizes="(max-width: 1240px) 100vw,
-        55vw"
-        onError={(e) => (e.currentTarget.src = FallbackRight.src)}
-      />
+      <div className={styles.image_container}>
+        <Image
+          src={Right}
+          placeholder="blur"
+          className={`${styles.image} no_select image_no_pointer_events`}
+          alt="right"
+          onError={(e) => (e.currentTarget.src = FallbackRight.src)}
+        />
+      </div>
     </section>
   );
 };

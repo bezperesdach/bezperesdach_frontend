@@ -1,0 +1,12 @@
+.single_star {
+  width: 24px;
+  height: 24px;
+}
+
+.active {
+  color: rgb(255 188 0);
+}
+
+.inactive {
+  color: rgb(102 35 129 / 40%);
+}

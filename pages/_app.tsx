@@ -54,7 +54,8 @@ const montserrat = localFont({
       style: "normal",
     },
   ],
-  fallback: ["Helvetica", "Segoe UI", "system-ui"],
+  fallback: ["Tahoma", "Segoe UI", "system-ui"],
+  adjustFontFallback: "Arial",
   preload: true,
   display: "swap",
 });
@@ -62,10 +63,13 @@ const montserrat = localFont({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ErrorBoundary>
+      <style jsx global>{`
+        html {
+          font-family: ${montserrat.style.fontFamily};
+        }
+      `}</style>
       <NextNProgress color="#1070EE" height={6} showOnShallow={false} options={{ showSpinner: false }} />
-      <main className={montserrat.className}>
-        <Component {...pageProps} />
-      </main>
+      <Component {...pageProps} />
     </ErrorBoundary>
   );
 }

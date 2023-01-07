@@ -11,7 +11,6 @@
 .border {
   position: relative;
   padding: 16px 8px 8px;
-  border: 10px solid rgb(255 255 255);
   border-radius: 10px;
   margin-top: 32px;
   margin-bottom: 80px;
@@ -25,7 +24,7 @@
 
 .handle_top {
   position: absolute;
-  top: -35px;
+  top: -25px;
   left: 50%;
   width: 160px;
   height: 30px;

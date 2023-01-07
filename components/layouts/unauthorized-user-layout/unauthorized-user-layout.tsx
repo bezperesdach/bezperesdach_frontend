@@ -15,7 +15,7 @@ export const UnauthorizedUserLayout = ({ children }: { children: ReactNode }) =>
   return (
     <div className={styles.main}>
       <DynamicNavbar />
-      <LegalNotification />
+      {/* <LegalNotification /> */}
       <main>{children}</main>
       <DynamicFooter />
 

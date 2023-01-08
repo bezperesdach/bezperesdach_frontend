@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { usePrefersReducedMotion } from "../../../hooks/use-prefers-reduce-motion/use-prefers-reduce-motion";
+import { useReducedMotion } from "framer-motion";
+// import { usePrefersReducedMotion } from "../../../hooks/use-prefers-reduce-motion/use-prefers-reduce-motion";
 
 type Props = {
   className?: string;
@@ -10,7 +11,7 @@ type Props = {
 };
 
 const VideoComponent = ({ className, videoMov, videoWebm, isVisible, setIsVisible }: Props) => {
-  const prefersReducedMotion = usePrefersReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
   const [domLoaded, setDomLoaded] = useState(false);
   const videoPlayerRef = useRef<HTMLVideoElement>(null);
 
@@ -31,6 +32,10 @@ const VideoComponent = ({ className, videoMov, videoWebm, isVisible, setIsVisibl
       }, 300);
     }
   };
+
+  if (prefersReducedMotion) {
+    setIsVisible(false);
+  }
 
   return (
     <>

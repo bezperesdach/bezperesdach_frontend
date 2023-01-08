@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useScroll } from "framer-motion";
 
 import styles from "./scroll-to-top-button.module.css";
 
 const containerVariants = {
   hover: { opacity: 1 },
+  visible: { y: 0, opacity: 0.8 },
+  hidden: { y: "200%", opacity: 0.8 },
+};
+
+const containerReducedMotionVariants = {
+  hover: { opacity: 1 },
+  visible: { y: 0, opacity: 0.8 },
+  hidden: { opacity: 0 },
 };
 
 const buttonVariants = {
@@ -14,6 +22,8 @@ const buttonVariants = {
 };
 
 export const ScrollTopButton = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   const { scrollY } = useScroll();
 
   const [visible, setVisible] = useState(false);
@@ -43,10 +53,10 @@ export const ScrollTopButton = () => {
       {visible && (
         <motion.div
           className={styles.scroll_top_wrap}
-          initial={{ y: "200%", opacity: 0.8 }}
-          animate={{ y: 0, opacity: 0.8 }}
-          exit={{ y: "200%", opacity: 0.8 }}
-          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={prefersReducedMotion ? containerReducedMotionVariants : containerVariants}
           whileHover="hover"
           whileTap="hover"
           transition={{ type: "ease" }}

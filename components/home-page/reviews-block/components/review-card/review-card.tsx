@@ -60,7 +60,6 @@ export const ReviewCard = ({ className, name, text, rating, date, avatar }: Prop
           width={64}
           height={64}
           placeholder="blur"
-          priority
           onError={(e) => (e.currentTarget.src = `/assets/images/avatars/${avatar}.png`)}
         />
         <div className={styles.name_rating}>

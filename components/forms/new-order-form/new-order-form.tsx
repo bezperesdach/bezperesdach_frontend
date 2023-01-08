@@ -518,7 +518,7 @@ export const NewOrderForm = () => {
                 <div className={styles.submit_button_container}>
                   {errorText && <p className={styles.submit_error}>{errorText}</p>}
                   <Button type="submit" color="#fff" disabled={formik.isSubmitting} loading={sendOrder.loading} error={sendOrder.error}>
-                    Отправить запрос
+                    Отправить
                   </Button>
                   <RecaptchaDisclaimer />
                 </div>

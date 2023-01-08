@@ -90,7 +90,8 @@
 
 .type_subject {
   display: flex;
-  gap: 8px;
+  column-gap: 8px;
+  row-gap: 16px;
 }
 
 .image_container {
@@ -124,12 +125,14 @@
 .multi_item_row {
   display: flex;
   flex-basis: 10%;
-  gap: 8px;
+  column-gap: 8px;
+  row-gap: 16px;
 }
 
 .date_orig_container {
   display: flex;
-  gap: 8px;
+  column-gap: 8px;
+  row-gap: 16px;
 }
 
 .item_container > * {
@@ -219,7 +222,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 }
 
 .modal_overlay {
@@ -324,10 +327,6 @@
 }
 
 @media screen and (min-width: 1366px) {
-  .hero {
-    padding-top: 25px;
-  }
-
   .form_container {
     padding-top: 32px;
     gap: 32px;

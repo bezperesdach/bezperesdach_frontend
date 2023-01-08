@@ -19,12 +19,7 @@ export const WorkAdvantages = () => {
     <section className={`${styles.work_advantages} ${styles.colored_background}`}>
       <div className={styles.cards}>
         <h2>ЗАРАБАТЫВАЙ С БЕЗ ПЕРЕСДАЧ ОТ 40 ТЫСЯЧ РУБЛЕЙ</h2>
-        <ImageWithText
-          description={"Мы выплачиваем от 80 до 90% от заказа вам на карту"}
-          img={One}
-          fallbackImg={FallbackOne}
-          alt="one"
-        />
+        <ImageWithText description={"Выплаты каждый месяц удобным вам способом"} img={One} fallbackImg={FallbackOne} alt="one" />
         <ImageWithText description={"Возможность работать из любой точки мира"} img={Two} fallbackImg={FallbackTwo} alt="two" />
         <ImageWithText
           description={"Мы всегда готовы помочь вам в решении любых проблем"}

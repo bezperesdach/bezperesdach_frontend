@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import useDeviceDetect from "../../hooks/use-device-detect/use-device-detect";
+import { useOutsideAreaClick } from "../../hooks/use-outside-area-click/use-outside-area-click";
 import { ym } from "../../utils/yandex-metrika";
 
 import ChatIcon from "../../public/assets/icons/chat-icon.svg";
@@ -18,8 +19,8 @@ const openButtonVariants = {
 };
 
 const openButtonReduceMotionVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { delay: 0.25 } },
+  hidden: { opacity: 1 },
+  visible: { opacity: 1 },
 };
 
 const openMenuVariants = {
@@ -38,13 +39,16 @@ const menuOptionVariants = {
   tap: { scale: 1.2, transition: { type: "spring", stiffness: 400, damping: 10 } },
 };
 
-const menuOptionReduceMotionVarinats = {
+const menuOptionReduceMotionVariants = {
   visible: { opacity: 1 },
   hidden: { opacity: 0 },
   tap: { scale: 1.2, transition: { type: "linear" } },
 };
 
 export const HelpButton = () => {
+  const supportContainerRef = useRef(null);
+  const outsideClick = useOutsideAreaClick(supportContainerRef);
+
   const prefersReducedMotion = useReducedMotion();
 
   const { isMobile } = useDeviceDetect();
@@ -55,8 +59,16 @@ export const HelpButton = () => {
     ym("reachGoal", "helpClick");
   };
 
+  useEffect(() => {
+    if (outsideClick) {
+      if (showHelpMenu) {
+        setShowHelpMenu(false);
+      }
+    }
+  }, [outsideClick, showHelpMenu]);
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={supportContainerRef}>
       <motion.button
         className={styles.chat_button}
         variants={prefersReducedMotion ? openButtonReduceMotionVariants : openButtonVariants}
@@ -84,7 +96,7 @@ export const HelpButton = () => {
           >
             <motion.a
               className={styles.chat_button}
-              variants={prefersReducedMotion ? menuOptionReduceMotionVarinats : menuOptionVariants}
+              variants={prefersReducedMotion ? menuOptionReduceMotionVariants : menuOptionVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
@@ -100,7 +112,7 @@ export const HelpButton = () => {
             </motion.a>
             <motion.a
               className={styles.chat_button}
-              variants={prefersReducedMotion ? menuOptionReduceMotionVarinats : menuOptionVariants}
+              variants={prefersReducedMotion ? menuOptionReduceMotionVariants : menuOptionVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
@@ -116,7 +128,7 @@ export const HelpButton = () => {
             </motion.a>
             <motion.a
               className={styles.chat_button}
-              variants={prefersReducedMotion ? menuOptionReduceMotionVarinats : menuOptionVariants}
+              variants={prefersReducedMotion ? menuOptionReduceMotionVariants : menuOptionVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
@@ -132,7 +144,7 @@ export const HelpButton = () => {
             </motion.a>
             <motion.button
               className={styles.chat_button}
-              variants={prefersReducedMotion ? menuOptionReduceMotionVarinats : menuOptionVariants}
+              variants={prefersReducedMotion ? menuOptionReduceMotionVariants : menuOptionVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"

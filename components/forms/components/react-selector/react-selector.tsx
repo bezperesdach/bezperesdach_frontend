@@ -1,7 +1,6 @@
 import React, { useId } from "react";
 import { FieldProps } from "formik";
-import Select from "react-select";
-import { Options, OnChangeValue, StylesConfig } from "react-select";
+import Select, { Options, OnChangeValue, StylesConfig } from "react-select";
 
 const selectStyle: StylesConfig<ReactSelectOption | ReactSelectOption[] | string, boolean> = {
   control: (styles, { isDisabled }) => {

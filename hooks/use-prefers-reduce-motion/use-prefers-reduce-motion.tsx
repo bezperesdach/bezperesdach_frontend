@@ -1,10 +1,10 @@
-import React from "react";
+import { useState, useEffect } from "react";
 const QUERY = "(prefers-reduced-motion: no-preference)";
 export const usePrefersReducedMotion = () => {
   // Default to no-animations, since we don't know what the
   // user's preference is on the server.
-  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(true);
-  React.useEffect(() => {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(true);
+  useEffect(() => {
     const mediaQueryList = window.matchMedia(QUERY);
     // Set the true initial value, now that we're on the client:
     setPrefersReducedMotion(!window.matchMedia(QUERY).matches);

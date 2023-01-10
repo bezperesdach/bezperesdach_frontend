@@ -11,7 +11,7 @@
 .border {
   position: relative;
   padding: 16px 8px 8px;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
   margin-top: 32px;
   margin-bottom: 80px;
   box-shadow: 0 0 0 20px rgb(16 112 238), 0 5px 20px 10px rgb(0 0 0);
@@ -405,12 +405,12 @@
 
 @media screen and (max-width: 968px) {
   .order_image_right {
-    bottom: 0;
+    bottom: -36px;
     width: 186px;
   }
 
   .order_image_left {
-    bottom: 0;
+    bottom: -36px;
     width: 186px;
   }
 }
@@ -453,6 +453,7 @@
   }
 
   .border {
+    border-radius: 10px 10px 0 0;
     margin-bottom: unset;
     box-shadow: 0 0 0 1rem rgb(16 112 238), 0 5px 1rem 10px rgb(0 0 0);
   }

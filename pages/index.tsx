@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import UAParser from "ua-parser-js";
 
 import { Main } from "../components/home-page/main/main";
 import { UnauthorizedUserLayout } from "../components/layouts/unauthorized-user-layout/unauthorized-user-layout";

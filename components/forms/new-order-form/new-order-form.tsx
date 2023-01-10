@@ -6,6 +6,7 @@ import Right from "../../../public/assets/images/order-form/right.svg";
 
 import Image from "next/image";
 import { Form, Field, ErrorMessage, useFormik, FormikProvider } from "formik";
+import useDeviceDetect from "../../../hooks/use-device-detect/use-device-detect";
 
 // import Hero from "public/assets/images/hero/hero.webp";
 // import FallbackHero from "public/assets/images/hero/fallback-hero.png";
@@ -44,6 +45,8 @@ import styles from "../form.module.css";
 const todayDate = new Date().toISOString().split("T")[0];
 
 export const NewOrderForm = () => {
+  const { isMobile } = useDeviceDetect();
+
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const additionalInfoRef = useRef<HTMLButtonElement>(null);
@@ -537,12 +540,17 @@ export const NewOrderForm = () => {
             <DynamicModalRequest shouldShow={sendOrder.isModal} handleClose={closeModal} email="help@bezperesdach.ru" />
           </div>
         </div>
-        <div className={`${styles.order_image} ${styles.order_image_right}`}>
-          <Image className={styles.image} src={Right} alt="image_right" />
-        </div>
-        <div className={`${styles.order_image} ${styles.order_image_left}`}>
-          <Image className={styles.image} src={Left} alt="image_left" />
-        </div>
+        {!isMobile && (
+          <>
+            <div className={`${styles.order_image} ${styles.order_image_right}`}>
+              <Image className={styles.image} src={Right} alt="image_right" />
+            </div>
+
+            <div className={`${styles.order_image} ${styles.order_image_left}`}>
+              <Image className={styles.image} src={Left} alt="image_left" />
+            </div>
+          </>
+        )}
       </section>
     </FormikProvider>
   );

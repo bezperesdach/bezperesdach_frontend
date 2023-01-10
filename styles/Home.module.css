@@ -1,4 +1,14 @@
-.main {
+.reviews_block {
+  padding-top: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .reviews_block {
+    padding-top: 50px;
+  }
+}
+
+/* .main {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -98,4 +108,4 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
-}
+} */

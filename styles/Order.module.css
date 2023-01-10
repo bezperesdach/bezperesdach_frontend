@@ -1,0 +1,11 @@
+.reviews_block {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .reviews_block {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}

@@ -24,6 +24,11 @@ const DynamicSecurePayment = dynamic(() =>
   import("../../components/home-page/secure-payment/secure-payment").then((mod) => mod.SecurePayment)
 );
 const DynamicContact = dynamic(() => import("../../components/home-page/contact/contact").then((mod) => mod.Contact));
+const DynamicReviewsBlock = dynamic(() =>
+  import("../../components/home-page/reviews-block/reviews-block").then((mod) => mod.ReviewsBlock)
+);
+
+import styles from "../../styles/Order.module.css";
 
 interface IParams extends ParsedUrlQuery {
   slug: string;
@@ -47,7 +52,6 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
       >
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
       </SEO>
-
       <GoogleReCaptchaProvider
         reCaptchaKey={RECAPTCHA_SITE_KEY}
         scriptProps={{
@@ -59,11 +63,11 @@ export default function Order({ slug }: InferGetStaticPropsType<typeof getStatic
       >
         <NewOrderForm />
       </GoogleReCaptchaProvider>
-
       <AboutUsHomePageDynamic />
       <DynamicOurAdvantages />
       <DynamicOrderProcess />
       <DynamicSecurePayment />
+      <DynamicReviewsBlock className={styles.reviews_block} />
       <DynamicContact />
     </UnauthorizedUserLayout>
   );
